@@ -13,6 +13,19 @@ export interface HeaderProps {
   cta: AcfLink;
 }
 
+export interface SiteLogoProps {
+  isScrolled: boolean;
+  logo: MediaItem;
+  logoAlt: MediaItem;
+}
+
+const SiteLogo = ({isScrolled, logo, logoAlt}: SiteLogoProps) => {
+  if( isScrolled ) {
+    return <FeaturedImage image={logoAlt} className={`mb-4 h-24 md:mb-0`} />;
+  }
+  return <FeaturedImage image={logo} className={`mb-4 h-24 md:mb-0`} />;
+}
+
 const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
   const [open, cycleOpen] = useCycle(false, true);
   const ref = useRef(null);
@@ -40,19 +53,23 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
       } body-font sticky top-0 z-30 max-h-fit bg-white text-gray-600 transition-shadow`}
       ref={ref}
     >
-      <div className="container mx-auto flex flex-row flex-wrap items-center justify-center py-4 md:justify-between">
+      <div className="container mx-auto flex flex-row flex-wrap items-center justify-center p-4 md:justify-between">
         <div
           className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
         >
           {/* Logo */}
           {logo ? (
-            <FeaturedImage image={logo} className={`mb-4 w-32 md:mb-0`} />
+            <SiteLogo
+              isScrolled={isScrolledPast}
+              logo={logo}
+              logoAlt={logoAlt}
+            />
           ) : (
             <a
-              href="https://noisytrumpet.com"
+              href="/"
               className="title-font mb-4 flex items-center font-medium text-gray-900 md:mb-0"
             >
-              {`NT Headless Site Template`}
+              {`God's Dogs`}
             </a>
           )}
         </div>
@@ -66,7 +83,7 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
             toggleOpen={() => cycleOpen()}
           />
           {cta ? (
-            <Button type={`primary`} className={`ml-4`} href={cta.url ?? ``}>
+            <Button type={`secondary`} className={`ml-4`} href={cta.url ?? ``}>
               {cta.title}
             </Button>
           ) : null}
