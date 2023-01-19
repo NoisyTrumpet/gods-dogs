@@ -3,6 +3,7 @@ import { FeaturedImage } from "components/FeaturedImage";
 import { NavigationMenu } from "components/NavigationMenu";
 import { useCycle, useScroll } from "framer-motion";
 import { AcfLink, MediaItem, MenuItem } from "graphql";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import flatListToHierarchical from "utilities/flatListToHierarchical";
 
@@ -65,12 +66,12 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
               logoAlt={logoAlt}
             />
           ) : (
-            <a
+            <Link
               href="/"
               className="title-font mb-4 flex items-center font-medium text-gray-900 md:mb-0"
             >
               {`God's Dogs`}
-            </a>
+            </Link>
           )}
         </div>
         {/* CTA */}
