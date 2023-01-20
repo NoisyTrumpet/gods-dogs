@@ -46,7 +46,7 @@ export default async function handler(req: NextRequest) {
             alignItems: "center",
             flexDirection: "column",
             justifyContent: "center",
-            background: `url(${bgSource})`,
+            backgroundImage: `url(${bgSource})`,
             backgroundSize: "1200px 627px",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
