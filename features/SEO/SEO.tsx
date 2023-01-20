@@ -16,7 +16,6 @@ const SEO = ({ seo, twitter }: SEOProps) => {
     opengraphTitle,
     opengraphSiteName,
   } = seo;
-  const url = typeof window !== "undefined" ? window.location.href : "";
 
   return (
     <NextSeo
@@ -29,7 +28,7 @@ const SEO = ({ seo, twitter }: SEOProps) => {
         description: metaDesc ?? ``,
         images: [
           {
-            url: `${url}api/og/?title=${title ?? `God's Dogs`}${
+            url: `/api/og/?title=${title ?? `God's Dogs`}${
               metaDesc ? `&description=${metaDesc}` : ``
             }`,
             width: 1200,
