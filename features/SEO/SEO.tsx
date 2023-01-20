@@ -29,8 +29,8 @@ const SEO = ({ seo, twitter }: SEOProps) => {
         description: metaDesc ?? ``,
         images: [
           {
-            url: `${url}api/og/?title=${title ?? `God's Dogs`}?description=${
-              metaDesc ?? ``
+            url: `${url}api/og/?title=${title ?? `God's Dogs`}${
+              metaDesc ? `&description=${metaDesc}` : ``
             }`,
             width: 1200,
             height: 630,
