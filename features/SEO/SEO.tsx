@@ -1,5 +1,6 @@
 import { PostTypeSeo } from "graphql";
 import { NextSeo } from "next-seo";
+import { useEffect, useState } from "react";
 
 export interface SEOProps {
   seo: PostTypeSeo;
@@ -17,6 +18,9 @@ const SEO = ({ seo, twitter }: SEOProps) => {
     opengraphSiteName,
   } = seo;
 
+  const origin = process.env.NODE_ENV === "development" ? "http://localhost:3000/" : process.env.NEXT_PUBLIC_VERCEL_URL;
+
+
   return (
     <NextSeo
       title={title ?? `God's Dogs`}
@@ -28,9 +32,7 @@ const SEO = ({ seo, twitter }: SEOProps) => {
         description: metaDesc ?? ``,
         images: [
           {
-            url: `/api/og/?title=${title ?? `God's Dogs`}${
-              metaDesc ? `&description=${metaDesc}` : ``
-            }`,
+            url: `${origin}api/og/?title=${title}`,
             width: 1200,
             height: 630,
             alt: `God's Dogs`,
