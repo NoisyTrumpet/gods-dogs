@@ -1,6 +1,7 @@
 import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { NavigationMenu } from "components/NavigationMenu";
+import { Socials } from "components/Socials";
 import {
   AcfLink,
   Acf_GoogleMap,
@@ -9,9 +10,7 @@ import {
   SeoSocial,
 } from "graphql";
 import Link from "next/link";
-import Logo from "public/logo.svg";
-import { BsInstagram } from "react-icons/bs";
-import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import flatListToHierarchical from "utilities/flatListToHierarchical";
 
 export interface FooterProps {
   logo: MediaItem;
@@ -33,18 +32,18 @@ const Footer = ({
   social,
 }: FooterProps) => {
   return (
-    <footer className={`bg-primary text-gray-100`}>
+    <footer className={`bg-primary text-gray-100 py-12`}>
       <div
-        className={`container mx-auto flex flex-col flex-wrap py-8 md:flex-row md:justify-between`}
+        className={`container mx-auto flex flex-col flex-wrap md:flex-row md:justify-between`}
       >
         {/* Logo */}
         <div
           className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
         >
-          <div className={`flex flex-col`}>
+          <div className={`flex flex-col gap-4`}>
             {/* Logo */}
             {logo ? (
-              <FeaturedImage image={logo} className={`mb-4 w-32 md:mb-0`} />
+              <FeaturedImage image={logo} className={`mb-4 w-24 md:mb-12`} />
             ) : (
               <a
                 href="https://noisytrumpet.com"
@@ -114,12 +113,20 @@ const Footer = ({
         <div
           className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
         >
-          <NavigationMenu type={`secondary`} menuItems={menuItems} className={`text-white`} />
-          {cta ? (
-            <Button className={`ml-4`} type="secondary" href={cta.url ?? ``}>
-              {cta.title}
-            </Button>
-          ) : null}
+          <NavigationMenu
+            type={`footer`}
+            menuItems={flatListToHierarchical(menuItems)}
+            className={`text-white`}
+          />
+          <div className={`flex flex-col items-center h-full justify-around`}>
+            {cta ? (
+              <Button className={`ml-4`} type="secondary" href={cta.url ?? ``}>
+                {cta.title}
+              </Button>
+            ) : null}
+            {/* Socials */}
+            <Socials socials={social} />
+          </div>
         </div>
       </div>
       {/* Privacy Policy | Site by */}
@@ -133,8 +140,6 @@ const Footer = ({
             <div className={`flex flex-row items-center`}>
               <Link
                 href={`/privacy-policy/`}
-                target={`_blank`}
-                rel={`noopener noreferrer`}
                 className={`flex flex-row items-center`}
               >
                 Privacy Policy

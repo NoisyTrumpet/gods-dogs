@@ -22,9 +22,21 @@ export interface SiteLogoProps {
 
 const SiteLogo = ({ isScrolled, logo, logoAlt }: SiteLogoProps) => {
   if (isScrolled) {
-    return <FeaturedImage image={logoAlt} className={`mb-4 h-24 md:mb-0`} />;
+    return (
+      <Link href="/">
+        {logoAlt ? (
+          <FeaturedImage image={logoAlt} className={`mb-4 h-24 md:mb-0`} />
+        ) : null}
+      </Link>
+    );
   }
-  return <FeaturedImage image={logo} className={`mb-4 h-24 md:mb-0`} />;
+  return (
+    <Link href="/">
+      {logo ? (
+        <FeaturedImage image={logo} className={`mb-4 h-24 md:mb-0`} />
+      ) : null}
+    </Link>
+  );
 };
 
 const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {

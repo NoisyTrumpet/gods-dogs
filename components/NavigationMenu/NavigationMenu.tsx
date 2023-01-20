@@ -10,7 +10,7 @@ const loadFeatures = () =>
 interface NavigationMenuProps {
   menuItems: MenuItem[] | undefined;
   className?: string;
-  type?: "primary" | "secondary";
+  type?: "primary" | "secondary" | "footer";
   isMobile?: boolean;
   isOpen?: boolean;
   toggleOpen?: () => void;
@@ -26,6 +26,26 @@ const NavigationMenu = ({
 }: NavigationMenuProps) => {
   if (!menuItems) {
     return null;
+  }
+
+  if (type === "footer") {
+    return (
+      <nav
+        className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
+      >
+        {/* 2 COlumn List */}
+        <ul className={`columns-2 gap-24`}>
+          {menuItems.map(({ path, label }) => (
+            <li
+              key={`footer-${path}-${label}`}
+              className={`mb-6 uppercase text-white hover:text-secondary`}
+            >
+              <Link href={path ?? "/"}>{label}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    );
   }
 
   return (
