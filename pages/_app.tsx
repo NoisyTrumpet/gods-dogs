@@ -21,7 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
     gtmVirtualPageView(mainDataLayer);
   }, [pageProps, router.pathname]);
 
-
   return (
     <FaustProvider pageProps={pageProps}>
       <Component {...pageProps} key={path} />

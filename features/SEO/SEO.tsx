@@ -1,13 +1,13 @@
 import { PostTypeSeo } from "graphql";
 import { NextSeo } from "next-seo";
-import { useEffect, useState } from "react";
+import Head from "next/head";
 
 export interface SEOProps {
   seo: PostTypeSeo;
   twitter: string;
 }
 
-const SEO = ({ seo, twitter }: SEOProps) => {
+export default function SEO({ seo, twitter }: SEOProps) {
   const {
     title,
     metaDesc,
@@ -18,8 +18,13 @@ const SEO = ({ seo, twitter }: SEOProps) => {
     opengraphSiteName,
   } = seo;
 
-  const origin = process.env.NODE_ENV === "development" ? "http://localhost:3000/" : process.env.NEXT_PUBLIC_VERCEL_URL;
+  if (!title && !metaDesc) {
+    return null;
+  }
 
+  const url = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
 
   return (
     <NextSeo
@@ -30,16 +35,17 @@ const SEO = ({ seo, twitter }: SEOProps) => {
         url: canonical ?? ``,
         title: opengraphTitle ?? `God's Dogs`,
         description: metaDesc ?? ``,
+        siteName: opengraphSiteName ?? `God's Dogs`,
         images: [
           {
-            url: `${origin}api/og/?title=${title}`,
+            url: `${url}/api/og/?title=${title}${
+              metaDesc ? `&description=${metaDesc}` : ""
+            }`,
             width: 1200,
-            height: 630,
-            alt: `God's Dogs`,
-            type: `image/png`,
+            height: 627,
+            alt: metaDesc ? metaDesc : ``,
           },
         ],
-        siteName: opengraphSiteName ?? `God's Dogs`,
       }}
       twitter={{
         handle: twitter ?? `@GodsDogs`,
@@ -48,6 +54,4 @@ const SEO = ({ seo, twitter }: SEOProps) => {
       }}
     />
   );
-};
-
-export default SEO;
+}

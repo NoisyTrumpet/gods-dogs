@@ -1,4 +1,3 @@
-import { Main } from "features/Main"; // SEO
 import {
   AcfLink,
   Acf_GoogleMap,
@@ -7,7 +6,7 @@ import {
   PostTypeSeo,
   RootQueryToMenuItemConnection,
 } from "graphql";
-import { SEO } from "features/SEO";
+import { Main, SEO } from "features";
 
 import { Header, Footer } from "components";
 
@@ -46,7 +45,7 @@ const Layout = ({
 }: LayoutProps) => {
   return (
     <>
-      <SEO seo={seo} twitter={twitterUser} />
+      {seo ? <SEO seo={seo} twitter={twitterUser} /> : null}
       <Header
         menuItems={headerMenuItems.nodes}
         logo={logo}
