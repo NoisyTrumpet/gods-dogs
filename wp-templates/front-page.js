@@ -6,6 +6,7 @@ import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
+  SEO_CONFIG_FRAGMENT,
 } from "fragments";
 
 export default function Component() {
@@ -21,7 +22,14 @@ export default function Component() {
     return <div>Error: {error.message}</div>;
   }
 
-  const { page, headerMenuItems, footerMenuItems, siteSettings } = data;
+  const {
+    page,
+    headerMenuItems,
+    footerMenuItems,
+    siteSettings,
+    seo: defaultSEO,
+  } = data;
+
   const { seo, title } = page;
   const {
     address,
@@ -44,6 +52,11 @@ export default function Component() {
       logoWhite={logoWhite}
       logoAlt={logoAlt}
       cta={cta}
+      twitterUser={defaultSEO.social.twitter.username}
+      address={address}
+      customAddressLabel={customAddressLabel}
+      phoneNumber={phoneNumber}
+      email={email}
     >
       <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
         <div className={`relative grid h-fit w-full text-center`}>
@@ -67,6 +80,9 @@ Component.query = gql`
     }
     siteSettings {
       ...SiteSettingsFragment
+    }
+    seo {
+      ...SEOConfigFragment
     }
     page(id: "/", idType: URI, asPreview: $asPreview) {
       id
@@ -96,6 +112,7 @@ Component.query = gql`
   ${SITE_SETTINGS_FRAGMENT}
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
+  ${SEO_CONFIG_FRAGMENT}
 `;
 
 Component.variables = () => {

@@ -1,4 +1,3 @@
-import { Main } from "features/Main"; // SEO
 import {
   AcfLink,
   Acf_GoogleMap,
@@ -6,8 +5,9 @@ import {
   MenuItem,
   PostTypeSeo,
   RootQueryToMenuItemConnection,
+  SeoSocial,
 } from "graphql";
-import { SEO } from "features/SEO";
+import { Main, SEO } from "features";
 
 import { Header, Footer } from "components";
 
@@ -25,6 +25,8 @@ export interface LayoutProps {
   phoneNumber: AcfLink;
   address: Acf_GoogleMap;
   email: AcfLink;
+  twitterUser: string;
+  social: SeoSocial;
 }
 
 const Layout = ({
@@ -41,10 +43,12 @@ const Layout = ({
   phoneNumber,
   address,
   email,
+  twitterUser,
+  social,
 }: LayoutProps) => {
   return (
     <>
-      <SEO seo={seo} />
+      {seo ? <SEO seo={seo} twitter={twitterUser} /> : null}
       <Header
         menuItems={headerMenuItems.nodes}
         logo={logo}
@@ -59,6 +63,7 @@ const Layout = ({
         logo={logoWhite}
         address={address}
         email={email}
+        social={social}
       />
     </>
   );

@@ -7036,8 +7036,128 @@ export type Page_Flexiblecontent = AcfFieldGroup & {
 };
 
 export type Page_Flexiblecontent_Blocks =
+  | Page_Flexiblecontent_Blocks_Accordion
+  | Page_Flexiblecontent_Blocks_DonateBlock
+  | Page_Flexiblecontent_Blocks_FeaturedCards
   | Page_Flexiblecontent_Blocks_Form
-  | Page_Flexiblecontent_Blocks_Hero;
+  | Page_Flexiblecontent_Blocks_Hero
+  | Page_Flexiblecontent_Blocks_Impact
+  | Page_Flexiblecontent_Blocks_List
+  | Page_Flexiblecontent_Blocks_PetCarousel
+  | Page_Flexiblecontent_Blocks_PostsBlock
+  | Page_Flexiblecontent_Blocks_Quotes
+  | Page_Flexiblecontent_Blocks_TextBlock
+  | Page_Flexiblecontent_Blocks_TextImage;
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_Accordion = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_Accordion";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_Accordion_ItemRepeater>>
+  >;
+  sectionCopy?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_Accordion_ItemRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_Accordion_itemRepeater";
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Page_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    itemContent?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_Accordion_itemRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_DonateBlock";
+  cardRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
+    donateContent?: Maybe<Scalars["String"]>;
+    donateLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_FeaturedCards";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  cardRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_FeaturedCards_CardRepeater>>
+  >;
+  /** CTA Links after cards */
+  ctaRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
+  >;
+  /** Add Divider lines between cards */
+  dividerLines?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_FeaturedCards_cardRepeater";
+    cardBackgroundColor?: Maybe<Scalars["String"]>;
+    cardContent?: Maybe<Scalars["String"]>;
+    cardHasLink?: Maybe<Scalars["Boolean"]>;
+    cardIcon?: Maybe<MediaItem>;
+    cardLink?: Maybe<AcfLink>;
+    cardTitle?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCardIcon?: Maybe<Scalars["Boolean"]>;
+  };
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_FeaturedCards_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
 
 /** Group within the flex field */
 export type Page_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
@@ -7052,16 +7172,16 @@ export type Page_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
 /** Group within the flex field */
 export type Page_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   __typename?: "Page_Flexiblecontent_Blocks_Hero";
-  content?: Maybe<Scalars["String"]>;
   ctas?: Maybe<Array<Maybe<Page_Flexiblecontent_Blocks_Hero_Ctas>>>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
-  icon?: Maybe<MediaItem>;
-  image?: Maybe<MediaItem>;
-  isH1?: Maybe<Scalars["Boolean"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  leftGraphic?: Maybe<MediaItem>;
+  rightGraphic?: Maybe<MediaItem>;
+  subtitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
+  useDonationForm?: Maybe<Scalars["Boolean"]>;
   variant?: Maybe<Scalars["String"]>;
-  video?: Maybe<MediaItem>;
 };
 
 /** Field Group */
@@ -7072,6 +7192,164 @@ export type Page_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
   link?: Maybe<AcfLink>;
   type?: Maybe<Scalars["String"]>;
 };
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_Impact";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  impactItems?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_Impact_ImpactItems>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_Impact_impactItems";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  impactIcon?: Maybe<Scalars["String"]>;
+  impactNumber?: Maybe<Scalars["Float"]>;
+  subtext?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_List = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_List";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_List_ItemRepeater>>
+  >;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_List_ItemRepeater = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_List_itemRepeater";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  link?: Maybe<AcfLink>;
+  price?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_PetCarousel = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_PetCarousel";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pets?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_PostsBlock = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_PostsBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  postsGrid?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  postsStatic?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_Quotes";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  quote?: Maybe<Scalars["String"]>;
+  subtext?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_TextBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  paragraphs?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_TextBlock_Paragraphs>>
+  >;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_TextBlock_Paragraphs = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_TextBlock_paragraphs";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]>;
+  contentAlignment?: Maybe<Scalars["String"]>;
+  ctaRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingPostion?: Maybe<MediaItem>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_TextBlock_paragraphs_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_TextImage = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_TextImage";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  textImageRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_TextImage_TextImageRepeater>>
+  >;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_TextImage_TextImageRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_TextImage_textImageRepeater";
+    backgroundColor?: Maybe<Scalars["String"]>;
+    content?: Maybe<Scalars["String"]>;
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Page_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    hasSidePawsIcon?: Maybe<Scalars["Boolean"]>;
+    imageSide?: Maybe<Scalars["Boolean"]>;
+    pawsIconPostion?: Maybe<Scalars["String"]>;
+    sectionImage?: Maybe<MediaItem>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_TextImage_textImageRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
 
 /** A Gravity Forms   field. */
 export type PasswordField = FormField & {
@@ -7344,6 +7622,8 @@ export type Post = ContentNode &
     featuredImageDatabaseId?: Maybe<Scalars["Int"]>;
     /** Globally unique ID of the featured image assigned to the node */
     featuredImageId?: Maybe<Scalars["ID"]>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Flexible Content&quot; was set to Show in GraphQL. */
+    flexibleContent?: Maybe<Post_Flexiblecontent>;
     /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
     guid?: Maybe<Scalars["String"]>;
     /** The globally unique identifier of the post object. */
@@ -9442,6 +9722,9 @@ export enum PostObjectFieldFormatEnum {
   Rendered = "RENDERED",
 }
 
+/** Union between the post, page and media item types */
+export type PostObjectUnion = GraphqlDocument | MediaItem | Page | Post;
+
 /** The column to use when filtering by date */
 export enum PostObjectsConnectionDateColumnEnum {
   /** The date the comment was created in local time. */
@@ -10582,6 +10865,330 @@ export type PostTypeSeo = {
   twitterImage?: Maybe<MediaItem>;
   twitterTitle?: Maybe<Scalars["String"]>;
 };
+
+/** Field Group */
+export type Post_Flexiblecontent = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent";
+  blocks?: Maybe<Array<Maybe<Post_Flexiblecontent_Blocks>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
+
+export type Post_Flexiblecontent_Blocks =
+  | Post_Flexiblecontent_Blocks_Accordion
+  | Post_Flexiblecontent_Blocks_DonateBlock
+  | Post_Flexiblecontent_Blocks_FeaturedCards
+  | Post_Flexiblecontent_Blocks_Form
+  | Post_Flexiblecontent_Blocks_Hero
+  | Post_Flexiblecontent_Blocks_Impact
+  | Post_Flexiblecontent_Blocks_List
+  | Post_Flexiblecontent_Blocks_PetCarousel
+  | Post_Flexiblecontent_Blocks_PostsBlock
+  | Post_Flexiblecontent_Blocks_Quotes
+  | Post_Flexiblecontent_Blocks_TextBlock
+  | Post_Flexiblecontent_Blocks_TextImage;
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_Accordion = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_Accordion";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_Accordion_ItemRepeater>>
+  >;
+  sectionCopy?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Accordion_ItemRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_Accordion_itemRepeater";
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Post_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    itemContent?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_Accordion_itemRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_DonateBlock";
+  cardRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
+    donateContent?: Maybe<Scalars["String"]>;
+    donateLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_FeaturedCards";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  cardRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_FeaturedCards_CardRepeater>>
+  >;
+  /** CTA Links after cards */
+  ctaRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
+  >;
+  /** Add Divider lines between cards */
+  dividerLines?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_FeaturedCards_cardRepeater";
+    cardBackgroundColor?: Maybe<Scalars["String"]>;
+    cardContent?: Maybe<Scalars["String"]>;
+    cardHasLink?: Maybe<Scalars["Boolean"]>;
+    cardIcon?: Maybe<MediaItem>;
+    cardLink?: Maybe<AcfLink>;
+    cardTitle?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCardIcon?: Maybe<Scalars["Boolean"]>;
+  };
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_FeaturedCards_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_Form";
+  content?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  form?: Maybe<Scalars["Int"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_Hero";
+  ctas?: Maybe<Array<Maybe<Post_Flexiblecontent_Blocks_Hero_Ctas>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  leftGraphic?: Maybe<MediaItem>;
+  rightGraphic?: Maybe<MediaItem>;
+  subtitle?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  useDonationForm?: Maybe<Scalars["Boolean"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_Hero_ctas";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  link?: Maybe<AcfLink>;
+  type?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_Impact";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  impactItems?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_Impact_ImpactItems>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_Impact_impactItems";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  impactIcon?: Maybe<Scalars["String"]>;
+  impactNumber?: Maybe<Scalars["Float"]>;
+  subtext?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_List = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_List";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_List_ItemRepeater>>
+  >;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_List_ItemRepeater = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_List_itemRepeater";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  link?: Maybe<AcfLink>;
+  price?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_PetCarousel = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_PetCarousel";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pets?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_PostsBlock = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_PostsBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  postsGrid?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  postsStatic?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_Quotes";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  quote?: Maybe<Scalars["String"]>;
+  subtext?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_TextBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  paragraphs?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_TextBlock_Paragraphs>>
+  >;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_TextBlock_Paragraphs = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_TextBlock_paragraphs";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]>;
+  contentAlignment?: Maybe<Scalars["String"]>;
+  ctaRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingPostion?: Maybe<MediaItem>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_TextBlock_paragraphs_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_TextImage = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_TextImage";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  textImageRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_TextImage_TextImageRepeater>>
+  >;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_TextImage_TextImageRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_TextImage_textImageRepeater";
+    backgroundColor?: Maybe<Scalars["String"]>;
+    content?: Maybe<Scalars["String"]>;
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Post_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    hasSidePawsIcon?: Maybe<Scalars["Boolean"]>;
+    imageSide?: Maybe<Scalars["Boolean"]>;
+    pawsIconPostion?: Maybe<Scalars["String"]>;
+    sectionImage?: Maybe<MediaItem>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_TextImage_textImageRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
 
 /** Nodes that can be seen in a preview (unpublished) state. */
 export type Previewable = {

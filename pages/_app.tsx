@@ -20,8 +20,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
     gtmVirtualPageView(mainDataLayer);
   }, [pageProps, router.pathname]);
+
   return (
     <FaustProvider pageProps={pageProps}>
+      <Component {...pageProps} key={path} />
       <Script
         id="gtag-base"
         strategy="worker"
@@ -35,7 +37,6 @@ export default function App({ Component, pageProps }: AppProps) {
           `,
         }}
       />
-      <Component {...pageProps} key={path} />
     </FaustProvider>
   );
 }

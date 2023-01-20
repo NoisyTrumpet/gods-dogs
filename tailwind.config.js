@@ -8,8 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "rgb(39, 38, 35)",
-        secondary: "#666793",
+        primary: "#666793", // purple
+        secondary: "#E71019", // red
+        "primary-light": "#EFEFF8", // light purple
+        dark: "#292929", // off-black
       },
       fontFamily: {
         heading: ["__GOOD_DOG_3cfdbc"],

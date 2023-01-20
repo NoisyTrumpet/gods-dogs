@@ -91,7 +91,7 @@ const NavigationMenu = ({
             key={path}
             href={path ?? "/"}
             className={`mr-5 hover:text-secondary ${
-              type === "primary" ? "text-white" : "text-primary"
+              type === "primary" ? "text-primary-light" : "text-black"
             }`}
           >
             {label}
