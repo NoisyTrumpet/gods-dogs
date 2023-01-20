@@ -1,5 +1,5 @@
 schema:
-  - https://nt-headless.mysites.io/graphql
+  - https://gods-dog.flywheelsites.com/graphql
 generates:
   ./graphql.ts:
     plugins:

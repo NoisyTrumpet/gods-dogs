@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         primary: "#666793", // purple
         secondary: "#E71019", // red
-        'primary-light': "#EFEFF8", // light purple
+        "primary-light": "#EFEFF8", // light purple
         dark: "#292929", // off-black
       },
       fontFamily: {

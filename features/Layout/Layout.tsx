@@ -25,6 +25,7 @@ export interface LayoutProps {
   phoneNumber: AcfLink;
   address: Acf_GoogleMap;
   email: AcfLink;
+  twitterUser: string;
 }
 
 const Layout = ({
@@ -41,10 +42,11 @@ const Layout = ({
   phoneNumber,
   address,
   email,
+  twitterUser,
 }: LayoutProps) => {
   return (
     <>
-      <SEO seo={seo} />
+      <SEO seo={seo} twitter={twitterUser} />
       <Header
         menuItems={headerMenuItems.nodes}
         logo={logo}
