@@ -27,9 +27,12 @@ export default function App({ Component, pageProps }: AppProps) {
   const { social, schema } = seo;
   const { companyName } = schema;
 
+  const hasSEO = __TEMPLATE_QUERY_DATA__ && seo && seo.title && seo.metaDesc;
+
   return (
     <FaustProvider pageProps={pageProps}>
-      <DefaultSeo
+      {hasSEO ? (
+        <DefaultSeo
         openGraph={{
           type: "website",
           locale: "en_US",
@@ -42,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
           cardType: "summary_large_image",
         }}
       />
+      ) : null}
       <Script
         id="gtag-base"
         strategy="worker"
