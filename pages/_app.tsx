@@ -6,7 +6,6 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { FaustProvider } from "@faustwp/core";
 import Script from "next/script";
-import { DefaultSeo } from "next-seo";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -22,30 +21,9 @@ export default function App({ Component, pageProps }: AppProps) {
     gtmVirtualPageView(mainDataLayer);
   }, [pageProps, router.pathname]);
 
-  const { __TEMPLATE_QUERY_DATA__ } = pageProps;
-  const { seo, page } = __TEMPLATE_QUERY_DATA__;
-  const { social, schema } = seo;
-  const { companyName } = schema;
-
-  const hasSEO = __TEMPLATE_QUERY_DATA__ && seo && seo.title && seo.metaDesc;
 
   return (
     <FaustProvider pageProps={pageProps}>
-      {hasSEO ? (
-        <DefaultSeo
-        openGraph={{
-          type: "website",
-          locale: "en_US",
-          url: page.seo.canonical,
-          site_name: companyName,
-        }}
-        twitter={{
-          handle: social.twitter.username,
-          site: social.twitter.username,
-          cardType: "summary_large_image",
-        }}
-      />
-      ) : null}
       <Script
         id="gtag-base"
         strategy="worker"
