@@ -26,6 +26,10 @@ export default function SEO({ seo, twitter }: SEOProps) {
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : "http://localhost:3000";
 
+    const og = new URL(`${url}/api/og/?title=${title}${
+      metaDesc ? `&description=${metaDesc}` : ""
+    }`)
+
   return (
     <NextSeo
       title={title ?? `God's Dogs`}
@@ -38,9 +42,7 @@ export default function SEO({ seo, twitter }: SEOProps) {
         siteName: opengraphSiteName ?? `God's Dogs`,
         images: [
           {
-            url: `${url}/api/og/?title=${title}${
-              metaDesc ? `&description=${metaDesc}` : ""
-            }`,
+            url: og.href,
             width: 1200,
             height: 627,
             alt: metaDesc ? metaDesc : ``,
