@@ -1,6 +1,5 @@
 import { PostTypeSeo } from "graphql";
 import { NextSeo } from "next-seo";
-import Head from "next/head";
 
 export interface SEOProps {
   seo: PostTypeSeo;
@@ -22,13 +21,14 @@ export default function SEO({ seo, twitter }: SEOProps) {
     return null;
   }
 
-  const url = process.env.NODE_ENV === "production"
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : "http://localhost:3000";
+  const url =
+    process.env.NODE_ENV === "production"
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : "http://localhost:3000";
 
-    const og = new URL(`${url}/api/og/?title=${title}${
-      metaDesc ? `&description=${metaDesc}` : ""
-    }`)
+  const og = new URL(
+    `${url}/api/og/?title=${title}${metaDesc ? `&description=${metaDesc}` : ""}`
+  );
 
   return (
     <NextSeo

@@ -53,6 +53,10 @@ export default function Component() {
       logoAlt={logoAlt}
       cta={cta}
       twitterUser={defaultSEO.social.twitter.username}
+      address={address}
+      customAddressLabel={customAddressLabel}
+      phoneNumber={phoneNumber}
+      email={email}
     >
       <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
         <div className={`relative grid h-fit w-full text-center`}>

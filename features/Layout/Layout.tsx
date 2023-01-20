@@ -5,6 +5,7 @@ import {
   MenuItem,
   PostTypeSeo,
   RootQueryToMenuItemConnection,
+  SeoSocial,
 } from "graphql";
 import { Main, SEO } from "features";
 
@@ -25,6 +26,7 @@ export interface LayoutProps {
   address: Acf_GoogleMap;
   email: AcfLink;
   twitterUser: string;
+  social: SeoSocial;
 }
 
 const Layout = ({
@@ -42,6 +44,7 @@ const Layout = ({
   address,
   email,
   twitterUser,
+  social,
 }: LayoutProps) => {
   return (
     <>
@@ -60,6 +63,7 @@ const Layout = ({
         logo={logoWhite}
         address={address}
         email={email}
+        social={social}
       />
     </>
   );
