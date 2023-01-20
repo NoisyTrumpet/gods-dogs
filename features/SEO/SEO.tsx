@@ -35,7 +35,7 @@ const SEO = ({ seo, twitter }: SEOProps) => {
             width: 1200,
             height: 630,
             alt: `God's Dogs`,
-            type: `image/jpg`,
+            type: `image/png`,
           },
         ],
         siteName: opengraphSiteName ?? `God's Dogs`,
