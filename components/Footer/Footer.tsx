@@ -1,6 +1,7 @@
 import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { NavigationMenu } from "components/NavigationMenu";
+import { Socials } from "components/Socials";
 import {
   AcfLink,
   Acf_GoogleMap,
@@ -9,9 +10,7 @@ import {
   SeoSocial,
 } from "graphql";
 import Link from "next/link";
-import Logo from "public/logo.svg";
-import { BsInstagram } from "react-icons/bs";
-import { FaFacebookF, FaYoutube } from "react-icons/fa";
+import flatListToHierarchical from "utilities/flatListToHierarchical";
 
 export interface FooterProps {
   logo: MediaItem;
@@ -33,18 +32,21 @@ const Footer = ({
   social,
 }: FooterProps) => {
   return (
-    <footer className={`bg-primary text-gray-100`}>
+    <footer className={`bg-primary py-12 px-4 text-gray-100`}>
       <div
-        className={`container mx-auto flex flex-col flex-wrap py-8 md:flex-row md:justify-between`}
+        className={`xs:flex-wrap container mx-auto flex flex-col sm:flex-row sm:justify-between`}
       >
         {/* Logo */}
         <div
-          className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
+          className={`flex w-full flex-row flex-wrap items-center justify-center md:w-fit`}
         >
-          <div className={`flex flex-col`}>
+          <div className={`flex flex-col items-center gap-4 sm:items-start`}>
             {/* Logo */}
             {logo ? (
-              <FeaturedImage image={logo} className={`mb-4 w-32 md:mb-0`} />
+              <FeaturedImage
+                image={logo}
+                className={`mx-auto mb-4 w-24 md:mx-0 md:mb-8`}
+              />
             ) : (
               <a
                 href="https://noisytrumpet.com"
@@ -53,6 +55,15 @@ const Footer = ({
                 {`NT Headless Site Template`}
               </a>
             )}
+            {cta ? (
+              <Button
+                className={`my-4 flex sm:hidden lg:ml-4 xl:my-0`}
+                type="secondary"
+                href={cta.url ?? ``}
+              >
+                {cta.title}
+              </Button>
+            ) : null}
             {/* Address */}
             {address ? (
               <div className={`flex flex-row items-center`}>
@@ -112,19 +123,35 @@ const Footer = ({
         </div>
         {/* Menu */}
         <div
-          className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
+          className={`flex flex-row flex-wrap items-center justify-center md:justify-end xl:justify-start`}
         >
-          <NavigationMenu type={`secondary`} menuItems={menuItems} className={`text-white`} />
-          {cta ? (
-            <Button className={`ml-4`} type="secondary" href={cta.url ?? ``}>
-              {cta.title}
-            </Button>
-          ) : null}
+          <NavigationMenu
+            type={`footer`}
+            menuItems={flatListToHierarchical(menuItems)}
+            className={`text-white`}
+          />
+          <div
+            className={`flex flex-col items-center justify-center xl:h-full xl:justify-around`}
+          >
+            {cta ? (
+              <Button
+                className={`my-4 hidden sm:flex lg:ml-4 xl:my-0`}
+                type="secondary"
+                href={cta.url ?? ``}
+              >
+                {cta.title}
+              </Button>
+            ) : null}
+            {/* Socials */}
+            <div className={`flex w-full flex-row items-center justify-center`}>
+              <Socials socials={social} />
+            </div>
+          </div>
         </div>
       </div>
       {/* Privacy Policy | Site by */}
       <div
-        className={`container mx-auto flex flex-col flex-wrap py-4 md:flex-row`}
+        className={`container mx-auto flex flex-row flex-wrap items-center justify-center py-4 md:items-start md:justify-start`}
       >
         <div
           className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
@@ -133,8 +160,6 @@ const Footer = ({
             <div className={`flex flex-row items-center`}>
               <Link
                 href={`/privacy-policy/`}
-                target={`_blank`}
-                rel={`noopener noreferrer`}
                 className={`flex flex-row items-center`}
               >
                 Privacy Policy

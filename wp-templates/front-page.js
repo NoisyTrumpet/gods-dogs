@@ -30,6 +30,8 @@ export default function Component() {
     seo: defaultSEO,
   } = data;
 
+  const { social } = defaultSEO;
+
   const { seo, title } = page;
   const {
     address,
@@ -57,6 +59,7 @@ export default function Component() {
       customAddressLabel={customAddressLabel}
       phoneNumber={phoneNumber}
       email={email}
+      social={social}
     >
       <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
         <div className={`relative grid h-fit w-full text-center`}>

@@ -2,14 +2,14 @@ import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 const imgSource =
   "https://gods-dog.flywheelsites.com/wp-content/uploads/2023/01/Gods-Dogs.png";
 
 const bgSource =
-  "https://gods-dog.flywheelsites.com/wp-content/uploads/2023/01/layered-waves-haikei-1.png";
+  "https://gods-dog.flywheelsites.com/wp-content/uploads/2023/01/layered-waves-haikei-1.svg";
 
 const bgTransparent =
   "https://gods-dog.flywheelsites.com/wp-content/uploads/2023/01/layered-waves-haikei-1.png";
