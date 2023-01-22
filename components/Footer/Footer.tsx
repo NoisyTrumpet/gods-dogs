@@ -32,18 +32,21 @@ const Footer = ({
   social,
 }: FooterProps) => {
   return (
-    <footer className={`bg-primary text-gray-100 py-12`}>
+    <footer className={`bg-primary py-12 px-4 text-gray-100`}>
       <div
-        className={`container mx-auto flex flex-col flex-wrap md:flex-row md:justify-between`}
+        className={`xs:flex-wrap container mx-auto flex flex-col sm:flex-row sm:justify-between`}
       >
         {/* Logo */}
         <div
-          className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
+          className={`flex w-full flex-row flex-wrap items-center justify-center md:w-fit`}
         >
-          <div className={`flex flex-col gap-4`}>
+          <div className={`flex flex-col items-center gap-4 sm:items-start`}>
             {/* Logo */}
             {logo ? (
-              <FeaturedImage image={logo} className={`mb-4 w-24 md:mb-12`} />
+              <FeaturedImage
+                image={logo}
+                className={`mx-auto mb-4 w-24 md:mx-0 md:mb-8`}
+              />
             ) : (
               <a
                 href="https://noisytrumpet.com"
@@ -52,6 +55,15 @@ const Footer = ({
                 {`NT Headless Site Template`}
               </a>
             )}
+            {cta ? (
+              <Button
+                className={`my-4 flex sm:hidden lg:ml-4 xl:my-0`}
+                type="secondary"
+                href={cta.url ?? ``}
+              >
+                {cta.title}
+              </Button>
+            ) : null}
             {/* Address */}
             {address ? (
               <div className={`flex flex-row items-center`}>
@@ -111,27 +123,35 @@ const Footer = ({
         </div>
         {/* Menu */}
         <div
-          className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
+          className={`flex flex-row flex-wrap items-center justify-center md:justify-end xl:justify-start`}
         >
           <NavigationMenu
             type={`footer`}
             menuItems={flatListToHierarchical(menuItems)}
             className={`text-white`}
           />
-          <div className={`flex flex-col items-center h-full justify-around`}>
+          <div
+            className={`flex flex-col items-center justify-center xl:h-full xl:justify-around`}
+          >
             {cta ? (
-              <Button className={`ml-4`} type="secondary" href={cta.url ?? ``}>
+              <Button
+                className={`my-4 hidden sm:flex lg:ml-4 xl:my-0`}
+                type="secondary"
+                href={cta.url ?? ``}
+              >
                 {cta.title}
               </Button>
             ) : null}
             {/* Socials */}
-            <Socials socials={social} />
+            <div className={`flex w-full flex-row items-center justify-center`}>
+              <Socials socials={social} />
+            </div>
           </div>
         </div>
       </div>
       {/* Privacy Policy | Site by */}
       <div
-        className={`container mx-auto flex flex-col flex-wrap py-4 md:flex-row`}
+        className={`container mx-auto flex flex-row flex-wrap items-center justify-center py-4 md:items-start md:justify-start`}
       >
         <div
           className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}

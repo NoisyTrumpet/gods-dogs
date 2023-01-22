@@ -31,10 +31,10 @@ const NavigationMenu = ({
   if (type === "footer") {
     return (
       <nav
-        className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
+        className={`my-6 flex flex-row flex-wrap items-center justify-center text-center md:my-0 md:justify-start md:text-left`}
       >
         {/* 2 COlumn List */}
-        <ul className={`columns-2 gap-24`}>
+        <ul className={`gap-24 sm:columns-2`}>
           {menuItems.map(({ path, label }) => (
             <li
               key={`footer-${path}-${label}`}
