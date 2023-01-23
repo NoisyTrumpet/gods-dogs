@@ -12,13 +12,16 @@ interface ButtonProps {
     | "quaternary"
     | "alert"
     | "donate"
-    | "donate-white";
+    | "donate-white"
+    | "back-menu";
   onClick?: () => void;
   disabled?: boolean;
 }
 
 const styleLoader = (type: string) => {
   switch (type) {
+    case "back-menu":
+      return `bg-primary text-white py-2 px-4 font-bold font-heading uppercase hover:bg-primary-dark transition duration-300 ease-in-out`;
     case "donate-white":
       return `rounded-full bg-white py-2 px-4 font-bold text-primary font-heading uppercase
       hover:bg-primary hover:text-white transition duration-300 ease-in-out`;
