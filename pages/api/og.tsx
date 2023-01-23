@@ -54,18 +54,19 @@ export default async function handler(req: NextRequest) {
         >
           <div tw="flex h-full items-center z-30">
             <div tw="flex flex-col md:flex-row w-full py-12 px-4 md:items-center justify-between p-8">
-              <h2 tw="flex flex-col text-6xl font-heading font-bold tracking-tight text-[#E71019] text-left">
+              <h2 tw="flex flex-col text-6xl font-heading font-bold tracking-tight text-[#E71019] text-left relative w-1/2">
                 <span>{title}</span>
-                <span tw="text-2xl font-heading font-bold tracking-tight text-[#292929] text-left">
+                <span tw="mt-8 text-2xl font-heading font-bold tracking-tight text-[#292929] text-left">
                   <span>{description}</span>
                 </span>
               </h2>
-              <div tw="mt-8 flex md:mt-0">
+              <div tw="mt-8 flex md:mt-0 items-center justify-center w-1/2">
                 <img
                   alt={`God's Dogs Logo`}
                   src={imgSource}
                   width={300}
                   height={300}
+                  tw={`ml-8`}
                 />
               </div>
             </div>

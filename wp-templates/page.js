@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout } from "features"; // Blocks eventually
 import { NavigationMenu } from "components";
