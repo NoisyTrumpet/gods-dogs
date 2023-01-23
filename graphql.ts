@@ -2228,11 +2228,15 @@ export enum ContentTypeEnum {
   /** The Type of Content object */
   Attachment = "ATTACHMENT",
   /** The Type of Content object */
+  Events = "EVENTS",
+  /** The Type of Content object */
   GraphqlDocument = "GRAPHQL_DOCUMENT",
   /** The Type of Content object */
   Page = "PAGE",
   /** The Type of Content object */
   Post = "POST",
+  /** The Type of Content object */
+  Resources = "RESOURCES",
 }
 
 /** The Type of Identifier used to fetch a single Content Type node. To be used along with the "id" field. Default is "ID". */
@@ -2405,6 +2409,39 @@ export type CreateCommentPayload = {
   comment?: Maybe<Comment>;
   /** Whether the mutation succeeded. If the comment is not approved, the server will not return the comment to a non authenticated user, but a success message can be returned if the create succeeded, and the client can optimistically add the comment to the client cache */
   success?: Maybe<Scalars["Boolean"]>;
+};
+
+/** Input for the createEvent mutation. */
+export type CreateEventInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars["String"]>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  /** The ID of the parent object */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createEvent mutation. */
+export type CreateEventPayload = {
+  __typename?: "CreateEventPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The Post object mutation type. */
+  event?: Maybe<Event>;
 };
 
 /** Input for the createGraphqlDocument mutation. */
@@ -2590,6 +2627,39 @@ export type CreatePostPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The Post object mutation type. */
   post?: Maybe<Post>;
+};
+
+/** Input for the createResource mutation. */
+export type CreateResourceInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars["String"]>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  /** The ID of the parent object */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createResource mutation. */
+export type CreateResourcePayload = {
+  __typename?: "CreateResourcePayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The Post object mutation type. */
+  resource?: Maybe<Resource>;
 };
 
 /** Input for the createTag mutation. */
@@ -2867,6 +2937,27 @@ export type DeleteCommentPayload = {
   deletedId?: Maybe<Scalars["ID"]>;
 };
 
+/** Input for the deleteEvent mutation. */
+export type DeleteEventInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars["Boolean"]>;
+  /** The ID of the event to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deleteEvent mutation. */
+export type DeleteEventPayload = {
+  __typename?: "DeleteEventPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
+  /** The object before it was deleted */
+  event?: Maybe<Event>;
+};
+
 /** Input for the deleteGfDraftEntry mutation. */
 export type DeleteGfDraftEntryInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -3010,6 +3101,27 @@ export type DeletePostPayload = {
   deletedId?: Maybe<Scalars["ID"]>;
   /** The object before it was deleted */
   post?: Maybe<Post>;
+};
+
+/** Input for the deleteResource mutation. */
+export type DeleteResourceInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars["Boolean"]>;
+  /** The ID of the resource to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deleteResource mutation. */
+export type DeleteResourcePayload = {
+  __typename?: "DeleteResourcePayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
+  /** The object before it was deleted */
+  resource?: Maybe<Resource>;
 };
 
 /** Input for the deleteTag mutation. */
@@ -3318,6 +3430,603 @@ export enum EntryTypeEnum {
   /** A submitted Gravity Forms entry. */
   Submitted = "SUBMITTED",
 }
+
+/** The event type */
+export type Event = ContentNode &
+  DatabaseIdentifier &
+  HierarchicalContentNode &
+  HierarchicalNode &
+  MenuItemLinkable &
+  Node &
+  NodeWithContentEditor &
+  NodeWithExcerpt &
+  NodeWithFeaturedImage &
+  NodeWithPageAttributes &
+  NodeWithRevisions &
+  NodeWithTemplate &
+  NodeWithTitle &
+  Previewable &
+  UniformResourceIdentifiable & {
+    __typename?: "Event";
+    /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+    ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
+    /** Connection between the HierarchicalContentNode type and the ContentNode type */
+    children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** The content of the post. */
+    content?: Maybe<Scalars["String"]>;
+    /** Connection between the ContentNode type and the ContentType type */
+    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+    /** The name of the Content Type the node belongs to */
+    contentTypeName: Scalars["String"];
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** Post publishing date. */
+    date?: Maybe<Scalars["String"]>;
+    /** The publishing date set in GMT. */
+    dateGmt?: Maybe<Scalars["String"]>;
+    /** The desired slug of the post */
+    desiredSlug?: Maybe<Scalars["String"]>;
+    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+    /** The RSS enclosure for the object */
+    enclosure?: Maybe<Scalars["String"]>;
+    /** Connection between the ContentNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of the databaseId field
+     */
+    eventId: Scalars["Int"];
+    /** The excerpt of the post. */
+    excerpt?: Maybe<Scalars["String"]>;
+    /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+    featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+    /** The database identifier for the featured image node assigned to the content node */
+    featuredImageDatabaseId?: Maybe<Scalars["Int"]>;
+    /** Globally unique ID of the featured image assigned to the node */
+    featuredImageId?: Maybe<Scalars["ID"]>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Flexible Content&quot; was set to Show in GraphQL. */
+    flexibleContent?: Maybe<Event_Flexiblecontent>;
+    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+    guid?: Maybe<Scalars["String"]>;
+    /** The globally unique identifier of the events object. */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is a node in the preview state */
+    isPreview?: Maybe<Scalars["Boolean"]>;
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** True if the node is a revision of another node */
+    isRevision?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The user that most recently edited the node */
+    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+    /** The permalink of the post */
+    link?: Maybe<Scalars["String"]>;
+    /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+    menuOrder?: Maybe<Scalars["Int"]>;
+    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+    modified?: Maybe<Scalars["String"]>;
+    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+    modifiedGmt?: Maybe<Scalars["String"]>;
+    /** The parent of the node. The parent object can be of various types */
+    parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
+    /** Database id of the parent node */
+    parentDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the parent node. */
+    parentId?: Maybe<Scalars["ID"]>;
+    /** Connection between the Event type and the event type */
+    preview?: Maybe<EventToPreviewConnectionEdge>;
+    /** The database id of the preview node */
+    previewRevisionDatabaseId?: Maybe<Scalars["Int"]>;
+    /** Whether the object is a node in the preview state */
+    previewRevisionId?: Maybe<Scalars["ID"]>;
+    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+    /** Connection between the Event type and the event type */
+    revisions?: Maybe<EventToRevisionConnection>;
+    /** The Yoast SEO data of the ContentNode */
+    seo?: Maybe<PostTypeSeo>;
+    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+    slug?: Maybe<Scalars["String"]>;
+    /** The current status of the object */
+    status?: Maybe<Scalars["String"]>;
+    /** The template assigned to a node of content */
+    template?: Maybe<ContentTemplate>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+    title?: Maybe<Scalars["String"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The event type */
+export type EventAncestorsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs>;
+};
+
+/** The event type */
+export type EventChildrenArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs>;
+};
+
+/** The event type */
+export type EventContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The event type */
+export type EventEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The event type */
+export type EventEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The event type */
+export type EventExcerptArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The event type */
+export type EventRevisionsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<EventToRevisionConnectionWhereArgs>;
+};
+
+/** The event type */
+export type EventTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to event Nodes */
+export type EventConnection = {
+  /** A list of edges (relational context) between RootQuery and connected event Nodes */
+  edges: Array<EventConnectionEdge>;
+  /** A list of connected event Nodes */
+  nodes: Array<Event>;
+};
+
+/** Edge between a Node and a connected event */
+export type EventConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected event Node */
+  node: Event;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum EventIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = "DATABASE_ID",
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = "ID",
+  /** Identify a resource by the URI. */
+  Uri = "URI",
+}
+
+/** Connection between the Event type and the event type */
+export type EventToPreviewConnectionEdge = Edge &
+  EventConnectionEdge &
+  OneToOneConnection & {
+    __typename?: "EventToPreviewConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Event;
+  };
+
+/** Connection between the Event type and the event type */
+export type EventToRevisionConnection = Connection &
+  EventConnection & {
+    __typename?: "EventToRevisionConnection";
+    /** Edges for the EventToRevisionConnection connection */
+    edges: Array<EventToRevisionConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Event>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type EventToRevisionConnectionEdge = Edge &
+  EventConnectionEdge & {
+    __typename?: "EventToRevisionConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Event;
+  };
+
+/** Arguments for filtering the EventToRevisionConnection connection */
+export type EventToRevisionConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent";
+  blocks?: Maybe<Array<Maybe<Event_Flexiblecontent_Blocks>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
+
+export type Event_Flexiblecontent_Blocks =
+  | Event_Flexiblecontent_Blocks_Accordion
+  | Event_Flexiblecontent_Blocks_DonateBlock
+  | Event_Flexiblecontent_Blocks_FeaturedCards
+  | Event_Flexiblecontent_Blocks_Form
+  | Event_Flexiblecontent_Blocks_Hero
+  | Event_Flexiblecontent_Blocks_Impact
+  | Event_Flexiblecontent_Blocks_List
+  | Event_Flexiblecontent_Blocks_PetCarousel
+  | Event_Flexiblecontent_Blocks_PostsBlock
+  | Event_Flexiblecontent_Blocks_Quotes
+  | Event_Flexiblecontent_Blocks_TextBlock
+  | Event_Flexiblecontent_Blocks_TextImage;
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_Accordion = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_Accordion";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_Accordion_ItemRepeater>>
+  >;
+  sectionCopy?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Accordion_ItemRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_Accordion_itemRepeater";
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Event_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    itemContent?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_Accordion_itemRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_DonateBlock";
+  cardRepeater?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
+    donateContent?: Maybe<Scalars["String"]>;
+    donateLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_FeaturedCards";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  cardRepeater?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_FeaturedCards_CardRepeater>>
+  >;
+  /** CTA Links after cards */
+  ctaRepeater?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
+  >;
+  /** Add Divider lines between cards */
+  dividerLines?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_FeaturedCards_cardRepeater";
+    cardBackgroundColor?: Maybe<Scalars["String"]>;
+    cardContent?: Maybe<Scalars["String"]>;
+    cardHasLink?: Maybe<Scalars["Boolean"]>;
+    cardIcon?: Maybe<MediaItem>;
+    cardLink?: Maybe<AcfLink>;
+    cardTitle?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCardIcon?: Maybe<Scalars["Boolean"]>;
+  };
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_FeaturedCards_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_Form";
+  content?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  form?: Maybe<Scalars["Int"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_Hero";
+  ctas?: Maybe<Array<Maybe<Event_Flexiblecontent_Blocks_Hero_Ctas>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  leftGraphic?: Maybe<MediaItem>;
+  rightGraphic?: Maybe<MediaItem>;
+  subtitle?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  useDonationForm?: Maybe<Scalars["Boolean"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_Hero_ctas";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  link?: Maybe<AcfLink>;
+  type?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_Impact";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  impactItems?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_Impact_ImpactItems>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_Impact_impactItems";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  impactIcon?: Maybe<Scalars["String"]>;
+  impactNumber?: Maybe<Scalars["Float"]>;
+  subtext?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_List = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_List";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_List_ItemRepeater>>
+  >;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_List_ItemRepeater = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_List_itemRepeater";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  content?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  link?: Maybe<AcfLink>;
+  price?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_PetCarousel = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_PetCarousel";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pets?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_PostsBlock = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_PostsBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  postsGrid?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  postsStatic?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_Quotes";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  quote?: Maybe<Scalars["String"]>;
+  subtext?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_TextBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  paragraphs?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_TextBlock_Paragraphs>>
+  >;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_TextBlock_Paragraphs =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_TextBlock_paragraphs";
+    backgroundColor?: Maybe<Scalars["String"]>;
+    content?: Maybe<Scalars["String"]>;
+    contentAlignment?: Maybe<Scalars["String"]>;
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Event_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+    headingPostion?: Maybe<MediaItem>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_TextBlock_paragraphs_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_TextImage = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_TextImage";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  textImageRepeater?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_TextImage_TextImageRepeater>>
+  >;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_TextImage_TextImageRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_TextImage_textImageRepeater";
+    backgroundColor?: Maybe<Scalars["String"]>;
+    content?: Maybe<Scalars["String"]>;
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Event_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    hasSidePawsIcon?: Maybe<Scalars["Boolean"]>;
+    imageSide?: Maybe<Scalars["Boolean"]>;
+    pawsIconPostion?: Maybe<Scalars["String"]>;
+    sectionImage?: Maybe<MediaItem>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_TextImage_textImageRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
 
 /** Field error. */
 export type FieldError = {
@@ -5869,7 +6578,13 @@ export enum MenuItemNodeIdTypeEnum {
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
-export type MenuItemObjectUnion = Category | Page | Post | Tag;
+export type MenuItemObjectUnion =
+  | Category
+  | Event
+  | Page
+  | Post
+  | Resource
+  | Tag;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge &
@@ -9723,7 +10438,13 @@ export enum PostObjectFieldFormatEnum {
 }
 
 /** Union between the post, page and media item types */
-export type PostObjectUnion = GraphqlDocument | MediaItem | Page | Post;
+export type PostObjectUnion =
+  | Event
+  | GraphqlDocument
+  | MediaItem
+  | Page
+  | Post
+  | Resource;
 
 /** The column to use when filtering by date */
 export enum PostObjectsConnectionDateColumnEnum {
@@ -11365,6 +12086,605 @@ export type ResetUserPasswordPayload = {
   user?: Maybe<User>;
 };
 
+/** The resource type */
+export type Resource = ContentNode &
+  DatabaseIdentifier &
+  HierarchicalContentNode &
+  HierarchicalNode &
+  MenuItemLinkable &
+  Node &
+  NodeWithContentEditor &
+  NodeWithExcerpt &
+  NodeWithFeaturedImage &
+  NodeWithPageAttributes &
+  NodeWithRevisions &
+  NodeWithTemplate &
+  NodeWithTitle &
+  Previewable &
+  UniformResourceIdentifiable & {
+    __typename?: "Resource";
+    /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+    ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
+    /** Connection between the HierarchicalContentNode type and the ContentNode type */
+    children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** The content of the post. */
+    content?: Maybe<Scalars["String"]>;
+    /** Connection between the ContentNode type and the ContentType type */
+    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+    /** The name of the Content Type the node belongs to */
+    contentTypeName: Scalars["String"];
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** Post publishing date. */
+    date?: Maybe<Scalars["String"]>;
+    /** The publishing date set in GMT. */
+    dateGmt?: Maybe<Scalars["String"]>;
+    /** The desired slug of the post */
+    desiredSlug?: Maybe<Scalars["String"]>;
+    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+    /** The RSS enclosure for the object */
+    enclosure?: Maybe<Scalars["String"]>;
+    /** Connection between the ContentNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+    /** The excerpt of the post. */
+    excerpt?: Maybe<Scalars["String"]>;
+    /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+    featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+    /** The database identifier for the featured image node assigned to the content node */
+    featuredImageDatabaseId?: Maybe<Scalars["Int"]>;
+    /** Globally unique ID of the featured image assigned to the node */
+    featuredImageId?: Maybe<Scalars["ID"]>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Flexible Content&quot; was set to Show in GraphQL. */
+    flexibleContent?: Maybe<Resource_Flexiblecontent>;
+    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+    guid?: Maybe<Scalars["String"]>;
+    /** The globally unique identifier of the resources object. */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is a node in the preview state */
+    isPreview?: Maybe<Scalars["Boolean"]>;
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** True if the node is a revision of another node */
+    isRevision?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The user that most recently edited the node */
+    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+    /** The permalink of the post */
+    link?: Maybe<Scalars["String"]>;
+    /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+    menuOrder?: Maybe<Scalars["Int"]>;
+    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+    modified?: Maybe<Scalars["String"]>;
+    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+    modifiedGmt?: Maybe<Scalars["String"]>;
+    /** The parent of the node. The parent object can be of various types */
+    parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
+    /** Database id of the parent node */
+    parentDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the parent node. */
+    parentId?: Maybe<Scalars["ID"]>;
+    /** Connection between the Resource type and the resource type */
+    preview?: Maybe<ResourceToPreviewConnectionEdge>;
+    /** The database id of the preview node */
+    previewRevisionDatabaseId?: Maybe<Scalars["Int"]>;
+    /** Whether the object is a node in the preview state */
+    previewRevisionId?: Maybe<Scalars["ID"]>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of the databaseId field
+     */
+    resourceId: Scalars["Int"];
+    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+    /** Connection between the Resource type and the resource type */
+    revisions?: Maybe<ResourceToRevisionConnection>;
+    /** The Yoast SEO data of the ContentNode */
+    seo?: Maybe<PostTypeSeo>;
+    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+    slug?: Maybe<Scalars["String"]>;
+    /** The current status of the object */
+    status?: Maybe<Scalars["String"]>;
+    /** The template assigned to a node of content */
+    template?: Maybe<ContentTemplate>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+    title?: Maybe<Scalars["String"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The resource type */
+export type ResourceAncestorsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs>;
+};
+
+/** The resource type */
+export type ResourceChildrenArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs>;
+};
+
+/** The resource type */
+export type ResourceContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The resource type */
+export type ResourceEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The resource type */
+export type ResourceEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The resource type */
+export type ResourceExcerptArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The resource type */
+export type ResourceRevisionsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<ResourceToRevisionConnectionWhereArgs>;
+};
+
+/** The resource type */
+export type ResourceTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to resource Nodes */
+export type ResourceConnection = {
+  /** A list of edges (relational context) between RootQuery and connected resource Nodes */
+  edges: Array<ResourceConnectionEdge>;
+  /** A list of connected resource Nodes */
+  nodes: Array<Resource>;
+};
+
+/** Edge between a Node and a connected resource */
+export type ResourceConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected resource Node */
+  node: Resource;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum ResourceIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = "DATABASE_ID",
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = "ID",
+  /** Identify a resource by the URI. */
+  Uri = "URI",
+}
+
+/** Connection between the Resource type and the resource type */
+export type ResourceToPreviewConnectionEdge = Edge &
+  OneToOneConnection &
+  ResourceConnectionEdge & {
+    __typename?: "ResourceToPreviewConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Resource;
+  };
+
+/** Connection between the Resource type and the resource type */
+export type ResourceToRevisionConnection = Connection &
+  ResourceConnection & {
+    __typename?: "ResourceToRevisionConnection";
+    /** Edges for the ResourceToRevisionConnection connection */
+    edges: Array<ResourceToRevisionConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Resource>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type ResourceToRevisionConnectionEdge = Edge &
+  ResourceConnectionEdge & {
+    __typename?: "ResourceToRevisionConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Resource;
+  };
+
+/** Arguments for filtering the ResourceToRevisionConnection connection */
+export type ResourceToRevisionConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent";
+  blocks?: Maybe<Array<Maybe<Resource_Flexiblecontent_Blocks>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
+
+export type Resource_Flexiblecontent_Blocks =
+  | Resource_Flexiblecontent_Blocks_Accordion
+  | Resource_Flexiblecontent_Blocks_DonateBlock
+  | Resource_Flexiblecontent_Blocks_FeaturedCards
+  | Resource_Flexiblecontent_Blocks_Form
+  | Resource_Flexiblecontent_Blocks_Hero
+  | Resource_Flexiblecontent_Blocks_Impact
+  | Resource_Flexiblecontent_Blocks_List
+  | Resource_Flexiblecontent_Blocks_PetCarousel
+  | Resource_Flexiblecontent_Blocks_PostsBlock
+  | Resource_Flexiblecontent_Blocks_Quotes
+  | Resource_Flexiblecontent_Blocks_TextBlock
+  | Resource_Flexiblecontent_Blocks_TextImage;
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_Accordion = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_Accordion";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_Accordion_ItemRepeater>>
+  >;
+  sectionCopy?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Accordion_ItemRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_Accordion_itemRepeater";
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Resource_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    itemContent?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_Accordion_itemRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_DonateBlock";
+  cardRepeater?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
+    donateContent?: Maybe<Scalars["String"]>;
+    donateLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_FeaturedCards";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  cardRepeater?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_FeaturedCards_CardRepeater>>
+  >;
+  /** CTA Links after cards */
+  ctaRepeater?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
+  >;
+  /** Add Divider lines between cards */
+  dividerLines?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_FeaturedCards_cardRepeater";
+    cardBackgroundColor?: Maybe<Scalars["String"]>;
+    cardContent?: Maybe<Scalars["String"]>;
+    cardHasLink?: Maybe<Scalars["Boolean"]>;
+    cardIcon?: Maybe<MediaItem>;
+    cardLink?: Maybe<AcfLink>;
+    cardTitle?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCardIcon?: Maybe<Scalars["Boolean"]>;
+  };
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_FeaturedCards_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_Form";
+  content?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  form?: Maybe<Scalars["Int"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_Hero";
+  ctas?: Maybe<Array<Maybe<Resource_Flexiblecontent_Blocks_Hero_Ctas>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasCtas?: Maybe<Scalars["Boolean"]>;
+  leftGraphic?: Maybe<MediaItem>;
+  rightGraphic?: Maybe<MediaItem>;
+  subtitle?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  useDonationForm?: Maybe<Scalars["Boolean"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_Hero_ctas";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  link?: Maybe<AcfLink>;
+  type?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_Impact";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+  headingIcon?: Maybe<MediaItem>;
+  impactItems?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_Impact_ImpactItems>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Impact_ImpactItems =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_Impact_impactItems";
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    impactIcon?: Maybe<Scalars["String"]>;
+    impactNumber?: Maybe<Scalars["Float"]>;
+    subtext?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_List = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_List";
+  backgroundColor?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  itemRepeater?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_List_ItemRepeater>>
+  >;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_List_ItemRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_List_itemRepeater";
+    backgroundColor?: Maybe<Scalars["String"]>;
+    content?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    link?: Maybe<AcfLink>;
+    price?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_PetCarousel = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_PetCarousel";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pets?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_PostsBlock = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_PostsBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  postsGrid?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  postsStatic?: Maybe<Array<Maybe<PostObjectUnion>>>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_Quotes";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  quote?: Maybe<Scalars["String"]>;
+  subtext?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_TextBlock";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  paragraphs?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_TextBlock_Paragraphs>>
+  >;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_TextBlock_Paragraphs =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_TextBlock_paragraphs";
+    backgroundColor?: Maybe<Scalars["String"]>;
+    content?: Maybe<Scalars["String"]>;
+    contentAlignment?: Maybe<Scalars["String"]>;
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Resource_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
+    headingPostion?: Maybe<MediaItem>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_TextBlock_paragraphs_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_TextImage = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_TextImage";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  textImageRepeater?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_TextImage_TextImageRepeater>>
+  >;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_TextImage_TextImageRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_TextImage_textImageRepeater";
+    backgroundColor?: Maybe<Scalars["String"]>;
+    content?: Maybe<Scalars["String"]>;
+    ctaRepeater?: Maybe<
+      Array<
+        Maybe<Resource_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater>
+      >
+    >;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    hasCtas?: Maybe<Scalars["Boolean"]>;
+    hasSidePawsIcon?: Maybe<Scalars["Boolean"]>;
+    imageSide?: Maybe<Scalars["Boolean"]>;
+    pawsIconPostion?: Maybe<Scalars["String"]>;
+    sectionImage?: Maybe<MediaItem>;
+    title?: Maybe<Scalars["String"]>;
+  };
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_TextImage_textImageRepeater_ctaRepeater";
+    ctaLink?: Maybe<AcfLink>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+  };
+
 /** Input for the restoreComment mutation. */
 export type RestoreCommentInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -11391,6 +12711,8 @@ export type RootMutation = {
   createCategory?: Maybe<CreateCategoryPayload>;
   /** The createComment mutation */
   createComment?: Maybe<CreateCommentPayload>;
+  /** The createEvent mutation */
+  createEvent?: Maybe<CreateEventPayload>;
   /** The createGraphqlDocument mutation */
   createGraphqlDocument?: Maybe<CreateGraphqlDocumentPayload>;
   /** The createMediaItem mutation */
@@ -11401,6 +12723,8 @@ export type RootMutation = {
   createPost?: Maybe<CreatePostPayload>;
   /** The createPostFormat mutation */
   createPostFormat?: Maybe<CreatePostFormatPayload>;
+  /** The createResource mutation */
+  createResource?: Maybe<CreateResourcePayload>;
   /** The createTag mutation */
   createTag?: Maybe<CreateTagPayload>;
   /** The createUser mutation */
@@ -11409,6 +12733,8 @@ export type RootMutation = {
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** The deleteComment mutation */
   deleteComment?: Maybe<DeleteCommentPayload>;
+  /** The deleteEvent mutation */
+  deleteEvent?: Maybe<DeleteEventPayload>;
   /** The deleteGfDraftEntry mutation */
   deleteGfDraftEntry?: Maybe<DeleteGfDraftEntryPayload>;
   /** The deleteGfEntry mutation */
@@ -11423,6 +12749,8 @@ export type RootMutation = {
   deletePost?: Maybe<DeletePostPayload>;
   /** The deletePostFormat mutation */
   deletePostFormat?: Maybe<DeletePostFormatPayload>;
+  /** The deleteResource mutation */
+  deleteResource?: Maybe<DeleteResourcePayload>;
   /** The deleteTag mutation */
   deleteTag?: Maybe<DeleteTagPayload>;
   /** The deleteUser mutation */
@@ -11447,6 +12775,8 @@ export type RootMutation = {
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** The updateComment mutation */
   updateComment?: Maybe<UpdateCommentPayload>;
+  /** The updateEvent mutation */
+  updateEvent?: Maybe<UpdateEventPayload>;
   /** The updateGfDraftEntry mutation */
   updateGfDraftEntry?: Maybe<UpdateGfDraftEntryPayload>;
   /** The updateGfEntry mutation */
@@ -11461,6 +12791,8 @@ export type RootMutation = {
   updatePost?: Maybe<UpdatePostPayload>;
   /** The updatePostFormat mutation */
   updatePostFormat?: Maybe<UpdatePostFormatPayload>;
+  /** The updateResource mutation */
+  updateResource?: Maybe<UpdateResourcePayload>;
   /** The updateSettings mutation */
   updateSettings?: Maybe<UpdateSettingsPayload>;
   /** The updateTag mutation */
@@ -11477,6 +12809,11 @@ export type RootMutationCreateCategoryArgs = {
 /** The root mutation */
 export type RootMutationCreateCommentArgs = {
   input: CreateCommentInput;
+};
+
+/** The root mutation */
+export type RootMutationCreateEventArgs = {
+  input: CreateEventInput;
 };
 
 /** The root mutation */
@@ -11505,6 +12842,11 @@ export type RootMutationCreatePostFormatArgs = {
 };
 
 /** The root mutation */
+export type RootMutationCreateResourceArgs = {
+  input: CreateResourceInput;
+};
+
+/** The root mutation */
 export type RootMutationCreateTagArgs = {
   input: CreateTagInput;
 };
@@ -11522,6 +12864,11 @@ export type RootMutationDeleteCategoryArgs = {
 /** The root mutation */
 export type RootMutationDeleteCommentArgs = {
   input: DeleteCommentInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteEventArgs = {
+  input: DeleteEventInput;
 };
 
 /** The root mutation */
@@ -11557,6 +12904,11 @@ export type RootMutationDeletePostArgs = {
 /** The root mutation */
 export type RootMutationDeletePostFormatArgs = {
   input: DeletePostFormatInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteResourceArgs = {
+  input: DeleteResourceInput;
 };
 
 /** The root mutation */
@@ -11620,6 +12972,11 @@ export type RootMutationUpdateCommentArgs = {
 };
 
 /** The root mutation */
+export type RootMutationUpdateEventArgs = {
+  input: UpdateEventInput;
+};
+
+/** The root mutation */
 export type RootMutationUpdateGfDraftEntryArgs = {
   input: UpdateGfDraftEntryInput;
 };
@@ -11652,6 +13009,11 @@ export type RootMutationUpdatePostArgs = {
 /** The root mutation */
 export type RootMutationUpdatePostFormatArgs = {
   input: UpdatePostFormatInput;
+};
+
+/** The root mutation */
+export type RootMutationUpdateResourceArgs = {
+  input: UpdateResourceInput;
 };
 
 /** The root mutation */
@@ -11694,6 +13056,15 @@ export type RootQuery = {
   contentTypes?: Maybe<RootQueryToContentTypeConnection>;
   /** Fields of the &#039;DiscussionSettings&#039; settings group */
   discussionSettings?: Maybe<DiscussionSettings>;
+  /** An object of the event Type. Event information page. */
+  event?: Maybe<Event>;
+  /**
+   * A event object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  eventBy?: Maybe<Event>;
+  /** Connection between the RootQuery type and the event type */
+  events?: Maybe<RootQueryToEventConnection>;
   /** Fields of the &#039;GeneralSettings&#039; settings group */
   generalSettings?: Maybe<GeneralSettings>;
   /** Get a Gravity Forms entry. */
@@ -11774,6 +13145,15 @@ export type RootQuery = {
   registeredScripts?: Maybe<RootQueryToEnqueuedScriptConnection>;
   /** Connection between the RootQuery type and the EnqueuedStylesheet type */
   registeredStylesheets?: Maybe<RootQueryToEnqueuedStylesheetConnection>;
+  /** An object of the resource Type. Resource information page. */
+  resource?: Maybe<Resource>;
+  /**
+   * A resource object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  resourceBy?: Maybe<Resource>;
+  /** Connection between the RootQuery type and the resource type */
+  resources?: Maybe<RootQueryToResourceConnection>;
   /** Connection between the RootQuery type and the ContentNode type */
   revisions?: Maybe<RootQueryToRevisionsConnection>;
   /** Returns seo site data */
@@ -11869,6 +13249,29 @@ export type RootQueryContentTypesArgs = {
   before?: InputMaybe<Scalars["String"]>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryEventArgs = {
+  asPreview?: InputMaybe<Scalars["Boolean"]>;
+  id: Scalars["ID"];
+  idType?: InputMaybe<EventIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryEventByArgs = {
+  eventId?: InputMaybe<Scalars["Int"]>;
+  id?: InputMaybe<Scalars["ID"]>;
+  uri?: InputMaybe<Scalars["String"]>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryEventsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToEventConnectionWhereArgs>;
 };
 
 /** The root entry point into the Graph */
@@ -12100,6 +13503,29 @@ export type RootQueryRegisteredStylesheetsArgs = {
   before?: InputMaybe<Scalars["String"]>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryResourceArgs = {
+  asPreview?: InputMaybe<Scalars["Boolean"]>;
+  id: Scalars["ID"];
+  idType?: InputMaybe<ResourceIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryResourceByArgs = {
+  id?: InputMaybe<Scalars["ID"]>;
+  resourceId?: InputMaybe<Scalars["Int"]>;
+  uri?: InputMaybe<Scalars["String"]>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryResourcesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToResourceConnectionWhereArgs>;
 };
 
 /** The root entry point into the Graph */
@@ -12476,6 +13902,66 @@ export type RootQueryToEnqueuedStylesheetConnectionEdge = Edge &
     /** The item at the end of the edge */
     node: EnqueuedStylesheet;
   };
+
+/** Connection between the RootQuery type and the event type */
+export type RootQueryToEventConnection = Connection &
+  EventConnection & {
+    __typename?: "RootQueryToEventConnection";
+    /** Edges for the RootQueryToEventConnection connection */
+    edges: Array<RootQueryToEventConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Event>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToEventConnectionEdge = Edge &
+  EventConnectionEdge & {
+    __typename?: "RootQueryToEventConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Event;
+  };
+
+/** Arguments for filtering the RootQueryToEventConnection connection */
+export type RootQueryToEventConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
 
 /** Connection between the RootQuery type and the GfEntry type */
 export type RootQueryToGfEntryConnection = Connection &
@@ -13037,6 +14523,66 @@ export type RootQueryToPostFormatConnectionWhereArgs = {
   updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
 };
 
+/** Connection between the RootQuery type and the resource type */
+export type RootQueryToResourceConnection = Connection &
+  ResourceConnection & {
+    __typename?: "RootQueryToResourceConnection";
+    /** Edges for the RootQueryToResourceConnection connection */
+    edges: Array<RootQueryToResourceConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Resource>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToResourceConnectionEdge = Edge &
+  ResourceConnectionEdge & {
+    __typename?: "RootQueryToResourceConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Resource;
+  };
+
+/** Arguments for filtering the RootQueryToResourceConnection connection */
+export type RootQueryToResourceConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
 /** Connection between the RootQuery type and the ContentNode type */
 export type RootQueryToRevisionsConnection = Connection &
   ContentNodeConnection & {
@@ -13423,10 +14969,12 @@ export type SeoContentTypeArchive = {
 /** The Yoast SEO search appearance content types */
 export type SeoContentTypes = {
   __typename?: "SEOContentTypes";
+  event?: Maybe<SeoContentType>;
   graphqlDocument?: Maybe<SeoContentType>;
   mediaItem?: Maybe<SeoContentType>;
   page?: Maybe<SeoContentType>;
   post?: Maybe<SeoContentType>;
+  resource?: Maybe<SeoContentType>;
 };
 
 /** The Yoast SEO meta data */
@@ -14950,6 +16498,41 @@ export type UpdateEntryMetaInput = {
   userAgent?: InputMaybe<Scalars["String"]>;
 };
 
+/** Input for the updateEvent mutation. */
+export type UpdateEventInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars["String"]>;
+  /** The ID of the event object */
+  id: Scalars["ID"];
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  /** The ID of the parent object */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updateEvent mutation. */
+export type UpdateEventPayload = {
+  __typename?: "UpdateEventPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The Post object mutation type. */
+  event?: Maybe<Event>;
+};
+
 /** Input for the updateGfDraftEntry mutation. */
 export type UpdateGfDraftEntryInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -15197,6 +16780,41 @@ export type UpdatePostPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The Post object mutation type. */
   post?: Maybe<Post>;
+};
+
+/** Input for the updateResource mutation. */
+export type UpdateResourceInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars["String"]>;
+  /** The ID of the resource object */
+  id: Scalars["ID"];
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  /** The ID of the parent object */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updateResource mutation. */
+export type UpdateResourcePayload = {
+  __typename?: "UpdateResourcePayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The Post object mutation type. */
+  resource?: Maybe<Resource>;
 };
 
 /** Input for the updateSettings mutation. */

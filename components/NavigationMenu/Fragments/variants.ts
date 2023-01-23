@@ -19,3 +19,18 @@ export const sideVariants = {
     },
   },
 };
+
+// export const subMenuVariants = {
+//   left: {
+//     x: 0,
+//     transition: {
+//       duration: 0.3
+//     }
+//   },
+//   right: {
+//     x: "-100%",
+//     transition: {
+//       duration: 0.3
+//     }
+//   }
+// };
