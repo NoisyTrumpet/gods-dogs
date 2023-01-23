@@ -5,7 +5,6 @@ import { AnimatePresence, m, LazyMotion } from "framer-motion";
 import {
   itemVariants,
   sideVariants,
-  subMenuVariants,
 } from "./Fragments/variants";
 import { MenuButton } from "./Fragments/MenuButton";
 import { useState } from "react";
