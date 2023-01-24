@@ -1,57 +1,73 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout } from "features"; // Blocks eventually
 import { NavigationMenu } from "components";
 import {
-    BLOG_INFO_FRAGMENT,
-    SITE_SETTINGS_FRAGMENT,
-    SEO_FRAGMENT,
+  BLOG_INFO_FRAGMENT,
+  SITE_SETTINGS_FRAGMENT,
+  SEO_FRAGMENT,
+  SEO_CONFIG_FRAGMENT,
 } from "fragments";
 
 export default function Component(props) {
-    const { data, loading, error } = props
+  const { data, loading, error } = props;
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
-    const { page, headerMenuItems, footerMenuItems, siteSettings } = data;
-    const { seo, title } = page;
-    const {
-        address,
-        customAddressLabel,
-        phoneNumber,
-        logo,
-        logoWhite,
-        logoAlt,
-        cta,
-        email,
-    } = siteSettings.siteSettings;
+  const {
+    page,
+    headerMenuItems,
+    footerMenuItems,
+    siteSettings,
+    seo: defaultSEO,
+  } = data;
 
-    return (
-        <Layout
-            headerMenuItems={headerMenuItems}
-            footerMenuItems={footerMenuItems}
-            siteSettings={siteSettings}
-            seo={seo}
-            logo={logo}
-            logoWhite={logoWhite}
-            logoAlt={logoAlt}
-            cta={cta}
-        >
-            <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
-                <div className={`relative grid h-fit w-full text-center`}>
-                    <h1 className="text-center font-heading text-4xl font-bold">
-                        {title}
-                    </h1>
-                </div>
-            </div>
-        </Layout>
-    );
+  const { social } = defaultSEO;
+
+  const { seo, title } = page;
+  const {
+    address,
+    customAddressLabel,
+    phoneNumber,
+    logo,
+    logoWhite,
+    logoAlt,
+    cta,
+    email,
+  } = siteSettings.siteSettings;
+
+  return (
+    <Layout
+      headerMenuItems={headerMenuItems}
+      footerMenuItems={footerMenuItems}
+      siteSettings={siteSettings}
+      seo={seo}
+      logo={logo}
+      logoWhite={logoWhite}
+      logoAlt={logoAlt}
+      cta={cta}
+      twitterUser={defaultSEO.social.twitter.username}
+      address={address}
+      customAddressLabel={customAddressLabel}
+      phoneNumber={phoneNumber}
+      email={email}
+      social={social}
+    >
+      <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
+        <div className={`relative grid h-fit w-full text-center`}>
+          <h1 className="text-center font-heading text-4xl font-bold">
+            {title}
+          </h1>
+        </div>
+      </div>
+    </Layout>
+  );
 }
 
 Component.query = gql`
@@ -66,6 +82,9 @@ Component.query = gql`
     }
     siteSettings {
       ...SiteSettingsFragment
+    }
+    seo {
+      ...SEOConfigFragment
     }
     page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       id
@@ -96,13 +115,14 @@ Component.query = gql`
   ${SITE_SETTINGS_FRAGMENT}
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
+  ${SEO_CONFIG_FRAGMENT}
 `;
 
 Component.variables = ({ databaseId }, ctx) => {
-    return {
-        databaseId,
-        headerLocation: MENUS.PRIMARY_LOCATION,
-        footerLocation: MENUS.FOOTER_LOCATION,
-        asPreview: ctx?.asPreview,
-    };
+  return {
+    databaseId,
+    headerLocation: MENUS.PRIMARY_LOCATION,
+    footerLocation: MENUS.FOOTER_LOCATION,
+    asPreview: ctx?.asPreview,
+  };
 };

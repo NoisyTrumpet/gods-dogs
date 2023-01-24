@@ -1,16 +1,17 @@
 import { useQuery, gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout } from "features"; // Blocks eventually
-import { NavigationMenu } from "components";
+import { NavigationMenu, PostCard, Tabs } from "components";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
+  MEDIA_ITEM_FRAGMENT,
 } from "fragments";
 
 export default function Component() {
-  const { data, loading, error } = useQuery(Component.query, {
+  const { data, loading, error, fetchMore } = useQuery(Component.query, {
     variables: Component.variables(),
   });
 
@@ -28,6 +29,8 @@ export default function Component() {
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
+    posts: { nodes: posts },
+    categories,
   } = data;
 
   const { social } = defaultSEO;
@@ -43,6 +46,27 @@ export default function Component() {
     cta,
     email,
   } = siteSettings.siteSettings;
+
+  const tabs = [
+    {
+      name: "All News",
+      slug: "all",
+      content: posts.map((post) => {
+        return <PostCard key={post.id} post={post} />;
+      }),
+    },
+    ...categories.nodes.map((category) => {
+      return {
+        name: category.name,
+        slug: category.slug,
+        content: posts.map((post) => {
+          if (post.categories.nodes[0].slug === category.slug) {
+            return <PostCard key={post.id} post={post} />;
+          }
+        }),
+      };
+    }),
+  ];
 
   return (
     <Layout
@@ -61,19 +85,15 @@ export default function Component() {
       email={email}
       social={social}
     >
-      <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
-        <div className={`relative grid h-fit w-full text-center`}>
-          <h1 className="text-center font-heading text-4xl font-bold">
-            God's Dogs Shell
-          </h1>
-        </div>
+      <div className="container relative mx-auto">
+        <Tabs tabs={tabs} />
       </div>
     </Layout>
   );
 }
 
 Component.query = gql`
-  query HomePage(
+  query NewsPage(
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
     $asPreview: Boolean = false
@@ -87,11 +107,38 @@ Component.query = gql`
     seo {
       ...SEOConfigFragment
     }
-    page(id: "/", idType: URI, asPreview: $asPreview) {
+    page(id: 129, idType: DATABASE_ID, asPreview: $asPreview) {
       id
       title
       seo {
         ...SEOFragment
+      }
+    }
+    categories {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+    posts {
+      nodes {
+        id
+        title
+        excerpt
+        uri
+        date
+        categories {
+          nodes {
+            name
+            slug
+          }
+        }
+        featuredImage {
+          node {
+            ...MediaItemFragment
+          }
+        }
       }
     }
     headerMenuItems: menuItems(
@@ -116,6 +163,7 @@ Component.query = gql`
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
+  ${MEDIA_ITEM_FRAGMENT}
 `;
 
 Component.variables = () => {

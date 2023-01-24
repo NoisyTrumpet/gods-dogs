@@ -1,4 +1,4 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout } from "features"; // Blocks eventually
 import { NavigationMenu } from "components";
@@ -7,12 +7,11 @@ import {
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
+  MEDIA_ITEM_FRAGMENT,
 } from "fragments";
 
-export default function Component() {
-  const { data, loading, error } = useQuery(Component.query, {
-    variables: Component.variables(),
-  });
+export default function Component(props) {
+  const { data, loading, error } = props;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -23,7 +22,7 @@ export default function Component() {
   }
 
   const {
-    page,
+    post,
     headerMenuItems,
     footerMenuItems,
     siteSettings,
@@ -32,7 +31,7 @@ export default function Component() {
 
   const { social } = defaultSEO;
 
-  const { seo, title } = page;
+  const { seo, title } = post;
   const {
     address,
     customAddressLabel,
@@ -61,11 +60,9 @@ export default function Component() {
       email={email}
       social={social}
     >
-      <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
-        <div className={`relative grid h-fit w-full text-center`}>
-          <h1 className="text-center font-heading text-4xl font-bold">
-            God's Dogs Shell
-          </h1>
+      <div className="container relative mx-auto">
+        <div className="flex flex-wrap">
+          <h1 className="text-4xl font-bold">{title}</h1>
         </div>
       </div>
     </Layout>
@@ -73,7 +70,8 @@ export default function Component() {
 }
 
 Component.query = gql`
-  query HomePage(
+  query PostPage(
+    $databaseId: ID!
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
     $asPreview: Boolean = false
@@ -87,9 +85,21 @@ Component.query = gql`
     seo {
       ...SEOConfigFragment
     }
-    page(id: "/", idType: URI, asPreview: $asPreview) {
+    post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       id
       title
+      content
+      date
+      author {
+        node {
+          name
+        }
+      }
+      featuredImage {
+        node {
+          ...MediaItemFragment
+        }
+      }
       seo {
         ...SEOFragment
       }
@@ -116,11 +126,14 @@ Component.query = gql`
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
+  ${MEDIA_ITEM_FRAGMENT}
 `;
 
-Component.variables = () => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
+    databaseId,
     headerLocation: MENUS.PRIMARY_LOCATION,
     footerLocation: MENUS.FOOTER_LOCATION,
+    asPreview: ctx?.asPreview,
   };
 };

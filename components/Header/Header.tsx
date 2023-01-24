@@ -18,14 +18,28 @@ export interface SiteLogoProps {
   isScrolled: boolean;
   logo: MediaItem;
   logoAlt: MediaItem;
+  isMobile?: boolean;
 }
 
-const SiteLogo = ({isScrolled, logo, logoAlt}: SiteLogoProps) => {
-  if( isScrolled ) {
-    return <FeaturedImage image={logoAlt} className={`mb-4 h-24 md:mb-0`} />;
+const SiteLogo = ({ isScrolled, logo, logoAlt }: SiteLogoProps) => {
+  if (isScrolled) {
+    return (
+      <Link href="/">
+        {logoAlt ? <FeaturedImage image={logoAlt} className={`h-16`} /> : null}
+      </Link>
+    );
   }
-  return <FeaturedImage image={logo} className={`mb-4 h-24 md:mb-0`} />;
-}
+  return (
+    <Link href="/">
+      {logo ? (
+        <FeaturedImage image={logo} className={`hidden h-24 md:flex`} />
+      ) : null}
+      {logoAlt ? (
+        <FeaturedImage image={logoAlt} className={`flex h-16 md:hidden`} />
+      ) : null}
+    </Link>
+  );
+};
 
 const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
   const [open, cycleOpen] = useCycle(false, true);
@@ -54,9 +68,9 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
       } body-font sticky top-0 z-30 max-h-fit bg-white text-gray-600 transition-shadow`}
       ref={ref}
     >
-      <div className="container mx-auto flex flex-row flex-wrap items-center justify-center p-4 md:justify-between">
+      <div className="container mx-auto flex w-full flex-row flex-wrap justify-between md:items-center md:p-4">
         <div
-          className={`flex flex-row flex-wrap items-center justify-center md:justify-start`}
+          className={`flex flex-row flex-wrap items-center justify-center py-4 pl-4 md:justify-start md:py-0 md:pl-0`}
         >
           {/* Logo */}
           {logo ? (
@@ -74,17 +88,23 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
             </Link>
           )}
         </div>
-        {/* CTA */}
-        <div className={`flex flex-row flex-wrap items-center justify-center`}>
+        <div
+          className={`flex flex-row flex-wrap items-center justify-center gap-4 md:w-auto`}
+        >
           {/* Navigation Menu */}
           <NavigationMenu
             menuItems={flatListToHierarchical(menuItems)}
             isOpen={open}
             type="secondary"
             toggleOpen={() => cycleOpen()}
+            className={`order-last md:order-1`}
           />
           {cta ? (
-            <Button type={`secondary`} className={`ml-4`} href={cta.url ?? ``}>
+            <Button
+              type={`secondary`}
+              href={cta.url ?? ``}
+              className={`order-first w-fit md:order-last`}
+            >
               {cta.title}
             </Button>
           ) : null}
