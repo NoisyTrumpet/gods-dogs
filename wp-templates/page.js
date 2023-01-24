@@ -1,12 +1,13 @@
 import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
-import { Layout } from "features"; // Blocks eventually
+import { Layout, Blocks } from "features"; // Blocks eventually
 import { NavigationMenu } from "components";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
+  FLEXIBLE_CONTENT_FRAGMENT,
 } from "fragments";
 
 export default function Component(props) {
@@ -30,7 +31,11 @@ export default function Component(props) {
 
   const { social } = defaultSEO;
 
-  const { seo, title } = page;
+  const {
+    seo,
+    title,
+    flexibleContent: { blocks },
+  } = page;
   const {
     address,
     customAddressLabel,
@@ -59,13 +64,7 @@ export default function Component(props) {
       email={email}
       social={social}
     >
-      <div className="container relative mx-auto flex h-screen w-full flex-col justify-center">
-        <div className={`relative grid h-fit w-full text-center`}>
-          <h1 className="text-center font-heading text-4xl font-bold">
-            {title}
-          </h1>
-        </div>
-      </div>
+      <Blocks blocks={blocks} />
     </Layout>
   );
 }
@@ -93,6 +92,9 @@ Component.query = gql`
       seo {
         ...SEOFragment
       }
+      flexibleContent {
+        ...FlexibleContentFragment
+      }
     }
     headerMenuItems: menuItems(
       where: { location: $headerLocation }
@@ -116,6 +118,7 @@ Component.query = gql`
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
+  ${FLEXIBLE_CONTENT_FRAGMENT}
 `;
 
 Component.variables = ({ databaseId }, ctx) => {

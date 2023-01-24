@@ -6,3 +6,5 @@ export { Footer } from "./Footer";
 export { Socials } from "./Socials";
 export { PostCard } from "./PostCard";
 export { Tabs } from "./Tabs";
+// Content Components
+export { Hero } from "./Hero";
