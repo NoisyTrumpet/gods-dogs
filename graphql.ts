@@ -712,6 +712,212 @@ export enum AmPmEnum {
   Pm = "PM",
 }
 
+/** The Animal type */
+export type Animal = ContentNode &
+  DatabaseIdentifier &
+  MenuItemLinkable &
+  Node &
+  NodeWithContentEditor &
+  NodeWithExcerpt &
+  NodeWithFeaturedImage &
+  NodeWithTemplate &
+  NodeWithTitle &
+  Previewable &
+  UniformResourceIdentifiable & {
+    __typename?: "Animal";
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Animal Details&quot; was set to Show in GraphQL. */
+    animalDetails?: Maybe<Animal_Animaldetails>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of the databaseId field
+     */
+    animalId: Scalars["Int"];
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** The content of the post. */
+    content?: Maybe<Scalars["String"]>;
+    /** Connection between the ContentNode type and the ContentType type */
+    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+    /** The name of the Content Type the node belongs to */
+    contentTypeName: Scalars["String"];
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** Post publishing date. */
+    date?: Maybe<Scalars["String"]>;
+    /** The publishing date set in GMT. */
+    dateGmt?: Maybe<Scalars["String"]>;
+    /** The desired slug of the post */
+    desiredSlug?: Maybe<Scalars["String"]>;
+    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+    /** The RSS enclosure for the object */
+    enclosure?: Maybe<Scalars["String"]>;
+    /** Connection between the ContentNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+    /** The excerpt of the post. */
+    excerpt?: Maybe<Scalars["String"]>;
+    /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+    featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+    /** The database identifier for the featured image node assigned to the content node */
+    featuredImageDatabaseId?: Maybe<Scalars["Int"]>;
+    /** Globally unique ID of the featured image assigned to the node */
+    featuredImageId?: Maybe<Scalars["ID"]>;
+    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+    guid?: Maybe<Scalars["String"]>;
+    /** The globally unique identifier of the animal object. */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is a node in the preview state */
+    isPreview?: Maybe<Scalars["Boolean"]>;
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The user that most recently edited the node */
+    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+    /** The permalink of the post */
+    link?: Maybe<Scalars["String"]>;
+    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+    modified?: Maybe<Scalars["String"]>;
+    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+    modifiedGmt?: Maybe<Scalars["String"]>;
+    /** Connection between the Animal type and the Animal type */
+    preview?: Maybe<AnimalToPreviewConnectionEdge>;
+    /** The database id of the preview node */
+    previewRevisionDatabaseId?: Maybe<Scalars["Int"]>;
+    /** Whether the object is a node in the preview state */
+    previewRevisionId?: Maybe<Scalars["ID"]>;
+    /** The Yoast SEO data of the ContentNode */
+    seo?: Maybe<PostTypeSeo>;
+    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+    slug?: Maybe<Scalars["String"]>;
+    /** The current status of the object */
+    status?: Maybe<Scalars["String"]>;
+    /** The template assigned to the node */
+    template?: Maybe<ContentTemplate>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+    title?: Maybe<Scalars["String"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The Animal type */
+export type AnimalContentArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The Animal type */
+export type AnimalEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The Animal type */
+export type AnimalEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The Animal type */
+export type AnimalExcerptArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The Animal type */
+export type AnimalTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to Animal Nodes */
+export type AnimalConnection = {
+  /** A list of edges (relational context) between RootQuery and connected Animal Nodes */
+  edges: Array<AnimalConnectionEdge>;
+  /** A list of connected Animal Nodes */
+  nodes: Array<Animal>;
+};
+
+/** Edge between a Node and a connected Animal */
+export type AnimalConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected Animal Node */
+  node: Animal;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum AnimalIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = "DATABASE_ID",
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = "ID",
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = "SLUG",
+  /** Identify a resource by the URI. */
+  Uri = "URI",
+}
+
+/** Connection between the Animal type and the Animal type */
+export type AnimalToPreviewConnectionEdge = AnimalConnectionEdge &
+  Edge &
+  OneToOneConnection & {
+    __typename?: "AnimalToPreviewConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Animal;
+  };
+
+/** Field Group */
+export type Animal_Animaldetails = AcfFieldGroup & {
+  __typename?: "Animal_Animaldetails";
+  /** The age group of the animal in Shelterluv. */
+  animalAgeGroup?: Maybe<Scalars["String"]>;
+  /** The birthday of the animal in Shelterluv. */
+  animalBirthday?: Maybe<Scalars["String"]>;
+  /** The breed of the animal in Shelterluv. */
+  animalBreed?: Maybe<Scalars["String"]>;
+  /** The cover photo of the animal in Shelterluv. */
+  animalCoverPhoto?: Maybe<MediaItem>;
+  /** The intake date of the animal in Shelterluv. */
+  animalIntakeDate?: Maybe<Scalars["String"]>;
+  /** The name of the animal in Shelterluv. */
+  animalName?: Maybe<Scalars["String"]>;
+  /** The NID of the animal in Shelterluv. */
+  animalNid?: Maybe<Scalars["String"]>;
+  /** The photo gallery of the animal in Shelterluv. */
+  animalPhotoGallery?: Maybe<Array<Maybe<MediaItem>>>;
+  /** The primary color of the animal in Shelterluv. */
+  animalPrimaryColor?: Maybe<Scalars["String"]>;
+  /** The public URL of the animal in Shelterluv. */
+  animalPublicUrl?: Maybe<Scalars["String"]>;
+  /** The secondary breed of the animal in Shelterluv. */
+  animalSecondaryBreed?: Maybe<Scalars["String"]>;
+  /** The secondary color of the animal in Shelterluv. */
+  animalSecondaryColor?: Maybe<Scalars["String"]>;
+  /** The sex of the animal in Shelterluv. */
+  animalSex?: Maybe<Scalars["String"]>;
+  /** The species of the animal in Shelterluv. */
+  animalSpecies?: Maybe<Scalars["String"]>;
+  /** The unique ID of the animal in Shelterluv. */
+  animalUniqueId?: Maybe<Scalars["String"]>;
+  /** The weight of the animal in Shelterluv. */
+  animalWeight?: Maybe<Scalars["String"]>;
+  /** The weight group of the animal in Shelterluv. */
+  animalWeightGroup?: Maybe<Scalars["String"]>;
+  /** The weight units of the animal in Shelterluv. */
+  animalWeightUnits?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
+
 /** The atlasContentModelerSettings setting type */
 export type AtlasContentModelerSettingsSettings = {
   __typename?: "AtlasContentModelerSettingsSettings";
@@ -2226,6 +2432,8 @@ export type ContentTypeConnectionEdge = {
 /** Allowed Content Types */
 export enum ContentTypeEnum {
   /** The Type of Content object */
+  Animal = "ANIMAL",
+  /** The Type of Content object */
   Attachment = "ATTACHMENT",
   /** The Type of Content object */
   Events = "EVENTS",
@@ -2348,6 +2556,37 @@ export enum ContentTypesOfTagEnum {
   /** The Type of Content object */
   Post = "POST",
 }
+
+/** Input for the createAnimal mutation. */
+export type CreateAnimalInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars["String"]>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createAnimal mutation. */
+export type CreateAnimalPayload = {
+  __typename?: "CreateAnimalPayload";
+  /** The Post object mutation type. */
+  animal?: Maybe<Animal>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+};
 
 /** Input for the createCategory mutation. */
 export type CreateCategoryInput = {
@@ -2895,6 +3134,27 @@ export type DefaultTemplate = ContentTemplate & {
   __typename?: "DefaultTemplate";
   /** The name of the template */
   templateName?: Maybe<Scalars["String"]>;
+};
+
+/** Input for the deleteAnimal mutation. */
+export type DeleteAnimalInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars["Boolean"]>;
+  /** The ID of the Animal to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deleteAnimal mutation. */
+export type DeleteAnimalPayload = {
+  __typename?: "DeleteAnimalPayload";
+  /** The object before it was deleted */
+  animal?: Maybe<Animal>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
 };
 
 /** Input for the deleteCategory mutation. */
@@ -6579,6 +6839,7 @@ export enum MenuItemNodeIdTypeEnum {
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
 export type MenuItemObjectUnion =
+  | Animal
   | Category
   | Event
   | Page
@@ -10439,6 +10700,7 @@ export enum PostObjectFieldFormatEnum {
 
 /** Union between the post, page and media item types */
 export type PostObjectUnion =
+  | Animal
   | Event
   | GraphqlDocument
   | MediaItem
@@ -12707,6 +12969,8 @@ export type RestoreCommentPayload = {
 /** The root mutation */
 export type RootMutation = {
   __typename?: "RootMutation";
+  /** The createAnimal mutation */
+  createAnimal?: Maybe<CreateAnimalPayload>;
   /** The createCategory mutation */
   createCategory?: Maybe<CreateCategoryPayload>;
   /** The createComment mutation */
@@ -12729,6 +12993,8 @@ export type RootMutation = {
   createTag?: Maybe<CreateTagPayload>;
   /** The createUser mutation */
   createUser?: Maybe<CreateUserPayload>;
+  /** The deleteAnimal mutation */
+  deleteAnimal?: Maybe<DeleteAnimalPayload>;
   /** The deleteCategory mutation */
   deleteCategory?: Maybe<DeleteCategoryPayload>;
   /** The deleteComment mutation */
@@ -12771,6 +13037,8 @@ export type RootMutation = {
   submitGfDraftEntry?: Maybe<SubmitGfDraftEntryPayload>;
   /** The submitGfForm mutation */
   submitGfForm?: Maybe<SubmitGfFormPayload>;
+  /** The updateAnimal mutation */
+  updateAnimal?: Maybe<UpdateAnimalPayload>;
   /** The updateCategory mutation */
   updateCategory?: Maybe<UpdateCategoryPayload>;
   /** The updateComment mutation */
@@ -12799,6 +13067,11 @@ export type RootMutation = {
   updateTag?: Maybe<UpdateTagPayload>;
   /** The updateUser mutation */
   updateUser?: Maybe<UpdateUserPayload>;
+};
+
+/** The root mutation */
+export type RootMutationCreateAnimalArgs = {
+  input: CreateAnimalInput;
 };
 
 /** The root mutation */
@@ -12854,6 +13127,11 @@ export type RootMutationCreateTagArgs = {
 /** The root mutation */
 export type RootMutationCreateUserArgs = {
   input: CreateUserInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteAnimalArgs = {
+  input: DeleteAnimalInput;
 };
 
 /** The root mutation */
@@ -12962,6 +13240,11 @@ export type RootMutationSubmitGfFormArgs = {
 };
 
 /** The root mutation */
+export type RootMutationUpdateAnimalArgs = {
+  input: UpdateAnimalInput;
+};
+
+/** The root mutation */
 export type RootMutationUpdateCategoryArgs = {
   input: UpdateCategoryInput;
 };
@@ -13036,6 +13319,15 @@ export type RootQuery = {
   __typename?: "RootQuery";
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
+  /** An object of the Animal Type.  */
+  animal?: Maybe<Animal>;
+  /**
+   * A Animal object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  animalBy?: Maybe<Animal>;
+  /** Connection between the RootQuery type and the Animal type */
+  animals?: Maybe<RootQueryToAnimalConnection>;
   /** Fields of the &#039;AtlasContentModelerSettingsSettings&#039; settings group */
   atlasContentModelerSettingsSettings?: Maybe<AtlasContentModelerSettingsSettings>;
   /** Connection between the RootQuery type and the category type */
@@ -13188,6 +13480,30 @@ export type RootQuery = {
   viewer?: Maybe<User>;
   /** Fields of the &#039;WritingSettings&#039; settings group */
   writingSettings?: Maybe<WritingSettings>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryAnimalArgs = {
+  asPreview?: InputMaybe<Scalars["Boolean"]>;
+  id: Scalars["ID"];
+  idType?: InputMaybe<AnimalIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryAnimalByArgs = {
+  animalId?: InputMaybe<Scalars["Int"]>;
+  id?: InputMaybe<Scalars["ID"]>;
+  slug?: InputMaybe<Scalars["String"]>;
+  uri?: InputMaybe<Scalars["String"]>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryAnimalsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToAnimalConnectionWhereArgs>;
 };
 
 /** The root entry point into the Graph */
@@ -13621,6 +13937,66 @@ export type RootQueryUsersArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   where?: InputMaybe<RootQueryToUserConnectionWhereArgs>;
+};
+
+/** Connection between the RootQuery type and the Animal type */
+export type RootQueryToAnimalConnection = AnimalConnection &
+  Connection & {
+    __typename?: "RootQueryToAnimalConnection";
+    /** Edges for the RootQueryToAnimalConnection connection */
+    edges: Array<RootQueryToAnimalConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Animal>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToAnimalConnectionEdge = AnimalConnectionEdge &
+  Edge & {
+    __typename?: "RootQueryToAnimalConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Animal;
+  };
+
+/** Arguments for filtering the RootQueryToAnimalConnection connection */
+export type RootQueryToAnimalConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
 };
 
 /** Connection between the RootQuery type and the category type */
@@ -14969,6 +15345,7 @@ export type SeoContentTypeArchive = {
 /** The Yoast SEO search appearance content types */
 export type SeoContentTypes = {
   __typename?: "SEOContentTypes";
+  animal?: Maybe<SeoContentType>;
   event?: Maybe<SeoContentType>;
   graphqlDocument?: Maybe<SeoContentType>;
   mediaItem?: Maybe<SeoContentType>;
@@ -16396,6 +16773,39 @@ export type UniformResourceIdentifiable = {
   templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
   /** The unique resource identifier path */
   uri?: Maybe<Scalars["String"]>;
+};
+
+/** Input for the updateAnimal mutation. */
+export type UpdateAnimalInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The content of the object */
+  content?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** The excerpt of the object */
+  excerpt?: InputMaybe<Scalars["String"]>;
+  /** The ID of the Animal object */
+  id: Scalars["ID"];
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updateAnimal mutation. */
+export type UpdateAnimalPayload = {
+  __typename?: "UpdateAnimalPayload";
+  /** The Post object mutation type. */
+  animal?: Maybe<Animal>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
 };
 
 /** Input for the updateCategory mutation. */

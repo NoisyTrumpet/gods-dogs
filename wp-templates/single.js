@@ -1,7 +1,7 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout } from "features"; // Blocks eventually
-import { NavigationMenu, PostCard, Tabs } from "components";
+import { NavigationMenu } from "components";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
@@ -10,10 +10,8 @@ import {
   MEDIA_ITEM_FRAGMENT,
 } from "fragments";
 
-export default function Component() {
-  const { data, loading, error, fetchMore } = useQuery(Component.query, {
-    variables: Component.variables(),
-  });
+export default function Component(props) {
+  const { data, loading, error } = props;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -24,18 +22,16 @@ export default function Component() {
   }
 
   const {
-    page,
+    post,
     headerMenuItems,
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
-    posts: { nodes: posts },
-    categories,
   } = data;
 
   const { social } = defaultSEO;
 
-  const { seo, title } = page;
+  const { seo, title } = post;
   const {
     address,
     customAddressLabel,
@@ -46,27 +42,6 @@ export default function Component() {
     cta,
     email,
   } = siteSettings.siteSettings;
-
-  const tabs = [
-    {
-      name: "All News",
-      slug: "all",
-      content: posts.map((post) => {
-        return <PostCard key={post.id} post={post} />;
-      }),
-    },
-    ...categories.nodes.map((category) => {
-      return {
-        name: category.name,
-        slug: category.slug,
-        content: posts.map((post) => {
-          if (post.categories.nodes[0].slug === category.slug) {
-            return <PostCard key={post.id} post={post} />;
-          }
-        }),
-      };
-    }),
-  ];
 
   return (
     <Layout
@@ -86,14 +61,17 @@ export default function Component() {
       social={social}
     >
       <div className="container relative mx-auto">
-        <Tabs tabs={tabs} />
+        <div className="flex flex-wrap">
+          <h1 className="text-4xl font-bold">{title}</h1>
+        </div>
       </div>
     </Layout>
   );
 }
 
 Component.query = gql`
-  query NewsPage(
+  query PostPage(
+    $databaseId: ID!
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
     $asPreview: Boolean = false
@@ -107,38 +85,23 @@ Component.query = gql`
     seo {
       ...SEOConfigFragment
     }
-    page(id: 129, idType: DATABASE_ID, asPreview: $asPreview) {
+    post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       id
       title
+      content
+      date
+      author {
+        node {
+          name
+        }
+      }
+      featuredImage {
+        node {
+          ...MediaItemFragment
+        }
+      }
       seo {
         ...SEOFragment
-      }
-    }
-    categories {
-      nodes {
-        id
-        name
-        slug
-      }
-    }
-    posts {
-      nodes {
-        id
-        title
-        excerpt
-        uri
-        date
-        categories {
-          nodes {
-            name
-            slug
-          }
-        }
-        featuredImage {
-          node {
-            ...MediaItemFragment
-          }
-        }
       }
     }
     headerMenuItems: menuItems(
@@ -166,9 +129,11 @@ Component.query = gql`
   ${MEDIA_ITEM_FRAGMENT}
 `;
 
-Component.variables = () => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
+    databaseId,
     headerLocation: MENUS.PRIMARY_LOCATION,
     footerLocation: MENUS.FOOTER_LOCATION,
+    asPreview: ctx?.asPreview,
   };
 };
