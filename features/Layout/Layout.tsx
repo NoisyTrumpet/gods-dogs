@@ -1,6 +1,7 @@
 import {
   AcfLink,
   Acf_GoogleMap,
+  AcfFieldGroup,
   MediaItem,
   MenuItem,
   PostTypeSeo,
@@ -27,6 +28,8 @@ export interface LayoutProps {
   email: AcfLink;
   twitterUser: string;
   social: SeoSocial;
+  turnOnAnnouncements: boolean;
+  announcements: any[];
 }
 
 const Layout = ({
@@ -45,6 +48,8 @@ const Layout = ({
   email,
   twitterUser,
   social,
+  turnOnAnnouncements,
+  announcements,
 }: LayoutProps) => {
   return (
     <>
@@ -54,6 +59,8 @@ const Layout = ({
         logo={logo}
         logoAlt={logoAlt}
         cta={cta}
+        turnOnAnnouncements={turnOnAnnouncements}
+        announcements={announcements}
       />
       <Main className={`main`}>{children}</Main>
       <Footer

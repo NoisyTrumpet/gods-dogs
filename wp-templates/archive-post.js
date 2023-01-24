@@ -45,6 +45,8 @@ export default function Component() {
     logoAlt,
     cta,
     email,
+    turnOnAnnouncements,
+    announcements,
   } = siteSettings.siteSettings;
 
   const tabs = [
@@ -84,6 +86,8 @@ export default function Component() {
       phoneNumber={phoneNumber}
       email={email}
       social={social}
+      turnOnAnnouncements={turnOnAnnouncements}
+      announcements={announcements}
     >
       <div className="container relative mx-auto">
         <Tabs tabs={tabs} />

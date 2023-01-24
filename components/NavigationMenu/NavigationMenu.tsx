@@ -107,7 +107,7 @@ const NavigationMenu = ({
                         key={`nav-${path}-${label}`}
                         // whileHover={{ scale: 1.1 }}
                         variants={itemVariants}
-                        className={`w-full border-b-[1px] border-b-primary py-4`}
+                        className={`w-full border-b-[1px] border-b-primary py-4 hover:cursor-pointer`}
                         onClick={() => {
                           if (hasChildren) {
                             setSubMenuOpen({
