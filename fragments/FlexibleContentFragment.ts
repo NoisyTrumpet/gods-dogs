@@ -64,7 +64,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
               url
             }
           }
-          headingPostion {
+          headingIcon {
             ...MediaItemFragment
           }
         }
