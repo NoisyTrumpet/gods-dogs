@@ -1,6 +1,6 @@
 import { useQuery, gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
-import { Layout } from "features"; // Blocks eventually
+import { Layout, Blocks } from "features"; // Blocks eventually
 import { NavigationMenu, PostCard, Tabs } from "components";
 import {
   BLOG_INFO_FRAGMENT,
@@ -8,6 +8,7 @@ import {
   SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
   MEDIA_ITEM_FRAGMENT,
+  FLEXIBLE_CONTENT_FRAGMENT,
 } from "fragments";
 
 export default function Component() {
@@ -35,7 +36,11 @@ export default function Component() {
 
   const { social } = defaultSEO;
 
-  const { seo, title } = page;
+  const {
+    seo,
+    title,
+    flexibleContent: { blocks },
+  } = page;
   const {
     address,
     customAddressLabel,
@@ -85,6 +90,7 @@ export default function Component() {
       email={email}
       social={social}
     >
+      <Blocks blocks={blocks} />
       <div className="container relative mx-auto">
         <Tabs tabs={tabs} />
       </div>
@@ -112,6 +118,9 @@ Component.query = gql`
       title
       seo {
         ...SEOFragment
+      }
+      flexibleContent {
+        ...FlexibleContentFragment
       }
     }
     categories {
@@ -164,6 +173,7 @@ Component.query = gql`
   ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
   ${MEDIA_ITEM_FRAGMENT}
+  ${FLEXIBLE_CONTENT_FRAGMENT}
 `;
 
 Component.variables = () => {
