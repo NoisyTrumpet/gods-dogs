@@ -2,10 +2,7 @@ import { gql } from "@apollo/client";
 import { MenuItem } from "graphql";
 import Link from "next/link";
 import { AnimatePresence, m, LazyMotion } from "framer-motion";
-import {
-  itemVariants,
-  sideVariants,
-} from "./Fragments/variants";
+import { itemVariants, sideVariants } from "./Fragments/variants";
 import { MenuButton } from "./Fragments/MenuButton";
 import { useState } from "react";
 import { Button } from "components/Button";
@@ -199,13 +196,18 @@ const NavigationMenu = ({
                 {label}
               </Link>
               {hasChildren ? (
-                <ul className="top-100 absolute left-0 hidden w-fit min-w-8 flex-col gap-4 whitespace-nowrap bg-white py-6 px-4 shadow-md transition-all duration-300 ease-in-out peer-hover:flex">
+                <ul className="top-100 absolute left-0 hidden w-fit min-w-8 flex-col gap-4 whitespace-nowrap bg-white py-6 px-4 shadow-md transition-all duration-300 ease-in-out group-hover:flex">
                   {children?.map(({ path, label }: MenuItem) => (
                     <li
                       key={`nav-${path}-${label}`}
                       className={`transition-all duration-300 ease-in-out`}
                     >
-                      <Link href={path ?? "/"}>{label}</Link>
+                      <Link
+                        href={path ?? "/"}
+                        className={`transition-all duration-300 ease-in-out hover:text-secondary`}
+                      >
+                        {label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
