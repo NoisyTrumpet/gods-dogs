@@ -6,12 +6,15 @@ import { AcfLink, MediaItem, MenuItem } from "graphql";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import flatListToHierarchical from "utilities/flatListToHierarchical";
+import { Announcements } from "components/Announcements";
 
 export interface HeaderProps {
   menuItems: MenuItem[];
   logo: MediaItem;
   logoAlt: MediaItem;
   cta: AcfLink;
+  turnOnAnnouncements: boolean;
+  announcements?: any[];
 }
 
 export interface SiteLogoProps {
@@ -41,7 +44,14 @@ const SiteLogo = ({ isScrolled, logo, logoAlt }: SiteLogoProps) => {
   );
 };
 
-const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
+const Header = ({
+  menuItems,
+  logo,
+  logoAlt,
+  cta,
+  turnOnAnnouncements,
+  announcements,
+}: HeaderProps) => {
   const [open, cycleOpen] = useCycle(false, true);
   const ref = useRef(null);
   const { scrollY } = useScroll({
@@ -68,6 +78,9 @@ const Header = ({ menuItems, logo, logoAlt, cta }: HeaderProps) => {
       } body-font sticky top-0 z-30 max-h-fit bg-white text-gray-600 transition-shadow`}
       ref={ref}
     >
+      {turnOnAnnouncements ? (
+        <Announcements announcements={announcements} />
+      ) : null}
       <div className="container mx-auto flex w-full flex-row flex-wrap justify-between md:items-center md:p-4">
         <div
           className={`flex flex-row flex-wrap items-center justify-center py-4 pl-4 md:justify-start md:py-0 md:pl-0`}

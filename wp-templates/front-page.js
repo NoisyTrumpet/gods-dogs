@@ -47,6 +47,8 @@ export default function Component() {
     logoAlt,
     cta,
     email,
+    turnOnAnnouncements,
+    announcements,
   } = siteSettings.siteSettings;
 
   return (
@@ -65,6 +67,8 @@ export default function Component() {
       phoneNumber={phoneNumber}
       email={email}
       social={social}
+      turnOnAnnouncements={turnOnAnnouncements}
+      announcements={announcements}
     >
       <Blocks blocks={blocks} />
     </Layout>

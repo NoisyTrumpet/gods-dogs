@@ -4,16 +4,16 @@ import { MEDIA_ITEM_FRAGMENT } from "./MediaItemFragment";
 export const SITE_SETTINGS_FRAGMENT = gql`
   fragment SiteSettingsFragment on SiteSettings {
     siteSettings {
-      turnOnAnnouncements
       customAddressLabel
+      turnOnAnnouncements
       announcements {
         backgroundColor
         content
         ctaType
         cta {
-          target
           title
           url
+          target
         }
       }
       email {

@@ -45,6 +45,8 @@ export default function Component(props) {
     logoAlt,
     cta,
     email,
+    turnOnAnnouncements,
+    announcements,
   } = siteSettings.siteSettings;
 
   return (
@@ -63,6 +65,8 @@ export default function Component(props) {
       phoneNumber={phoneNumber}
       email={email}
       social={social}
+      turnOnAnnouncements={turnOnAnnouncements}
+      announcements={announcements}
     >
       <Blocks blocks={blocks} />
     </Layout>

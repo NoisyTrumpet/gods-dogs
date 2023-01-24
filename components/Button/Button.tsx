@@ -6,6 +6,7 @@ interface ButtonProps {
   className?: string;
   type:
     | "primary"
+    | "primary-outline"
     | "secondary"
     | "secondary-outline"
     | "tertiary"
@@ -13,7 +14,8 @@ interface ButtonProps {
     | "alert"
     | "donate"
     | "donate-white"
-    | "back-menu";
+    | "back-menu"
+    | "announcement";
   onClick?: () => void;
   disabled?: boolean;
 }
@@ -29,13 +31,15 @@ const styleLoader = (type: string) => {
       return `rounded-full bg-primary py-2 px-4 font-bold text-white font-heading uppercase
       hover:bg-primary transition duration-300 ease-in-out hover:shadow-lg hover:border-primary hover:border-1 hover:text-primary`;
     case "primary":
-      return `rounded-full border-primary border-2 bg-primary py-2 px-4 font-bold text-white font-heading uppercase hover:bg-white transition duration-300 ease-in-out hover:shadow-lg hover:border-white hover:border-1 hover:text-primary`;
+      return `rounded-full border-primary border-2 bg-primary py-2 px-4 font-bold text-white font-heading uppercase hover:bg-white transition duration-300 ease-in-out hover:shadow-lg hover:border-primary hover:border-1 hover:text-primary`;
     case "primary-outline":
       return `bg-white rounded-full border-2 border-primary py-2 px-4 font-bold text-primary font-heading uppercase hover:bg-primary hover:text-white hover:border-primary transition duration-300 ease-in-out`;
     case "secondary":
       return `rounded-full bg-secondary border-2 border-secondary py-2 px-8 font-bold text-white font-heading uppercase hover:bg-white hover:text-secondary transition duration-300 ease-in-out`;
     case "secondary-outline":
       return `bg-white rounded-full border-2 border-secondary py-2 px-4 font-bold text-secondary font-heading uppercase hover:bg-secondary hover:text-white hover:border-primary transition duration-300 ease-in-out`;
+    case "announcement":
+      return `bg-white rounded-full border-2 border-secondary-light py-2 px-4 font-bold text-secondary-light font-heading uppercase hover:bg-secondary-light hover:text-white hover:border-white transition duration-300 ease-in-out`;
     case "tertiary":
       return `rounded-full bg-tertiary py-2 px-4 font-bold text-white font-heading uppercase hover:bg-tertiary-dark transition duration-300 ease-in-out`;
     case "quaternary":
