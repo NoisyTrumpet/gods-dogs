@@ -4035,8 +4035,8 @@ export type Event_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
-  leftGraphic?: Maybe<MediaItem>;
-  rightGraphic?: Maybe<MediaItem>;
+  leftGraphic?: Maybe<Scalars['String']>;
+  rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   useDonationForm?: Maybe<Scalars['Boolean']>;
@@ -4151,7 +4151,7 @@ export type Event_Flexiblecontent_Blocks_TextBlock_Paragraphs = AcfFieldGroup & 
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   hasHeadingIcon?: Maybe<Scalars['Boolean']>;
-  headingPostion?: Maybe<MediaItem>;
+  headingIcon?: Maybe<MediaItem>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -7988,8 +7988,8 @@ export type Page_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
-  leftGraphic?: Maybe<MediaItem>;
-  rightGraphic?: Maybe<MediaItem>;
+  leftGraphic?: Maybe<Scalars['String']>;
+  rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   useDonationForm?: Maybe<Scalars['Boolean']>;
@@ -8104,7 +8104,7 @@ export type Page_Flexiblecontent_Blocks_TextBlock_Paragraphs = AcfFieldGroup & {
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   hasHeadingIcon?: Maybe<Scalars['Boolean']>;
-  headingPostion?: Maybe<MediaItem>;
+  headingIcon?: Maybe<MediaItem>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -11749,8 +11749,8 @@ export type Post_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
-  leftGraphic?: Maybe<MediaItem>;
-  rightGraphic?: Maybe<MediaItem>;
+  leftGraphic?: Maybe<Scalars['String']>;
+  rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   useDonationForm?: Maybe<Scalars['Boolean']>;
@@ -11865,7 +11865,7 @@ export type Post_Flexiblecontent_Blocks_TextBlock_Paragraphs = AcfFieldGroup & {
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   hasHeadingIcon?: Maybe<Scalars['Boolean']>;
-  headingPostion?: Maybe<MediaItem>;
+  headingIcon?: Maybe<MediaItem>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -12490,8 +12490,8 @@ export type Resource_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
-  leftGraphic?: Maybe<MediaItem>;
-  rightGraphic?: Maybe<MediaItem>;
+  leftGraphic?: Maybe<Scalars['String']>;
+  rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   useDonationForm?: Maybe<Scalars['Boolean']>;
@@ -12606,7 +12606,7 @@ export type Resource_Flexiblecontent_Blocks_TextBlock_Paragraphs = AcfFieldGroup
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   hasHeadingIcon?: Maybe<Scalars['Boolean']>;
-  headingPostion?: Maybe<MediaItem>;
+  headingIcon?: Maybe<MediaItem>;
   title?: Maybe<Scalars['String']>;
 };
 

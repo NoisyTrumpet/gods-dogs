@@ -4,6 +4,7 @@ interface ButtonProps {
   href?: string;
   children: React.ReactNode;
   className?: string;
+  target?: string;
   type:
     | "primary"
     | "primary-outline"
@@ -57,6 +58,7 @@ const Button = ({
   className,
   type,
   disabled,
+  target,
   ...props
 }: ButtonProps) => {
   if (href && type !== "donate" && type !== "donate-white") {
@@ -65,6 +67,7 @@ const Button = ({
         className={`${styleLoader(type)} ${className}`}
         role="button"
         href={href}
+        target={target ? target : "_self"}
         {...props}
       >
         {children}

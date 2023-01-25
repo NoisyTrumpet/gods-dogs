@@ -19,12 +19,8 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
           type
         }
-        rightGraphic {
-          ...MediaItemFragment
-        }
-        leftGraphic {
-          ...MediaItemFragment
-        }
+        rightGraphic
+        leftGraphic
       }
       ... on Page_Flexiblecontent_Blocks_TextImage {
         fieldGroupName
@@ -64,7 +60,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
               url
             }
           }
-          headingPostion {
+          headingIcon {
             ...MediaItemFragment
           }
         }
