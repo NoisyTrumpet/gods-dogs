@@ -23,7 +23,7 @@ const Announcements = ({ announcements }: any) => {
               <p className={`text-${txtColor} mr-4`}>{announcement.content}</p>
               {announcement.cta ? (
                 <Button
-                  type={ctaType}
+                  variant={ctaType}
                   href={announcement.cta.url ?? ``}
                   className={`order-first w-fit md:order-last`}
                 >

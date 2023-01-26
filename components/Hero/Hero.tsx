@@ -47,7 +47,7 @@ const Hero = ({
                 key={link.title}
                 href={link?.url}
                 target={link?.target}
-                type={type}
+                variant={type}
               >
                 {link?.title}
               </Button>

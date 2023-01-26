@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-interface ButtonProps {
+export interface ButtonProps {
   href?: string;
   children: React.ReactNode;
   className?: string;
   target?: string;
-  type:
+  variant:
     | "primary"
     | "primary-outline"
     | "secondary"
@@ -56,15 +56,15 @@ const Button = ({
   href,
   children,
   className,
-  type,
+  variant,
   disabled,
   target,
   ...props
 }: ButtonProps) => {
-  if (href && type !== "donate" && type !== "donate-white") {
+  if (href && variant !== "donate" && variant !== "donate-white") {
     return (
       <Link
-        className={`${styleLoader(type)} ${className}`}
+        className={`${styleLoader(variant)} ${className}`}
         role="button"
         href={href}
         target={target ? target : "_self"}
@@ -78,7 +78,7 @@ const Button = ({
   return (
     <button
       disabled={disabled}
-      className={`${styleLoader(type)} ${className}`}
+      className={`${styleLoader(variant)} ${className}`}
       {...props}
     >
       {children}

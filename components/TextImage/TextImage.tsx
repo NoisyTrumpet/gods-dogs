@@ -2,7 +2,7 @@ import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { Page_Flexiblecontent_Blocks_TextImage } from "graphql";
 import Paws from "public/text-image-assets/paws.svg";
-
+import { ButtonProps } from "components/Button/Button";
 export interface TextImageProps extends Page_Flexiblecontent_Blocks_TextImage {
   className?: string;
 }
@@ -61,7 +61,9 @@ const TextImage = ({ className, textImageRepeater }: TextImageProps) => {
               <div className="flex flex-col gap-4">
                 {ctaRepeater.map((cta, index) => {
                   const { title, url, target } = cta?.ctaLink ?? {};
-                  const { type } = cta ?? {};
+                  const { type } = cta ?? {
+                    type: "primary",
+                  };
 
                   return (
                     <Button
@@ -69,7 +71,7 @@ const TextImage = ({ className, textImageRepeater }: TextImageProps) => {
                       href={url ?? "#"}
                       target={target ?? "_self"}
                       className={`w-fit`}
-                      type={type}
+                      variant={type as ButtonProps["variant"]}
                     >
                       {title}
                     </Button>

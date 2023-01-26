@@ -164,7 +164,7 @@ const GravityFormsForm = ({ form, formId }: Props) => {
             <div className="error-message text-primary">{error.message}</div>
           ) : null}
           <Button
-            type="primary"
+            variant="primary"
             disabled={loading}
             className={`mx-auto max-w-fit`}
           >
