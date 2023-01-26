@@ -9,7 +9,7 @@ export interface TextImageProps extends Page_Flexiblecontent_Blocks_TextImage {
 const TextImage = ({ className, textImageRepeater }: TextImageProps) => {
   const hasSections = textImageRepeater && textImageRepeater.length > 0;
 
-  if (!hasSections) return null;
+  if (!hasSections) return <></>;
   return textImageRepeater.map((section, index) => {
     const {
       backgroundColor,

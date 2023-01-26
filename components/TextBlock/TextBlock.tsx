@@ -6,7 +6,7 @@ export interface TextBlockProps extends Page_Flexiblecontent_Blocks_TextBlock {
 }
 
 const TextBlock = ({ className, paragraphs }: TextBlockProps) => {
-  if (!paragraphs) return null;
+  if (!paragraphs) return <></>;
 
   return paragraphs.map((paragraph, index) => {
     const {
