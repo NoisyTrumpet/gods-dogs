@@ -67,7 +67,7 @@ const TextImage = ({ className, textImageRepeater }: TextImageProps) => {
                       href={url ?? "#"}
                       target={target ?? "_self"}
                       className={`w-fit`}
-                      variant={cta?.type}
+                      variant={cta?.type as string}
                     >
                       {title}
                     </Button>
