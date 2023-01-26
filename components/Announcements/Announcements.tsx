@@ -10,24 +10,26 @@ const Announcements = ({ announcements }: any) => {
           ctaType: string;
           backgroundColor: string;
         }) => {
-          const ctaType =
-            announcement.ctaType === `secondary` ? `announcement` : `primary`;
+          const { backgroundColor, ctaType, cta, content } = announcement;
+          const { title, url, target } = cta;
+
+          const type = ctaType === `secondary` ? `announcement` : `primary`;
           const txtColor =
             announcement.backgroundColor === `secondary` ? `white` : `dark`;
 
           return (
             <div
-              key={`announcement-${announcement.ctaType}`}
-              className={`bg-${announcement.backgroundColor}-light flex flex-col-reverse items-center justify-center p-2 md:flex-row`}
+              key={`announcement-${ctaType}`}
+              className={`bg-${backgroundColor}-light flex flex-col-reverse items-center justify-center p-2 md:flex-row`}
             >
-              <p className={`text-${txtColor} mr-4`}>{announcement.content}</p>
-              {announcement.cta ? (
+              {content ? (<p className={`text-${txtColor} mr-4`}>{content}</p>) : null}
+              {cta ? (
                 <Button
-                  type={ctaType}
-                  href={announcement.cta.url ?? ``}
+                  variant={type}
+                  href={url ?? ``}
                   className={`order-first w-fit md:order-last`}
                 >
-                  {announcement.cta.title}
+                  {title}
                 </Button>
               ) : null}
             </div>
