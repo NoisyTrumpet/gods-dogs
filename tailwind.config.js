@@ -9,8 +9,8 @@ module.exports = {
     extend: {
       colors: {
         primary: "#666793", // purple
-        secondary: "#E71019", // red
         "primary-light": "#EFEFF8", // light purple
+        secondary: "#E71019", // red
         "secondary-light": "#D04F4F", // light red
         dark: "#292929", // off-black
       },
@@ -53,4 +53,5 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: ["bg-primary", "bg-secondary-light", "bg-dark"],
 };

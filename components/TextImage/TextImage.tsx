@@ -31,7 +31,7 @@ const TextImage = ({ className, textImageRepeater }: TextImageProps) => {
       const pawsClasses =
         pawsIconPostion === `top-left`
           ? `-top-8 -left-24`
-          : `-top-8 -right-24 `;
+          : `-top-8 -right-24 rotate-[-20deg] `;
 
       return (
         <div
@@ -41,10 +41,10 @@ const TextImage = ({ className, textImageRepeater }: TextImageProps) => {
           } flex bg-${backgroundColor}-light relative`}
         >
           <div
-            className={`container relative mx-auto flex flex-col px-4 md:flex-row ${pTop} ${pBottom}`}
+            className={`container relative mx-auto flex flex-col md:flex-row md:px-4 ${pTop} ${pBottom}`}
           >
             {hasSidePawsIcon ? (
-              <div className={`absolute ${pawsClasses}`}>
+              <div className={`absolute ${pawsClasses} z-20`}>
                 <Paws />
               </div>
             ) : null}

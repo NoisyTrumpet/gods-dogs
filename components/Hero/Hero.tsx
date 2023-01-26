@@ -24,7 +24,7 @@ const Hero = ({
     <div
       className={`${className ? className : ``} ${
         isPrimary ? `min-h-[450px]` : `h-fit`
-      } relative mb-8 flex flex-col items-center border-b-[29px] border-primary text-center md:flex-row`}
+      } relative flex flex-col items-center border-b-[29px] border-primary text-center md:flex-row`}
     >
       {leftGraphic ? (
         <div className="absolute bottom-0 left-0 hidden h-full max-h-[70%] w-full justify-start md:flex">
@@ -38,7 +38,10 @@ const Hero = ({
           </h1>
         ) : null}
         {subtitle ? (
-          <p className={`font-heading text-2xl text-dark`}>{subtitle}</p>
+          <div
+            className={`font-heading text-2xl text-dark`}
+            dangerouslySetInnerHTML={{ __html: subtitle }}
+          />
         ) : null}
         {hasCtas ? (
           <div className="mt-8 flex flex-col items-center space-y-4">
