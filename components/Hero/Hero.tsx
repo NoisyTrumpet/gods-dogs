@@ -41,7 +41,9 @@ const Hero = ({
       </div>
       {isBasic ? (
         <div className="top-0 right-0 flex h-full w-full justify-center xl:absolute xl:justify-end">
-          <BasicGraphic className={`${styles[`hero-svg-basic`]} w-full xl:w-auto`} />
+          <BasicGraphic
+            className={`${styles[`hero-svg-basic`]} w-full xl:w-auto`}
+          />
         </div>
       ) : null}
     </div>
