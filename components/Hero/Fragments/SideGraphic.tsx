@@ -14,52 +14,55 @@ import Poodle from "public/hero-assets/poodle.svg";
 import ShihTzuChi from "public/hero-assets/shih-tzu-chihuahua.svg";
 import VolunteerWalker from "public/hero-assets/volunteer-walker.svg";
 
-
 export interface SlideGraphicProps {
-    graphic?: string;
-    className?: string;
+  graphic?: string;
+  className?: string;
 }
 
-const SideGraphic = ({graphic, className}: SlideGraphicProps) => {
-  switch(graphic) {
+const SideGraphic = ({ graphic, className }: SlideGraphicProps) => {
+  switch (graphic) {
     case "goldenGroup": {
-        return <DogGroup1 className={`relative right-[150px] ${className ? className : ""}`}  />;
+      return (
+        <DogGroup1
+          className={`relative right-[150px] ${className ? className : ""}`}
+        />
+      );
     }
     case "terrierGroup": {
-        return <DogGroup2 className={className ? className : ""} />;
+      return <DogGroup2 className={className ? className : ""} />;
     }
     case "afghanHound": {
-        return <AfghanHound className={className ? className : ""} />;
+      return <AfghanHound className={className ? className : ""} />;
     }
     case "dalmatian": {
-        return <Dalmatian className={className ? className : ""} />;
+      return <Dalmatian className={className ? className : ""} />;
     }
     case "englishSheepdog": {
-        return <EnglishSheepdog className={className ? className : ""} />;
+      return <EnglishSheepdog className={className ? className : ""} />;
     }
     case "goldenPittie": {
-        return <GoldenPittie className={className ? className : ""} />;
+      return <GoldenPittie className={className ? className : ""} />;
     }
     case "houndDash": {
-        return <HoundDash className={className ? className : ""} />;
+      return <HoundDash className={className ? className : ""} />;
     }
     case "houndFrenchie": {
-        return <HoundFrenchie className={className ? className : ""} />;
+      return <HoundFrenchie className={className ? className : ""} />;
     }
     case "pittieTerrier": {
-        return <PittieTerrier className={className ? className : ""} />;
+      return <PittieTerrier className={className ? className : ""} />;
     }
     case "poodle": {
-        return <Poodle className={className ? className : ""} />;
+      return <Poodle className={className ? className : ""} />;
     }
     case "shihTzuChi": {
-        return <ShihTzuChi className={className ? className : ""} />;
+      return <ShihTzuChi className={className ? className : ""} />;
     }
     case "volunteerWalker": {
-        return <VolunteerWalker className={className ? className : ""} />;
+      return <VolunteerWalker className={className ? className : ""} />;
     }
     default: {
-        return <BasicGraphic className={className ? className : ""} />;
+      return <BasicGraphic className={className ? className : ""} />;
     }
   }
 };

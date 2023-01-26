@@ -5,11 +5,13 @@ import { Hero } from "components";
 const Form = dynamic(() => import("components/Form/Form"), {
   ssr: true,
 });
-// Text Image
+// Text Image:
+// @ts-ignore
 const TextImage = dynamic(() => import("components/TextImage/TextImage"), {
   ssr: true,
 });
-// Text Block
+// Text Block:
+// @ts-ignore
 const TextBlock = dynamic(() => import("components/TextBlock/TextBlock"), {
   ssr: true,
 });
@@ -87,8 +89,6 @@ const Block = ({ block }: BlockProps) => {
       return <div className="block font-heading text-primary">{name}</div>;
     }
   }
-
-  return <div className="block font-heading text-primary">{name}</div>;
 };
 
 const Blocks = ({ blocks = [] }: BlocksProps): JSX.Element => {
