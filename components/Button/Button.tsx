@@ -5,18 +5,7 @@ export interface ButtonProps {
   children: React.ReactNode;
   className?: string;
   target?: string;
-  variant:
-    | "primary"
-    | "primary-outline"
-    | "secondary"
-    | "secondary-outline"
-    | "tertiary"
-    | "quaternary"
-    | "alert"
-    | "donate"
-    | "donate-white"
-    | "back-menu"
-    | "announcement";
+  variant: string;
   onClick?: () => void;
   disabled?: boolean;
 }
