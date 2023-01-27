@@ -5,6 +5,16 @@ import { Hero } from "components";
 const Form = dynamic(() => import("components/Form/Form"), {
   ssr: true,
 });
+// Text Image:
+// @ts-ignore
+const TextImage = dynamic(() => import("components/TextImage/TextImage"), {
+  ssr: true,
+});
+// Text Block:
+// @ts-ignore
+const TextBlock = dynamic(() => import("components/TextBlock/TextBlock"), {
+  ssr: true,
+});
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -62,11 +72,23 @@ const Block = ({ block }: BlockProps) => {
     case "Form": {
       return <Form {...(block as Page_Flexiblecontent_Blocks_Form)} />;
     }
-    default:
-      return <div className="block font-heading text-primary">{name}</div>;
-  }
+    // Text Image
+    case "TextImage": {
+      return (
+        <TextImage {...(block as Page_Flexiblecontent_Blocks_TextImage)} />
+      );
+    }
+    // Text Block
+    case "TextBlock": {
+      return (
+        <TextBlock {...(block as Page_Flexiblecontent_Blocks_TextBlock)} />
+      );
+    }
 
-  return <div className="block font-heading text-primary">{name}</div>;
+    default: {
+      return <div className="block font-heading text-primary">{name}</div>;
+    }
+  }
 };
 
 const Blocks = ({ blocks = [] }: BlocksProps): JSX.Element => {

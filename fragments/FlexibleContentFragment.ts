@@ -33,12 +33,15 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           hasCtas
           backgroundColor
           ctaRepeater {
+            type
             ctaLink {
               target
               title
               url
             }
           }
+          paddingTop
+          paddingBottom
           sectionImage {
             ...MediaItemFragment
           }

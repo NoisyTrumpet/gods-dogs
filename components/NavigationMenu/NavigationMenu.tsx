@@ -156,7 +156,7 @@ const NavigationMenu = ({
                             ))}
                             <m.li>
                               <Button
-                                type={`back-menu`}
+                                variant={`back-menu`}
                                 className={`mt-4 w-full text-left`}
                                 onClick={() => {
                                   setSubMenuOpen({

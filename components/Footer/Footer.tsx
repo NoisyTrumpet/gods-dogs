@@ -58,7 +58,7 @@ const Footer = ({
             {cta ? (
               <Button
                 className={`my-4 flex sm:hidden lg:ml-4 xl:my-0`}
-                type="secondary"
+                variant="secondary"
                 href={cta.url ?? ``}
               >
                 {cta.title}
@@ -136,7 +136,7 @@ const Footer = ({
             {cta ? (
               <Button
                 className={`my-4 hidden sm:flex lg:ml-4 xl:my-0`}
-                type="secondary"
+                variant="secondary"
                 href={cta.url ?? ``}
               >
                 {cta.title}

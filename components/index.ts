@@ -8,3 +8,5 @@ export { PostCard } from "./PostCard";
 export { Tabs } from "./Tabs";
 // Content Components
 export { Hero } from "./Hero";
+export { TextImage } from "./TextImage";
+export { TextBlock } from "./TextBlock";
