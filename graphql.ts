@@ -2456,6 +2456,8 @@ export enum ContentTypeEnum {
   Post = "POST",
   /** The Type of Content object */
   Resources = "RESOURCES",
+  /** The Type of Content object */
+  Teammember = "TEAMMEMBER",
 }
 
 /** The Type of Identifier used to fetch a single Content Type node. To be used along with the "id" field. Default is "ID". */
@@ -2933,6 +2935,36 @@ export type CreateTagPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The created post_tag */
   tag?: Maybe<Tag>;
+};
+
+/** Input for the createTeamMember mutation. */
+export type CreateTeamMemberInput = {
+  /** The userId to assign as the author of the object */
+  authorId?: InputMaybe<Scalars["ID"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  name: Scalars["String"];
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createTeamMember mutation. */
+export type CreateTeamMemberPayload = {
+  __typename?: "CreateTeamMemberPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The Post object mutation type. */
+  teamMember?: Maybe<TeamMember>;
 };
 
 /** Input for the createUser mutation. */
@@ -3414,6 +3446,27 @@ export type DeleteTagPayload = {
   tag?: Maybe<Tag>;
 };
 
+/** Input for the deleteTeamMember mutation. */
+export type DeleteTeamMemberInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** Whether the object should be force deleted instead of being moved to the trash */
+  forceDelete?: InputMaybe<Scalars["Boolean"]>;
+  /** The ID of the teamMember to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deleteTeamMember mutation. */
+export type DeleteTeamMemberPayload = {
+  __typename?: "DeleteTeamMemberPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
+  /** The object before it was deleted */
+  teamMember?: Maybe<TeamMember>;
+};
+
 /** Input for the deleteUser mutation. */
 export type DeleteUserInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -3752,6 +3805,8 @@ export type Event = ContentNode &
      * @deprecated Deprecated in favor of the databaseId field
      */
     eventId: Scalars["Int"];
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Event Options&quot; was set to Show in GraphQL. */
+    eventOptions?: Maybe<Event_Eventoptions>;
     /** The excerpt of the post. */
     excerpt?: Maybe<Scalars["String"]>;
     /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
@@ -3973,6 +4028,37 @@ export type EventToRevisionConnectionWhereArgs = {
 };
 
 /** Field Group */
+export type Event_Eventoptions = AcfFieldGroup & {
+  __typename?: "Event_Eventoptions";
+  address?: Maybe<Acf_GoogleMap>;
+  customAddressLabel?: Maybe<Scalars["String"]>;
+  date?: Maybe<Scalars["String"]>;
+  dateRange?: Maybe<Array<Maybe<Event_Eventoptions_DateRange>>>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  multipleDays?: Maybe<Scalars["Boolean"]>;
+  schedule?: Maybe<Array<Maybe<Event_Eventoptions_Schedule>>>;
+};
+
+/** Field Group */
+export type Event_Eventoptions_DateRange = AcfFieldGroup & {
+  __typename?: "Event_Eventoptions_dateRange";
+  date?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Eventoptions_Schedule = AcfFieldGroup & {
+  __typename?: "Event_Eventoptions_schedule";
+  endTime?: Maybe<Scalars["String"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  label?: Maybe<Scalars["String"]>;
+  startTime?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
 export type Event_Flexiblecontent = AcfFieldGroup & {
   __typename?: "Event_Flexiblecontent";
   blocks?: Maybe<Array<Maybe<Event_Flexiblecontent_Blocks>>>;
@@ -3991,6 +4077,7 @@ export type Event_Flexiblecontent_Blocks =
   | Event_Flexiblecontent_Blocks_PetCarousel
   | Event_Flexiblecontent_Blocks_PostsBlock
   | Event_Flexiblecontent_Blocks_Quotes
+  | Event_Flexiblecontent_Blocks_TeamMembers
   | Event_Flexiblecontent_Blocks_TextBlock
   | Event_Flexiblecontent_Blocks_TextImage;
 
@@ -4070,8 +4157,7 @@ export type Event_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
   ctaRepeater?: Maybe<
     Array<Maybe<Event_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
   >;
-  /** Add Divider lines between cards */
-  dividerLines?: Maybe<Scalars["Boolean"]>;
+  dividerLines?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasCtas?: Maybe<Scalars["Boolean"]>;
@@ -4090,6 +4176,7 @@ export type Event_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
     cardIcon?: Maybe<MediaItem>;
     cardLink?: Maybe<AcfLink>;
     cardTitle?: Maybe<Scalars["String"]>;
+    contentAligned?: Maybe<Scalars["Boolean"]>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
     hasCardIcon?: Maybe<Scalars["Boolean"]>;
@@ -4102,6 +4189,7 @@ export type Event_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -4125,7 +4213,6 @@ export type Event_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   rightGraphic?: Maybe<Scalars["String"]>;
   subtitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
-  useDonationForm?: Maybe<Scalars["Boolean"]>;
   variant?: Maybe<Scalars["String"]>;
 };
 
@@ -4223,6 +4310,19 @@ export type Event_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
 };
 
 /** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_TeamMembers";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  members?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_TeamMembers_Members>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+};
+
+export type Event_Flexiblecontent_Blocks_TeamMembers_Members = TeamMember;
+
+/** Group within the flex field */
 export type Event_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
   __typename?: "Event_Flexiblecontent_Blocks_TextBlock";
   /** The name of the ACF Field Group */
@@ -4259,6 +4359,7 @@ export type Event_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -8040,6 +8141,7 @@ export type Page_Flexiblecontent_Blocks =
   | Page_Flexiblecontent_Blocks_PetCarousel
   | Page_Flexiblecontent_Blocks_PostsBlock
   | Page_Flexiblecontent_Blocks_Quotes
+  | Page_Flexiblecontent_Blocks_TeamMembers
   | Page_Flexiblecontent_Blocks_TextBlock
   | Page_Flexiblecontent_Blocks_TextImage;
 
@@ -8119,8 +8221,7 @@ export type Page_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
   ctaRepeater?: Maybe<
     Array<Maybe<Page_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
   >;
-  /** Add Divider lines between cards */
-  dividerLines?: Maybe<Scalars["Boolean"]>;
+  dividerLines?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasCtas?: Maybe<Scalars["Boolean"]>;
@@ -8139,6 +8240,7 @@ export type Page_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
     cardIcon?: Maybe<MediaItem>;
     cardLink?: Maybe<AcfLink>;
     cardTitle?: Maybe<Scalars["String"]>;
+    contentAligned?: Maybe<Scalars["Boolean"]>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
     hasCardIcon?: Maybe<Scalars["Boolean"]>;
@@ -8151,6 +8253,7 @@ export type Page_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -8174,7 +8277,6 @@ export type Page_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   rightGraphic?: Maybe<Scalars["String"]>;
   subtitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
-  useDonationForm?: Maybe<Scalars["Boolean"]>;
   variant?: Maybe<Scalars["String"]>;
 };
 
@@ -8272,6 +8374,19 @@ export type Page_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
 };
 
 /** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_TeamMembers";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  members?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_TeamMembers_Members>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+};
+
+export type Page_Flexiblecontent_Blocks_TeamMembers_Members = TeamMember;
+
+/** Group within the flex field */
 export type Page_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
   __typename?: "Page_Flexiblecontent_Blocks_TextBlock";
   /** The name of the ACF Field Group */
@@ -8305,6 +8420,7 @@ export type Page_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -10740,7 +10856,8 @@ export type PostObjectUnion =
   | MediaItem
   | Page
   | Post
-  | Resource;
+  | Resource
+  | TeamMember;
 
 /** The column to use when filtering by date */
 export enum PostObjectsConnectionDateColumnEnum {
@@ -11902,6 +12019,7 @@ export type Post_Flexiblecontent_Blocks =
   | Post_Flexiblecontent_Blocks_PetCarousel
   | Post_Flexiblecontent_Blocks_PostsBlock
   | Post_Flexiblecontent_Blocks_Quotes
+  | Post_Flexiblecontent_Blocks_TeamMembers
   | Post_Flexiblecontent_Blocks_TextBlock
   | Post_Flexiblecontent_Blocks_TextImage;
 
@@ -11981,8 +12099,7 @@ export type Post_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
   ctaRepeater?: Maybe<
     Array<Maybe<Post_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
   >;
-  /** Add Divider lines between cards */
-  dividerLines?: Maybe<Scalars["Boolean"]>;
+  dividerLines?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasCtas?: Maybe<Scalars["Boolean"]>;
@@ -12001,6 +12118,7 @@ export type Post_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
     cardIcon?: Maybe<MediaItem>;
     cardLink?: Maybe<AcfLink>;
     cardTitle?: Maybe<Scalars["String"]>;
+    contentAligned?: Maybe<Scalars["Boolean"]>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
     hasCardIcon?: Maybe<Scalars["Boolean"]>;
@@ -12013,6 +12131,7 @@ export type Post_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -12036,7 +12155,6 @@ export type Post_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   rightGraphic?: Maybe<Scalars["String"]>;
   subtitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
-  useDonationForm?: Maybe<Scalars["Boolean"]>;
   variant?: Maybe<Scalars["String"]>;
 };
 
@@ -12134,6 +12252,19 @@ export type Post_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
 };
 
 /** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_TeamMembers";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  members?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_TeamMembers_Members>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+};
+
+export type Post_Flexiblecontent_Blocks_TeamMembers_Members = TeamMember;
+
+/** Group within the flex field */
 export type Post_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
   __typename?: "Post_Flexiblecontent_Blocks_TextBlock";
   /** The name of the ACF Field Group */
@@ -12167,6 +12298,7 @@ export type Post_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -12704,6 +12836,7 @@ export type Resource_Flexiblecontent_Blocks =
   | Resource_Flexiblecontent_Blocks_PetCarousel
   | Resource_Flexiblecontent_Blocks_PostsBlock
   | Resource_Flexiblecontent_Blocks_Quotes
+  | Resource_Flexiblecontent_Blocks_TeamMembers
   | Resource_Flexiblecontent_Blocks_TextBlock
   | Resource_Flexiblecontent_Blocks_TextImage;
 
@@ -12783,8 +12916,7 @@ export type Resource_Flexiblecontent_Blocks_FeaturedCards = AcfFieldGroup & {
   ctaRepeater?: Maybe<
     Array<Maybe<Resource_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater>>
   >;
-  /** Add Divider lines between cards */
-  dividerLines?: Maybe<Scalars["Boolean"]>;
+  dividerLines?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasCtas?: Maybe<Scalars["Boolean"]>;
@@ -12803,6 +12935,7 @@ export type Resource_Flexiblecontent_Blocks_FeaturedCards_CardRepeater =
     cardIcon?: Maybe<MediaItem>;
     cardLink?: Maybe<AcfLink>;
     cardTitle?: Maybe<Scalars["String"]>;
+    contentAligned?: Maybe<Scalars["Boolean"]>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
     hasCardIcon?: Maybe<Scalars["Boolean"]>;
@@ -12815,6 +12948,7 @@ export type Resource_Flexiblecontent_Blocks_FeaturedCards_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -12838,7 +12972,6 @@ export type Resource_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   rightGraphic?: Maybe<Scalars["String"]>;
   subtitle?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
-  useDonationForm?: Maybe<Scalars["Boolean"]>;
   variant?: Maybe<Scalars["String"]>;
 };
 
@@ -12938,6 +13071,19 @@ export type Resource_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
 };
 
 /** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_TeamMembers";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  members?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_TeamMembers_Members>>
+  >;
+  title?: Maybe<Scalars["String"]>;
+};
+
+export type Resource_Flexiblecontent_Blocks_TeamMembers_Members = TeamMember;
+
+/** Group within the flex field */
 export type Resource_Flexiblecontent_Blocks_TextBlock = AcfFieldGroup & {
   __typename?: "Resource_Flexiblecontent_Blocks_TextBlock";
   /** The name of the ACF Field Group */
@@ -12974,6 +13120,7 @@ export type Resource_Flexiblecontent_Blocks_TextBlock_Paragraphs_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
+    type?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -13063,6 +13210,8 @@ export type RootMutation = {
   createResource?: Maybe<CreateResourcePayload>;
   /** The createTag mutation */
   createTag?: Maybe<CreateTagPayload>;
+  /** The createTeamMember mutation */
+  createTeamMember?: Maybe<CreateTeamMemberPayload>;
   /** The createUser mutation */
   createUser?: Maybe<CreateUserPayload>;
   /** The deleteAnimal mutation */
@@ -13091,6 +13240,8 @@ export type RootMutation = {
   deleteResource?: Maybe<DeleteResourcePayload>;
   /** The deleteTag mutation */
   deleteTag?: Maybe<DeleteTagPayload>;
+  /** The deleteTeamMember mutation */
+  deleteTeamMember?: Maybe<DeleteTeamMemberPayload>;
   /** The deleteUser mutation */
   deleteUser?: Maybe<DeleteUserPayload>;
   /** The generateAuthorizationCode mutation */
@@ -13137,6 +13288,8 @@ export type RootMutation = {
   updateSettings?: Maybe<UpdateSettingsPayload>;
   /** The updateTag mutation */
   updateTag?: Maybe<UpdateTagPayload>;
+  /** The updateTeamMember mutation */
+  updateTeamMember?: Maybe<UpdateTeamMemberPayload>;
   /** The updateUser mutation */
   updateUser?: Maybe<UpdateUserPayload>;
 };
@@ -13194,6 +13347,11 @@ export type RootMutationCreateResourceArgs = {
 /** The root mutation */
 export type RootMutationCreateTagArgs = {
   input: CreateTagInput;
+};
+
+/** The root mutation */
+export type RootMutationCreateTeamMemberArgs = {
+  input: CreateTeamMemberInput;
 };
 
 /** The root mutation */
@@ -13264,6 +13422,11 @@ export type RootMutationDeleteResourceArgs = {
 /** The root mutation */
 export type RootMutationDeleteTagArgs = {
   input: DeleteTagInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteTeamMemberArgs = {
+  input: DeleteTeamMemberInput;
 };
 
 /** The root mutation */
@@ -13379,6 +13542,11 @@ export type RootMutationUpdateSettingsArgs = {
 /** The root mutation */
 export type RootMutationUpdateTagArgs = {
   input: UpdateTagInput;
+};
+
+/** The root mutation */
+export type RootMutationUpdateTeamMemberArgs = {
+  input: UpdateTeamMemberInput;
 };
 
 /** The root mutation */
@@ -13532,6 +13700,15 @@ export type RootQuery = {
   taxonomies?: Maybe<RootQueryToTaxonomyConnection>;
   /** Fetch a Taxonomy node by unique Identifier */
   taxonomy?: Maybe<Taxonomy>;
+  /** An object of the teamMember Type. Team Members */
+  teamMember?: Maybe<TeamMember>;
+  /**
+   * A teamMember object
+   * @deprecated Deprecated in favor of using the single entry point for this type with ID and IDType fields. For example, instead of postBy( id: &quot;&quot; ), use post(id: &quot;&quot; idType: &quot;&quot;)
+   */
+  teamMemberBy?: Maybe<TeamMember>;
+  /** Connection between the RootQuery type and the teamMember type */
+  teamMembers?: Maybe<RootQueryToTeamMemberConnection>;
   /** A node in a taxonomy used to group and relate content nodes */
   termNode?: Maybe<TermNode>;
   /** Connection between the RootQuery type and the TermNode type */
@@ -13952,6 +14129,30 @@ export type RootQueryTaxonomiesArgs = {
 export type RootQueryTaxonomyArgs = {
   id: Scalars["ID"];
   idType?: InputMaybe<TaxonomyIdTypeEnum>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryTeamMemberArgs = {
+  asPreview?: InputMaybe<Scalars["Boolean"]>;
+  id: Scalars["ID"];
+  idType?: InputMaybe<TeamMemberIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryTeamMemberByArgs = {
+  id?: InputMaybe<Scalars["ID"]>;
+  slug?: InputMaybe<Scalars["String"]>;
+  teamMemberId?: InputMaybe<Scalars["Int"]>;
+  uri?: InputMaybe<Scalars["String"]>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryTeamMembersArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToTeamMemberConnectionWhereArgs>;
 };
 
 /** The root entry point into the Graph */
@@ -15183,6 +15384,74 @@ export type RootQueryToTaxonomyConnectionEdge = Edge &
     node: Taxonomy;
   };
 
+/** Connection between the RootQuery type and the teamMember type */
+export type RootQueryToTeamMemberConnection = Connection &
+  TeamMemberConnection & {
+    __typename?: "RootQueryToTeamMemberConnection";
+    /** Edges for the RootQueryToTeamMemberConnection connection */
+    edges: Array<RootQueryToTeamMemberConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<TeamMember>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToTeamMemberConnectionEdge = Edge &
+  TeamMemberConnectionEdge & {
+    __typename?: "RootQueryToTeamMemberConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: TeamMember;
+  };
+
+/** Arguments for filtering the RootQueryToTeamMemberConnection connection */
+export type RootQueryToTeamMemberConnectionWhereArgs = {
+  /** The user that's connected as the author of the object. Use the userId for the author object. */
+  author?: InputMaybe<Scalars["Int"]>;
+  /** Find objects connected to author(s) in the array of author's userIds */
+  authorIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Find objects connected to the author by the author's nicename */
+  authorName?: InputMaybe<Scalars["String"]>;
+  /** Find objects NOT connected to author(s) in the array of author's userIds */
+  authorNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
 /** Connection between the RootQuery type and the TermNode type */
 export type RootQueryToTermNodeConnection = Connection &
   TermNodeConnection & {
@@ -15424,6 +15693,7 @@ export type SeoContentTypes = {
   page?: Maybe<SeoContentType>;
   post?: Maybe<SeoContentType>;
   resource?: Maybe<SeoContentType>;
+  teamMember?: Maybe<SeoContentType>;
 };
 
 /** The Yoast SEO meta data */
@@ -16409,6 +16679,163 @@ export type TaxonomyToContentTypeConnectionEdge = ContentTypeConnectionEdge &
     node: ContentType;
   };
 
+/** The teamMember type */
+export type TeamMember = ContentNode &
+  DatabaseIdentifier &
+  Node &
+  NodeWithAuthor &
+  NodeWithTemplate &
+  NodeWithTitle &
+  Previewable &
+  UniformResourceIdentifiable & {
+    __typename?: "TeamMember";
+    /** Connection between the NodeWithAuthor type and the User type */
+    author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
+    /** The database identifier of the author of the node */
+    authorDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the author of the node */
+    authorId?: Maybe<Scalars["ID"]>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** Connection between the ContentNode type and the ContentType type */
+    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+    /** The name of the Content Type the node belongs to */
+    contentTypeName: Scalars["String"];
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** Post publishing date. */
+    date?: Maybe<Scalars["String"]>;
+    /** The publishing date set in GMT. */
+    dateGmt?: Maybe<Scalars["String"]>;
+    /** The desired slug of the post */
+    desiredSlug?: Maybe<Scalars["String"]>;
+    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+    /** The RSS enclosure for the object */
+    enclosure?: Maybe<Scalars["String"]>;
+    /** Connection between the ContentNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+    guid?: Maybe<Scalars["String"]>;
+    /** The globally unique identifier of the teammember object. */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is a node in the preview state */
+    isPreview?: Maybe<Scalars["Boolean"]>;
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The user that most recently edited the node */
+    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+    /** The permalink of the post */
+    link?: Maybe<Scalars["String"]>;
+    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+    modified?: Maybe<Scalars["String"]>;
+    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+    modifiedGmt?: Maybe<Scalars["String"]>;
+    name?: Maybe<Scalars["String"]>;
+    /** Connection between the TeamMember type and the teamMember type */
+    preview?: Maybe<TeamMemberToPreviewConnectionEdge>;
+    /** The database id of the preview node */
+    previewRevisionDatabaseId?: Maybe<Scalars["Int"]>;
+    /** Whether the object is a node in the preview state */
+    previewRevisionId?: Maybe<Scalars["ID"]>;
+    /** The Yoast SEO data of the ContentNode */
+    seo?: Maybe<PostTypeSeo>;
+    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+    slug?: Maybe<Scalars["String"]>;
+    /** The current status of the object */
+    status?: Maybe<Scalars["String"]>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of the databaseId field
+     */
+    teamMemberId: Scalars["Int"];
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Team Member Options&quot; was set to Show in GraphQL. */
+    teamMemberOptions?: Maybe<TeamMember_Teammemberoptions>;
+    /** The template assigned to the node */
+    template?: Maybe<ContentTemplate>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+    title?: Maybe<Scalars["String"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The teamMember type */
+export type TeamMemberEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The teamMember type */
+export type TeamMemberEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The teamMember type */
+export type TeamMemberTitleArgs = {
+  format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** Connection to teamMember Nodes */
+export type TeamMemberConnection = {
+  /** A list of edges (relational context) between RootQuery and connected teamMember Nodes */
+  edges: Array<TeamMemberConnectionEdge>;
+  /** A list of connected teamMember Nodes */
+  nodes: Array<TeamMember>;
+};
+
+/** Edge between a Node and a connected teamMember */
+export type TeamMemberConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected teamMember Node */
+  node: TeamMember;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum TeamMemberIdType {
+  /** Identify a resource by the Database ID. */
+  DatabaseId = "DATABASE_ID",
+  /** Identify a resource by the (hashed) Global ID. */
+  Id = "ID",
+  /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
+  Slug = "SLUG",
+  /** Identify a resource by the URI. */
+  Uri = "URI",
+}
+
+/** Connection between the TeamMember type and the teamMember type */
+export type TeamMemberToPreviewConnectionEdge = Edge &
+  OneToOneConnection &
+  TeamMemberConnectionEdge & {
+    __typename?: "TeamMemberToPreviewConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: TeamMember;
+  };
+
+/** Field Group */
+export type TeamMember_Teammemberoptions = AcfFieldGroup & {
+  __typename?: "TeamMember_Teammemberoptions";
+  email?: Maybe<AcfLink>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  headshot?: Maybe<MediaItem>;
+  title?: Maybe<Scalars["String"]>;
+};
+
 /** The template assigned to the node */
 export type Template_Blank = ContentTemplate & {
   __typename?: "Template_Blank";
@@ -17389,6 +17816,38 @@ export type UpdateTagPayload = {
   tag?: Maybe<Tag>;
 };
 
+/** Input for the updateTeamMember mutation. */
+export type UpdateTeamMemberInput = {
+  /** The userId to assign as the author of the object */
+  authorId?: InputMaybe<Scalars["ID"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The date of the object. Preferable to enter as year/month/day (e.g. 01/31/2017) as it will rearrange date as fit if it is not specified. Incomplete dates may have unintended results for example, "2017" as the input will use current date with timestamp 20:17  */
+  date?: InputMaybe<Scalars["String"]>;
+  /** The ID of the teamMember object */
+  id: Scalars["ID"];
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: InputMaybe<Scalars["Int"]>;
+  name?: InputMaybe<Scalars["String"]>;
+  /** The password used to protect the content of the object */
+  password?: InputMaybe<Scalars["String"]>;
+  /** The slug of the object */
+  slug?: InputMaybe<Scalars["String"]>;
+  /** The status of the object */
+  status?: InputMaybe<PostStatusEnum>;
+  /** The title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updateTeamMember mutation. */
+export type UpdateTeamMemberPayload = {
+  __typename?: "UpdateTeamMemberPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The Post object mutation type. */
+  teamMember?: Maybe<TeamMember>;
+};
+
 /** Input for the updateUser mutation. */
 export type UpdateUserInput = {
   /** User's AOL IM account. */
@@ -17502,6 +17961,8 @@ export type User = Commenter &
     seo?: Maybe<SeoUser>;
     /** The slug for the user. This field is equivalent to WP_User-&gt;user_nicename */
     slug?: Maybe<Scalars["String"]>;
+    /** Connection between the User type and the teamMember type */
+    teamMembers?: Maybe<UserToTeamMemberConnection>;
     templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
     /** The unique resource identifier path */
     uri?: Maybe<Scalars["String"]>;
@@ -17590,6 +18051,15 @@ export type UserRolesArgs = {
   before?: InputMaybe<Scalars["String"]>;
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** A User object */
+export type UserTeamMembersArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<UserToTeamMemberConnectionWhereArgs>;
 };
 
 /** Connection to User Nodes */
@@ -18051,6 +18521,74 @@ export type UserToRevisionsConnectionEdge = ContentNodeConnectionEdge &
 export type UserToRevisionsConnectionWhereArgs = {
   /** The Types of content to filter */
   contentTypes?: InputMaybe<Array<InputMaybe<ContentTypeEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the User type and the teamMember type */
+export type UserToTeamMemberConnection = Connection &
+  TeamMemberConnection & {
+    __typename?: "UserToTeamMemberConnection";
+    /** Edges for the UserToTeamMemberConnection connection */
+    edges: Array<UserToTeamMemberConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<TeamMember>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type UserToTeamMemberConnectionEdge = Edge &
+  TeamMemberConnectionEdge & {
+    __typename?: "UserToTeamMemberConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: TeamMember;
+  };
+
+/** Arguments for filtering the UserToTeamMemberConnection connection */
+export type UserToTeamMemberConnectionWhereArgs = {
+  /** The user that's connected as the author of the object. Use the userId for the author object. */
+  author?: InputMaybe<Scalars["Int"]>;
+  /** Find objects connected to author(s) in the array of author's userIds */
+  authorIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Find objects connected to the author by the author's nicename */
+  authorName?: InputMaybe<Scalars["String"]>;
+  /** Find objects NOT connected to author(s) in the array of author's userIds */
+  authorNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
   /** Filter the connection based on dates */
   dateQuery?: InputMaybe<DateQueryInput>;
   /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */

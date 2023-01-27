@@ -14,6 +14,9 @@ import Poodle from "public/hero-assets/poodle.svg";
 import ShihTzuChi from "public/hero-assets/shih-tzu-chihuahua.svg";
 import VolunteerWalker from "public/hero-assets/volunteer-walker.svg";
 
+import DonateShihTzu from "public/hero-assets/donate-shih-tzu.svg";
+import DonateAfghan from "public/hero-assets/donate-afghan.svg";
+
 export interface SlideGraphicProps {
   graphic?: string;
   className?: string;
@@ -24,7 +27,7 @@ const SideGraphic = ({ graphic, className }: SlideGraphicProps) => {
     case "goldenGroup": {
       return (
         <DogGroup1
-          className={`relative right-[150px] ${className ? className : ""}`}
+          className={`relative right-[115px] ${className ? className : ""}`}
         />
       );
     }
@@ -59,7 +62,17 @@ const SideGraphic = ({ graphic, className }: SlideGraphicProps) => {
       return <ShihTzuChi className={className ? className : ""} />;
     }
     case "volunteerWalker": {
-      return <VolunteerWalker className={className ? className : ""} />;
+      return (
+        <VolunteerWalker
+          className={`absolute bottom-0 h-[130%] ${className ? className : ""}`}
+        />
+      );
+    }
+    case "donateShihTzu": {
+      return <DonateShihTzu className={className ? className : ""} />;
+    }
+    case "donateAfghan": {
+      return <DonateAfghan className={className ? className : ""} />;
     }
     default: {
       return <BasicGraphic className={className ? className : ""} />;
