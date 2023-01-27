@@ -22,7 +22,9 @@ const Announcements = ({ announcements }: any) => {
               key={`announcement-${ctaType}`}
               className={`bg-${backgroundColor}-light flex flex-col-reverse items-center justify-center p-2 md:flex-row`}
             >
-              {content ? (<p className={`text-${txtColor} mr-4`}>{content}</p>) : null}
+              {content ? (
+                <p className={`text-${txtColor} mr-4`}>{content}</p>
+              ) : null}
               {cta ? (
                 <Button
                   variant={type}

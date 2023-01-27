@@ -8,7 +8,6 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         fieldGroupName
         hasCtas
         variant
-        useDonationForm
         title
         subtitle
         ctas {

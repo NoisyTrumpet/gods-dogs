@@ -8,6 +8,7 @@ import single from "./single";
 // import taxCeleb from "./taxonomy-celeb_cat";
 // Archives
 import archivePosts from "./archive-post";
+import archiveEvents from "./archive-events";
 
 export default {
   // category: category,
@@ -21,4 +22,5 @@ export default {
   // "taxonomy-celeb_cat": taxCeleb,
   // Archives
   "archive-post": archivePosts,
+  "archive-events": archiveEvents,
 };

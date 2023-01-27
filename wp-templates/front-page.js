@@ -125,9 +125,10 @@ Component.query = gql`
   ${FLEXIBLE_CONTENT_FRAGMENT}
 `;
 
-Component.variables = () => {
+Component.variables = (ctx) => {
   return {
     headerLocation: MENUS.PRIMARY_LOCATION,
     footerLocation: MENUS.FOOTER_LOCATION,
+    asPreview: ctx?.preview ?? false,
   };
 };

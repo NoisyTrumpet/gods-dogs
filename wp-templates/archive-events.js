@@ -1,20 +1,17 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout, Blocks } from "features"; // Blocks eventually
-import { NavigationMenu, PostCard, Tabs } from "components";
+import { NavigationMenu } from "components";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
-  MEDIA_ITEM_FRAGMENT,
   FLEXIBLE_CONTENT_FRAGMENT,
 } from "fragments";
 
-export default function Component() {
-  const { data, loading, error, fetchMore } = useQuery(Component.query, {
-    variables: Component.variables(),
-  });
+export default function Component(props) {
+  const { data, loading, error } = props;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,8 +27,6 @@ export default function Component() {
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
-    posts: { nodes: posts },
-    categories,
   } = data;
 
   const { social } = defaultSEO;
@@ -54,27 +49,6 @@ export default function Component() {
     announcements,
   } = siteSettings.siteSettings;
 
-  const tabs = [
-    {
-      name: "All News",
-      slug: "all",
-      content: posts.map((post) => {
-        return <PostCard key={post.id} post={post} />;
-      }),
-    },
-    ...categories.nodes.map((category) => {
-      return {
-        name: category.name,
-        slug: category.slug,
-        content: posts.map((post) => {
-          if (post.categories.nodes[0].slug === category.slug) {
-            return <PostCard key={post.id} post={post} />;
-          }
-        }),
-      };
-    }),
-  ];
-
   return (
     <Layout
       headerMenuItems={headerMenuItems}
@@ -95,18 +69,15 @@ export default function Component() {
       announcements={announcements}
     >
       <Blocks blocks={blocks} />
-      <div className="container relative mx-auto">
-        <Tabs tabs={tabs} />
-      </div>
     </Layout>
   );
 }
 
 Component.query = gql`
-  query NewsPage(
+  query PageData(
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
-    $asPreview: Boolean = false
+    $asPreview: Boolean
   ) {
     generalSettings {
       ...BlogInfoFragment
@@ -117,41 +88,15 @@ Component.query = gql`
     seo {
       ...SEOConfigFragment
     }
-    page(id: 129, idType: DATABASE_ID, asPreview: $asPreview) {
+    page(id: "cG9zdDo5", idType: ID, asPreview: $asPreview) {
       id
       title
+      content
       seo {
         ...SEOFragment
       }
       flexibleContent {
         ...FlexibleContentFragment
-      }
-    }
-    categories {
-      nodes {
-        id
-        name
-        slug
-      }
-    }
-    posts {
-      nodes {
-        id
-        title
-        excerpt
-        uri
-        date
-        categories {
-          nodes {
-            name
-            slug
-          }
-        }
-        featuredImage {
-          node {
-            ...MediaItemFragment
-          }
-        }
       }
     }
     headerMenuItems: menuItems(
@@ -176,7 +121,6 @@ Component.query = gql`
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
-  ${MEDIA_ITEM_FRAGMENT}
   ${FLEXIBLE_CONTENT_FRAGMENT}
 `;
 
