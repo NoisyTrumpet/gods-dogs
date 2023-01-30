@@ -70,7 +70,7 @@ const FeaturedCards = ({
                 {cardHasLink && cardLink ? (
                   <Link
                     role="button"
-                    href={cardLink.url}
+                    href={cardLink.url ?? "/"}
                     target={cardLink.target ? cardLink.target : "_self"}
                     className={`${
                       className ? className : ``
