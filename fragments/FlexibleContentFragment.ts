@@ -8,7 +8,6 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         fieldGroupName
         hasCtas
         variant
-        useDonationForm
         title
         subtitle
         ctas {
@@ -57,6 +56,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           hasHeadingIcon
           title
           ctaRepeater {
+            type
             ctaLink {
               target
               title
@@ -207,6 +207,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         hasHeadingIcon
         hasCtas
         cardRepeater {
+          contentAligned
           cardBackgroundColor
           cardContent
           cardHasLink
@@ -222,6 +223,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
         ctaRepeater {
+          type
           ctaLink {
             target
             title

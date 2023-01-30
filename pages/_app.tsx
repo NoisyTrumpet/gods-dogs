@@ -23,7 +23,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <FaustProvider pageProps={pageProps}>
-      <Component {...pageProps} key={path} />
       <Script
         id="gtag-base"
         strategy="afterInteractive"
@@ -37,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
           `,
         }}
       />
+      <Component {...pageProps} key={path} />
     </FaustProvider>
   );
 }

@@ -1,20 +1,17 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout, Blocks } from "features"; // Blocks eventually
-import { NavigationMenu, PostCard, Tabs } from "components";
+import { EventCard, NavigationMenu, Tabs } from "components";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
-  MEDIA_ITEM_FRAGMENT,
-  FLEXIBLE_CONTENT_FRAGMENT,
+  EVENTS_FRAGMENT,
 } from "fragments";
 
-export default function Component() {
-  const { data, loading, error, fetchMore } = useQuery(Component.query, {
-    variables: Component.variables(),
-  });
+export default function Component(props) {
+  const { data, loading, error } = props;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -30,17 +27,28 @@ export default function Component() {
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
-    posts: { nodes: posts },
-    categories,
+    events: { edges: events },
   } = data;
+  // Featured Event
+  const featuredEvent = events.filter(
+    ({ node }) => node.eventOptions.featured
+  )[0];
+  // Other Events
+  const otherEvents = events.filter(({ node }) => !node.eventOptions.featured);
+  const upcomingEvents = otherEvents.filter(({ node }) => {
+    const { date } = node.eventOptions; // date in 12/27/2020 format
+    const dateObj = new Date(date); // date in 2020-12-27T08:00:00.000Z format
+    return dateObj > new Date();
+  });
+  const pastEvents = otherEvents.filter(({ node }) => {
+    const { date } = node.eventOptions; // date in 12/27/2020 format
+    const dateObj = new Date(date); // date in 2020-12-27T08:00:00.000Z format
+    return dateObj < new Date();
+  });
 
   const { social } = defaultSEO;
 
-  const {
-    seo,
-    title,
-    flexibleContent: { blocks },
-  } = page;
+  const { seo, title } = page;
   const {
     address,
     customAddressLabel,
@@ -56,23 +64,29 @@ export default function Component() {
 
   const tabs = [
     {
-      name: "All News",
-      slug: "all",
-      content: posts.map((post) => {
-        return <PostCard key={post.id} post={post} />;
-      }),
+      name: "Upcoming Events",
+      content:
+        upcomingEvents.length > 0 ? (
+          upcomingEvents.map((event) => (
+            <EventCard {...event.node} variant="default" />
+          ))
+        ) : (
+          <p>No upcoming events.</p>
+        ),
+      slug: "upcoming-events",
     },
-    ...categories.nodes.map((category) => {
-      return {
-        name: category.name,
-        slug: category.slug,
-        content: posts.map((post) => {
-          if (post.categories.nodes[0].slug === category.slug) {
-            return <PostCard key={post.id} post={post} />;
-          }
-        }),
-      };
-    }),
+    {
+      name: "Past Events",
+      content:
+        pastEvents.length > 0 ? (
+          pastEvents.map((event) => (
+            <EventCard {...event.node} variant="default" />
+          ))
+        ) : (
+          <p>No past events.</p>
+        ),
+      slug: "past-events",
+    },
   ];
 
   return (
@@ -94,19 +108,19 @@ export default function Component() {
       turnOnAnnouncements={turnOnAnnouncements}
       announcements={announcements}
     >
-      <Blocks blocks={blocks} />
-      <div className="container relative mx-auto">
-        <Tabs tabs={tabs} variant="primary" />
-      </div>
+      {featuredEvent ? (
+        <EventCard {...featuredEvent.node} variant="featured" />
+      ) : null}
+      <Tabs tabs={tabs} variant="secondary" />
     </Layout>
   );
 }
 
 Component.query = gql`
-  query NewsPage(
+  query PageData(
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
-    $asPreview: Boolean = false
+    $asPreview: Boolean
   ) {
     generalSettings {
       ...BlogInfoFragment
@@ -117,42 +131,16 @@ Component.query = gql`
     seo {
       ...SEOConfigFragment
     }
-    page(id: 129, idType: DATABASE_ID, asPreview: $asPreview) {
+    page(id: "cG9zdDo5", idType: ID, asPreview: $asPreview) {
       id
       title
+      content
       seo {
         ...SEOFragment
       }
-      flexibleContent {
-        ...FlexibleContentFragment
-      }
     }
-    categories {
-      nodes {
-        id
-        name
-        slug
-      }
-    }
-    posts {
-      nodes {
-        id
-        title
-        excerpt
-        uri
-        date
-        categories {
-          nodes {
-            name
-            slug
-          }
-        }
-        featuredImage {
-          node {
-            ...MediaItemFragment
-          }
-        }
-      }
+    events(first: 50) {
+      ...EventsFragment
     }
     headerMenuItems: menuItems(
       where: { location: $headerLocation }
@@ -176,8 +164,7 @@ Component.query = gql`
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
-  ${MEDIA_ITEM_FRAGMENT}
-  ${FLEXIBLE_CONTENT_FRAGMENT}
+  ${EVENTS_FRAGMENT}
 `;
 
 Component.variables = (ctx) => {
