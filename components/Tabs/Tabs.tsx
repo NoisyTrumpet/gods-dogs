@@ -36,7 +36,7 @@ const Tabs = ({ className, tabs, activeTab, variant }: TabsProps) => {
           ? tabs.map(({ name, slug }) => {
               return (
                 <button
-                  key={slug}
+                  key={`tab-primary-${slug}`}
                   className={`border-[1px] border-primary font-heading text-2xl ${
                     tabs.findIndex((tab) => tab.slug === slug) === active
                       ? `rounded-t-xl bg-primary px-4 py-2 text-white`
@@ -55,6 +55,7 @@ const Tabs = ({ className, tabs, activeTab, variant }: TabsProps) => {
                 <Button
                   variant={i === active ? "secondary" : "secondary-outline"}
                   className={`mx-auto w-fit`}
+                  key={`tab-secondary-${slug}`}
                   onClick={() =>
                     setActive(tabs.findIndex((tab) => tab.slug === slug))
                   }
