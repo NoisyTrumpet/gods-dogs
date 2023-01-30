@@ -12,6 +12,7 @@ module.exports = {
         "primary-light": "#EFEFF8", // light purple
         secondary: "#E71019", // red
         "secondary-light": "#D04F4F", // light red
+        "med-dark": "#585858", // medium dark
         dark: "#292929", // off-black
       },
       fontFamily: {

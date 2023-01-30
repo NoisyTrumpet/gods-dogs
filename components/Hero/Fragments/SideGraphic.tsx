@@ -13,6 +13,7 @@ import PittieTerrier from "public/hero-assets/pittie-terrier.svg";
 import Poodle from "public/hero-assets/poodle.svg";
 import ShihTzuChi from "public/hero-assets/shih-tzu-chihuahua.svg";
 import VolunteerWalker from "public/hero-assets/volunteer-walker.svg";
+import VolunteerWalkerRight from "public/hero-assets/volunteer-walker-right.svg";
 
 import DonateShihTzu from "public/hero-assets/donate-shih-tzu.svg";
 import DonateAfghan from "public/hero-assets/donate-afghan.svg";
@@ -27,55 +28,74 @@ const SideGraphic = ({ graphic, className }: SlideGraphicProps) => {
     case "goldenGroup": {
       return (
         <DogGroup1
-          className={`relative right-[115px] ${className ? className : ""}`}
+          className={`${className ? className : ""} relative -left-16`}
         />
       );
     }
     case "terrierGroup": {
-      return <DogGroup2 className={className ? className : ""} />;
+      return <DogGroup2 className={`${className ? className : ""}`} />;
     }
     case "afghanHound": {
-      return <AfghanHound className={className ? className : ""} />;
+      return <AfghanHound className={`${className ? className : ""}`} />;
     }
     case "dalmatian": {
-      return <Dalmatian className={className ? className : ""} />;
+      return <Dalmatian className={`${className ? className : ""}`} />;
     }
     case "englishSheepdog": {
-      return <EnglishSheepdog className={className ? className : ""} />;
+      return <EnglishSheepdog className={`${className ? className : ""}`} />;
     }
     case "goldenPittie": {
-      return <GoldenPittie className={className ? className : ""} />;
+      return <GoldenPittie className={`${className ? className : ""}`} />;
     }
     case "houndDash": {
-      return <HoundDash className={className ? className : ""} />;
+      return <HoundDash className={`${className ? className : ""}`} />;
     }
     case "houndFrenchie": {
-      return <HoundFrenchie className={className ? className : ""} />;
+      return <HoundFrenchie className={`${className ? className : ""}`} />;
     }
     case "pittieTerrier": {
-      return <PittieTerrier className={className ? className : ""} />;
+      return <PittieTerrier className={`${className ? className : ""}`} />;
     }
     case "poodle": {
-      return <Poodle className={className ? className : ""} />;
+      return <Poodle className={`${className ? className : ""}`} />;
     }
     case "shihTzuChi": {
-      return <ShihTzuChi className={className ? className : ""} />;
+      return (
+        <ShihTzuChi
+          className={`${className ? className : ""} relative bottom-[-10px]`}
+        />
+      );
     }
     case "volunteerWalker": {
       return (
         <VolunteerWalker
-          className={`absolute bottom-0 h-[130%] ${className ? className : ""}`}
+          className={`${className ? className : ""} absolute bottom-0 h-[140%]`}
+        />
+      );
+    }
+    case "volunteerWalkerRight": {
+      return (
+        <VolunteerWalkerRight
+          className={`${className ? className : ""} absolute bottom-0 h-[140%]`}
         />
       );
     }
     case "donateShihTzu": {
-      return <DonateShihTzu className={className ? className : ""} />;
+      return (
+        <DonateShihTzu
+          className={`${className ? className : ""} relative bottom-[-11px]`}
+        />
+      );
     }
     case "donateAfghan": {
-      return <DonateAfghan className={className ? className : ""} />;
+      return (
+        <DonateAfghan
+          className={`${className ? className : ""} relative bottom-[-9px]`}
+        />
+      );
     }
     default: {
-      return <BasicGraphic className={className ? className : ""} />;
+      return <BasicGraphic className={`${className ? className : ""}`} />;
     }
   }
 };
