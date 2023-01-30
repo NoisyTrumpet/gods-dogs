@@ -31,14 +31,14 @@ const Hero = ({
       <div
         className={`${
           isPrimary ? `min-h-[450px]` : `h-fit`
-        } container relative z-0 mx-auto flex flex-col items-center text-center md:flex-row`}
+        } relative z-0 mx-auto flex max-w-screen-2xl flex-col items-center text-center md:flex-row`}
       >
         {leftGraphic ? (
           <div
             className={`${
               isBasic
                 ? "hidden md:-left-12 md:flex lg:-left-8 2xl:left-0"
-                : "-left-10 hidden lg:flex 2xl:left-0"
+                : "-left-16 hidden lg:flex 2xl:left-0"
             } absolute bottom-0 h-full max-h-[70%] w-full justify-start`}
           >
             <SideGraphic className="" graphic={isBasic ? "" : leftGraphic} />
@@ -80,12 +80,21 @@ const Hero = ({
             className={`${
               isBasic
                 ? "right-0 md:-right-12 lg:-right-8 2xl:right-0"
-                : "-right-10 2xl:right-0"
+                : "-right-16 2xl:right-0"
             } bottom-0 -mt-16 flex h-full w-full max-w-[60%] justify-center self-end md:absolute md:max-h-[70%] md:justify-end`}
           >
             <SideGraphic
-              className="-scale-x-100"
-              graphic={isBasic ? "" : rightGraphic}
+              className={`${
+                rightGraphic === "volunteerWalker" ? "" : "-scale-x-100"
+              }`}
+              // graphic={isBasic ? "" : rightGraphic}
+              graphic={
+                isBasic
+                  ? ""
+                  : rightGraphic === "volunteerWalker"
+                  ? "volunteerWalkerRight"
+                  : rightGraphic
+              }
             />
           </div>
         ) : null}
