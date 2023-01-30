@@ -10,7 +10,7 @@ export interface EventCardProps extends Event {
 // Featured Classes
 const featuredWrapperClasses = `w-full relative bg-primary-light border-t-[20px] border-primary`;
 const featuredInnerClasses = `flex flex-col lg:flex-row xl:container xl:mx-auto`;
-const featuredImageClasses = `w-full lg:min-w-1/2`;
+const featuredImageClasses = `w-full lg:min-w-1/2 rounded-none`;
 const emptyFeaturedImageClasses = `w-full lg:w-1/2`;
 const featuredContentClasses = `flex w-full flex-col justify-center gap-4 p-12 text-center lg:w-1/2 xl:gap-8`;
 const featuredCtaClasses = `mx-auto w-fit`;
