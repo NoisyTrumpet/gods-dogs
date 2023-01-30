@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout, Blocks } from "features"; // Blocks eventually
-import { NavigationMenu } from "components";
+import { EventCard, NavigationMenu, Tabs } from "components";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
   SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
-  FLEXIBLE_CONTENT_FRAGMENT,
+  EVENTS_FRAGMENT,
 } from "fragments";
 
 export default function Component(props) {
@@ -27,15 +27,28 @@ export default function Component(props) {
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
+    events: { edges: events },
   } = data;
+  // Featured Event
+  const featuredEvent = events.filter(
+    ({ node }) => node.eventOptions.featured
+  )[0];
+  // Other Events
+  const otherEvents = events.filter(({ node }) => !node.eventOptions.featured);
+  const upcomingEvents = otherEvents.filter(({ node }) => {
+    const { date } = node.eventOptions; // date in 12/27/2020 format
+    const dateObj = new Date(date); // date in 2020-12-27T08:00:00.000Z format
+    return dateObj > new Date();
+  });
+  const pastEvents = otherEvents.filter(({ node }) => {
+    const { date } = node.eventOptions; // date in 12/27/2020 format
+    const dateObj = new Date(date); // date in 2020-12-27T08:00:00.000Z format
+    return dateObj < new Date();
+  });
 
   const { social } = defaultSEO;
 
-  const {
-    seo,
-    title,
-    flexibleContent: { blocks },
-  } = page;
+  const { seo, title } = page;
   const {
     address,
     customAddressLabel,
@@ -48,6 +61,33 @@ export default function Component(props) {
     turnOnAnnouncements,
     announcements,
   } = siteSettings.siteSettings;
+
+  const tabs = [
+    {
+      name: "Upcoming Events",
+      content:
+        upcomingEvents.length > 0 ? (
+          upcomingEvents.map((event) => (
+            <EventCard {...event.node} variant="default" />
+          ))
+        ) : (
+          <p>No upcoming events.</p>
+        ),
+      slug: "upcoming-events",
+    },
+    {
+      name: "Past Events",
+      content:
+        pastEvents.length > 0 ? (
+          pastEvents.map((event) => (
+            <EventCard {...event.node} variant="default" />
+          ))
+        ) : (
+          <p>No past events.</p>
+        ),
+      slug: "past-events",
+    },
+  ];
 
   return (
     <Layout
@@ -68,7 +108,10 @@ export default function Component(props) {
       turnOnAnnouncements={turnOnAnnouncements}
       announcements={announcements}
     >
-      <Blocks blocks={blocks} />
+      {featuredEvent ? (
+        <EventCard {...featuredEvent.node} variant="featured" />
+      ) : null}
+      <Tabs tabs={tabs} variant="secondary" />
     </Layout>
   );
 }
@@ -95,9 +138,9 @@ Component.query = gql`
       seo {
         ...SEOFragment
       }
-      flexibleContent {
-        ...FlexibleContentFragment
-      }
+    }
+    events(first: 50) {
+      ...EventsFragment
     }
     headerMenuItems: menuItems(
       where: { location: $headerLocation }
@@ -121,7 +164,7 @@ Component.query = gql`
   ${NavigationMenu.fragments.entry}
   ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
-  ${FLEXIBLE_CONTENT_FRAGMENT}
+  ${EVENTS_FRAGMENT}
 `;
 
 Component.variables = (ctx) => {

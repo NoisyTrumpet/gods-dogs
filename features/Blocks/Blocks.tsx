@@ -15,6 +15,14 @@ const TextImage = dynamic(() => import("components/TextImage/TextImage"), {
 const TextBlock = dynamic(() => import("components/TextBlock/TextBlock"), {
   ssr: true,
 });
+// FeaturedCards Block:
+// @ts-ignore
+const FeaturedCards = dynamic(
+  () => import("components/FeaturedCards/FeaturedCards"),
+  {
+    ssr: true,
+  }
+);
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -30,6 +38,8 @@ import {
   Page_Flexiblecontent_Blocks_Impact,
   Page_Flexiblecontent_Blocks_FeaturedCards,
   Page_Flexiblecontent_Blocks_Accordion,
+  Page_Flexiblecontent_Blocks_TeamMembers,
+  Page_Flexiblecontent_Blocks_EventBlock,
   AcfLink,
 } from "graphql";
 
@@ -50,7 +60,9 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_DonateBlock
     | Page_Flexiblecontent_Blocks_Impact
     | Page_Flexiblecontent_Blocks_FeaturedCards
-    | Page_Flexiblecontent_Blocks_Accordion;
+    | Page_Flexiblecontent_Blocks_Accordion
+    | Page_Flexiblecontent_Blocks_TeamMembers
+    | Page_Flexiblecontent_Blocks_EventBlock;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
@@ -82,6 +94,13 @@ const Block = ({ block }: BlockProps) => {
     case "TextBlock": {
       return (
         <TextBlock {...(block as Page_Flexiblecontent_Blocks_TextBlock)} />
+      );
+    }
+    case "FeaturedCards": {
+      return (
+        <FeaturedCards
+          {...(block as Page_Flexiblecontent_Blocks_FeaturedCards)}
+        />
       );
     }
 

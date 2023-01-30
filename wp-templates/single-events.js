@@ -1,20 +1,17 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout, Blocks } from "features"; // Blocks eventually
-import { NavigationMenu, PostCard, Tabs } from "components";
+
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
-  SEO_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
-  MEDIA_ITEM_FRAGMENT,
-  FLEXIBLE_CONTENT_FRAGMENT,
+  SINGLE_EVENT_FRAGMENT,
 } from "fragments";
+import { NavigationMenu, Hero } from "components";
 
-export default function Component() {
-  const { data, loading, error, fetchMore } = useQuery(Component.query, {
-    variables: Component.variables(),
-  });
+export default function Component(props) {
+  const { data, loading, error } = props;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -25,22 +22,16 @@ export default function Component() {
   }
 
   const {
-    page,
+    event,
     headerMenuItems,
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
-    posts: { nodes: posts },
-    categories,
   } = data;
 
   const { social } = defaultSEO;
 
-  const {
-    seo,
-    title,
-    flexibleContent: { blocks },
-  } = page;
+  const { seo, title } = event;
   const {
     address,
     customAddressLabel,
@@ -53,27 +44,6 @@ export default function Component() {
     turnOnAnnouncements,
     announcements,
   } = siteSettings.siteSettings;
-
-  const tabs = [
-    {
-      name: "All News",
-      slug: "all",
-      content: posts.map((post) => {
-        return <PostCard key={post.id} post={post} />;
-      }),
-    },
-    ...categories.nodes.map((category) => {
-      return {
-        name: category.name,
-        slug: category.slug,
-        content: posts.map((post) => {
-          if (post.categories.nodes[0].slug === category.slug) {
-            return <PostCard key={post.id} post={post} />;
-          }
-        }),
-      };
-    }),
-  ];
 
   return (
     <Layout
@@ -94,19 +64,17 @@ export default function Component() {
       turnOnAnnouncements={turnOnAnnouncements}
       announcements={announcements}
     >
-      <Blocks blocks={blocks} />
-      <div className="container relative mx-auto">
-        <Tabs tabs={tabs} variant="primary" />
-      </div>
+      <Hero title={title} variant={"basic"} />
     </Layout>
   );
 }
 
 Component.query = gql`
-  query NewsPage(
+  query PageData(
+    $databaseId: ID!
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
-    $asPreview: Boolean = false
+    $asPreview: Boolean
   ) {
     generalSettings {
       ...BlogInfoFragment
@@ -117,42 +85,8 @@ Component.query = gql`
     seo {
       ...SEOConfigFragment
     }
-    page(id: 129, idType: DATABASE_ID, asPreview: $asPreview) {
-      id
-      title
-      seo {
-        ...SEOFragment
-      }
-      flexibleContent {
-        ...FlexibleContentFragment
-      }
-    }
-    categories {
-      nodes {
-        id
-        name
-        slug
-      }
-    }
-    posts {
-      nodes {
-        id
-        title
-        excerpt
-        uri
-        date
-        categories {
-          nodes {
-            name
-            slug
-          }
-        }
-        featuredImage {
-          node {
-            ...MediaItemFragment
-          }
-        }
-      }
+    event(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+      ...SingleEventFragment
     }
     headerMenuItems: menuItems(
       where: { location: $headerLocation }
@@ -174,16 +108,15 @@ Component.query = gql`
   ${BLOG_INFO_FRAGMENT}
   ${SITE_SETTINGS_FRAGMENT}
   ${NavigationMenu.fragments.entry}
-  ${SEO_FRAGMENT}
   ${SEO_CONFIG_FRAGMENT}
-  ${MEDIA_ITEM_FRAGMENT}
-  ${FLEXIBLE_CONTENT_FRAGMENT}
+  ${SINGLE_EVENT_FRAGMENT}
 `;
 
-Component.variables = (ctx) => {
+Component.variables = ({ databaseId }, ctx) => {
   return {
+    databaseId,
     headerLocation: MENUS.PRIMARY_LOCATION,
     footerLocation: MENUS.FOOTER_LOCATION,
-    asPreview: ctx?.asPreview ?? false,
+    asPreview: ctx?.asPreview,
   };
 };

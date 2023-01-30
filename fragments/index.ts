@@ -5,3 +5,7 @@ export { NAVIGATION_MENU_ITEM_FRAGMENT } from "./NavigationMenuItem";
 export { SEO_FRAGMENT } from "./SEOFragment";
 export { SEO_CONFIG_FRAGMENT } from "./SEOConfigFragment";
 export { FLEXIBLE_CONTENT_FRAGMENT } from "./FlexibleContentFragment";
+// Events
+export { EVENTS_FRAGMENT } from "./EventsFragment";
+// Single Event
+export { SINGLE_EVENT_FRAGMENT } from "./SingleEventFragment";

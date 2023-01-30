@@ -3,7 +3,7 @@
 import frontPage from "./front-page";
 import page from "./page";
 import single from "./single";
-// import singleCelebrities from "./single-celebrities";
+import singleEvents from "./single-events";
 // // Taxonomies
 // import taxCeleb from "./taxonomy-celeb_cat";
 // Archives
@@ -16,7 +16,10 @@ export default {
   "front-page": frontPage,
   page,
   // Post types
+  // Post
   single,
+  // Event
+  "single-events": singleEvents,
   // "single-celebrities": singleCelebrities,
   // // Taxonomies
   // "taxonomy-celeb_cat": taxCeleb,

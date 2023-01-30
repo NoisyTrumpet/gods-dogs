@@ -23,19 +23,21 @@ const styleLoader = (type: string) => {
     case "primary":
       return `rounded-full border-primary border-2 bg-primary py-2 px-4 text-white font-body uppercase hover:bg-white transition duration-300 ease-in-out hover:shadow-lg hover:border-primary hover:border-1 hover:text-primary`;
     case "primary-outline":
-      return `bg-white rounded-full border-2 border-primary py-2 px-4 text-primary font-body uppercase hover:bg-primary hover:text-white hover:border-primary transition duration-300 ease-in-out`;
+      return `bg-white rounded-full border-2 border-primary py-2 px-4 text-primary font-body uppercase hover:bg-primary hover:text-white hover:border-primary hover:shadow-lg transition duration-300 ease-in-out`;
     case "secondary":
-      return `rounded-full bg-secondary border-2 border-secondary py-2 px-8 text-white font-body uppercase hover:bg-white hover:text-secondary transition duration-300 ease-in-out`;
+      return `rounded-full bg-secondary border-2 border-secondary py-2 px-8 text-white font-body uppercase hover:bg-white hover:text-secondary hover:shadow-lg transition duration-300 ease-in-out`;
     case "secondary-outline":
-      return `bg-white rounded-full border-2 border-secondary py-2 px-4 text-secondary font-body uppercase hover:bg-secondary hover:text-white hover:border-primary transition duration-300 ease-in-out`;
+      return `bg-white rounded-full border-2 border-secondary py-2 px-8 text-secondary font-body uppercase hover:bg-secondary hover:text-white hover:border-primary hover:shadow-lg transition duration-300 ease-in-out`;
     case "announcement":
-      return `bg-white rounded-full border-2 border-secondary-light py-2 px-4 text-secondary-light font-body uppercase hover:bg-secondary-light hover:text-white hover:border-white transition duration-300 ease-in-out`;
+      return `bg-white rounded-full border-2 border-secondary-light py-2 px-4 text-secondary-light font-body uppercase hover:bg-secondary-light hover:text-white hover:border-white hover:shadow-lg transition duration-300 ease-in-out`;
     case "tertiary":
       return `rounded-full bg-tertiary py-2 px-4 text-white font-body uppercase hover:bg-tertiary-dark transition duration-300 ease-in-out`;
     case "quaternary":
       return `rounded-full bg-quaternary py-2 px-4 text-white font-body uppercase`;
     case "alert":
       return `rounded-full bg-alert py-2 px-4 text-white font-body uppercase`;
+    case "copy":
+      return `text-primary font-body uppercase underline hover:no-underline hover:text-primary-light transition duration-300 ease-in-out`;
     default:
       return `rounded-full bg-primary py-2 px-4 text-white font-body uppercase`;
   }
@@ -50,7 +52,8 @@ const Button = ({
   target,
   ...props
 }: ButtonProps) => {
-  if (href && variant !== "donate" && variant !== "donate-white") {
+  const isCopy = variant === "copy";
+  if (href) {
     return (
       <Link
         className={`${styleLoader(variant)} ${className}`}
@@ -59,7 +62,7 @@ const Button = ({
         target={target ? target : "_self"}
         {...props}
       >
-        {children}
+        {children} {isCopy && `>`}
       </Link>
     );
   }
