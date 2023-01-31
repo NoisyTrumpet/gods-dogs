@@ -7,7 +7,7 @@ import { FeaturedImage } from "components/FeaturedImage";
 
 interface AccordionProps extends Page_Flexiblecontent_Blocks_Accordion {
   className?: string;
-  itemRepeater?: Page_Flexiblecontent_Blocks_Accordion_ItemRepeater[];
+  itemRepeater?: Page_Flexiblecontent_Blocks_Accordion_ItemRepeater[] | any;
 }
 
 const Accordion = ({
