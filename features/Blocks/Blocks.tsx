@@ -23,6 +23,10 @@ const FeaturedCards = dynamic(
     ssr: true,
   }
 );
+// Accordion Block:
+const Accordion = dynamic(() => import("components/Accordion/Accordion"), {
+  ssr: true,
+});
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -96,6 +100,7 @@ const Block = ({ block }: BlockProps) => {
         <TextBlock {...(block as Page_Flexiblecontent_Blocks_TextBlock)} />
       );
     }
+    // FeaturedCards
     case "FeaturedCards": {
       return (
         <FeaturedCards
@@ -103,9 +108,16 @@ const Block = ({ block }: BlockProps) => {
         />
       );
     }
-
+    // Accordion
+    case "Accordion": {
+      return (
+        <Accordion {...(block as Page_Flexiblecontent_Blocks_Accordion)} />
+      );
+    }
     default: {
-      return <div className="block font-heading text-primary">{name}</div>;
+      return (
+        <div className="block text-center font-heading text-3xl text-primary">{`${name} (component in development)`}</div>
+      );
     }
   }
 };

@@ -1,29 +1,24 @@
-// import category from "./category";
-// import tag from "./tag";
+// Page templates
 import frontPage from "./front-page";
 import page from "./page";
+// Post types
 import single from "./single";
 import singleEvents from "./single-events";
-// // Taxonomies
-// import taxCeleb from "./taxonomy-celeb_cat";
-// Archives
+import singleResources from "./single-resources";
+// Archives:
 import archivePosts from "./archive-post";
 import archiveEvents from "./archive-events";
+import archiveResources from "./archive-resources";
 
 export default {
-  // category: category,
-  // tag,
   "front-page": frontPage,
   page,
   // Post types
-  // Post
   single,
-  // Event
   "single-events": singleEvents,
-  // "single-celebrities": singleCelebrities,
-  // // Taxonomies
-  // "taxonomy-celeb_cat": taxCeleb,
+  "single-resources": singleResources,
   // Archives
   "archive-post": archivePosts,
   "archive-events": archiveEvents,
+  "archive-resources": archiveResources,
 };

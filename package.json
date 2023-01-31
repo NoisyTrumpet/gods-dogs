@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.5",
-    "@faustwp/cli": "0.2.0",
-    "@faustwp/core": "0.2.1",
+    "@faustwp/cli": "0.2.2",
+    "@faustwp/core": "0.2.2",
     "@next/font": "^13.1.6",
     "@stripe/stripe-js": "^1.46.0",
     "@vercel/og": "^0.0.27",
