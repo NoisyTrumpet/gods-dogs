@@ -63,7 +63,7 @@ const FeaturedCards = ({
                 key={index}
                 className={`relative h-full min-h-full w-full px-2 ${
                   diverderBetween
-                    ? "border-b-2 last:border-b-0 md:border-b-0 md:border-r-2 border-dark md:last:border-r-0"
+                    ? "border-b-2 border-dark last:border-b-0 md:border-b-0 md:border-r-2 md:last:border-r-0"
                     : ""
                 }`}
               >

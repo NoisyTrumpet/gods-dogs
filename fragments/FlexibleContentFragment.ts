@@ -106,26 +106,19 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
             }
             animalId
             animalDetails {
-              animalWeightUnits
-              animalWeightGroup
+              animalBirthday
+              animalName
+              animalNid
               animalWeight
               animalUniqueId
               animalSpecies
               animalSex
-              animalSecondaryColor
-              animalSecondaryBreed
               animalPublicUrl
+              animalSecondaryColor
               animalPrimaryColor
               animalPhotoGallery {
                 photo
               }
-              animalNid
-              animalName
-              animalIntakeDate
-              animalCoverPhoto
-              animalBreed
-              animalBirthday
-              animalAgeGroup
             }
           }
         }
@@ -242,6 +235,18 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         hasHeadingIcon
         headingIcon {
           ...MediaItemFragment
+        }
+        itemRepeater {
+          title
+          itemContent
+          hasCtas
+          ctaRepeater {
+            ctaLink {
+              target
+              title
+              url
+            }
+          }
         }
       }
     }

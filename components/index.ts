@@ -11,3 +11,4 @@ export { EventCard } from "./EventCard";
 export { Hero } from "./Hero";
 export { TextImage } from "./TextImage";
 export { TextBlock } from "./TextBlock";
+export { Accordion } from "./Accordion";

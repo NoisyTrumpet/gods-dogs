@@ -9,3 +9,5 @@ export { FLEXIBLE_CONTENT_FRAGMENT } from "./FlexibleContentFragment";
 export { EVENTS_FRAGMENT } from "./EventsFragment";
 // Single Event
 export { SINGLE_EVENT_FRAGMENT } from "./SingleEventFragment";
+// Single Resource
+export { SINGLE_RESOURCE_FRAGMENT } from "./SingleResourceFragment";
