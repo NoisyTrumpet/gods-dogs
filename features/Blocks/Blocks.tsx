@@ -24,6 +24,7 @@ const FeaturedCards = dynamic(
   }
 );
 // Accordion Block:
+// @ts-ignore
 const Accordion = dynamic(() => import("components/Accordion/Accordion"), {
   ssr: true,
 });

@@ -7,7 +7,6 @@ import { FeaturedImage } from "components/FeaturedImage";
 
 interface AccordionProps extends Page_Flexiblecontent_Blocks_Accordion {
   className?: string;
-  itemRepeater?: Page_Flexiblecontent_Blocks_Accordion_ItemRepeater[] | any[];
 }
 
 const Accordion = ({
@@ -18,6 +17,8 @@ const Accordion = ({
   headingIcon,
   hasHeadingIcon,
 }: AccordionProps) => {
+  const hasItems  = itemRepeater && itemRepeater.length > 0;
+
   return (
     <section className={`${className} w-full`}>
       <div className={`${className} container mx-auto flex flex-col gap-6`}>
@@ -35,18 +36,20 @@ const Accordion = ({
           <div dangerouslySetInnerHTML={{ __html: sectionCopy }} />
         ) : null}
 
-        {itemRepeater ? (
+        {hasItems ? (
           <ul>
-            {itemRepeater.map(({ title, itemContent }, i) => (
-              <AccordionFragment
+            {itemRepeater.map((item, i) => {
+              return (
+                <AccordionFragment
                 className={`mb-8`}
-                title={title}
-                content={itemContent ?? ``}
+                title={item?.title}
+                content={item?.itemContent ?? ``}
                 i={i}
                 open={i === 0}
                 key={`${i}-question`}
               />
-            ))}
+              )
+            })}
           </ul>
         ) : null}
       </div>
