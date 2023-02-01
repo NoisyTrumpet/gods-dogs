@@ -26,11 +26,7 @@ export interface SlideGraphicProps {
 const SideGraphic = ({ graphic, className }: SlideGraphicProps) => {
   switch (graphic) {
     case "goldenGroup": {
-      return (
-        <DogGroup1
-          className={`${className ? className : ""} relative -left-16`}
-        />
-      );
+      return <DogGroup1 className={`${className ? className : ""} -left-16`} />;
     }
     case "terrierGroup": {
       return <DogGroup2 className={`${className ? className : ""}`} />;
@@ -62,7 +58,7 @@ const SideGraphic = ({ graphic, className }: SlideGraphicProps) => {
     case "shihTzuChi": {
       return (
         <ShihTzuChi
-          className={`${className ? className : ""} relative bottom-[-10px]`}
+          className={`${className ? className : ""} bottom-[-10px]`}
         />
       );
     }
@@ -83,14 +79,14 @@ const SideGraphic = ({ graphic, className }: SlideGraphicProps) => {
     case "donateShihTzu": {
       return (
         <DonateShihTzu
-          className={`${className ? className : ""} relative bottom-[-11px]`}
+          className={`${className ? className : ""} bottom-[-11px]`}
         />
       );
     }
     case "donateAfghan": {
       return (
         <DonateAfghan
-          className={`${className ? className : ""} relative bottom-[-9px]`}
+          className={`${className ? className : ""} bottom-[-9px]`}
         />
       );
     }

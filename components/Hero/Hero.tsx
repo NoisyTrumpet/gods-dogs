@@ -37,11 +37,18 @@ const Hero = ({
           <div
             className={`${
               isBasic
-                ? "hidden md:-left-12 md:flex lg:-left-8 2xl:left-0"
+                ? "-left-96 md:-left-12 md:flex lg:-left-8 2xl:left-0"
                 : "-left-16 hidden lg:flex 2xl:left-0"
-            } absolute bottom-0 h-full max-h-[70%] w-full justify-start`}
+            } absolute bottom-0 h-full w-full max-w-[60vw] justify-start md:max-h-[80%]`}
           >
-            <SideGraphic className="" graphic={isBasic ? "" : leftGraphic} />
+            <SideGraphic
+              className={`${
+                isBasic
+                  ? "absolute bottom-0 h-[300px] max-h-full"
+                  : "absolute bottom-0 h-[300px] max-h-[80%]"
+              }`}
+              graphic={isBasic ? "" : leftGraphic}
+            />
           </div>
         ) : null}
         <div
@@ -79,15 +86,18 @@ const Hero = ({
           <div
             className={`${
               isBasic
-                ? "right-0 md:-right-12 lg:-right-8 2xl:right-0"
-                : "-right-16 2xl:right-0"
-            } bottom-0 -mt-16 flex h-full w-full max-w-[60%] justify-center self-end md:absolute md:max-h-[70%] md:justify-end`}
+                ? "absolute -right-[25vw] h-full md:-right-12 lg:-right-8 2xl:right-0"
+                : "relative -right-16 -mt-32 h-[250px] self-end md:absolute md:mt-auto md:h-full 2xl:right-0"
+            } bottom-0 w-full max-w-[65%] justify-end md:flex md:max-h-[80%]`}
           >
             <SideGraphic
               className={`${
-                rightGraphic === "volunteerWalker" ? "" : "-scale-x-100"
+                isBasic
+                  ? "absolute bottom-0 h-[300px] max-h-full -scale-x-100"
+                  : rightGraphic === "volunteerWalker"
+                  ? "h-full max-h-[300px]"
+                  : "absolute bottom-0 h-[300px] max-h-[80%] -scale-x-100"
               }`}
-              // graphic={isBasic ? "" : rightGraphic}
               graphic={
                 isBasic
                   ? ""
