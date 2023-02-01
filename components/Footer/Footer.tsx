@@ -34,7 +34,7 @@ const Footer = ({
   return (
     <footer className={`bg-primary py-12 px-4 text-gray-100`}>
       <div
-        className={`xs:flex-wrap container mx-auto flex flex-col sm:flex-row sm:justify-between`}
+        className={`container mx-auto flex flex-col xs:flex-wrap sm:flex-row sm:justify-between`}
       >
         {/* Logo */}
         <div

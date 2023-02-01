@@ -31,21 +31,21 @@ const Hero = ({
       <div
         className={`${
           isPrimary ? `min-h-[450px]` : `h-fit`
-        } relative z-0 mx-auto flex max-w-screen-2xl flex-col items-center text-center md:flex-row`}
+        } relative z-0 mx-auto flex max-w-screen-2xl flex-col items-center pb-28 text-center md:flex-row md:pb-0`}
       >
         {leftGraphic ? (
           <div
             className={`${
               isBasic
-                ? "-left-96 md:-left-12 md:flex lg:-left-8 2xl:left-0"
-                : "-left-16 hidden lg:flex 2xl:left-0"
-            } absolute bottom-0 h-full w-full max-w-[60vw] justify-start md:max-h-[80%]`}
+                ? "-left-96 h-full md:-left-28 lg:-left-8 2xl:left-0 "
+                : "-left-20 h-[250px] self-start xs:-left-12 md:-left-16 md:h-full 2xl:left-0"
+            } absolute bottom-0 flex w-full max-w-[50%] justify-start md:max-h-[80%]`}
           >
             <SideGraphic
               className={`${
                 isBasic
-                  ? "absolute bottom-0 h-[300px] max-h-full"
-                  : "absolute bottom-0 h-[300px] max-h-[80%]"
+                  ? "absolute bottom-0 h-[250px] max-h-full md:h-[300px] "
+                  : "absolute bottom-0 h-[250px] max-h-[80%] md:h-[300px]"
               }`}
               graphic={isBasic ? "" : leftGraphic}
             />
@@ -53,7 +53,7 @@ const Hero = ({
         ) : null}
         <div
           className={`${
-            isBasic ? "mx-auto" : "mx-auto md:ml-4 lg:mx-auto"
+            isBasic ? "mx-auto" : "mx-auto"
           } container z-10 w-full px-4 py-20 md:w-1/2`}
         >
           {title ? (
@@ -86,17 +86,17 @@ const Hero = ({
           <div
             className={`${
               isBasic
-                ? "absolute -right-[25vw] h-full md:-right-12 lg:-right-8 2xl:right-0"
-                : "relative -right-16 -mt-32 h-[250px] self-end md:absolute md:mt-auto md:h-full 2xl:right-0"
-            } bottom-0 w-full max-w-[65%] justify-end md:flex md:max-h-[80%]`}
+                ? "-right-[14%] h-full md:-right-28 md:justify-end lg:-right-8 2xl:right-0"
+                : "-right-24 h-[250px] justify-end self-end xs:-right-12 md:-right-16 md:h-full 2xl:right-0"
+            } absolute bottom-0 flex w-full max-w-[50%] md:max-h-[80%]`}
           >
             <SideGraphic
               className={`${
                 isBasic
-                  ? "absolute bottom-0 h-[300px] max-h-full -scale-x-100"
+                  ? "absolute bottom-0 h-[250px] max-h-full -scale-x-100 md:h-[300px]"
                   : rightGraphic === "volunteerWalker"
                   ? "h-full max-h-[300px]"
-                  : "absolute bottom-0 h-[300px] max-h-[80%] -scale-x-100"
+                  : "absolute bottom-0 h-[250px] max-h-[80%] -scale-x-100 md:h-[300px]"
               }`}
               graphic={
                 isBasic

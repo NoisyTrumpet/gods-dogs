@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: "480px",
+      },
       colors: {
         primary: "#666793", // purple
         "primary-light": "#EFEFF8", // light purple
