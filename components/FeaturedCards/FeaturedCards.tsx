@@ -32,7 +32,7 @@ const FeaturedCards = ({
       {hasHeadingIcon ? (
         <FeaturedImage
           image={headingIcon}
-          className={`w-full max-w-[12rem] ${title ? "" : "mb-8"}`}
+          className={`mt-6 w-full max-w-[12rem] ${title ? "" : "mb-8"}`}
           imgClassName="w-full"
         />
       ) : null}
