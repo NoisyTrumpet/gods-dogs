@@ -10939,14 +10939,10 @@ export enum PostStatusEnum {
   AutoDraft = "AUTO_DRAFT",
   /** Objects with the draft status */
   Draft = "DRAFT",
-  /** Objects with the failed status */
-  Failed = "FAILED",
   /** Objects with the future status */
   Future = "FUTURE",
   /** Objects with the inherit status */
   Inherit = "INHERIT",
-  /** Objects with the in-progress status */
-  InProgress = "IN_PROGRESS",
   /** Objects with the pending status */
   Pending = "PENDING",
   /** Objects with the private status */
@@ -12671,6 +12667,8 @@ export type Resource = ContentNode &
      * @deprecated Deprecated in favor of the databaseId field
      */
     resourceId: Scalars["Int"];
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Resource Options&quot; was set to Show in GraphQL. */
+    resourceOptions?: Maybe<Resource_Resourceoptions>;
     /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
     revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
     /** Connection between the Resource type and the resource type */
@@ -13205,6 +13203,14 @@ export type Resource_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepea
     fieldGroupName?: Maybe<Scalars["String"]>;
     type?: Maybe<Scalars["String"]>;
   };
+
+/** Field Group */
+export type Resource_Resourceoptions = AcfFieldGroup & {
+  __typename?: "Resource_Resourceoptions";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  icon?: Maybe<MediaItem>;
+};
 
 /** Input for the restoreComment mutation. */
 export type RestoreCommentInput = {
@@ -15741,6 +15747,7 @@ export type SeoGlobalMeta = {
   __typename?: "SEOGlobalMeta";
   author?: Maybe<SeoGlobalMetaAuthor>;
   config?: Maybe<SeoGlobalMetaConfig>;
+  date?: Maybe<SeoGlobalMetaDate>;
   homepage?: Maybe<SeoGlobalMetaHome>;
   notFound?: Maybe<SeoGlobalMeta404>;
 };
@@ -15763,6 +15770,13 @@ export type SeoGlobalMetaAuthor = {
 export type SeoGlobalMetaConfig = {
   __typename?: "SEOGlobalMetaConfig";
   separator?: Maybe<Scalars["String"]>;
+};
+
+/** The Yoast SEO Date data */
+export type SeoGlobalMetaDate = {
+  __typename?: "SEOGlobalMetaDate";
+  description?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
 };
 
 /** The Yoast SEO homepage data */

@@ -24,7 +24,7 @@ export default function TextAreaField({ field, fieldErrors, formId }: Props) {
 
   return (
     <div className={`gfield gfield-${type} ${cssClass}`.trim()}>
-      <label className={`text-md font-heading text-gray-800`} htmlFor={htmlId}>
+      <label className={`text-md font-heading text-gray-800 sr-only`} htmlFor={htmlId}>
         {label}
       </label>
       <textarea
@@ -32,7 +32,7 @@ export default function TextAreaField({ field, fieldErrors, formId }: Props) {
         id={htmlId}
         required={Boolean(isRequired)}
         value={value}
-        className={`form-input[type='textarea'] w-full rounded-lg font-body text-gray-500`}
+        className={`form-input[type='textarea'] w-full rounded-lg font-body text-gray-500 px-4 py-2 min-h-xs`}
         placeholder={(isRequired ? `${label}*` : label) ?? ``}
         onChange={(event) => {
           dispatch({

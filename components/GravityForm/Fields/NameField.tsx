@@ -121,7 +121,7 @@ export default function NameField({ field, fieldErrors, formId }: Props) {
                 </label>
                 <input
                   type="text"
-                  className={`form-input[type='text'] w-full rounded-lg font-body`}
+                  className={`form-input[type='text'] w-full rounded-lg font-body px-4 py-2`}
                   name={String(key)}
                   id={`input_${formId}_${id}_${key}`}
                   placeholder={
