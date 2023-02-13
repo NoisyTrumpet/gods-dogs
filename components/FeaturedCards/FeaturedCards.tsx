@@ -32,7 +32,7 @@ const FeaturedCards = ({
       {hasHeadingIcon ? (
         <FeaturedImage
           image={headingIcon}
-          className={`w-full max-w-[12rem]`}
+          className={`mt-6 w-full max-w-[12rem] ${title ? "" : "mb-8"}`}
           imgClassName="w-full"
         />
       ) : null}
@@ -44,7 +44,7 @@ const FeaturedCards = ({
 
       {hasCards ? (
         <div
-          className={`container relative mx-auto flex h-fit flex-col items-start justify-center gap-4 md:flex-row md:px-4 xl:max-w-7xl`}
+          className={`container relative mx-auto grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-3 md:flex-row md:px-4 xl:max-w-7xl`}
         >
           {cardRepeater.map((card, index) => {
             const {
@@ -61,7 +61,7 @@ const FeaturedCards = ({
             return (
               <div
                 key={index}
-                className={`relative h-full min-h-full w-full px-2 ${
+                className={`relative h-full min-h-full w-full ${
                   diverderBetween
                     ? "border-b-2 border-dark last:border-b-0 md:border-b-0 md:border-r-2 md:last:border-r-0"
                     : ""
@@ -76,12 +76,12 @@ const FeaturedCards = ({
                       className ? className : ``
                     } flex bg-${cardBackgroundColor} ${
                       contentAligned ? "text-left" : "items-center text-center"
-                    } relative h-full w-full flex-col justify-center p-3 transition duration-300 ease-in-out`}
+                    } relative h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out`}
                   >
                     {hasCardIcon ? (
                       <FeaturedImage
                         image={cardIcon}
-                        className={`max-h-16 w-fit `}
+                        className={`max-h-[3rem] w-fit`}
                         imgClassName="w-full"
                       />
                     ) : null}
@@ -90,14 +90,15 @@ const FeaturedCards = ({
                         {cardTitle}
                       </h3>
                     ) : null}
+                    {dividerUnder ? (
+                      <span className={`w-full border-t-2 border-dark`}> </span>
+                    ) : null}
                     {cardContent ? (
                       <>
                         <div
                           className={`${
                             contentAligned ? "text-left" : "text-center"
-                          } ${
-                            dividerUnder ? "border-t-2 border-dark" : ""
-                          } text-md max-w-lg py-2 font-body text-dark`}
+                          } text-md max-w-lg py-4 font-body text-dark`}
                           dangerouslySetInnerHTML={{ __html: cardContent }}
                         />
                         <span
@@ -114,12 +115,12 @@ const FeaturedCards = ({
                       className ? className : ``
                     } flex bg-${cardBackgroundColor} ${
                       contentAligned ? "text-left" : "items-center text-center"
-                    } relative h-full w-full flex-col justify-center p-3`}
+                    } relative h-full w-full flex-col justify-start p-3`}
                   >
                     {hasCardIcon ? (
                       <FeaturedImage
                         image={cardIcon}
-                        className={`w-full max-w-[3rem]`}
+                        className={`max-h-[3rem] w-fit`}
                         imgClassName="w-full"
                       />
                     ) : null}
@@ -128,13 +129,14 @@ const FeaturedCards = ({
                         {cardTitle}
                       </h3>
                     ) : null}
+                    {dividerUnder ? (
+                      <span className={`w-full border-t-2 border-dark`}> </span>
+                    ) : null}
                     {cardContent ? (
                       <div
                         className={`${
                           contentAligned ? "text-left" : "text-center"
-                        } ${
-                          dividerUnder ? "border-t-2 border-dark" : ""
-                        } text-md mt-4 max-w-lg pt-8 font-body text-dark`}
+                        }  text-md max-w-lg py-4 font-body text-dark`}
                         dangerouslySetInnerHTML={{ __html: cardContent }}
                       />
                     ) : null}

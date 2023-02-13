@@ -30,6 +30,7 @@ const Announcements = ({ announcements }: any) => {
                   variant={type}
                   href={url ?? ``}
                   className={`order-first w-fit md:order-last`}
+                  target={target ?? `_self`}
                 >
                   {title}
                 </Button>

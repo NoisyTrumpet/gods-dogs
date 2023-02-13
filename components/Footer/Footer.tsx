@@ -34,7 +34,7 @@ const Footer = ({
   return (
     <footer className={`bg-primary py-12 px-4 text-gray-100`}>
       <div
-        className={`xs:flex-wrap container mx-auto flex flex-col sm:flex-row sm:justify-between`}
+        className={`container mx-auto flex flex-col xs:flex-wrap sm:flex-row sm:justify-between`}
       >
         {/* Logo */}
         <div
@@ -57,9 +57,10 @@ const Footer = ({
             )}
             {cta ? (
               <Button
-                className={`my-4 flex sm:hidden lg:ml-4 xl:my-0`}
+                className={`my-4 block sm:hidden lg:ml-4 xl:my-0`}
                 variant="secondary"
                 href={cta.url ?? ``}
+                target={cta.target ?? `_self`}
               >
                 {cta.title}
               </Button>
@@ -97,7 +98,7 @@ const Footer = ({
         </div>
         {/* Menu */}
         <div
-          className={`flex flex-row flex-wrap items-center justify-center md:justify-end xl:justify-start`}
+          className={`flex flex-col md:flex-row py-4 mx-auto lg:mx-0 items-center justify-center md:justify-end xl:justify-start`}
         >
           <NavigationMenu
             type={`footer`}
@@ -105,13 +106,14 @@ const Footer = ({
             className={`text-white`}
           />
           <div
-            className={`flex flex-col items-center justify-center xl:h-full xl:justify-around`}
+            className={`flex flex-col tems-center justify-center xl:h-full xl:justify-around`}
           >
             {cta ? (
               <Button
-                className={`my-4 hidden sm:flex lg:ml-4 xl:my-0`}
+                className={`my-4 hidden sm:block lg:ml-4 xl:my-0`}
                 variant="secondary"
                 href={cta.url ?? ``}
+                target={cta.target ?? `_self`}
               >
                 {cta.title}
               </Button>
