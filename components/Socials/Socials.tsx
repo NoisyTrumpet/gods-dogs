@@ -37,7 +37,7 @@ const Socials = ({ socials }: SocialsProps) => {
           href={socials.facebook.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex flex-row items-center rounded-full bg-white p-2`}
+          className={`flex flex-row items-center rounded-full bg-white p-2 hover:bg-secondary-light`}
         >
           <FaFacebookF className={`text-2xl text-primary`} />
         </a>
@@ -48,7 +48,7 @@ const Socials = ({ socials }: SocialsProps) => {
           href={`https://twitter.com/${socials.twitter.username}`}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex flex-row items-center rounded-full bg-white p-2`}
+          className={`flex flex-row items-center rounded-full bg-white p-2 hover:bg-secondary-light`}
         >
           <BsTwitter className={`text-2xl text-primary`} />
         </a>
@@ -62,7 +62,7 @@ const Socials = ({ socials }: SocialsProps) => {
                 target="_blank"
                 href={social as string}
                 rel="noopener noreferrer"
-                className={`flex flex-row items-center rounded-full bg-white p-2`}
+                className={`flex flex-row items-center rounded-full bg-white p-2 hover:bg-secondary-light`}
               >
                 <SocialIcon social={social as string} />
               </a>
