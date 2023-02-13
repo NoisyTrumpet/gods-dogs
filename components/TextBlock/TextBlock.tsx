@@ -1,3 +1,4 @@
+import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
 import { Page_Flexiblecontent_Blocks_TextBlock } from "graphql";
 
@@ -44,6 +45,25 @@ const TextBlock = ({ className, paragraphs }: TextBlockProps) => {
                 dangerouslySetInnerHTML={{ __html: content }}
               />
             ) : null}
+            {hasCtas && ctaRepeater ? (
+              <div className={`flex flex-col gap-4 items-${contentAlignment}`}>
+                {ctaRepeater.map((cta, index) => {
+                  const { ctaLink, type } = cta || {};
+                  const { url, title } = ctaLink || {};
+                  return (
+                    <Button
+                      key={`cta-${index}`}
+                      className={`w-fit`}
+                      variant={type ?? `primary`}
+                      href={url ?? ``}
+                    >
+                      {title}
+                    </Button>
+                  );
+                })}
+                </div>
+            ) : null}
+
           </div>
         </div>
       );

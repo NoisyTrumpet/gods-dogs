@@ -47,7 +47,7 @@ const fieldError = {
 };
 
 const GravityFormsForm = ({ form, formId }: Props) => {
-  const { formFields, title, id, databaseId, submitButton, confirmations } =
+  const { formFields, title, description, id, databaseId, submitButton, confirmations } =
     form ?? {
       formFields: {
         nodes: [],
@@ -141,6 +141,7 @@ const GravityFormsForm = ({ form, formId }: Props) => {
 
   return (
     <>
+    {description ? <div className="text-center max-w-2xl mx-auto mb-6">{description}</div> : null}
       <form
         // className={`${styles[`form`]}`}
         method="post"
@@ -164,7 +165,7 @@ const GravityFormsForm = ({ form, formId }: Props) => {
             <div className="error-message text-primary">{error.message}</div>
           ) : null}
           <Button
-            variant="primary"
+            variant="secondary"
             disabled={loading}
             className={`mx-auto max-w-fit`}
           >

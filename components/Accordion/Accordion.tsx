@@ -17,7 +17,7 @@ const Accordion = ({
   headingIcon,
   hasHeadingIcon,
 }: AccordionProps) => {
-  const hasItems  = itemRepeater && itemRepeater.length > 0;
+  const hasItems = itemRepeater && itemRepeater.length > 0;
 
   return (
     <section className={`${className} w-full`}>
@@ -41,14 +41,14 @@ const Accordion = ({
             {itemRepeater.map((item, i) => {
               return (
                 <AccordionFragment
-                className={`mb-8`}
-                title={item?.title}
-                content={item?.itemContent ?? ``}
-                i={i}
-                open={i === 0}
-                key={`${i}-question`}
-              />
-              )
+                  className={`mb-8`}
+                  title={item?.title}
+                  content={item?.itemContent ?? ``}
+                  i={i}
+                  open={i === 0}
+                  key={`${i}-question`}
+                />
+              );
             })}
           </ul>
         ) : null}
