@@ -104,7 +104,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
                 ...MediaItemFragment
               }
             }
-            animalId
+            databaseId
             animalDetails {
               animalBirthday
               animalName

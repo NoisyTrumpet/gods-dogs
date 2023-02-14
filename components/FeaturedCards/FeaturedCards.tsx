@@ -127,18 +127,18 @@ const FeaturedCards = ({
                       />
                     ) : null}
                     {cardTitle ? (
-                      <h3 className="my-4 font-heading text-4xl leading-none text-med-dark">
+                      <h3 className="mt-4 font-heading text-4xl leading-none text-med-dark">
                         {cardTitle}
                       </h3>
                     ) : null}
                     {dividerUnder ? (
-                      <span className={`w-full border-t-2 border-dark`}> </span>
+                      <span className={`my-8 w-full border-t-2 border-dark`}> </span>
                     ) : null}
                     {cardContent ? (
                       <div
                         className={`${
                           contentAligned ? "text-left" : "text-center"
-                        }  text-md max-w-lg py-4 font-body text-dark`}
+                        }  text-md max-w-lg mb-4 font-body text-dark`}
                         dangerouslySetInnerHTML={{ __html: cardContent }}
                       />
                     ) : null}
