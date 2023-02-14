@@ -36,19 +36,21 @@ const Form = ({ className, title, content, form }: FormProps) => {
   }
 
   return (
-    <div className={`${className} relative py-12 w-full px-6 md:px-0`}>
+    <div className={`${className} relative w-full py-12 px-6 md:px-0`}>
       {title ? (
-          <h2 className={`font-heading text-4xl text-primary`}>
-            <Balancer>{title}</Balancer>
-          </h2>
-        ) : null}
-        {content ? (
-          <div
-            className={`text-md my-4 mx-auto max-w-2xl text-center font-body text-gray-800`}
-            dangerouslySetInnerHTML={{ __html: content ?? `` }}
-          />
-        ) : null}
-      <div className={`container max-w-5xl mx-auto text-center bg-primary-light py-8 px-4 rounded-xl`}>
+        <h2 className={`font-heading text-4xl text-primary`}>
+          <Balancer>{title}</Balancer>
+        </h2>
+      ) : null}
+      {content ? (
+        <div
+          className={`text-md my-4 mx-auto max-w-2xl text-center font-body text-gray-800`}
+          dangerouslySetInnerHTML={{ __html: content ?? `` }}
+        />
+      ) : null}
+      <div
+        className={`container mx-auto max-w-5xl rounded-xl bg-primary-light py-8 px-4 text-center`}
+      >
         {hasForm && (
           <GravityForm form={formData} isLoading={loading} formId={form} />
         )}

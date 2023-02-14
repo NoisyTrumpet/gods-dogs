@@ -4056,7 +4056,6 @@ export type Event_Flexiblecontent = AcfFieldGroup & {
 
 export type Event_Flexiblecontent_Blocks =
   | Event_Flexiblecontent_Blocks_Accordion
-  | Event_Flexiblecontent_Blocks_DonateBlock
   | Event_Flexiblecontent_Blocks_EventBlock
   | Event_Flexiblecontent_Blocks_FeaturedCards
   | Event_Flexiblecontent_Blocks_Form
@@ -4066,6 +4065,7 @@ export type Event_Flexiblecontent_Blocks =
   | Event_Flexiblecontent_Blocks_PetCarousel
   | Event_Flexiblecontent_Blocks_PostsBlock
   | Event_Flexiblecontent_Blocks_Quotes
+  | Event_Flexiblecontent_Blocks_SplitText
   | Event_Flexiblecontent_Blocks_TeamMembers
   | Event_Flexiblecontent_Blocks_TextBlock
   | Event_Flexiblecontent_Blocks_TextImage;
@@ -4108,31 +4108,6 @@ export type Event_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
-  };
-
-/** Group within the flex field */
-export type Event_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
-  __typename?: "Event_Flexiblecontent_Blocks_DonateBlock";
-  cardRepeater?: Maybe<
-    Array<Maybe<Event_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
-  >;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars["String"]>;
-  hasPawIcon?: Maybe<Scalars["Boolean"]>;
-  pawIconPosition?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
-  variant?: Maybe<Scalars["String"]>;
-};
-
-/** Field Group */
-export type Event_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
-  AcfFieldGroup & {
-    __typename?: "Event_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
-    donateContent?: Maybe<Scalars["String"]>;
-    donateLink?: Maybe<AcfLink>;
-    /** The name of the ACF Field Group */
-    fieldGroupName?: Maybe<Scalars["String"]>;
-    title?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -4308,6 +4283,32 @@ export type Event_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
   subtext?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
 };
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_SplitText = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_SplitText";
+  cardRepeater?: Maybe<
+    Array<Maybe<Event_Flexiblecontent_Blocks_SplitText_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_SplitText_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Event_Flexiblecontent_Blocks_SplitText_cardRepeater";
+    content?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    link?: Maybe<AcfLink>;
+    linkType?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
 
 /** Group within the flex field */
 export type Event_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
@@ -8132,7 +8133,6 @@ export type Page_Flexiblecontent = AcfFieldGroup & {
 
 export type Page_Flexiblecontent_Blocks =
   | Page_Flexiblecontent_Blocks_Accordion
-  | Page_Flexiblecontent_Blocks_DonateBlock
   | Page_Flexiblecontent_Blocks_EventBlock
   | Page_Flexiblecontent_Blocks_FeaturedCards
   | Page_Flexiblecontent_Blocks_Form
@@ -8142,6 +8142,7 @@ export type Page_Flexiblecontent_Blocks =
   | Page_Flexiblecontent_Blocks_PetCarousel
   | Page_Flexiblecontent_Blocks_PostsBlock
   | Page_Flexiblecontent_Blocks_Quotes
+  | Page_Flexiblecontent_Blocks_SplitText
   | Page_Flexiblecontent_Blocks_TeamMembers
   | Page_Flexiblecontent_Blocks_TextBlock
   | Page_Flexiblecontent_Blocks_TextImage;
@@ -8184,31 +8185,6 @@ export type Page_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
-  };
-
-/** Group within the flex field */
-export type Page_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
-  __typename?: "Page_Flexiblecontent_Blocks_DonateBlock";
-  cardRepeater?: Maybe<
-    Array<Maybe<Page_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
-  >;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars["String"]>;
-  hasPawIcon?: Maybe<Scalars["Boolean"]>;
-  pawIconPosition?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
-  variant?: Maybe<Scalars["String"]>;
-};
-
-/** Field Group */
-export type Page_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
-  AcfFieldGroup & {
-    __typename?: "Page_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
-    donateContent?: Maybe<Scalars["String"]>;
-    donateLink?: Maybe<AcfLink>;
-    /** The name of the ACF Field Group */
-    fieldGroupName?: Maybe<Scalars["String"]>;
-    title?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -8384,6 +8360,32 @@ export type Page_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
   subtext?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
 };
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_SplitText = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_SplitText";
+  cardRepeater?: Maybe<
+    Array<Maybe<Page_Flexiblecontent_Blocks_SplitText_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_SplitText_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Page_Flexiblecontent_Blocks_SplitText_cardRepeater";
+    content?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    link?: Maybe<AcfLink>;
+    linkType?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
 
 /** Group within the flex field */
 export type Page_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
@@ -12022,7 +12024,6 @@ export type Post_Flexiblecontent = AcfFieldGroup & {
 
 export type Post_Flexiblecontent_Blocks =
   | Post_Flexiblecontent_Blocks_Accordion
-  | Post_Flexiblecontent_Blocks_DonateBlock
   | Post_Flexiblecontent_Blocks_EventBlock
   | Post_Flexiblecontent_Blocks_FeaturedCards
   | Post_Flexiblecontent_Blocks_Form
@@ -12032,6 +12033,7 @@ export type Post_Flexiblecontent_Blocks =
   | Post_Flexiblecontent_Blocks_PetCarousel
   | Post_Flexiblecontent_Blocks_PostsBlock
   | Post_Flexiblecontent_Blocks_Quotes
+  | Post_Flexiblecontent_Blocks_SplitText
   | Post_Flexiblecontent_Blocks_TeamMembers
   | Post_Flexiblecontent_Blocks_TextBlock
   | Post_Flexiblecontent_Blocks_TextImage;
@@ -12074,31 +12076,6 @@ export type Post_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
-  };
-
-/** Group within the flex field */
-export type Post_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
-  __typename?: "Post_Flexiblecontent_Blocks_DonateBlock";
-  cardRepeater?: Maybe<
-    Array<Maybe<Post_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
-  >;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars["String"]>;
-  hasPawIcon?: Maybe<Scalars["Boolean"]>;
-  pawIconPosition?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
-  variant?: Maybe<Scalars["String"]>;
-};
-
-/** Field Group */
-export type Post_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
-  AcfFieldGroup & {
-    __typename?: "Post_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
-    donateContent?: Maybe<Scalars["String"]>;
-    donateLink?: Maybe<AcfLink>;
-    /** The name of the ACF Field Group */
-    fieldGroupName?: Maybe<Scalars["String"]>;
-    title?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -12274,6 +12251,32 @@ export type Post_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
   subtext?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
 };
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_SplitText = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_SplitText";
+  cardRepeater?: Maybe<
+    Array<Maybe<Post_Flexiblecontent_Blocks_SplitText_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_SplitText_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Post_Flexiblecontent_Blocks_SplitText_cardRepeater";
+    content?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    link?: Maybe<AcfLink>;
+    linkType?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
 
 /** Group within the flex field */
 export type Post_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
@@ -12853,7 +12856,6 @@ export type Resource_Flexiblecontent = AcfFieldGroup & {
 
 export type Resource_Flexiblecontent_Blocks =
   | Resource_Flexiblecontent_Blocks_Accordion
-  | Resource_Flexiblecontent_Blocks_DonateBlock
   | Resource_Flexiblecontent_Blocks_EventBlock
   | Resource_Flexiblecontent_Blocks_FeaturedCards
   | Resource_Flexiblecontent_Blocks_Form
@@ -12863,6 +12865,7 @@ export type Resource_Flexiblecontent_Blocks =
   | Resource_Flexiblecontent_Blocks_PetCarousel
   | Resource_Flexiblecontent_Blocks_PostsBlock
   | Resource_Flexiblecontent_Blocks_Quotes
+  | Resource_Flexiblecontent_Blocks_SplitText
   | Resource_Flexiblecontent_Blocks_TeamMembers
   | Resource_Flexiblecontent_Blocks_TextBlock
   | Resource_Flexiblecontent_Blocks_TextImage;
@@ -12905,31 +12908,6 @@ export type Resource_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     ctaLink?: Maybe<AcfLink>;
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
-  };
-
-/** Group within the flex field */
-export type Resource_Flexiblecontent_Blocks_DonateBlock = AcfFieldGroup & {
-  __typename?: "Resource_Flexiblecontent_Blocks_DonateBlock";
-  cardRepeater?: Maybe<
-    Array<Maybe<Resource_Flexiblecontent_Blocks_DonateBlock_CardRepeater>>
-  >;
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars["String"]>;
-  hasPawIcon?: Maybe<Scalars["Boolean"]>;
-  pawIconPosition?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
-  variant?: Maybe<Scalars["String"]>;
-};
-
-/** Field Group */
-export type Resource_Flexiblecontent_Blocks_DonateBlock_CardRepeater =
-  AcfFieldGroup & {
-    __typename?: "Resource_Flexiblecontent_Blocks_DonateBlock_cardRepeater";
-    donateContent?: Maybe<Scalars["String"]>;
-    donateLink?: Maybe<AcfLink>;
-    /** The name of the ACF Field Group */
-    fieldGroupName?: Maybe<Scalars["String"]>;
-    title?: Maybe<Scalars["String"]>;
   };
 
 /** Group within the flex field */
@@ -13107,6 +13085,32 @@ export type Resource_Flexiblecontent_Blocks_Quotes = AcfFieldGroup & {
   subtext?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
 };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_SplitText = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_SplitText";
+  cardRepeater?: Maybe<
+    Array<Maybe<Resource_Flexiblecontent_Blocks_SplitText_CardRepeater>>
+  >;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  hasPawIcon?: Maybe<Scalars["Boolean"]>;
+  pawIconPosition?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+  variant?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_SplitText_CardRepeater =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_SplitText_cardRepeater";
+    content?: Maybe<Scalars["String"]>;
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    link?: Maybe<AcfLink>;
+    linkType?: Maybe<Scalars["String"]>;
+    title?: Maybe<Scalars["String"]>;
+  };
 
 /** Group within the flex field */
 export type Resource_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {

@@ -163,20 +163,20 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         form
         title
       }
-      ... on Page_Flexiblecontent_Blocks_DonateBlock {
-        fieldGroupName
-        hasPawIcon
-        title
-        pawIconPosition
+      ... on Page_Flexiblecontent_Blocks_SplitText {
         variant
+        hasPawIcon
+        pawIconPosition
+        title
         cardRepeater {
-          donateContent
-          donateLink {
-            target
+          title
+          content
+          linkType
+          link {
             title
             url
+            target
           }
-          title
         }
       }
       ... on Page_Flexiblecontent_Blocks_Impact {

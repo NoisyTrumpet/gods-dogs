@@ -19,7 +19,11 @@ const Hero = ({
   const isBasic = variant === "basic";
   const isPrimary = variant === "primary";
   const isSecondary = variant === "secondary";
-  const isDogGroups = leftGraphic === "goldenGroup" || leftGraphic === "terrierGroup" || rightGraphic === "goldenGroup" || rightGraphic === "terrierGroup";
+  const isDogGroups =
+    leftGraphic === "goldenGroup" ||
+    leftGraphic === "terrierGroup" ||
+    rightGraphic === "goldenGroup" ||
+    rightGraphic === "terrierGroup";
   const isDonate = variant === "donate";
 
   if (isDonate) {
@@ -29,39 +33,50 @@ const Hero = ({
   let svgClassLeft;
   let sideGraphicLeft;
   if (isBasic) {
-    svgClassLeft = "-left-8 xs:-left-20 h-full max-w-full xs:max-w-[60%] md:-left-28 lg:-left-8 2xl:left-0 basicSvg";
+    svgClassLeft =
+      "-left-8 xs:-left-20 h-full max-w-full xs:max-w-[60%] md:-left-28 lg:-left-8 2xl:left-0 basicSvg";
   } else if (isDogGroups) {
-    svgClassLeft = "-left-4 h-full max-w-[50%] self-start sm:-left-12 md:-left-16 2xl:left-0 dogGrpSvg";
+    svgClassLeft =
+      "-left-4 h-full max-w-[50%] self-start sm:-left-12 md:-left-16 2xl:left-0 dogGrpSvg";
   } else {
-    svgClassLeft = "-left-20 h-full max-w-[50%] self-start xs:-left-12 md:-left-16 2xl:left-0 allSvg";
+    svgClassLeft =
+      "-left-20 h-full max-w-[50%] self-start xs:-left-12 md:-left-16 2xl:left-0 allSvg";
   }
   if (isBasic) {
     sideGraphicLeft = "relative bottom-0 h-full max-h-full basicSvg";
   } else if (leftGraphic === "volunteerWalker") {
     sideGraphicLeft = "h-full max-h-[190px] md:max-h-[300px] volSvg";
   } else if (isDogGroups) {
-    sideGraphicLeft = "absolute bottom-0 h-[250px] max-h-[35vw] xs:max-h-[30vw] md:max-h-[75%] lg:h-[300px] dogGrpSvg";
+    sideGraphicLeft =
+      "absolute bottom-0 h-[250px] max-h-[35vw] xs:max-h-[30vw] md:max-h-[75%] lg:h-[300px] dogGrpSvg";
   } else {
-    sideGraphicLeft = "absolute bottom-0 h-[160px] max-h-[47vw] sm:max-h-[42%] sm:h-[225px] md:max-h-[75%] lg:h-[300px] allSvg";
+    sideGraphicLeft =
+      "absolute bottom-0 h-[160px] max-h-[47vw] sm:max-h-[42%] sm:h-[225px] md:max-h-[75%] lg:h-[300px] allSvg";
   }
 
   let svgClassRight;
   let sideGraphicRight;
   if (isBasic) {
-    svgClassRight = "-right-20 h-full hidden xs:flex max-w-[60%] md:-right-28 md:justify-end lg:-right-8 2xl:right-0 basicSvg";
+    svgClassRight =
+      "-right-20 h-full hidden xs:flex max-w-[60%] md:-right-28 md:justify-end lg:-right-8 2xl:right-0 basicSvg";
   } else if (isDogGroups) {
-    svgClassRight = "-right-14 h-full max-w-[50%] justify-end self-end sm:-right-20 md:-right-16 2xl:right-0 dogGrpSvg";
+    svgClassRight =
+      "-right-14 h-full max-w-[50%] justify-end self-end sm:-right-20 md:-right-16 2xl:right-0 dogGrpSvg";
   } else {
-    svgClassRight = "-right-20 h-full max-w-[50%] justify-end self-end xs:-right-12 md:-right-16 2xl:right-0 allSvg";
+    svgClassRight =
+      "-right-20 h-full max-w-[50%] justify-end self-end xs:-right-12 md:-right-16 2xl:right-0 allSvg";
   }
   if (isBasic) {
-    sideGraphicRight = "relative bottom-0 h-full max-h-full -scale-x-100 basicSvg";
+    sideGraphicRight =
+      "relative bottom-0 h-full max-h-full -scale-x-100 basicSvg";
   } else if (rightGraphic === "volunteerWalker") {
     sideGraphicRight = "h-full max-h-[190px] md:max-h-[300px] volSvg";
   } else if (isDogGroups) {
-    sideGraphicRight = "absolute bottom-0 h-[250px] max-h-[35vw] xs:max-h-[30vw] -scale-x-100 md:max-h-[75%] lg:h-[300px] dogGrpSvg";
+    sideGraphicRight =
+      "absolute bottom-0 h-[250px] max-h-[35vw] xs:max-h-[30vw] -scale-x-100 md:max-h-[75%] lg:h-[300px] dogGrpSvg";
   } else {
-    sideGraphicRight = "absolute bottom-0 h-[160px] max-h-[47vw] sm:max-h-[42%] -scale-x-100 sm:h-[225px] md:max-h-[75%] lg:h-[300px] allSvg";
+    sideGraphicRight =
+      "absolute bottom-0 h-[160px] max-h-[47vw] sm:max-h-[42%] -scale-x-100 sm:h-[225px] md:max-h-[75%] lg:h-[300px] allSvg";
   }
 
   let rightGraphicValue;
@@ -73,8 +88,8 @@ const Hero = ({
 
   // else if (isBasic) {
   //   rightGraphicValue = "";
-  // } 
-  
+  // }
+
   return (
     <div
       className={`${className ? className : ``} border-b-[29px] border-primary`}
@@ -126,9 +141,7 @@ const Hero = ({
           ) : null}
         </div>
         {rightGraphic ? (
-          <div
-            className={`${svgClassRight} absolute bottom-0 flex w-full`}
-          >
+          <div className={`${svgClassRight} absolute bottom-0 flex w-full`}>
             <SideGraphic
               className={`${sideGraphicRight}`}
               graphic={`${isBasic ? "" : rightGraphicValue}`}

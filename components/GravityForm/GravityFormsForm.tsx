@@ -47,23 +47,30 @@ const fieldError = {
 };
 
 const GravityFormsForm = ({ form, formId }: Props) => {
-  const { formFields, title, description, id, databaseId, submitButton, confirmations } =
-    form ?? {
-      formFields: {
-        nodes: [],
+  const {
+    formFields,
+    title,
+    description,
+    id,
+    databaseId,
+    submitButton,
+    confirmations,
+  } = form ?? {
+    formFields: {
+      nodes: [],
+    },
+    title: "",
+    id: "",
+    databaseId: 0,
+    submitButton: {
+      text: "",
+    },
+    confirmations: [
+      {
+        message: "",
       },
-      title: "",
-      id: "",
-      databaseId: 0,
-      submitButton: {
-        text: "",
-      },
-      confirmations: [
-        {
-          message: "",
-        },
-      ],
-    };
+    ],
+  };
 
   const { state } = useGravityForm();
 
@@ -141,7 +148,9 @@ const GravityFormsForm = ({ form, formId }: Props) => {
 
   return (
     <>
-    {description ? <div className="text-center max-w-2xl mx-auto mb-6">{description}</div> : null}
+      {description ? (
+        <div className="mx-auto mb-6 max-w-2xl text-center">{description}</div>
+      ) : null}
       <form
         // className={`${styles[`form`]}`}
         method="post"

@@ -27,6 +27,10 @@ const FeaturedCards = dynamic(
 const Accordion = dynamic(() => import("components/Accordion/Accordion"), {
   ssr: true,
 });
+// Split Text:
+const SplitText = dynamic(() => import("components/SplitText/SplitText"), {
+  ssr: true,
+});
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -38,12 +42,12 @@ import {
   Page_Flexiblecontent_Blocks_PetCarousel,
   Page_Flexiblecontent_Blocks_PostsBlock,
   Page_Flexiblecontent_Blocks_Form,
-  Page_Flexiblecontent_Blocks_DonateBlock,
   Page_Flexiblecontent_Blocks_Impact,
   Page_Flexiblecontent_Blocks_FeaturedCards,
   Page_Flexiblecontent_Blocks_Accordion,
   Page_Flexiblecontent_Blocks_TeamMembers,
   Page_Flexiblecontent_Blocks_EventBlock,
+  Page_Flexiblecontent_Blocks_SplitText,
   AcfLink,
 } from "graphql";
 
@@ -61,12 +65,12 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_PetCarousel
     | Page_Flexiblecontent_Blocks_PostsBlock
     | Page_Flexiblecontent_Blocks_Form
-    | Page_Flexiblecontent_Blocks_DonateBlock
     | Page_Flexiblecontent_Blocks_Impact
     | Page_Flexiblecontent_Blocks_FeaturedCards
     | Page_Flexiblecontent_Blocks_Accordion
     | Page_Flexiblecontent_Blocks_TeamMembers
-    | Page_Flexiblecontent_Blocks_EventBlock;
+    | Page_Flexiblecontent_Blocks_EventBlock
+    | Page_Flexiblecontent_Blocks_SplitText;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
@@ -112,6 +116,12 @@ const Block = ({ block }: BlockProps) => {
     case "Accordion": {
       return (
         <Accordion {...(block as Page_Flexiblecontent_Blocks_Accordion)} />
+      );
+    }
+    // SplitText
+    case "SplitText": {
+      return (
+        <SplitText {...(block as Page_Flexiblecontent_Blocks_SplitText)} />
       );
     }
     default: {

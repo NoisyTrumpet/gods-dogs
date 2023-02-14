@@ -116,7 +116,7 @@ const Header = ({
             <Button
               variant={`secondary`}
               href={cta.url ?? ``}
-              className={`order-first w-fit md:order-last min-w-fit`}
+              className={`order-first w-fit min-w-fit md:order-last`}
               target={cta.target ?? `_self`}
             >
               {cta.title}

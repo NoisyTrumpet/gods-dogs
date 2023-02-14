@@ -98,7 +98,7 @@ const Footer = ({
         </div>
         {/* Menu */}
         <div
-          className={`flex flex-col md:flex-row py-4 mx-auto lg:mx-0 items-center justify-center md:justify-end xl:justify-start`}
+          className={`mx-auto flex flex-col items-center justify-center py-4 md:flex-row md:justify-end lg:mx-0 xl:justify-start`}
         >
           <NavigationMenu
             type={`footer`}
@@ -106,7 +106,7 @@ const Footer = ({
             className={`text-white`}
           />
           <div
-            className={`flex flex-col tems-center justify-center xl:h-full xl:justify-around`}
+            className={`tems-center flex flex-col justify-center xl:h-full xl:justify-around`}
           >
             {cta ? (
               <Button

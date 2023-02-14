@@ -31,7 +31,7 @@ const TextImage = ({ className, textImageRepeater }: TextImageProps) => {
       const pawsClasses =
         pawsIconPostion === `top-left`
           ? `-top-8 -left-24`
-          : `-top-8 -right-24 rotate-[-20deg] `;
+          : `-top-8 -right-24 -scale-x-100 `;
 
       return (
         <div

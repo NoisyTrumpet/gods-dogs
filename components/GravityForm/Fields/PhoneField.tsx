@@ -31,7 +31,7 @@ export default function PhoneField({ field, fieldErrors, formId }: Props) {
       <input
         type="tel"
         name={String(id)}
-        className={`form-input[type='tel'] w-full rounded-lg font-body text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300 px-4 py-2`}
+        className={`form-input[type='tel'] w-full rounded-lg px-4 py-2 font-body text-gray-700 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-300`}
         id={htmlId}
         required={Boolean(isRequired)}
         placeholder={placeholder || isRequired ? `${label}*` : label || ""}
