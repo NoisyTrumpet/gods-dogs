@@ -45,7 +45,7 @@ export default function EmailField({ field, fieldErrors, formId }: Props) {
       <input
         type="email"
         name={String(id)}
-        className={`form-input[type='email'] w-full rounded-lg font-body px-4 py-2`}
+        className={`form-input[type='email'] w-full rounded-lg px-4 py-2 font-body`}
         id={htmlId}
         placeholder={field?.isRequired ? `${label}*` : label || ""}
         required={isRequired || false}

@@ -61,9 +61,8 @@ const TextBlock = ({ className, paragraphs }: TextBlockProps) => {
                     </Button>
                   );
                 })}
-                </div>
+              </div>
             ) : null}
-
           </div>
         </div>
       );
