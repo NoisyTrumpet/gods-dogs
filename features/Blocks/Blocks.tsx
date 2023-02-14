@@ -38,12 +38,12 @@ import {
   Page_Flexiblecontent_Blocks_PetCarousel,
   Page_Flexiblecontent_Blocks_PostsBlock,
   Page_Flexiblecontent_Blocks_Form,
-  Page_Flexiblecontent_Blocks_DonateBlock,
   Page_Flexiblecontent_Blocks_Impact,
   Page_Flexiblecontent_Blocks_FeaturedCards,
   Page_Flexiblecontent_Blocks_Accordion,
   Page_Flexiblecontent_Blocks_TeamMembers,
   Page_Flexiblecontent_Blocks_EventBlock,
+  Page_Flexiblecontent_Blocks_SplitText,
   AcfLink,
 } from "graphql";
 
@@ -61,12 +61,12 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_PetCarousel
     | Page_Flexiblecontent_Blocks_PostsBlock
     | Page_Flexiblecontent_Blocks_Form
-    | Page_Flexiblecontent_Blocks_DonateBlock
     | Page_Flexiblecontent_Blocks_Impact
     | Page_Flexiblecontent_Blocks_FeaturedCards
     | Page_Flexiblecontent_Blocks_Accordion
     | Page_Flexiblecontent_Blocks_TeamMembers
-    | Page_Flexiblecontent_Blocks_EventBlock;
+    | Page_Flexiblecontent_Blocks_EventBlock
+    | Page_Flexiblecontent_Blocks_SplitText
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
