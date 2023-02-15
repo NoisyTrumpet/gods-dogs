@@ -28,12 +28,22 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
     : `relative block w-full pb-5 md:px-20 md:pb-0`;
 
   const responsiveBreakpoints = isFeatured
-    ? {}
-    : {
+    ? {
         320: {
           slidesPerView: 1,
         },
-        480: {
+        768: {
+          slidesPerView: 1,
+        },
+        1024: {
+          slidesPerView: 1,
+        },
+        1300: {
+          slidesPerView: 1,
+        },
+      }
+    : {
+        320: {
           slidesPerView: 1,
         },
         768: {
