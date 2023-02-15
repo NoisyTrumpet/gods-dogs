@@ -206,6 +206,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           cardHasLink
           cardTitle
           hasCardIcon
+          buttonType
           cardLink {
             target
             title

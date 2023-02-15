@@ -52,6 +52,7 @@ const FeaturedCards = ({
               cardBackgroundColor,
               cardContent,
               cardHasLink,
+              buttonType,
               cardLink,
               cardTitle,
               hasCardIcon,
@@ -155,9 +156,21 @@ const FeaturedCards = ({
                           } text-md mb-4 max-w-lg font-body`}
                           dangerouslySetInnerHTML={{ __html: cardContent }}
                         />
-                        <span className={`uppercase italic underline`}>
-                          {cardLink.title}
-                        </span>
+                        {buttonType === "basic" ? (
+                          <span className={`uppercase italic underline`}>
+                            {cardLink.title}
+                          </span>
+                        ) : (
+                          <Button
+                            href={cardLink.url ?? "#"}
+                            target={cardLink.target ? cardLink.target : "_self"}
+                            className={`w-fit`}
+                            variant={buttonType as string}
+                          >
+                            {cardLink.title}
+                          </Button>
+                        )}
+                        
                       </>
                     ) : null}
                   </Link>
