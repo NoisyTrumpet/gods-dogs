@@ -31,6 +31,10 @@ const Accordion = dynamic(() => import("components/Accordion/Accordion"), {
 const SplitText = dynamic(() => import("components/SplitText/SplitText"), {
   ssr: true,
 });
+// Pet Carousel Block:
+const PetCarousel = dynamic(() => import("components/PetCarousel/PetCarousel"), {
+  ssr: true,
+});
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -122,6 +126,12 @@ const Block = ({ block }: BlockProps) => {
     case "SplitText": {
       return (
         <SplitText {...(block as Page_Flexiblecontent_Blocks_SplitText)} />
+      );
+    }
+    // PetCarousel
+    case "PetCarousel": {
+      return (
+        <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
       );
     }
     default: {
