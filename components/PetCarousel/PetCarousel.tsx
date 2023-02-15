@@ -23,9 +23,29 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
     ? `variant-${variant} ${className} relative px-2 bg-primary-light`
     : `variant-${variant} ${className} relative px-2 my-10`;
 
-    const swiperWrapper = isFeatured
-      ? `relative block w-full pb-10 md:px-20 md:pb-0`
-      : `relative block w-full pb-5 md:px-20 md:pb-0`;
+  const swiperWrapper = isFeatured
+    ? `relative block w-full pb-10 md:px-20 md:pb-0`
+    : `relative block w-full pb-5 md:px-20 md:pb-0`;
+
+  const responsiveBreakpoints = isFeatured
+    ? {}
+    : {
+        320: {
+          slidesPerView: 1,
+        },
+        480: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+        1300: {
+          slidesPerView: 4,
+        },
+      };
 
   useEffect(() => {
     setLoaded(true);
@@ -53,23 +73,7 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
             </button>
             <div className={swiperWrapper}>
               <Swiper
-                breakpoints={{
-                  320: {
-                    slidesPerView: 1,
-                  },
-                  480: {
-                    slidesPerView: 1,
-                  },
-                  768: {
-                    slidesPerView: 2,
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                  },
-                  1300: {
-                    slidesPerView: 4,
-                  },
-                }}
+                breakpoints={responsiveBreakpoints}
                 slidesPerView={slidesPerView}
                 slidesPerGroup={slidesPerView}
                 loop={true}
