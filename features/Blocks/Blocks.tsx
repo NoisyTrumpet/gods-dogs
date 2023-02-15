@@ -27,6 +27,10 @@ const FeaturedCards = dynamic(
 const Accordion = dynamic(() => import("components/Accordion/Accordion"), {
   ssr: true,
 });
+// Pet Carousel Block:
+const PetCarousel = dynamic(() => import("components/PetCarousel/PetCarousel"), {
+  ssr: true,
+});
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -112,6 +116,12 @@ const Block = ({ block }: BlockProps) => {
     case "Accordion": {
       return (
         <Accordion {...(block as Page_Flexiblecontent_Blocks_Accordion)} />
+      );
+    }
+    // PetCarousel
+    case "PetCarousel": {
+      return (
+        <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
       );
     }
     default: {
