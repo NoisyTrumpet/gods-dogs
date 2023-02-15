@@ -20,7 +20,7 @@ const SplitText = ({
   if (variant === "masonry") {
     variantContainer = "w-full columns-1 md:w-50 md:columns-2 gap-4";
   } else if (variant === "basic") {
-    variantContainer = "grid grid-cols-2 gap-4";
+    variantContainer = "grid grid-cols-1 md:grid-cols-2 gap-4";
   }
 
   let pawPosition;

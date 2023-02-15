@@ -1,0 +1,16 @@
+.hoverIcon:hover .cardIcon {
+  filter: invert(0.2) sepia(0.8) saturate(25) hue-rotate(-35deg);
+}
+.bglightHoverIcon:hover .cardIcon {
+  filter: invert(1) brightness(2);
+}
+.bgdarkHoverIcon .cardIcon {
+  filter: invert(1) brightness(2);
+}
+.bgdarkHoverIcon:hover .cardIcon {
+  filter: none;
+}
+
+.hoverImg:hover .cardIcon {
+  filter: drop-shadow(2px 2px 5px #666793);
+}

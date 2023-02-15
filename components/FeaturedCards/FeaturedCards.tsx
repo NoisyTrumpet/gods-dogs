@@ -2,6 +2,7 @@ import { Button } from "components/Button";
 import Link from "next/link";
 import { FeaturedImage } from "components/FeaturedImage";
 import { Page_Flexiblecontent_Blocks_FeaturedCards } from "graphql";
+import styles from "./FeaturedCards.module.css";
 
 export interface CardProps extends Page_Flexiblecontent_Blocks_FeaturedCards {
   className?: string;
@@ -58,6 +59,53 @@ const FeaturedCards = ({
               contentAligned,
             } = card ?? {};
 
+            let iconType;
+            let iconHover;
+            let bgLinkStyles;
+            let textLinkStyles;
+            if (cardIcon?.mimeType === "image/jpeg") {
+              iconType = "max-w-[150px]";
+              iconHover = "hoverImg";
+            } else if (
+              cardIcon?.mimeType === "image/png" ||
+              cardIcon?.mimeType === "image/svg+xml"
+            ) {
+              iconType = "max-h-[3rem] w-fit";
+              if (cardBackgroundColor !== "transparent") {
+              } else {
+              }
+              if (cardBackgroundColor === "transparent") {
+                iconHover = "hoverIcon";
+              } else if (
+                cardBackgroundColor === "primary" ||
+                cardBackgroundColor === "secondary"
+              ) {
+                iconHover = "bgdarkHoverIcon";
+              } else if (
+                cardBackgroundColor === "primary-light" ||
+                cardBackgroundColor === "secondary-light"
+              ) {
+                iconHover = "bglightHoverIcon";
+              }
+            }
+
+            if (cardBackgroundColor === "transparent") {
+              bgLinkStyles = "bg-transparent";
+              textLinkStyles = "text-dark hover:text-secondary";
+            } else if (cardBackgroundColor === "primary") {
+              bgLinkStyles = "bg-primary hover:bg-primary-light";
+              textLinkStyles = "text-white hover:text-dark";
+            } else if (cardBackgroundColor === "primary-light") {
+              bgLinkStyles = "bg-primary-light hover:bg-primary";
+              textLinkStyles = "text-dark hover:text-white";
+            } else if (cardBackgroundColor === "secondary") {
+              bgLinkStyles = "bg-secondary hover:bg-[#D04F4F4a]";
+              textLinkStyles = "text-white hover:text-dark";
+            } else if (cardBackgroundColor === "secondary-light") {
+              bgLinkStyles = "bg-[#D04F4F4a] hover:bg-secondary";
+              textLinkStyles = "text-dark hover:text-white";
+            }
+
             return (
               <div
                 key={index}
@@ -74,19 +122,23 @@ const FeaturedCards = ({
                     target={cardLink.target ? cardLink.target : "_self"}
                     className={`${
                       className ? className : ``
-                    } flex bg-${cardBackgroundColor} ${
+                    } flex ${bgLinkStyles} ${textLinkStyles} ${
                       contentAligned ? "text-left" : "items-center text-center"
-                    } relative h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out`}
+                    } relative h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out ${
+                      styles[`${iconHover}`]
+                    }`}
                   >
                     {hasCardIcon ? (
                       <FeaturedImage
                         image={cardIcon}
-                        className={`max-h-[3rem] w-fit`}
+                        className={`${iconType} ${
+                          styles[`cardIcon`]
+                        } transition duration-300 ease-in-out`}
                         imgClassName="w-full"
                       />
                     ) : null}
                     {cardTitle ? (
-                      <h3 className="mt-4 font-heading text-4xl leading-none text-med-dark">
+                      <h3 className="mt-4 font-heading text-4xl leading-none">
                         {cardTitle}
                       </h3>
                     ) : null}
@@ -100,12 +152,10 @@ const FeaturedCards = ({
                         <div
                           className={`${
                             contentAligned ? "text-left" : "text-center"
-                          } text-md mb-4 max-w-lg font-body text-dark`}
+                          } text-md mb-4 max-w-lg font-body`}
                           dangerouslySetInnerHTML={{ __html: cardContent }}
                         />
-                        <span
-                          className={`uppercase italic underline transition duration-300 ease-in-out hover:text-secondary`}
-                        >
+                        <span className={`uppercase italic underline`}>
                           {cardLink.title}
                         </span>
                       </>
@@ -122,7 +172,7 @@ const FeaturedCards = ({
                     {hasCardIcon ? (
                       <FeaturedImage
                         image={cardIcon}
-                        className={`max-h-[3rem] w-fit`}
+                        className={`${iconType}`}
                         imgClassName="w-full"
                       />
                     ) : null}
