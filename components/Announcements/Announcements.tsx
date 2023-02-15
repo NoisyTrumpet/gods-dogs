@@ -11,7 +11,7 @@ const Announcements = ({ announcements }: any) => {
           backgroundColor: string;
         }) => {
           const { backgroundColor, ctaType, cta, content } = announcement;
-          const { title, url, target } = cta;
+          // const { title, url, target } = cta;
 
           const type = ctaType === `secondary` ? `announcement` : `primary`;
           const txtColor =
@@ -28,11 +28,11 @@ const Announcements = ({ announcements }: any) => {
               {cta ? (
                 <Button
                   variant={type}
-                  href={url ?? ``}
+                  href={cta.url ?? ``}
                   className={`order-first w-fit md:order-last`}
-                  target={target ?? `_self`}
+                  target={cta.target ?? `_self`}
                 >
-                  {title}
+                  {cta.title}
                 </Button>
               ) : null}
             </div>
