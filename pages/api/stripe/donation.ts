@@ -61,8 +61,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (isDev) {
     // Return Response from Stripe
     res.status(200).json({ session });
-  } else {
-    // Redirect to Stripe Checkout
-    res.redirect(303, session.url);
   }
+  // Redirect to Stripe Checkout
+  res.redirect(303, session.url);
 };

@@ -117,10 +117,7 @@ const FeaturedCards = ({
                 }`}
               >
                 {cardHasLink && cardLink ? (
-                  <Link
-                    role="button"
-                    href={cardLink.url ?? "/"}
-                    target={cardLink.target ? cardLink.target : "_self"}
+                  <div
                     className={`${
                       className ? className : ``
                     } flex ${bgLinkStyles} ${textLinkStyles} ${
@@ -170,10 +167,9 @@ const FeaturedCards = ({
                             {cardLink.title}
                           </Button>
                         )}
-                        
                       </>
                     ) : null}
-                  </Link>
+                  </div>
                 ) : (
                   <div
                     className={`${
