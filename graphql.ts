@@ -4101,10 +4101,48 @@ export type Event_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   leftGraphic?: Maybe<Scalars['String']>;
+  monthly?: Maybe<Event_Flexiblecontent_Blocks_Hero_Monthly>;
+  oneTime?: Maybe<Event_Flexiblecontent_Blocks_Hero_OneTime>;
   rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   variant?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Hero_Monthly = AcfFieldGroup & {
+  __typename?: 'Event_Flexiblecontent_Blocks_Hero_Monthly';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  monthlyOptions?: Maybe<Array<Maybe<Event_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions = AcfFieldGroup & {
+  __typename?: 'Event_Flexiblecontent_Blocks_Hero_Monthly_monthlyOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Hero_OneTime = AcfFieldGroup & {
+  __typename?: 'Event_Flexiblecontent_Blocks_Hero_OneTime';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  oneTimeOptions?: Maybe<Array<Maybe<Event_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Event_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions = AcfFieldGroup & {
+  __typename?: 'Event_Flexiblecontent_Blocks_Hero_OneTime_oneTimeOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
 };
 
 /** Field Group */
@@ -8082,10 +8120,48 @@ export type Page_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   leftGraphic?: Maybe<Scalars['String']>;
+  monthly?: Maybe<Page_Flexiblecontent_Blocks_Hero_Monthly>;
+  oneTime?: Maybe<Page_Flexiblecontent_Blocks_Hero_OneTime>;
   rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   variant?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_Hero_Monthly = AcfFieldGroup & {
+  __typename?: 'Page_Flexiblecontent_Blocks_Hero_Monthly';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  monthlyOptions?: Maybe<Array<Maybe<Page_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions = AcfFieldGroup & {
+  __typename?: 'Page_Flexiblecontent_Blocks_Hero_Monthly_monthlyOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_Hero_OneTime = AcfFieldGroup & {
+  __typename?: 'Page_Flexiblecontent_Blocks_Hero_OneTime';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  oneTimeOptions?: Maybe<Array<Maybe<Page_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Page_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions = AcfFieldGroup & {
+  __typename?: 'Page_Flexiblecontent_Blocks_Hero_OneTime_oneTimeOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
 };
 
 /** Field Group */
@@ -11871,10 +11947,48 @@ export type Post_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   leftGraphic?: Maybe<Scalars['String']>;
+  monthly?: Maybe<Post_Flexiblecontent_Blocks_Hero_Monthly>;
+  oneTime?: Maybe<Post_Flexiblecontent_Blocks_Hero_OneTime>;
   rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   variant?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Hero_Monthly = AcfFieldGroup & {
+  __typename?: 'Post_Flexiblecontent_Blocks_Hero_Monthly';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  monthlyOptions?: Maybe<Array<Maybe<Post_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions = AcfFieldGroup & {
+  __typename?: 'Post_Flexiblecontent_Blocks_Hero_Monthly_monthlyOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Hero_OneTime = AcfFieldGroup & {
+  __typename?: 'Post_Flexiblecontent_Blocks_Hero_OneTime';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  oneTimeOptions?: Maybe<Array<Maybe<Post_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Post_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions = AcfFieldGroup & {
+  __typename?: 'Post_Flexiblecontent_Blocks_Hero_OneTime_oneTimeOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
 };
 
 /** Field Group */
@@ -12642,10 +12756,48 @@ export type Resource_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
   leftGraphic?: Maybe<Scalars['String']>;
+  monthly?: Maybe<Resource_Flexiblecontent_Blocks_Hero_Monthly>;
+  oneTime?: Maybe<Resource_Flexiblecontent_Blocks_Hero_OneTime>;
   rightGraphic?: Maybe<Scalars['String']>;
   subtitle?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   variant?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Hero_Monthly = AcfFieldGroup & {
+  __typename?: 'Resource_Flexiblecontent_Blocks_Hero_Monthly';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  monthlyOptions?: Maybe<Array<Maybe<Resource_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Hero_Monthly_MonthlyOptions = AcfFieldGroup & {
+  __typename?: 'Resource_Flexiblecontent_Blocks_Hero_Monthly_monthlyOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Hero_OneTime = AcfFieldGroup & {
+  __typename?: 'Resource_Flexiblecontent_Blocks_Hero_OneTime';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  oneTimeOptions?: Maybe<Array<Maybe<Resource_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions>>>;
+  title?: Maybe<Scalars['String']>;
+};
+
+/** Field Group */
+export type Resource_Flexiblecontent_Blocks_Hero_OneTime_OneTimeOptions = AcfFieldGroup & {
+  __typename?: 'Resource_Flexiblecontent_Blocks_Hero_OneTime_oneTimeOptions';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
 };
 
 /** Field Group */
