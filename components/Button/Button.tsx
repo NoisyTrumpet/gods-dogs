@@ -8,7 +8,7 @@ export interface ButtonProps {
   variant: string;
   onClick?: () => void;
   disabled?: boolean;
-  type: string;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const styleLoader = (type: string) => {
@@ -73,7 +73,7 @@ const Button = ({
     <button
       disabled={disabled}
       className={`${styleLoader(variant)} ${className}`}
-      type={type ? type : "button"}
+      type={type ?? "button"}
       {...props}
     >
       {children}
