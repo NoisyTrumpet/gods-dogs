@@ -4,11 +4,14 @@ const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 // Environment State
 const isDev = process.env.NODE_ENV === "development";
 const devUrl = "http://localhost:3000";
+const prodUrl = "https://gods-dogs.vercel.app/";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { id, price, type } = req.query;
 
   let sessionOptions = {};
+  let success = isDev ? `${devUrl}/thank-you/` : `${prodUrl}/thank-you/`;
+  let cancel = isDev ? `${devUrl}/donate/` : `${prodUrl}/donate/`;
 
   if (id) {
     // Use pre-defined product
@@ -22,12 +25,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
       ],
       mode: type === "one-time" ? "payment" : "subscription",
-      success_url: isDev
-        ? `${devUrl}/thank-you/`
-        : `${process.env.NEXT_PUBLIC_URL}/thank-you/`,
-      cancel_url: isDev
-        ? `${devUrl}/donate/`
-        : `${process.env.NEXT_PUBLIC_URL}/donate/`,
+      success_url: success,
+      cancel_url: cancel,
     };
   } else if (price) {
     // Use custom price
@@ -47,12 +46,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
       ],
       mode: type === "one-time" ? "payment" : "subscription",
-      success_url: isDev
-        ? `${devUrl}/thank-you/`
-        : `${process.env.NEXT_PUBLIC_URL}/thank-you/`,
-      cancel_url: isDev
-        ? `${devUrl}/donate/`
-        : `${process.env.NEXT_PUBLIC_URL}/donate/`,
+      success_url: success,
+      cancel_url: cancel,
     };
   }
 
