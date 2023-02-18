@@ -18,6 +18,20 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
           type
         }
+        oneTime {
+          title
+          oneTimeOptions {
+            id
+            label
+          }
+        }
+        monthly {
+          monthlyOptions {
+            id
+            label
+          }
+          title
+        }
         rightGraphic
         leftGraphic
       }

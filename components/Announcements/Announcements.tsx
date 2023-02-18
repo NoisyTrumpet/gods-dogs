@@ -11,7 +11,7 @@ const Announcements = ({ announcements }: any) => {
           backgroundColor: string;
         }) => {
           const { backgroundColor, ctaType, cta, content } = announcement;
-          const { title, url, target } = cta;
+          const { title, url, target } = cta ?? {};
 
           const type = ctaType === `secondary` ? `announcement` : `primary`;
           const txtColor =
