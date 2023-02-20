@@ -64,13 +64,13 @@ const FeaturedCards = ({
             let iconHover;
             let bgLinkStyles;
             let textLinkStyles;
-            if (cardIcon?.mimeType === "image/jpeg") {
-              iconType = "max-w-[150px]";
-              iconHover = "hoverImg";
-            } else if (
+            if (
               cardIcon?.mimeType === "image/png" ||
-              cardIcon?.mimeType === "image/svg+xml"
+              cardIcon?.mimeType === "image/jpeg"
             ) {
+              iconType = "max-w-[150px] rounded-lg overflow-hidden";
+              iconHover = "hoverImg";
+            } else if (cardIcon?.mimeType === "image/svg+xml") {
               iconType = "max-h-[3rem] w-fit";
               if (cardBackgroundColor !== "transparent") {
               } else {
@@ -107,6 +107,15 @@ const FeaturedCards = ({
               textLinkStyles = "text-dark hover:text-white";
             }
 
+            let linkHovers;
+            if (cardHasLink) {
+              linkHovers = `${bgLinkStyles} ${textLinkStyles} ${
+                styles[`${iconHover}`]
+              }`;
+            } else {
+              linkHovers = `bg-${cardBackgroundColor}`;
+            }
+
             return (
               <div
                 key={index}
@@ -116,8 +125,11 @@ const FeaturedCards = ({
                     : ""
                 }`}
               >
-                {cardHasLink && cardLink ? (
-                  <div
+                {cardHasLink && cardLink && !cardContent ? (
+                  <Link
+                    role="button"
+                    href={cardLink.url ?? "/"}
+                    target={cardLink.target ? cardLink.target : "_self"}
                     className={`${
                       className ? className : ``
                     } flex ${bgLinkStyles} ${textLinkStyles} ${
@@ -140,6 +152,31 @@ const FeaturedCards = ({
                         {cardTitle}
                       </h3>
                     ) : null}
+                  </Link>
+                ) : (
+                  <div
+                    className={`${className ? className : ``} ${linkHovers} ${
+                      contentAligned ? "text-left" : "items-center text-center"
+                    } relative flex h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out`}
+                  >
+                    {hasCardIcon ? (
+                      <FeaturedImage
+                        image={cardIcon}
+                        className={`${iconType} ${
+                          styles[`cardIcon`]
+                        } transition duration-300 ease-in-out`}
+                        imgClassName="w-full"
+                      />
+                    ) : null}
+                    {cardTitle ? (
+                      <h3
+                        className={`mt-4 font-heading text-4xl leading-none ${
+                          cardHasLink ? `` : `text-med-dark`
+                        }`}
+                      >
+                        {cardTitle}
+                      </h3>
+                    ) : null}
                     {dividerUnder ? (
                       <span className={`my-8 w-full border-t-2 border-dark`}>
                         {" "}
@@ -150,58 +187,34 @@ const FeaturedCards = ({
                         <div
                           className={`${
                             contentAligned ? "text-left" : "text-center"
-                          } text-md mb-4 max-w-lg font-body`}
+                          }  text-md mb-4 max-w-lg font-body ${
+                            cardHasLink ? `` : `text-dark`
+                          }`}
                           dangerouslySetInnerHTML={{ __html: cardContent }}
                         />
-                        {buttonType === "basic" ? (
-                          <span className={`uppercase italic underline`}>
-                            {cardLink.title}
-                          </span>
-                        ) : (
-                          <Button
-                            href={cardLink.url ?? "#"}
-                            target={cardLink.target ? cardLink.target : "_self"}
-                            className={`w-fit`}
-                            variant={buttonType as string}
-                          >
-                            {cardLink.title}
-                          </Button>
-                        )}
+                        {cardHasLink && cardLink ? (
+                          <>
+                            {buttonType === "basic" ? (
+                              <span
+                                className={`uppercase italic underline hover:cursor-pointer`}
+                              >
+                                {cardLink.title}
+                              </span>
+                            ) : (
+                              <Button
+                                href={cardLink.url ?? "#"}
+                                target={
+                                  cardLink.target ? cardLink.target : "_self"
+                                }
+                                className={`w-fit`}
+                                variant={buttonType as string}
+                              >
+                                {cardLink.title}
+                              </Button>
+                            )}
+                          </>
+                        ) : null}
                       </>
-                    ) : null}
-                  </div>
-                ) : (
-                  <div
-                    className={`${
-                      className ? className : ``
-                    } flex bg-${cardBackgroundColor} ${
-                      contentAligned ? "text-left" : "items-center text-center"
-                    } relative h-full w-full flex-col justify-start p-3`}
-                  >
-                    {hasCardIcon ? (
-                      <FeaturedImage
-                        image={cardIcon}
-                        className={`${iconType}`}
-                        imgClassName="w-full"
-                      />
-                    ) : null}
-                    {cardTitle ? (
-                      <h3 className="mt-4 font-heading text-4xl leading-none text-med-dark">
-                        {cardTitle}
-                      </h3>
-                    ) : null}
-                    {dividerUnder ? (
-                      <span className={`my-8 w-full border-t-2 border-dark`}>
-                        {" "}
-                      </span>
-                    ) : null}
-                    {cardContent ? (
-                      <div
-                        className={`${
-                          contentAligned ? "text-left" : "text-center"
-                        }  text-md mb-4 max-w-lg font-body text-dark`}
-                        dangerouslySetInnerHTML={{ __html: cardContent }}
-                      />
                     ) : null}
                   </div>
                 )}
