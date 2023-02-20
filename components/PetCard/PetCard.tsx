@@ -20,15 +20,15 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
   };
 
   const card = isFeatured
-    ? `flex flex-col justify-center md:flex-row`
+    ? `flex flex-col justify-center lg:flex-row`
     : `bg-gray-50 shadow-lg shadow-stone-300 mx-5 rounded-lg flex flex-col justify-center p-5`;
 
   const cardImage = isFeatured
-    ? `order-last flex h-[300px] flex-col gap-6 md:order-first md:h-[465px] md:w-1/2`
+    ? `order-last flex h-[300px] flex-col gap-6 md:h-[400px] lg:order-first lg:h-[465px] lg:w-1/2`
     : `w-full rounded-lg overflow-hidden`;
 
   const cardContent = isFeatured
-    ? `align-center order-last flex flex-col justify-center gap-6 px-12 py-8 md:w-1/2`
+    ? `align-center order-last flex flex-col justify-center gap-6 px-12 py-8 lg:w-1/2`
     : `w-full`;
 
   const petName = isFeatured
