@@ -72,7 +72,8 @@ const NavigationMenu = ({
             isOpen={isOpen}
             onClick={handleMenu}
             lineProps={{ strokeLinecap: "round" }}
-            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            // transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            transition={{default: { ease: "linear" }}}
             width="24"
             height="24"
             strokeWidth="6"
@@ -84,6 +85,7 @@ const NavigationMenu = ({
               animate={{
                 width: "100%",
               }}
+              transition={{default: { ease: "linear" }}}
               exit={{
                 width: 0,
                 transition: { delay: 0.7, duration: 0.3 },
@@ -91,7 +93,7 @@ const NavigationMenu = ({
               className={`absolute left-0 top-full grid h-screen bg-primary-light md:relative`}
             >
               <m.nav
-                className={`bottom-100 left-4 flex flex-col items-start p-8 font-heading text-3xl md:flex-row md:gap-0`}
+                className={`bottom-100 left-4 flex flex-col items-start pt-8 mx-auto font-heading text-3xl md:flex-row md:gap-0 w-full max-w-[80%] max-h-full`}
                 initial="closed"
                 animate="open"
                 exit="closed"
