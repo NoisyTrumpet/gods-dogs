@@ -32,9 +32,12 @@ const SplitText = dynamic(() => import("components/SplitText/SplitText"), {
   ssr: true,
 });
 // Pet Carousel Block:
-const PetCarousel = dynamic(() => import("components/PetCarousel/PetCarousel"), {
-  ssr: true,
-});
+const PetCarousel = dynamic(
+  () => import("components/PetCarousel/PetCarousel"),
+  {
+    ssr: true,
+  }
+);
 
 import {
   Page_Flexiblecontent_Blocks,

@@ -102,7 +102,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
           <Button
             variant="secondary-outline"
             type="submit"
-            className="relative flex w-full max-w-md items-center justify-center py-4 group"
+            className="group relative flex w-full max-w-md items-center justify-center py-4"
             disabled={!selectedOption}
           >
             <span>Submit</span>
