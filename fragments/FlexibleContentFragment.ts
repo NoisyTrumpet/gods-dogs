@@ -187,7 +187,9 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         title
         variant
         impactItems {
-          impactIcon
+          impactIcon {
+            ...MediaItemFragment
+          }
           impactNumber
           subtext
         }

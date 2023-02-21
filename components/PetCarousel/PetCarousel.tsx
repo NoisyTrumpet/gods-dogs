@@ -20,10 +20,12 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
     if (!isFeatured) {
       if (windowWidth.width !== undefined && windowWidth.width <= 768) {
         setSlidesPerView(1);
-      } else if (windowWidth.width !== undefined && windowWidth.width <= 1024) {
+      } else if (windowWidth.width !== undefined && windowWidth.width < 1024) {
         setSlidesPerView(2);
-      } else {
+      } else if (windowWidth.width !== undefined && windowWidth.width <= 1279) {
         setSlidesPerView(3);
+      } else {
+        setSlidesPerView(4);
       }
     }
   }
@@ -33,8 +35,8 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
     : `variant-${variant} ${className} relative px-2 my-10`;
 
   const carouselWrapper = isFeatured
-    ? `grid grid-cols-${slidesPerView} relative w-full pb-10 md:px-20 md:pb-0`
-    : `grid grid-cols-${slidesPerView} relative w-full pb-5 md:px-20 md:pb-0`;
+    ? `grid grid-cols-${slidesPerView} gap-6 relative w-full pb-10 md:px-20 md:pb-0`
+    : `grid grid-cols-${slidesPerView} gap-6 relative w-full pb-5 md:px-20 md:pb-0`;
 
   const handleNext = () => {
     if (pets?.length && currentCarouselPage < pets.length - slidesPerView) {
@@ -70,7 +72,7 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
 
   return (
     <>
-      {loaded && (
+      {loaded && hasPets && (
         <div className={carouselContainer}>
           <h3>{title}</h3>
           <div

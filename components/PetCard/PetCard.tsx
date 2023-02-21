@@ -21,10 +21,10 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
 
   const card = isFeatured
     ? `flex flex-col justify-center lg:flex-row`
-    : `bg-gray-50 shadow-lg shadow-stone-300 mx-5 rounded-lg flex flex-col justify-center p-5`;
+    : `bg-gray-50 shadow-lg shadow-stone-300 rounded-lg flex flex-col justify-center p-5`;
 
   const cardImage = isFeatured
-    ? `order-last flex h-[300px] flex-col gap-6 md:h-[400px] lg:order-first lg:h-[465px] lg:w-1/2`
+    ? `order-last flex h-[300px] flex-col md:h-[400px] lg:order-first lg:h-[465px] lg:w-1/2`
     : `w-full rounded-lg overflow-hidden`;
 
   const cardContent = isFeatured
