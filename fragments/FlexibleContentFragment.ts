@@ -108,7 +108,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
       ... on Page_Flexiblecontent_Blocks_PetCarousel {
         fieldGroupName
         title
-        
+
         pets {
           ... on Animal {
             id
