@@ -1,12 +1,23 @@
+import {
+  Page_Flexiblecontent_Blocks_Hero_Monthly,
+  Page_Flexiblecontent_Blocks_Hero_OneTime,
+} from "graphql";
 import SideGraphic from "./SideGraphic";
-// import GravityForm from "components/GravityForm";
+import DonationForm from "features/DonationForm/DonationForm";
 
 export interface DonateHeroProps {
   className?: string;
   title?: string | null;
+  oneTime: Page_Flexiblecontent_Blocks_Hero_OneTime;
+  monthly: Page_Flexiblecontent_Blocks_Hero_Monthly;
 }
 
-const DonateHero = ({ className, title }: DonateHeroProps) => {
+const DonateHero = ({
+  className,
+  title,
+  monthly,
+  oneTime,
+}: DonateHeroProps) => {
   return (
     <div
       className={`${className ? className : ``} border-b-[29px] border-primary`}
@@ -18,13 +29,13 @@ const DonateHero = ({ className, title }: DonateHeroProps) => {
             graphic={"donateShihTzu"}
           />
         </div>
-        <div className="container z-10 mx-auto mb-56 w-full px-4 py-20 md:ml-4 md:mb-auto md:w-1/2 lg:mx-auto">
+        <div className="container z-10 mx-auto mb-56 flex w-full flex-col gap-8 px-4 py-20 md:ml-4 md:mb-auto md:w-1/2 lg:mx-auto">
           {title ? (
             <h1 className={`font-heading text-5xl leading-none text-dark`}>
               {title}
             </h1>
           ) : null}
-          {/* <GravityForm form={"Donate"} formId={1} /> */}
+          <DonationForm variant="hero" oneTime={oneTime} monthly={monthly} />
         </div>
         <div className="absolute bottom-0 -right-8 flex h-full w-fit max-w-[90%] justify-end md:h-full 2xl:right-0">
           <SideGraphic

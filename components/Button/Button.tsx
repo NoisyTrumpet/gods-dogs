@@ -8,6 +8,7 @@ export interface ButtonProps {
   variant: string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const styleLoader = (type: string) => {
@@ -27,7 +28,7 @@ const styleLoader = (type: string) => {
     case "secondary":
       return `rounded-full bg-secondary border-2 border-secondary py-2 px-8 text-white font-body uppercase hover:bg-white hover:text-secondary hover:shadow-lg transition duration-300 ease-in-out min-w-[165px] text-center`;
     case "secondary-outline":
-      return `bg-white rounded-full border-2 border-secondary py-2 px-8 text-secondary font-body uppercase hover:bg-secondary hover:text-white hover:border-primary hover:shadow-lg transition duration-300 ease-in-out min-w-[165px] text-center`;
+      return `bg-transparent rounded-full border-2 border-secondary py-2 px-8 text-secondary font-body uppercase hover:bg-secondary hover:text-white hover:border-primary hover:shadow-lg transition duration-300 ease-in-out`;
     case "announcement":
       return `bg-white rounded-full border-2 border-secondary-light py-2 px-4 text-secondary-light font-body uppercase hover:bg-secondary-light hover:text-white hover:border-white hover:shadow-lg transition duration-300 ease-in-out min-w-[165px] text-center`;
     case "tertiary":
@@ -50,6 +51,7 @@ const Button = ({
   variant,
   disabled,
   target,
+  type,
   ...props
 }: ButtonProps) => {
   const isCopy = variant === "copy";
@@ -71,6 +73,7 @@ const Button = ({
     <button
       disabled={disabled}
       className={`${styleLoader(variant)} ${className}`}
+      type={type ?? "button"}
       {...props}
     >
       {children}

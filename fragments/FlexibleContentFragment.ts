@@ -18,6 +18,20 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
           type
         }
+        oneTime {
+          title
+          oneTimeOptions {
+            id
+            label
+          }
+        }
+        monthly {
+          monthlyOptions {
+            id
+            label
+          }
+          title
+        }
         rightGraphic
         leftGraphic
       }
@@ -94,11 +108,13 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
       ... on Page_Flexiblecontent_Blocks_PetCarousel {
         fieldGroupName
         title
+
         pets {
           ... on Animal {
             id
             uri
             title
+            content
             featuredImage {
               node {
                 ...MediaItemFragment
@@ -111,11 +127,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
               animalNid
               animalWeight
               animalUniqueId
-              animalSpecies
               animalSex
-              animalPublicUrl
-              animalSecondaryColor
-              animalPrimaryColor
               animalPhotoGallery {
                 photo
               }
@@ -185,7 +197,9 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         title
         variant
         impactItems {
-          impactIcon
+          impactIcon {
+            ...MediaItemFragment
+          }
           impactNumber
           subtext
         }
@@ -206,6 +220,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           cardHasLink
           cardTitle
           hasCardIcon
+          buttonType
           cardLink {
             target
             title

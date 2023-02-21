@@ -15,6 +15,8 @@ const Hero = ({
   leftGraphic,
   rightGraphic,
   variant,
+  oneTime,
+  monthly,
 }: HeroProps) => {
   const isBasic = variant === "basic";
   const isPrimary = variant === "primary";
@@ -26,8 +28,14 @@ const Hero = ({
     rightGraphic === "terrierGroup";
   const isDonate = variant === "donate";
 
-  if (isDonate) {
-    return <DonateHero title={title ? title : null} />;
+  if (isDonate && monthly && oneTime) {
+    return (
+      <DonateHero
+        title={title ? title : null}
+        monthly={monthly}
+        oneTime={oneTime}
+      />
+    );
   }
 
   let svgClassLeft;

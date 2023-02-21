@@ -27,6 +27,17 @@ const FeaturedCards = dynamic(
 const Accordion = dynamic(() => import("components/Accordion/Accordion"), {
   ssr: true,
 });
+// Split Text:
+const SplitText = dynamic(() => import("components/SplitText/SplitText"), {
+  ssr: true,
+});
+// Pet Carousel Block:
+const PetCarousel = dynamic(
+  () => import("components/PetCarousel/PetCarousel"),
+  {
+    ssr: true,
+  }
+);
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -66,7 +77,7 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_Accordion
     | Page_Flexiblecontent_Blocks_TeamMembers
     | Page_Flexiblecontent_Blocks_EventBlock
-    | Page_Flexiblecontent_Blocks_SplitText
+    | Page_Flexiblecontent_Blocks_SplitText;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
@@ -112,6 +123,18 @@ const Block = ({ block }: BlockProps) => {
     case "Accordion": {
       return (
         <Accordion {...(block as Page_Flexiblecontent_Blocks_Accordion)} />
+      );
+    }
+    // SplitText
+    case "SplitText": {
+      return (
+        <SplitText {...(block as Page_Flexiblecontent_Blocks_SplitText)} />
+      );
+    }
+    // PetCarousel
+    case "PetCarousel": {
+      return (
+        <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
       );
     }
     default: {
