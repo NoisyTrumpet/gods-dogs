@@ -127,11 +127,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
               animalNid
               animalWeight
               animalUniqueId
-              animalSpecies
               animalSex
-              animalPublicUrl
-              animalSecondaryColor
-              animalPrimaryColor
               animalPhotoGallery {
                 photo
               }
