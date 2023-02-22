@@ -1,6 +1,7 @@
 // Page templates
 import frontPage from "./front-page";
 import page from "./page";
+import pageAdoptADog from "./page-adopt-a-dog";
 // Post types
 import single from "./single";
 import singleEvents from "./single-events";
@@ -13,6 +14,7 @@ import archiveResources from "./archive-resources";
 export default {
   "front-page": frontPage,
   page,
+  "adopt-a-dog": pageAdoptADog,
   // Post types
   single,
   "single-events": singleEvents,
