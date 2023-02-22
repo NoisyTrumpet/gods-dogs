@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 // Hero: (Non dynamic import) Above the fold content
-import { Hero } from "components";
+import { Hero, AvailableDogs } from "components";
 // Dynamic Imports: Below the fold content
 const Form = dynamic(() => import("components/Form/Form"), {
   ssr: true,
@@ -55,6 +55,7 @@ import {
   Page_Flexiblecontent_Blocks_TeamMembers,
   Page_Flexiblecontent_Blocks_EventBlock,
   Page_Flexiblecontent_Blocks_SplitText,
+  Page_Flexiblecontent_Blocks_AvailableDogs,
   AcfLink,
 } from "graphql";
 
@@ -77,7 +78,8 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_Accordion
     | Page_Flexiblecontent_Blocks_TeamMembers
     | Page_Flexiblecontent_Blocks_EventBlock
-    | Page_Flexiblecontent_Blocks_SplitText;
+    | Page_Flexiblecontent_Blocks_SplitText
+    | Page_Flexiblecontent_Blocks_AvailableDogs;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
@@ -136,6 +138,11 @@ const Block = ({ block }: BlockProps) => {
       return (
         <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
       );
+    }
+    case "AvailableDogs": {
+      return (
+        <AvailableDogs />
+      )
     }
     default: {
       return (
