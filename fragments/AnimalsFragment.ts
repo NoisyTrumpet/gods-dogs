@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 import { MEDIA_ITEM_FRAGMENT } from "./MediaItemFragment";
 
 export const ANIMALS_FRAGMENT = gql`
-  fragment AnimalsFragment on RootQueryToAnimalsConnection {
+  fragment AnimalsFragment on RootQueryToAnimalConnection {
     edges {
       node {
         id

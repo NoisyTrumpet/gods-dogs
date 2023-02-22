@@ -14,7 +14,7 @@ import archiveResources from "./archive-resources";
 export default {
   "front-page": frontPage,
   page,
-  "adopt-a-dog": pageAdoptADog,
+  "page-adopt-a-dog": pageAdoptADog,
   // Post types
   single,
   "single-events": singleEvents,

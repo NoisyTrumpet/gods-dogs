@@ -1,4 +1,10 @@
-const AvailableDogs = () => {
+import { Key } from "react";
+import PetCard from "../PetCard/PetCard";
+interface AvailableDogsProps {
+  animals: any 
+}
+
+const AvailableDogs = ({animals} : AvailableDogsProps) => {
   return (
     <div
       className={`container relative mx-auto`}
@@ -23,10 +29,19 @@ const AvailableDogs = () => {
           <option value="breed">Breed</option>
         </select>
       </div>
-      <div className={"grid grid-cols-2 gap-3"}>
-        <div className={`w-1/6`}>Search Filters</div>
-        <div className={`w-5/6`}>
-          All of the Pets
+      <div className={"flex flex-row"}>
+        <div className={`w-1/4`}>Search Filters</div>
+        <div className={`w-3/4 grid grid-cols-3 gap-6`}>
+          {animals.map((animal: any, index: Key) => {
+            return (
+              <PetCard
+                key={index}
+                variant="basic"
+                pet={animal.node}
+              />
+            );
+          })
+          }
         </div>
       </div>
     </div>
