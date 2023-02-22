@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 // Hero: (Non dynamic import) Above the fold content
-import { Hero } from "components";
+import { Hero, AvailableDogs } from "components";
 // Dynamic Imports: Below the fold content
 const Form = dynamic(() => import("components/Form/Form"), {
   ssr: true,
@@ -55,11 +55,13 @@ import {
   Page_Flexiblecontent_Blocks_TeamMembers,
   Page_Flexiblecontent_Blocks_EventBlock,
   Page_Flexiblecontent_Blocks_SplitText,
+  Page_Flexiblecontent_Blocks_AvailableDogs,
   AcfLink,
 } from "graphql";
 
 interface BlocksProps {
   blocks: Page_Flexiblecontent_Blocks[];
+  animals: any;
 }
 
 interface BlockProps {
@@ -77,7 +79,9 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_Accordion
     | Page_Flexiblecontent_Blocks_TeamMembers
     | Page_Flexiblecontent_Blocks_EventBlock
-    | Page_Flexiblecontent_Blocks_SplitText;
+    | Page_Flexiblecontent_Blocks_SplitText
+    | Page_Flexiblecontent_Blocks_AvailableDogs;
+  animals: any;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
@@ -85,7 +89,7 @@ const prefix =
   "Post_Flexiblecontent_Blocks_" ||
   "Resource_Flexiblecontent_Blocks_";
 
-const Block = ({ block }: BlockProps) => {
+const Block = ({ block, animals }: BlockProps) => {
   const { __typename } = block ?? {};
 
   let name = __typename && __typename.replace(prefix, "");
@@ -137,6 +141,11 @@ const Block = ({ block }: BlockProps) => {
         <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
       );
     }
+    case "AvailableDogs": {
+      return (
+        <AvailableDogs animals={animals} />
+      )
+    }
     default: {
       return (
         <div className="block text-center font-heading text-3xl text-primary">{`${name} (component in development)`}</div>
@@ -145,12 +154,12 @@ const Block = ({ block }: BlockProps) => {
   }
 };
 
-const Blocks = ({ blocks = [] }: BlocksProps): JSX.Element => {
+const Blocks = ({ blocks = [], animals = []}: BlocksProps): JSX.Element => {
   return (
     <>
       {blocks &&
         blocks.map((block, index) => (
-          <Block block={block} key={`block-${index}`} />
+          <Block block={block} key={`block-${index}`} animals={animals} />
         ))}
     </>
   );
