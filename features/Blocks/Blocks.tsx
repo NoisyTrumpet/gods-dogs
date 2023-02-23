@@ -38,6 +38,10 @@ const PetCarousel = dynamic(
     ssr: true,
   }
 );
+// Impact Block:
+const Impact = dynamic(() => import("components/Impact/Impact"), {
+  ssr: true,
+});
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -135,6 +139,12 @@ const Block = ({ block }: BlockProps) => {
     case "PetCarousel": {
       return (
         <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
+      );
+    }
+    // PetCarousel
+    case "Impact": {
+      return (
+        <Impact {...(block as Page_Flexiblecontent_Blocks_Impact)} />
       );
     }
     default: {

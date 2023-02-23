@@ -193,18 +193,21 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
       }
       ... on Page_Flexiblecontent_Blocks_Impact {
         fieldGroupName
+        variant
+        backgroundColor
         hasHeadingIcon
         title
-        variant
+        headingIcon {
+          ...MediaItemFragment
+        }
         impactItems {
           impactIcon {
             ...MediaItemFragment
           }
           impactNumber
+          isDollarAmount
           subtext
-        }
-        headingIcon {
-          ...MediaItemFragment
+          isAbbreviated
         }
       }
       ... on Page_Flexiblecontent_Blocks_FeaturedCards {

@@ -4247,7 +4247,8 @@ export type Event_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Event_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: "Event_Flexiblecontent_Blocks_Impact";
+  __typename?: 'Event_Flexiblecontent_Blocks_Impact';
+  backgroundColor?: Maybe<Scalars['String']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -4263,10 +4264,13 @@ export type Event_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 export type Event_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
   __typename?: "Event_Flexiblecontent_Blocks_Impact_impactItems";
   /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars["String"]>;
-  impactIcon?: Maybe<Scalars["String"]>;
-  impactNumber?: Maybe<Scalars["Float"]>;
-  subtext?: Maybe<Scalars["String"]>;
+  fieldGroupName?: Maybe<Scalars['String']>;
+  impactIcon?: Maybe<MediaItem>;
+  impactNumber?: Maybe<Scalars['Float']>;
+  /** example: 10,000 as 10k */
+  isAbbreviated?: Maybe<Scalars['Boolean']>;
+  isDollarAmount?: Maybe<Scalars['Boolean']>;
+  subtext?: Maybe<Scalars['String']>;
 };
 
 /** Group within the flex field */
@@ -8369,7 +8373,8 @@ export type Page_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Page_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: "Page_Flexiblecontent_Blocks_Impact";
+  __typename?: 'Page_Flexiblecontent_Blocks_Impact';
+  backgroundColor?: Maybe<Scalars['String']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -8385,10 +8390,13 @@ export type Page_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 export type Page_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
   __typename?: "Page_Flexiblecontent_Blocks_Impact_impactItems";
   /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars["String"]>;
-  impactIcon?: Maybe<Scalars["String"]>;
-  impactNumber?: Maybe<Scalars["Float"]>;
-  subtext?: Maybe<Scalars["String"]>;
+  fieldGroupName?: Maybe<Scalars['String']>;
+  impactIcon?: Maybe<MediaItem>;
+  impactNumber?: Maybe<Scalars['Float']>;
+  /** example: 10,000 as 10k */
+  isAbbreviated?: Maybe<Scalars['Boolean']>;
+  isDollarAmount?: Maybe<Scalars['Boolean']>;
+  subtext?: Maybe<Scalars['String']>;
 };
 
 /** Group within the flex field */
@@ -12305,7 +12313,8 @@ export type Post_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Post_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: "Post_Flexiblecontent_Blocks_Impact";
+  __typename?: 'Post_Flexiblecontent_Blocks_Impact';
+  backgroundColor?: Maybe<Scalars['String']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -12321,10 +12330,13 @@ export type Post_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 export type Post_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
   __typename?: "Post_Flexiblecontent_Blocks_Impact_impactItems";
   /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars["String"]>;
-  impactIcon?: Maybe<Scalars["String"]>;
-  impactNumber?: Maybe<Scalars["Float"]>;
-  subtext?: Maybe<Scalars["String"]>;
+  fieldGroupName?: Maybe<Scalars['String']>;
+  impactIcon?: Maybe<MediaItem>;
+  impactNumber?: Maybe<Scalars['Float']>;
+  /** example: 10,000 as 10k */
+  isAbbreviated?: Maybe<Scalars['Boolean']>;
+  isDollarAmount?: Maybe<Scalars['Boolean']>;
+  subtext?: Maybe<Scalars['String']>;
 };
 
 /** Group within the flex field */
@@ -13182,7 +13194,8 @@ export type Resource_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Resource_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: "Resource_Flexiblecontent_Blocks_Impact";
+  __typename?: 'Resource_Flexiblecontent_Blocks_Impact';
+  backgroundColor?: Maybe<Scalars['String']>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -13195,15 +13208,17 @@ export type Resource_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 };
 
 /** Field Group */
-export type Resource_Flexiblecontent_Blocks_Impact_ImpactItems =
-  AcfFieldGroup & {
-    __typename?: "Resource_Flexiblecontent_Blocks_Impact_impactItems";
-    /** The name of the ACF Field Group */
-    fieldGroupName?: Maybe<Scalars["String"]>;
-    impactIcon?: Maybe<Scalars["String"]>;
-    impactNumber?: Maybe<Scalars["Float"]>;
-    subtext?: Maybe<Scalars["String"]>;
-  };
+export type Resource_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
+  __typename?: 'Resource_Flexiblecontent_Blocks_Impact_impactItems';
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars['String']>;
+  impactIcon?: Maybe<MediaItem>;
+  impactNumber?: Maybe<Scalars['Float']>;
+  /** example: 10,000 as 10k */
+  isAbbreviated?: Maybe<Scalars['Boolean']>;
+  isDollarAmount?: Maybe<Scalars['Boolean']>;
+  subtext?: Maybe<Scalars['String']>;
+};
 
 /** Group within the flex field */
 export type Resource_Flexiblecontent_Blocks_List = AcfFieldGroup & {
