@@ -1,4 +1,10 @@
-import { animate, useTransform, useMotionValue, motion } from "framer-motion";
+import {
+  animate,
+  useTransform,
+  useMotionValue,
+  motion,
+  useInView,
+} from "framer-motion";
 import { useEffect, useRef } from "react";
 import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
@@ -22,7 +28,7 @@ const Impact = ({
   headingIcon,
   impactItems,
 }: ImpactProps) => {
-    const hasCards = impactItems && impactItems.length > 0;
+  const hasCards = impactItems && impactItems.length > 0;
 
   return (
     <div
@@ -50,47 +56,93 @@ const Impact = ({
               : `column flex items-center justify-center`
           }`}
         >
-            {impactItems.map((card, index) => {
-                const {
-                    impactIcon,
-                    impactNumber,
-                    isDollarAmount,
-                    isAbbreviated,
-                    subtext,
-                } = card ?? {};
+          {impactItems.map(
+            (
+              card: {
+                impactIcon: any;
+                subtext: string;
+                impactNumber: number;
+                isAbbreviated: boolean;
+                isDollarAmount: boolean;
+              },
+              index: number
+            ) => {
+              const {
+                impactIcon,
+                impactNumber,
+                isDollarAmount,
+                isAbbreviated,
+                subtext,
+              } = card ?? {};
 
-                function Counter() {
-                    const count = useMotionValue(0);
-                    const rounded = useTransform(count, latest => Math.round(latest));
-                    useEffect(() => {
-                    const controls = animate(count, impactNumber)
-                        return (controls.stop);
-                    }, []);
+              function Counter() {
+                const count = useMotionValue(0);
+                const rounded = useTransform(count, (latest) =>
+                  Math.round(latest)
+                );
+                const ref = useRef(null);
+                const isInView = useInView(ref);
 
-                    return <motion.div>{rounded}</motion.div>
+                const str = impactNumber.toString();
+                const numArray = str.split("");
+                const isBig = numArray.length > 3;
+                const num = str.slice(0, -3);
+
+                useEffect(() => {
+                  if (isAbbreviated) {
+                    if (isInView) {
+                      animate(count, parseInt(num));
+                    } else {
+                      animate(count, 0);
+                    }
+                  } else {
+                    if (isInView) {
+                      animate(count, impactNumber);
+                    } else {
+                      animate(count, 0);
+                    }
                   }
+                }, [isInView]);
 
-            return (
-                <div key={index} className={`relative h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out`}>
-                    <div className={`${
+                return <motion.div ref={ref}>{rounded}</motion.div>;
+              }
+
+              return (
+                <div
+                  key={index}
+                  className={`relative h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out`}
+                >
+                  <div
+                    className={`${
                       className ? className : ``
-                    } flex relative h-full w-fit mx-auto text-center flex-col justify-start`}>
+                    } relative mx-auto flex h-full w-fit flex-col items-center justify-start text-center`}
+                  >
+                    {impactIcon ? (
+                      <FeaturedImage
+                        image={impactIcon}
+                        className={`w-full max-w-[3rem]`}
+                        imgClassName="w-full"
+                      />
+                    ) : null}
                     {impactNumber ? (
-                      <p className="my-2 font-body text-2xl">
+                      <p
+                        className={`mb-2 mt-6 flex flex-row font-body text-8xl ${
+                          variant === "cards"
+                            ? "font-heading text-secondary"
+                            : ""
+                        }`}
+                      >
                         {isDollarAmount ? `$` : null}
-                        {impactNumber}
                         <Counter />
+                        {isAbbreviated ? `k` : null}
                       </p>
                     ) : null}
-                    {subtext ? (
-                      <p className="my-2 font-body">
-                        {subtext}
-                      </p>
-                    ) : null}
-                    </div>
+                    {subtext ? <p className="font-body">{subtext}</p> : null}
+                  </div>
                 </div>
-            );
-            })}
+              );
+            }
+          )}
         </div>
       ) : null}
     </div>

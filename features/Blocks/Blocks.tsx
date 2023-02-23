@@ -143,9 +143,7 @@ const Block = ({ block }: BlockProps) => {
     }
     // PetCarousel
     case "Impact": {
-      return (
-        <Impact {...(block as Page_Flexiblecontent_Blocks_Impact)} />
-      );
+      return <Impact {...(block as Page_Flexiblecontent_Blocks_Impact)} />;
     }
     default: {
       return (

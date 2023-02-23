@@ -1,8 +1,8 @@
 import { domAnimation, LazyMotion, m } from "framer-motion";
-import useIsVisible from "hooks/useIsVisible";
-import { usePrevious } from "hooks/usePrevious";
+import useIsVisible from "./useIsVisible";
+import { usePrevious } from "./usePrevious";
 import { useEffect, useRef, useState } from "react";
-import styles from "scss/components/Impact.module.scss";
+import styles from "../Impact.module.css";
 
 function formatForDisplay(number: any) {
   const float = Math.max(number, 0).toString();

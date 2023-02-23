@@ -704,6 +704,390 @@ export type AddressInputProperty = {
   placeholder?: Maybe<Scalars["String"]>;
 };
 
+/** The ageGroup type */
+export type AgeGroup = DatabaseIdentifier &
+  HierarchicalNode &
+  HierarchicalTermNode &
+  MenuItemLinkable &
+  Node &
+  TermNode &
+  UniformResourceIdentifiable & {
+    __typename?: "AgeGroup";
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of databaseId
+     */
+    ageGroupId?: Maybe<Scalars["Int"]>;
+    /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+    ancestors?: Maybe<AgeGroupToAncestorsAgeGroupConnection>;
+    /** Connection between the AgeGroup type and the Animal type */
+    animals?: Maybe<AgeGroupToAnimalConnection>;
+    /** Connection between the ageGroup type and its children ageGroups. */
+    children?: Maybe<AgeGroupToAgeGroupConnection>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** Connection between the AgeGroup type and the ContentNode type */
+    contentNodes?: Maybe<AgeGroupToContentNodeConnection>;
+    /** The number of objects connected to the object */
+    count?: Maybe<Scalars["Int"]>;
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** The description of the object */
+    description?: Maybe<Scalars["String"]>;
+    /** Connection between the TermNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+    /** Connection between the TermNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+    /** The unique resource identifier path */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The link to the term */
+    link?: Maybe<Scalars["String"]>;
+    /** The human friendly name of the object. */
+    name?: Maybe<Scalars["String"]>;
+    /** Connection between the ageGroup type and its parent ageGroup. */
+    parent?: Maybe<AgeGroupToParentAgeGroupConnectionEdge>;
+    /** Database id of the parent node */
+    parentDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the parent node. */
+    parentId?: Maybe<Scalars["ID"]>;
+    /** The Yoast SEO data of the Age Group taxonomy. */
+    seo?: Maybe<TaxonomySeo>;
+    /** An alphanumeric identifier for the object unique to its type. */
+    slug?: Maybe<Scalars["String"]>;
+    /** Connection between the AgeGroup type and the Taxonomy type */
+    taxonomy?: Maybe<AgeGroupToTaxonomyConnectionEdge>;
+    /** The name of the taxonomy that the object is associated with */
+    taxonomyName?: Maybe<Scalars["String"]>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The ID of the term group that this term object belongs to */
+    termGroupId?: Maybe<Scalars["Int"]>;
+    /** The taxonomy ID that the object is associated with */
+    termTaxonomyId?: Maybe<Scalars["Int"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The ageGroup type */
+export type AgeGroupAncestorsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The ageGroup type */
+export type AgeGroupAnimalsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AgeGroupToAnimalConnectionWhereArgs>;
+};
+
+/** The ageGroup type */
+export type AgeGroupChildrenArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AgeGroupToAgeGroupConnectionWhereArgs>;
+};
+
+/** The ageGroup type */
+export type AgeGroupContentNodesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AgeGroupToContentNodeConnectionWhereArgs>;
+};
+
+/** The ageGroup type */
+export type AgeGroupEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The ageGroup type */
+export type AgeGroupEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** Connection to ageGroup Nodes */
+export type AgeGroupConnection = {
+  /** A list of edges (relational context) between RootQuery and connected ageGroup Nodes */
+  edges: Array<AgeGroupConnectionEdge>;
+  /** A list of connected ageGroup Nodes */
+  nodes: Array<AgeGroup>;
+};
+
+/** Edge between a Node and a connected ageGroup */
+export type AgeGroupConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected ageGroup Node */
+  node: AgeGroup;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum AgeGroupIdType {
+  /** The Database ID for the node */
+  DatabaseId = "DATABASE_ID",
+  /** The hashed Global ID */
+  Id = "ID",
+  /** The name of the node */
+  Name = "NAME",
+  /** Url friendly name of the node */
+  Slug = "SLUG",
+  /** The URI for the node */
+  Uri = "URI",
+}
+
+/** Connection between the AgeGroup type and the ageGroup type */
+export type AgeGroupToAgeGroupConnection = AgeGroupConnection &
+  Connection & {
+    __typename?: "AgeGroupToAgeGroupConnection";
+    /** Edges for the AgeGroupToAgeGroupConnection connection */
+    edges: Array<AgeGroupToAgeGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<AgeGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AgeGroupToAgeGroupConnectionEdge = AgeGroupConnectionEdge &
+  Edge & {
+    __typename?: "AgeGroupToAgeGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: AgeGroup;
+  };
+
+/** Arguments for filtering the AgeGroupToAgeGroupConnection connection */
+export type AgeGroupToAgeGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the AgeGroup type and the ageGroup type */
+export type AgeGroupToAncestorsAgeGroupConnection = AgeGroupConnection &
+  Connection & {
+    __typename?: "AgeGroupToAncestorsAgeGroupConnection";
+    /** Edges for the AgeGroupToAncestorsAgeGroupConnection connection */
+    edges: Array<AgeGroupToAncestorsAgeGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<AgeGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AgeGroupToAncestorsAgeGroupConnectionEdge = AgeGroupConnectionEdge &
+  Edge & {
+    __typename?: "AgeGroupToAncestorsAgeGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: AgeGroup;
+  };
+
+/** Connection between the AgeGroup type and the Animal type */
+export type AgeGroupToAnimalConnection = AnimalConnection &
+  Connection & {
+    __typename?: "AgeGroupToAnimalConnection";
+    /** Edges for the AgeGroupToAnimalConnection connection */
+    edges: Array<AgeGroupToAnimalConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Animal>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AgeGroupToAnimalConnectionEdge = AnimalConnectionEdge &
+  Edge & {
+    __typename?: "AgeGroupToAnimalConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Animal;
+  };
+
+/** Arguments for filtering the AgeGroupToAnimalConnection connection */
+export type AgeGroupToAnimalConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the AgeGroup type and the ContentNode type */
+export type AgeGroupToContentNodeConnection = Connection &
+  ContentNodeConnection & {
+    __typename?: "AgeGroupToContentNodeConnection";
+    /** Edges for the AgeGroupToContentNodeConnection connection */
+    edges: Array<AgeGroupToContentNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<ContentNode>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AgeGroupToContentNodeConnectionEdge = ContentNodeConnectionEdge &
+  Edge & {
+    __typename?: "AgeGroupToContentNodeConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: ContentNode;
+  };
+
+/** Arguments for filtering the AgeGroupToContentNodeConnection connection */
+export type AgeGroupToContentNodeConnectionWhereArgs = {
+  /** The Types of content to filter */
+  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfAgeGroupEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the AgeGroup type and the ageGroup type */
+export type AgeGroupToParentAgeGroupConnectionEdge = AgeGroupConnectionEdge &
+  Edge &
+  OneToOneConnection & {
+    __typename?: "AgeGroupToParentAgeGroupConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: AgeGroup;
+  };
+
+/** Connection between the AgeGroup type and the Taxonomy type */
+export type AgeGroupToTaxonomyConnectionEdge = Edge &
+  OneToOneConnection &
+  TaxonomyConnectionEdge & {
+    __typename?: "AgeGroupToTaxonomyConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Taxonomy;
+  };
+
 /** The AM or PM cycle in a 12-hour clock. */
 export enum AmPmEnum {
   /** AM. The first 12-hour cycle of the day. */
@@ -725,6 +1109,8 @@ export type Animal = ContentNode &
   Previewable &
   UniformResourceIdentifiable & {
     __typename?: "Animal";
+    /** Connection between the Animal type and the ageGroup type */
+    ageGroups?: Maybe<AnimalToAgeGroupConnection>;
     /** Added to the GraphQL Schema because the ACF Field Group &quot;Animal Details&quot; was set to Show in GraphQL. */
     animalDetails?: Maybe<Animal_Animaldetails>;
     /**
@@ -784,12 +1170,18 @@ export type Animal = ContentNode &
     modified?: Maybe<Scalars["String"]>;
     /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
     modifiedGmt?: Maybe<Scalars["String"]>;
+    /** Connection between the Animal type and the petAttribute type */
+    petAttributes?: Maybe<AnimalToPetAttributeConnection>;
     /** Connection between the Animal type and the Animal type */
     preview?: Maybe<AnimalToPreviewConnectionEdge>;
     /** The database id of the preview node */
     previewRevisionDatabaseId?: Maybe<Scalars["Int"]>;
     /** Whether the object is a node in the preview state */
     previewRevisionId?: Maybe<Scalars["ID"]>;
+    /** Connection between the Animal type and the primaryBreed type */
+    primaryBreeds?: Maybe<AnimalToPrimaryBreedConnection>;
+    /** Connection between the Animal type and the secondaryBreed type */
+    secondaryBreeds?: Maybe<AnimalToSecondaryBreedConnection>;
     /** The Yoast SEO data of the ContentNode */
     seo?: Maybe<PostTypeSeo>;
     /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
@@ -799,11 +1191,24 @@ export type Animal = ContentNode &
     /** The template assigned to the node */
     template?: Maybe<ContentTemplate>;
     templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** Connection between the Animal type and the TermNode type */
+    terms?: Maybe<AnimalToTermNodeConnection>;
     /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
     title?: Maybe<Scalars["String"]>;
     /** The unique resource identifier path */
     uri?: Maybe<Scalars["String"]>;
+    /** Connection between the Animal type and the weightGroup type */
+    weightGroups?: Maybe<AnimalToWeightGroupConnection>;
   };
+
+/** The Animal type */
+export type AnimalAgeGroupsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AnimalToAgeGroupConnectionWhereArgs>;
+};
 
 /** The Animal type */
 export type AnimalContentArgs = {
@@ -832,8 +1237,73 @@ export type AnimalExcerptArgs = {
 };
 
 /** The Animal type */
+export type AnimalPetAttributesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AnimalToPetAttributeConnectionWhereArgs>;
+};
+
+/** The Animal type */
+export type AnimalPrimaryBreedsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AnimalToPrimaryBreedConnectionWhereArgs>;
+};
+
+/** The Animal type */
+export type AnimalSecondaryBreedsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AnimalToSecondaryBreedConnectionWhereArgs>;
+};
+
+/** The Animal type */
+export type AnimalTermsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AnimalToTermNodeConnectionWhereArgs>;
+};
+
+/** The Animal type */
 export type AnimalTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
+};
+
+/** The Animal type */
+export type AnimalWeightGroupsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<AnimalToWeightGroupConnectionWhereArgs>;
+};
+
+/** Set relationships between the Animal to ageGroups */
+export type AnimalAgeGroupsInput = {
+  /** If true, this will append the ageGroup to existing related ageGroups. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars["Boolean"]>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<AnimalAgeGroupsNodeInput>>>;
+};
+
+/** List of ageGroups to connect the Animal to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type AnimalAgeGroupsNodeInput = {
+  /** The description of the ageGroup. This field is used to set a description of the ageGroup if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the ageGroup. If present, this will be used to connect to the Animal. If no existing ageGroup exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars["ID"]>;
+  /** The name of the ageGroup. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The slug of the ageGroup. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars["String"]>;
 };
 
 /** Connection to Animal Nodes */
@@ -864,6 +1334,206 @@ export enum AnimalIdType {
   Uri = "URI",
 }
 
+/** Set relationships between the Animal to petAttributes */
+export type AnimalPetAttributesInput = {
+  /** If true, this will append the petAttribute to existing related petAttributes. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars["Boolean"]>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<AnimalPetAttributesNodeInput>>>;
+};
+
+/** List of petAttributes to connect the Animal to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type AnimalPetAttributesNodeInput = {
+  /** The description of the petAttribute. This field is used to set a description of the petAttribute if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the petAttribute. If present, this will be used to connect to the Animal. If no existing petAttribute exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars["ID"]>;
+  /** The name of the petAttribute. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The slug of the petAttribute. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** Set relationships between the Animal to primaryBreeds */
+export type AnimalPrimaryBreedsInput = {
+  /** If true, this will append the primaryBreed to existing related primaryBreeds. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars["Boolean"]>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<AnimalPrimaryBreedsNodeInput>>>;
+};
+
+/** List of primaryBreeds to connect the Animal to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type AnimalPrimaryBreedsNodeInput = {
+  /** The description of the primaryBreed. This field is used to set a description of the primaryBreed if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the primaryBreed. If present, this will be used to connect to the Animal. If no existing primaryBreed exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars["ID"]>;
+  /** The name of the primaryBreed. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The slug of the primaryBreed. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** Set relationships between the Animal to secondaryBreeds */
+export type AnimalSecondaryBreedsInput = {
+  /** If true, this will append the secondaryBreed to existing related secondaryBreeds. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars["Boolean"]>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<AnimalSecondaryBreedsNodeInput>>>;
+};
+
+/** List of secondaryBreeds to connect the Animal to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type AnimalSecondaryBreedsNodeInput = {
+  /** The description of the secondaryBreed. This field is used to set a description of the secondaryBreed if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the secondaryBreed. If present, this will be used to connect to the Animal. If no existing secondaryBreed exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars["ID"]>;
+  /** The name of the secondaryBreed. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The slug of the secondaryBreed. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the Animal type and the ageGroup type */
+export type AnimalToAgeGroupConnection = AgeGroupConnection &
+  Connection & {
+    __typename?: "AnimalToAgeGroupConnection";
+    /** Edges for the AnimalToAgeGroupConnection connection */
+    edges: Array<AnimalToAgeGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<AgeGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AnimalToAgeGroupConnectionEdge = AgeGroupConnectionEdge &
+  Edge & {
+    __typename?: "AnimalToAgeGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The Yoast SEO Primary age_group */
+    isPrimary?: Maybe<Scalars["Boolean"]>;
+    /** The item at the end of the edge */
+    node: AgeGroup;
+  };
+
+/** Arguments for filtering the AnimalToAgeGroupConnection connection */
+export type AnimalToAgeGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the Animal type and the petAttribute type */
+export type AnimalToPetAttributeConnection = Connection &
+  PetAttributeConnection & {
+    __typename?: "AnimalToPetAttributeConnection";
+    /** Edges for the AnimalToPetAttributeConnection connection */
+    edges: Array<AnimalToPetAttributeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PetAttribute>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AnimalToPetAttributeConnectionEdge = Edge &
+  PetAttributeConnectionEdge & {
+    __typename?: "AnimalToPetAttributeConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The Yoast SEO Primary attributes */
+    isPrimary?: Maybe<Scalars["Boolean"]>;
+    /** The item at the end of the edge */
+    node: PetAttribute;
+  };
+
+/** Arguments for filtering the AnimalToPetAttributeConnection connection */
+export type AnimalToPetAttributeConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
 /** Connection between the Animal type and the Animal type */
 export type AnimalToPreviewConnectionEdge = AnimalConnectionEdge &
   Edge &
@@ -874,6 +1544,306 @@ export type AnimalToPreviewConnectionEdge = AnimalConnectionEdge &
     /** The node of the connection, without the edges */
     node: Animal;
   };
+
+/** Connection between the Animal type and the primaryBreed type */
+export type AnimalToPrimaryBreedConnection = Connection &
+  PrimaryBreedConnection & {
+    __typename?: "AnimalToPrimaryBreedConnection";
+    /** Edges for the AnimalToPrimaryBreedConnection connection */
+    edges: Array<AnimalToPrimaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PrimaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AnimalToPrimaryBreedConnectionEdge = Edge &
+  PrimaryBreedConnectionEdge & {
+    __typename?: "AnimalToPrimaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The Yoast SEO Primary primary_breeds */
+    isPrimary?: Maybe<Scalars["Boolean"]>;
+    /** The item at the end of the edge */
+    node: PrimaryBreed;
+  };
+
+/** Arguments for filtering the AnimalToPrimaryBreedConnection connection */
+export type AnimalToPrimaryBreedConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the Animal type and the secondaryBreed type */
+export type AnimalToSecondaryBreedConnection = Connection &
+  SecondaryBreedConnection & {
+    __typename?: "AnimalToSecondaryBreedConnection";
+    /** Edges for the AnimalToSecondaryBreedConnection connection */
+    edges: Array<AnimalToSecondaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<SecondaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AnimalToSecondaryBreedConnectionEdge = Edge &
+  SecondaryBreedConnectionEdge & {
+    __typename?: "AnimalToSecondaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The Yoast SEO Primary secondary_breeds */
+    isPrimary?: Maybe<Scalars["Boolean"]>;
+    /** The item at the end of the edge */
+    node: SecondaryBreed;
+  };
+
+/** Arguments for filtering the AnimalToSecondaryBreedConnection connection */
+export type AnimalToSecondaryBreedConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the Animal type and the TermNode type */
+export type AnimalToTermNodeConnection = Connection &
+  TermNodeConnection & {
+    __typename?: "AnimalToTermNodeConnection";
+    /** Edges for the AnimalToTermNodeConnection connection */
+    edges: Array<AnimalToTermNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<TermNode>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AnimalToTermNodeConnectionEdge = Edge &
+  TermNodeConnectionEdge & {
+    __typename?: "AnimalToTermNodeConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: TermNode;
+  };
+
+/** Arguments for filtering the AnimalToTermNodeConnection connection */
+export type AnimalToTermNodeConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** The Taxonomy to filter terms by */
+  taxonomies?: InputMaybe<Array<InputMaybe<TaxonomyEnum>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the Animal type and the weightGroup type */
+export type AnimalToWeightGroupConnection = Connection &
+  WeightGroupConnection & {
+    __typename?: "AnimalToWeightGroupConnection";
+    /** Edges for the AnimalToWeightGroupConnection connection */
+    edges: Array<AnimalToWeightGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<WeightGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type AnimalToWeightGroupConnectionEdge = Edge &
+  WeightGroupConnectionEdge & {
+    __typename?: "AnimalToWeightGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The Yoast SEO Primary weight_group */
+    isPrimary?: Maybe<Scalars["Boolean"]>;
+    /** The item at the end of the edge */
+    node: WeightGroup;
+  };
+
+/** Arguments for filtering the AnimalToWeightGroupConnection connection */
+export type AnimalToWeightGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Set relationships between the Animal to weightGroups */
+export type AnimalWeightGroupsInput = {
+  /** If true, this will append the weightGroup to existing related weightGroups. If false, this will replace existing relationships. Default true. */
+  append?: InputMaybe<Scalars["Boolean"]>;
+  /** The input list of items to set. */
+  nodes?: InputMaybe<Array<InputMaybe<AnimalWeightGroupsNodeInput>>>;
+};
+
+/** List of weightGroups to connect the Animal to. If an ID is set, it will be used to create the connection. If not, it will look for a slug. If neither are valid existing terms, and the site is configured to allow terms to be created during post mutations, a term will be created using the Name if it exists in the input, then fallback to the slug if it exists. */
+export type AnimalWeightGroupsNodeInput = {
+  /** The description of the weightGroup. This field is used to set a description of the weightGroup if a new one is created during the mutation. */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the weightGroup. If present, this will be used to connect to the Animal. If no existing weightGroup exists with this ID, no connection will be made. */
+  id?: InputMaybe<Scalars["ID"]>;
+  /** The name of the weightGroup. This field is used to create a new term, if term creation is enabled in nested mutations, and if one does not already exist with the provided slug or ID or if a slug or ID is not provided. If no name is included and a term is created, the creation will fallback to the slug field. */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The slug of the weightGroup. If no ID is present, this field will be used to make a connection. If no existing term exists with this slug, this field will be used as a fallback to the Name field when creating a new term to connect to, if term creation is enabled as a nested mutation. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
 
 /** Field Group */
 export type Animal_Animaldetails = AcfFieldGroup & {
@@ -888,16 +1858,8 @@ export type Animal_Animaldetails = AcfFieldGroup & {
   animalPhotoGallery?: Maybe<
     Array<Maybe<Animal_Animaldetails_AnimalPhotoGallery>>
   >;
-  /** The primary color of the animal in Shelterluv. */
-  animalPrimaryColor?: Maybe<Scalars["String"]>;
-  /** The public URL of the animal in Shelterluv. */
-  animalPublicUrl?: Maybe<Scalars["String"]>;
-  /** The secondary color of the animal in Shelterluv. */
-  animalSecondaryColor?: Maybe<Scalars["String"]>;
   /** The sex of the animal in Shelterluv. */
   animalSex?: Maybe<Scalars["String"]>;
-  /** The species of the animal in Shelterluv. */
-  animalSpecies?: Maybe<Scalars["String"]>;
   /** The unique ID of the animal in Shelterluv. */
   animalUniqueId?: Maybe<Scalars["String"]>;
   /** The weight of the animal in Shelterluv. */
@@ -2538,10 +3500,22 @@ export type ContentTypeToTaxonomyConnectionEdge = Edge &
     node: Taxonomy;
   };
 
+/** Allowed Content Types of the AgeGroup taxonomy. */
+export enum ContentTypesOfAgeGroupEnum {
+  /** The Type of Content object */
+  Animal = "ANIMAL",
+}
+
 /** Allowed Content Types of the Category taxonomy. */
 export enum ContentTypesOfCategoryEnum {
   /** The Type of Content object */
   Post = "POST",
+}
+
+/** Allowed Content Types of the PetAttribute taxonomy. */
+export enum ContentTypesOfPetAttributeEnum {
+  /** The Type of Content object */
+  Animal = "ANIMAL",
 }
 
 /** Allowed Content Types of the PostFormat taxonomy. */
@@ -2550,14 +3524,59 @@ export enum ContentTypesOfPostFormatEnum {
   Post = "POST",
 }
 
+/** Allowed Content Types of the PrimaryBreed taxonomy. */
+export enum ContentTypesOfPrimaryBreedEnum {
+  /** The Type of Content object */
+  Animal = "ANIMAL",
+}
+
+/** Allowed Content Types of the SecondaryBreed taxonomy. */
+export enum ContentTypesOfSecondaryBreedEnum {
+  /** The Type of Content object */
+  Animal = "ANIMAL",
+}
+
 /** Allowed Content Types of the Tag taxonomy. */
 export enum ContentTypesOfTagEnum {
   /** The Type of Content object */
   Post = "POST",
 }
 
+/** Allowed Content Types of the WeightGroup taxonomy. */
+export enum ContentTypesOfWeightGroupEnum {
+  /** The Type of Content object */
+  Animal = "ANIMAL",
+}
+
+/** Input for the createAgeGroup mutation. */
+export type CreateAgeGroupInput = {
+  /** The slug that the age_group will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the age_group object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The name of the age_group object to mutate */
+  name: Scalars["String"];
+  /** The ID of the age_group that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createAgeGroup mutation. */
+export type CreateAgeGroupPayload = {
+  __typename?: "CreateAgeGroupPayload";
+  /** The created age_group */
+  ageGroup?: Maybe<AgeGroup>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+};
+
 /** Input for the createAnimal mutation. */
 export type CreateAnimalInput = {
+  /** Set connections between the Animal and ageGroups */
+  ageGroups?: InputMaybe<AnimalAgeGroupsInput>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars["String"]>;
   /** The content of the object */
@@ -2570,12 +3589,20 @@ export type CreateAnimalInput = {
   menuOrder?: InputMaybe<Scalars["Int"]>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars["String"]>;
+  /** Set connections between the Animal and petAttributes */
+  petAttributes?: InputMaybe<AnimalPetAttributesInput>;
+  /** Set connections between the Animal and primaryBreeds */
+  primaryBreeds?: InputMaybe<AnimalPrimaryBreedsInput>;
+  /** Set connections between the Animal and secondaryBreeds */
+  secondaryBreeds?: InputMaybe<AnimalSecondaryBreedsInput>;
   /** The slug of the object */
   slug?: InputMaybe<Scalars["String"]>;
   /** The status of the object */
   status?: InputMaybe<PostStatusEnum>;
   /** The title of the object */
   title?: InputMaybe<Scalars["String"]>;
+  /** Set connections between the Animal and weightGroups */
+  weightGroups?: InputMaybe<AnimalWeightGroupsInput>;
 };
 
 /** The payload for the createAnimal mutation. */
@@ -2797,6 +3824,31 @@ export type CreatePagePayload = {
   page?: Maybe<Page>;
 };
 
+/** Input for the createPetAttribute mutation. */
+export type CreatePetAttributeInput = {
+  /** The slug that the attributes will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the attributes object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The name of the attributes object to mutate */
+  name: Scalars["String"];
+  /** The ID of the attributes that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createPetAttribute mutation. */
+export type CreatePetAttributePayload = {
+  __typename?: "CreatePetAttributePayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created attributes */
+  petAttribute?: Maybe<PetAttribute>;
+};
+
 /** Input for the createPostFormat mutation. */
 export type CreatePostFormatInput = {
   /** The slug that the post_format will be an alias of */
@@ -2867,6 +3919,31 @@ export type CreatePostPayload = {
   post?: Maybe<Post>;
 };
 
+/** Input for the createPrimaryBreed mutation. */
+export type CreatePrimaryBreedInput = {
+  /** The slug that the primary_breeds will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the primary_breeds object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The name of the primary_breeds object to mutate */
+  name: Scalars["String"];
+  /** The ID of the primary_breeds that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createPrimaryBreed mutation. */
+export type CreatePrimaryBreedPayload = {
+  __typename?: "CreatePrimaryBreedPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created primary_breeds */
+  primaryBreed?: Maybe<PrimaryBreed>;
+};
+
 /** Input for the createResource mutation. */
 export type CreateResourceInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -2898,6 +3975,31 @@ export type CreateResourcePayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The Post object mutation type. */
   resource?: Maybe<Resource>;
+};
+
+/** Input for the createSecondaryBreed mutation. */
+export type CreateSecondaryBreedInput = {
+  /** The slug that the secondary_breeds will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the secondary_breeds object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The name of the secondary_breeds object to mutate */
+  name: Scalars["String"];
+  /** The ID of the secondary_breeds that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createSecondaryBreed mutation. */
+export type CreateSecondaryBreedPayload = {
+  __typename?: "CreateSecondaryBreedPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created secondary_breeds */
+  secondaryBreed?: Maybe<SecondaryBreed>;
 };
 
 /** Input for the createTag mutation. */
@@ -3000,6 +4102,31 @@ export type CreateUserPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The User object mutation type. */
   user?: Maybe<User>;
+};
+
+/** Input for the createWeightGroup mutation. */
+export type CreateWeightGroupInput = {
+  /** The slug that the weight_group will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the weight_group object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The name of the weight_group object to mutate */
+  name: Scalars["String"];
+  /** The ID of the weight_group that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the createWeightGroup mutation. */
+export type CreateWeightGroupPayload = {
+  __typename?: "CreateWeightGroupPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created weight_group */
+  weightGroup?: Maybe<WeightGroup>;
 };
 
 /** Object that can be identified with a Database ID */
@@ -3163,6 +4290,25 @@ export type DefaultTemplate = ContentTemplate & {
   __typename?: "DefaultTemplate";
   /** The name of the template */
   templateName?: Maybe<Scalars["String"]>;
+};
+
+/** Input for the deleteAgeGroup mutation. */
+export type DeleteAgeGroupInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The ID of the ageGroup to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deleteAgeGroup mutation. */
+export type DeleteAgeGroupPayload = {
+  __typename?: "DeleteAgeGroupPayload";
+  /** The deteted term object */
+  ageGroup?: Maybe<AgeGroup>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
 };
 
 /** Input for the deleteAnimal mutation. */
@@ -3352,6 +4498,25 @@ export type DeletePagePayload = {
   page?: Maybe<Page>;
 };
 
+/** Input for the deletePetAttribute mutation. */
+export type DeletePetAttributeInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The ID of the petAttribute to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deletePetAttribute mutation. */
+export type DeletePetAttributePayload = {
+  __typename?: "DeletePetAttributePayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
+  /** The deteted term object */
+  petAttribute?: Maybe<PetAttribute>;
+};
+
 /** Input for the deletePostFormat mutation. */
 export type DeletePostFormatInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -3392,6 +4557,25 @@ export type DeletePostPayload = {
   post?: Maybe<Post>;
 };
 
+/** Input for the deletePrimaryBreed mutation. */
+export type DeletePrimaryBreedInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The ID of the primaryBreed to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deletePrimaryBreed mutation. */
+export type DeletePrimaryBreedPayload = {
+  __typename?: "DeletePrimaryBreedPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
+  /** The deteted term object */
+  primaryBreed?: Maybe<PrimaryBreed>;
+};
+
 /** Input for the deleteResource mutation. */
 export type DeleteResourceInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -3411,6 +4595,25 @@ export type DeleteResourcePayload = {
   deletedId?: Maybe<Scalars["ID"]>;
   /** The object before it was deleted */
   resource?: Maybe<Resource>;
+};
+
+/** Input for the deleteSecondaryBreed mutation. */
+export type DeleteSecondaryBreedInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The ID of the secondaryBreed to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deleteSecondaryBreed mutation. */
+export type DeleteSecondaryBreedPayload = {
+  __typename?: "DeleteSecondaryBreedPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
+  /** The deteted term object */
+  secondaryBreed?: Maybe<SecondaryBreed>;
 };
 
 /** Input for the deleteTag mutation. */
@@ -3472,6 +4675,25 @@ export type DeleteUserPayload = {
   deletedId?: Maybe<Scalars["ID"]>;
   /** The deleted user object */
   user?: Maybe<User>;
+};
+
+/** Input for the deleteWeightGroup mutation. */
+export type DeleteWeightGroupInput = {
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The ID of the weightGroup to delete */
+  id: Scalars["ID"];
+};
+
+/** The payload for the deleteWeightGroup mutation. */
+export type DeleteWeightGroupPayload = {
+  __typename?: "DeleteWeightGroupPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The ID of the deleted object */
+  deletedId?: Maybe<Scalars["ID"]>;
+  /** The deteted term object */
+  weightGroup?: Maybe<WeightGroup>;
 };
 
 /** The discussion setting type */
@@ -4056,6 +5278,7 @@ export type Event_Flexiblecontent = AcfFieldGroup & {
 
 export type Event_Flexiblecontent_Blocks =
   | Event_Flexiblecontent_Blocks_Accordion
+  | Event_Flexiblecontent_Blocks_AvailableDogs
   | Event_Flexiblecontent_Blocks_EventBlock
   | Event_Flexiblecontent_Blocks_FeaturedCards
   | Event_Flexiblecontent_Blocks_Form
@@ -4109,6 +5332,13 @@ export type Event_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
   };
+
+/** Group within the flex field */
+export type Event_Flexiblecontent_Blocks_AvailableDogs = AcfFieldGroup & {
+  __typename?: "Event_Flexiblecontent_Blocks_AvailableDogs";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
 
 /** Group within the flex field */
 export type Event_Flexiblecontent_Blocks_EventBlock = AcfFieldGroup & {
@@ -4247,8 +5477,8 @@ export type Event_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Event_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: 'Event_Flexiblecontent_Blocks_Impact';
-  backgroundColor?: Maybe<Scalars['String']>;
+  __typename?: "Event_Flexiblecontent_Blocks_Impact";
+  backgroundColor?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -4264,13 +5494,13 @@ export type Event_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 export type Event_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
   __typename?: "Event_Flexiblecontent_Blocks_Impact_impactItems";
   /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
+  fieldGroupName?: Maybe<Scalars["String"]>;
   impactIcon?: Maybe<MediaItem>;
-  impactNumber?: Maybe<Scalars['Float']>;
+  impactNumber?: Maybe<Scalars["Float"]>;
   /** example: 10,000 as 10k */
-  isAbbreviated?: Maybe<Scalars['Boolean']>;
-  isDollarAmount?: Maybe<Scalars['Boolean']>;
-  subtext?: Maybe<Scalars['String']>;
+  isAbbreviated?: Maybe<Scalars["Boolean"]>;
+  isDollarAmount?: Maybe<Scalars["Boolean"]>;
+  subtext?: Maybe<Scalars["String"]>;
 };
 
 /** Group within the flex field */
@@ -7008,13 +8238,18 @@ export enum MenuItemNodeIdTypeEnum {
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
 export type MenuItemObjectUnion =
+  | AgeGroup
   | Animal
   | Category
   | Event
   | Page
+  | PetAttribute
   | Post
+  | PrimaryBreed
   | Resource
-  | Tag;
+  | SecondaryBreed
+  | Tag
+  | WeightGroup;
 
 /** Connection between the MenuItem type and the Menu type */
 export type MenuItemToMenuConnectionEdge = Edge &
@@ -8182,6 +9417,7 @@ export type Page_Flexiblecontent = AcfFieldGroup & {
 
 export type Page_Flexiblecontent_Blocks =
   | Page_Flexiblecontent_Blocks_Accordion
+  | Page_Flexiblecontent_Blocks_AvailableDogs
   | Page_Flexiblecontent_Blocks_EventBlock
   | Page_Flexiblecontent_Blocks_FeaturedCards
   | Page_Flexiblecontent_Blocks_Form
@@ -8235,6 +9471,13 @@ export type Page_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
   };
+
+/** Group within the flex field */
+export type Page_Flexiblecontent_Blocks_AvailableDogs = AcfFieldGroup & {
+  __typename?: "Page_Flexiblecontent_Blocks_AvailableDogs";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
 
 /** Group within the flex field */
 export type Page_Flexiblecontent_Blocks_EventBlock = AcfFieldGroup & {
@@ -8373,8 +9616,8 @@ export type Page_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Page_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: 'Page_Flexiblecontent_Blocks_Impact';
-  backgroundColor?: Maybe<Scalars['String']>;
+  __typename?: "Page_Flexiblecontent_Blocks_Impact";
+  backgroundColor?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -8390,13 +9633,13 @@ export type Page_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 export type Page_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
   __typename?: "Page_Flexiblecontent_Blocks_Impact_impactItems";
   /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
+  fieldGroupName?: Maybe<Scalars["String"]>;
   impactIcon?: Maybe<MediaItem>;
-  impactNumber?: Maybe<Scalars['Float']>;
+  impactNumber?: Maybe<Scalars["Float"]>;
   /** example: 10,000 as 10k */
-  isAbbreviated?: Maybe<Scalars['Boolean']>;
-  isDollarAmount?: Maybe<Scalars['Boolean']>;
-  subtext?: Maybe<Scalars['String']>;
+  isAbbreviated?: Maybe<Scalars["Boolean"]>;
+  isDollarAmount?: Maybe<Scalars["Boolean"]>;
+  subtext?: Maybe<Scalars["String"]>;
 };
 
 /** Group within the flex field */
@@ -8659,6 +9902,391 @@ export type PasswordInputProperty = {
   /** Placeholder text to give the user a hint on how to fill out the field. This is not submitted with the form. */
   placeholder?: Maybe<Scalars["String"]>;
 };
+
+/** The petAttribute type */
+export type PetAttribute = DatabaseIdentifier &
+  HierarchicalNode &
+  HierarchicalTermNode &
+  MenuItemLinkable &
+  Node &
+  TermNode &
+  UniformResourceIdentifiable & {
+    __typename?: "PetAttribute";
+    /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+    ancestors?: Maybe<PetAttributeToAncestorsPetAttributeConnection>;
+    /** Connection between the PetAttribute type and the Animal type */
+    animals?: Maybe<PetAttributeToAnimalConnection>;
+    /** Connection between the petAttribute type and its children petAttributes. */
+    children?: Maybe<PetAttributeToPetAttributeConnection>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** Connection between the PetAttribute type and the ContentNode type */
+    contentNodes?: Maybe<PetAttributeToContentNodeConnection>;
+    /** The number of objects connected to the object */
+    count?: Maybe<Scalars["Int"]>;
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** The description of the object */
+    description?: Maybe<Scalars["String"]>;
+    /** Connection between the TermNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+    /** Connection between the TermNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+    /** The unique resource identifier path */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The link to the term */
+    link?: Maybe<Scalars["String"]>;
+    /** The human friendly name of the object. */
+    name?: Maybe<Scalars["String"]>;
+    /** Connection between the petAttribute type and its parent petAttribute. */
+    parent?: Maybe<PetAttributeToParentPetAttributeConnectionEdge>;
+    /** Database id of the parent node */
+    parentDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the parent node. */
+    parentId?: Maybe<Scalars["ID"]>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of databaseId
+     */
+    petAttributeId?: Maybe<Scalars["Int"]>;
+    /** The Yoast SEO data of the Attributes taxonomy. */
+    seo?: Maybe<TaxonomySeo>;
+    /** An alphanumeric identifier for the object unique to its type. */
+    slug?: Maybe<Scalars["String"]>;
+    /** Connection between the PetAttribute type and the Taxonomy type */
+    taxonomy?: Maybe<PetAttributeToTaxonomyConnectionEdge>;
+    /** The name of the taxonomy that the object is associated with */
+    taxonomyName?: Maybe<Scalars["String"]>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The ID of the term group that this term object belongs to */
+    termGroupId?: Maybe<Scalars["Int"]>;
+    /** The taxonomy ID that the object is associated with */
+    termTaxonomyId?: Maybe<Scalars["Int"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The petAttribute type */
+export type PetAttributeAncestorsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The petAttribute type */
+export type PetAttributeAnimalsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<PetAttributeToAnimalConnectionWhereArgs>;
+};
+
+/** The petAttribute type */
+export type PetAttributeChildrenArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<PetAttributeToPetAttributeConnectionWhereArgs>;
+};
+
+/** The petAttribute type */
+export type PetAttributeContentNodesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<PetAttributeToContentNodeConnectionWhereArgs>;
+};
+
+/** The petAttribute type */
+export type PetAttributeEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The petAttribute type */
+export type PetAttributeEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** Connection to petAttribute Nodes */
+export type PetAttributeConnection = {
+  /** A list of edges (relational context) between RootQuery and connected petAttribute Nodes */
+  edges: Array<PetAttributeConnectionEdge>;
+  /** A list of connected petAttribute Nodes */
+  nodes: Array<PetAttribute>;
+};
+
+/** Edge between a Node and a connected petAttribute */
+export type PetAttributeConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected petAttribute Node */
+  node: PetAttribute;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum PetAttributeIdType {
+  /** The Database ID for the node */
+  DatabaseId = "DATABASE_ID",
+  /** The hashed Global ID */
+  Id = "ID",
+  /** The name of the node */
+  Name = "NAME",
+  /** Url friendly name of the node */
+  Slug = "SLUG",
+  /** The URI for the node */
+  Uri = "URI",
+}
+
+/** Connection between the PetAttribute type and the petAttribute type */
+export type PetAttributeToAncestorsPetAttributeConnection = Connection &
+  PetAttributeConnection & {
+    __typename?: "PetAttributeToAncestorsPetAttributeConnection";
+    /** Edges for the PetAttributeToAncestorsPetAttributeConnection connection */
+    edges: Array<PetAttributeToAncestorsPetAttributeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PetAttribute>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PetAttributeToAncestorsPetAttributeConnectionEdge = Edge &
+  PetAttributeConnectionEdge & {
+    __typename?: "PetAttributeToAncestorsPetAttributeConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: PetAttribute;
+  };
+
+/** Connection between the PetAttribute type and the Animal type */
+export type PetAttributeToAnimalConnection = AnimalConnection &
+  Connection & {
+    __typename?: "PetAttributeToAnimalConnection";
+    /** Edges for the PetAttributeToAnimalConnection connection */
+    edges: Array<PetAttributeToAnimalConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Animal>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PetAttributeToAnimalConnectionEdge = AnimalConnectionEdge &
+  Edge & {
+    __typename?: "PetAttributeToAnimalConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Animal;
+  };
+
+/** Arguments for filtering the PetAttributeToAnimalConnection connection */
+export type PetAttributeToAnimalConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the PetAttribute type and the ContentNode type */
+export type PetAttributeToContentNodeConnection = Connection &
+  ContentNodeConnection & {
+    __typename?: "PetAttributeToContentNodeConnection";
+    /** Edges for the PetAttributeToContentNodeConnection connection */
+    edges: Array<PetAttributeToContentNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<ContentNode>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PetAttributeToContentNodeConnectionEdge =
+  ContentNodeConnectionEdge &
+    Edge & {
+      __typename?: "PetAttributeToContentNodeConnectionEdge";
+      /** A cursor for use in pagination */
+      cursor?: Maybe<Scalars["String"]>;
+      /** The item at the end of the edge */
+      node: ContentNode;
+    };
+
+/** Arguments for filtering the PetAttributeToContentNodeConnection connection */
+export type PetAttributeToContentNodeConnectionWhereArgs = {
+  /** The Types of content to filter */
+  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfPetAttributeEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the PetAttribute type and the petAttribute type */
+export type PetAttributeToParentPetAttributeConnectionEdge = Edge &
+  OneToOneConnection &
+  PetAttributeConnectionEdge & {
+    __typename?: "PetAttributeToParentPetAttributeConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: PetAttribute;
+  };
+
+/** Connection between the PetAttribute type and the petAttribute type */
+export type PetAttributeToPetAttributeConnection = Connection &
+  PetAttributeConnection & {
+    __typename?: "PetAttributeToPetAttributeConnection";
+    /** Edges for the PetAttributeToPetAttributeConnection connection */
+    edges: Array<PetAttributeToPetAttributeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PetAttribute>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PetAttributeToPetAttributeConnectionEdge = Edge &
+  PetAttributeConnectionEdge & {
+    __typename?: "PetAttributeToPetAttributeConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: PetAttribute;
+  };
+
+/** Arguments for filtering the PetAttributeToPetAttributeConnection connection */
+export type PetAttributeToPetAttributeConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the PetAttribute type and the Taxonomy type */
+export type PetAttributeToTaxonomyConnectionEdge = Edge &
+  OneToOneConnection &
+  TaxonomyConnectionEdge & {
+    __typename?: "PetAttributeToTaxonomyConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Taxonomy;
+  };
 
 /** A Gravity Forms   field. */
 export type PhoneField = FormField & {
@@ -12122,6 +13750,7 @@ export type Post_Flexiblecontent = AcfFieldGroup & {
 
 export type Post_Flexiblecontent_Blocks =
   | Post_Flexiblecontent_Blocks_Accordion
+  | Post_Flexiblecontent_Blocks_AvailableDogs
   | Post_Flexiblecontent_Blocks_EventBlock
   | Post_Flexiblecontent_Blocks_FeaturedCards
   | Post_Flexiblecontent_Blocks_Form
@@ -12175,6 +13804,13 @@ export type Post_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
   };
+
+/** Group within the flex field */
+export type Post_Flexiblecontent_Blocks_AvailableDogs = AcfFieldGroup & {
+  __typename?: "Post_Flexiblecontent_Blocks_AvailableDogs";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
 
 /** Group within the flex field */
 export type Post_Flexiblecontent_Blocks_EventBlock = AcfFieldGroup & {
@@ -12313,8 +13949,8 @@ export type Post_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Post_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: 'Post_Flexiblecontent_Blocks_Impact';
-  backgroundColor?: Maybe<Scalars['String']>;
+  __typename?: "Post_Flexiblecontent_Blocks_Impact";
+  backgroundColor?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -12330,13 +13966,13 @@ export type Post_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 export type Post_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
   __typename?: "Post_Flexiblecontent_Blocks_Impact_impactItems";
   /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
+  fieldGroupName?: Maybe<Scalars["String"]>;
   impactIcon?: Maybe<MediaItem>;
-  impactNumber?: Maybe<Scalars['Float']>;
+  impactNumber?: Maybe<Scalars["Float"]>;
   /** example: 10,000 as 10k */
-  isAbbreviated?: Maybe<Scalars['Boolean']>;
-  isDollarAmount?: Maybe<Scalars['Boolean']>;
-  subtext?: Maybe<Scalars['String']>;
+  isAbbreviated?: Maybe<Scalars["Boolean"]>;
+  isDollarAmount?: Maybe<Scalars["Boolean"]>;
+  subtext?: Maybe<Scalars["String"]>;
 };
 
 /** Group within the flex field */
@@ -12527,6 +14163,391 @@ export type Previewable = {
   /** Whether the object is a node in the preview state */
   previewRevisionId?: Maybe<Scalars["ID"]>;
 };
+
+/** The primaryBreed type */
+export type PrimaryBreed = DatabaseIdentifier &
+  HierarchicalNode &
+  HierarchicalTermNode &
+  MenuItemLinkable &
+  Node &
+  TermNode &
+  UniformResourceIdentifiable & {
+    __typename?: "PrimaryBreed";
+    /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+    ancestors?: Maybe<PrimaryBreedToAncestorsPrimaryBreedConnection>;
+    /** Connection between the PrimaryBreed type and the Animal type */
+    animals?: Maybe<PrimaryBreedToAnimalConnection>;
+    /** Connection between the primaryBreed type and its children primaryBreeds. */
+    children?: Maybe<PrimaryBreedToPrimaryBreedConnection>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** Connection between the PrimaryBreed type and the ContentNode type */
+    contentNodes?: Maybe<PrimaryBreedToContentNodeConnection>;
+    /** The number of objects connected to the object */
+    count?: Maybe<Scalars["Int"]>;
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** The description of the object */
+    description?: Maybe<Scalars["String"]>;
+    /** Connection between the TermNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+    /** Connection between the TermNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+    /** The unique resource identifier path */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The link to the term */
+    link?: Maybe<Scalars["String"]>;
+    /** The human friendly name of the object. */
+    name?: Maybe<Scalars["String"]>;
+    /** Connection between the primaryBreed type and its parent primaryBreed. */
+    parent?: Maybe<PrimaryBreedToParentPrimaryBreedConnectionEdge>;
+    /** Database id of the parent node */
+    parentDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the parent node. */
+    parentId?: Maybe<Scalars["ID"]>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of databaseId
+     */
+    primaryBreedId?: Maybe<Scalars["Int"]>;
+    /** The Yoast SEO data of the Primary Breeds taxonomy. */
+    seo?: Maybe<TaxonomySeo>;
+    /** An alphanumeric identifier for the object unique to its type. */
+    slug?: Maybe<Scalars["String"]>;
+    /** Connection between the PrimaryBreed type and the Taxonomy type */
+    taxonomy?: Maybe<PrimaryBreedToTaxonomyConnectionEdge>;
+    /** The name of the taxonomy that the object is associated with */
+    taxonomyName?: Maybe<Scalars["String"]>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The ID of the term group that this term object belongs to */
+    termGroupId?: Maybe<Scalars["Int"]>;
+    /** The taxonomy ID that the object is associated with */
+    termTaxonomyId?: Maybe<Scalars["Int"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The primaryBreed type */
+export type PrimaryBreedAncestorsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The primaryBreed type */
+export type PrimaryBreedAnimalsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<PrimaryBreedToAnimalConnectionWhereArgs>;
+};
+
+/** The primaryBreed type */
+export type PrimaryBreedChildrenArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<PrimaryBreedToPrimaryBreedConnectionWhereArgs>;
+};
+
+/** The primaryBreed type */
+export type PrimaryBreedContentNodesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<PrimaryBreedToContentNodeConnectionWhereArgs>;
+};
+
+/** The primaryBreed type */
+export type PrimaryBreedEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The primaryBreed type */
+export type PrimaryBreedEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** Connection to primaryBreed Nodes */
+export type PrimaryBreedConnection = {
+  /** A list of edges (relational context) between RootQuery and connected primaryBreed Nodes */
+  edges: Array<PrimaryBreedConnectionEdge>;
+  /** A list of connected primaryBreed Nodes */
+  nodes: Array<PrimaryBreed>;
+};
+
+/** Edge between a Node and a connected primaryBreed */
+export type PrimaryBreedConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected primaryBreed Node */
+  node: PrimaryBreed;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum PrimaryBreedIdType {
+  /** The Database ID for the node */
+  DatabaseId = "DATABASE_ID",
+  /** The hashed Global ID */
+  Id = "ID",
+  /** The name of the node */
+  Name = "NAME",
+  /** Url friendly name of the node */
+  Slug = "SLUG",
+  /** The URI for the node */
+  Uri = "URI",
+}
+
+/** Connection between the PrimaryBreed type and the primaryBreed type */
+export type PrimaryBreedToAncestorsPrimaryBreedConnection = Connection &
+  PrimaryBreedConnection & {
+    __typename?: "PrimaryBreedToAncestorsPrimaryBreedConnection";
+    /** Edges for the PrimaryBreedToAncestorsPrimaryBreedConnection connection */
+    edges: Array<PrimaryBreedToAncestorsPrimaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PrimaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PrimaryBreedToAncestorsPrimaryBreedConnectionEdge = Edge &
+  PrimaryBreedConnectionEdge & {
+    __typename?: "PrimaryBreedToAncestorsPrimaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: PrimaryBreed;
+  };
+
+/** Connection between the PrimaryBreed type and the Animal type */
+export type PrimaryBreedToAnimalConnection = AnimalConnection &
+  Connection & {
+    __typename?: "PrimaryBreedToAnimalConnection";
+    /** Edges for the PrimaryBreedToAnimalConnection connection */
+    edges: Array<PrimaryBreedToAnimalConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Animal>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PrimaryBreedToAnimalConnectionEdge = AnimalConnectionEdge &
+  Edge & {
+    __typename?: "PrimaryBreedToAnimalConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Animal;
+  };
+
+/** Arguments for filtering the PrimaryBreedToAnimalConnection connection */
+export type PrimaryBreedToAnimalConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the PrimaryBreed type and the ContentNode type */
+export type PrimaryBreedToContentNodeConnection = Connection &
+  ContentNodeConnection & {
+    __typename?: "PrimaryBreedToContentNodeConnection";
+    /** Edges for the PrimaryBreedToContentNodeConnection connection */
+    edges: Array<PrimaryBreedToContentNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<ContentNode>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PrimaryBreedToContentNodeConnectionEdge =
+  ContentNodeConnectionEdge &
+    Edge & {
+      __typename?: "PrimaryBreedToContentNodeConnectionEdge";
+      /** A cursor for use in pagination */
+      cursor?: Maybe<Scalars["String"]>;
+      /** The item at the end of the edge */
+      node: ContentNode;
+    };
+
+/** Arguments for filtering the PrimaryBreedToContentNodeConnection connection */
+export type PrimaryBreedToContentNodeConnectionWhereArgs = {
+  /** The Types of content to filter */
+  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfPrimaryBreedEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the PrimaryBreed type and the primaryBreed type */
+export type PrimaryBreedToParentPrimaryBreedConnectionEdge = Edge &
+  OneToOneConnection &
+  PrimaryBreedConnectionEdge & {
+    __typename?: "PrimaryBreedToParentPrimaryBreedConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: PrimaryBreed;
+  };
+
+/** Connection between the PrimaryBreed type and the primaryBreed type */
+export type PrimaryBreedToPrimaryBreedConnection = Connection &
+  PrimaryBreedConnection & {
+    __typename?: "PrimaryBreedToPrimaryBreedConnection";
+    /** Edges for the PrimaryBreedToPrimaryBreedConnection connection */
+    edges: Array<PrimaryBreedToPrimaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PrimaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type PrimaryBreedToPrimaryBreedConnectionEdge = Edge &
+  PrimaryBreedConnectionEdge & {
+    __typename?: "PrimaryBreedToPrimaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: PrimaryBreed;
+  };
+
+/** Arguments for filtering the PrimaryBreedToPrimaryBreedConnection connection */
+export type PrimaryBreedToPrimaryBreedConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the PrimaryBreed type and the Taxonomy type */
+export type PrimaryBreedToTaxonomyConnectionEdge = Edge &
+  OneToOneConnection &
+  TaxonomyConnectionEdge & {
+    __typename?: "PrimaryBreedToTaxonomyConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Taxonomy;
+  };
 
 /** A Gravity Forms   field. */
 export type RadioField = FormField & {
@@ -13003,6 +15024,7 @@ export type Resource_Flexiblecontent = AcfFieldGroup & {
 
 export type Resource_Flexiblecontent_Blocks =
   | Resource_Flexiblecontent_Blocks_Accordion
+  | Resource_Flexiblecontent_Blocks_AvailableDogs
   | Resource_Flexiblecontent_Blocks_EventBlock
   | Resource_Flexiblecontent_Blocks_FeaturedCards
   | Resource_Flexiblecontent_Blocks_Form
@@ -13056,6 +15078,13 @@ export type Resource_Flexiblecontent_Blocks_Accordion_ItemRepeater_CtaRepeater =
     /** The name of the ACF Field Group */
     fieldGroupName?: Maybe<Scalars["String"]>;
   };
+
+/** Group within the flex field */
+export type Resource_Flexiblecontent_Blocks_AvailableDogs = AcfFieldGroup & {
+  __typename?: "Resource_Flexiblecontent_Blocks_AvailableDogs";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+};
 
 /** Group within the flex field */
 export type Resource_Flexiblecontent_Blocks_EventBlock = AcfFieldGroup & {
@@ -13194,8 +15223,8 @@ export type Resource_Flexiblecontent_Blocks_Hero_Ctas = AcfFieldGroup & {
 
 /** Group within the flex field */
 export type Resource_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
-  __typename?: 'Resource_Flexiblecontent_Blocks_Impact';
-  backgroundColor?: Maybe<Scalars['String']>;
+  __typename?: "Resource_Flexiblecontent_Blocks_Impact";
+  backgroundColor?: Maybe<Scalars["String"]>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   hasHeadingIcon?: Maybe<Scalars["Boolean"]>;
@@ -13208,17 +15237,18 @@ export type Resource_Flexiblecontent_Blocks_Impact = AcfFieldGroup & {
 };
 
 /** Field Group */
-export type Resource_Flexiblecontent_Blocks_Impact_ImpactItems = AcfFieldGroup & {
-  __typename?: 'Resource_Flexiblecontent_Blocks_Impact_impactItems';
-  /** The name of the ACF Field Group */
-  fieldGroupName?: Maybe<Scalars['String']>;
-  impactIcon?: Maybe<MediaItem>;
-  impactNumber?: Maybe<Scalars['Float']>;
-  /** example: 10,000 as 10k */
-  isAbbreviated?: Maybe<Scalars['Boolean']>;
-  isDollarAmount?: Maybe<Scalars['Boolean']>;
-  subtext?: Maybe<Scalars['String']>;
-};
+export type Resource_Flexiblecontent_Blocks_Impact_ImpactItems =
+  AcfFieldGroup & {
+    __typename?: "Resource_Flexiblecontent_Blocks_Impact_impactItems";
+    /** The name of the ACF Field Group */
+    fieldGroupName?: Maybe<Scalars["String"]>;
+    impactIcon?: Maybe<MediaItem>;
+    impactNumber?: Maybe<Scalars["Float"]>;
+    /** example: 10,000 as 10k */
+    isAbbreviated?: Maybe<Scalars["Boolean"]>;
+    isDollarAmount?: Maybe<Scalars["Boolean"]>;
+    subtext?: Maybe<Scalars["String"]>;
+  };
 
 /** Group within the flex field */
 export type Resource_Flexiblecontent_Blocks_List = AcfFieldGroup & {
@@ -13433,6 +15463,8 @@ export type RestoreCommentPayload = {
 /** The root mutation */
 export type RootMutation = {
   __typename?: "RootMutation";
+  /** The createAgeGroup mutation */
+  createAgeGroup?: Maybe<CreateAgeGroupPayload>;
   /** The createAnimal mutation */
   createAnimal?: Maybe<CreateAnimalPayload>;
   /** The createCategory mutation */
@@ -13447,18 +15479,28 @@ export type RootMutation = {
   createMediaItem?: Maybe<CreateMediaItemPayload>;
   /** The createPage mutation */
   createPage?: Maybe<CreatePagePayload>;
+  /** The createPetAttribute mutation */
+  createPetAttribute?: Maybe<CreatePetAttributePayload>;
   /** The createPost mutation */
   createPost?: Maybe<CreatePostPayload>;
   /** The createPostFormat mutation */
   createPostFormat?: Maybe<CreatePostFormatPayload>;
+  /** The createPrimaryBreed mutation */
+  createPrimaryBreed?: Maybe<CreatePrimaryBreedPayload>;
   /** The createResource mutation */
   createResource?: Maybe<CreateResourcePayload>;
+  /** The createSecondaryBreed mutation */
+  createSecondaryBreed?: Maybe<CreateSecondaryBreedPayload>;
   /** The createTag mutation */
   createTag?: Maybe<CreateTagPayload>;
   /** The createTeamMember mutation */
   createTeamMember?: Maybe<CreateTeamMemberPayload>;
   /** The createUser mutation */
   createUser?: Maybe<CreateUserPayload>;
+  /** The createWeightGroup mutation */
+  createWeightGroup?: Maybe<CreateWeightGroupPayload>;
+  /** The deleteAgeGroup mutation */
+  deleteAgeGroup?: Maybe<DeleteAgeGroupPayload>;
   /** The deleteAnimal mutation */
   deleteAnimal?: Maybe<DeleteAnimalPayload>;
   /** The deleteCategory mutation */
@@ -13477,18 +15519,26 @@ export type RootMutation = {
   deleteMediaItem?: Maybe<DeleteMediaItemPayload>;
   /** The deletePage mutation */
   deletePage?: Maybe<DeletePagePayload>;
+  /** The deletePetAttribute mutation */
+  deletePetAttribute?: Maybe<DeletePetAttributePayload>;
   /** The deletePost mutation */
   deletePost?: Maybe<DeletePostPayload>;
   /** The deletePostFormat mutation */
   deletePostFormat?: Maybe<DeletePostFormatPayload>;
+  /** The deletePrimaryBreed mutation */
+  deletePrimaryBreed?: Maybe<DeletePrimaryBreedPayload>;
   /** The deleteResource mutation */
   deleteResource?: Maybe<DeleteResourcePayload>;
+  /** The deleteSecondaryBreed mutation */
+  deleteSecondaryBreed?: Maybe<DeleteSecondaryBreedPayload>;
   /** The deleteTag mutation */
   deleteTag?: Maybe<DeleteTagPayload>;
   /** The deleteTeamMember mutation */
   deleteTeamMember?: Maybe<DeleteTeamMemberPayload>;
   /** The deleteUser mutation */
   deleteUser?: Maybe<DeleteUserPayload>;
+  /** The deleteWeightGroup mutation */
+  deleteWeightGroup?: Maybe<DeleteWeightGroupPayload>;
   /** The generateAuthorizationCode mutation */
   generateAuthorizationCode?: Maybe<GenerateAuthorizationCodePayload>;
   /** Increase the count. */
@@ -13505,6 +15555,8 @@ export type RootMutation = {
   submitGfDraftEntry?: Maybe<SubmitGfDraftEntryPayload>;
   /** The submitGfForm mutation */
   submitGfForm?: Maybe<SubmitGfFormPayload>;
+  /** The updateAgeGroup mutation */
+  updateAgeGroup?: Maybe<UpdateAgeGroupPayload>;
   /** The updateAnimal mutation */
   updateAnimal?: Maybe<UpdateAnimalPayload>;
   /** The updateCategory mutation */
@@ -13523,12 +15575,18 @@ export type RootMutation = {
   updateMediaItem?: Maybe<UpdateMediaItemPayload>;
   /** The updatePage mutation */
   updatePage?: Maybe<UpdatePagePayload>;
+  /** The updatePetAttribute mutation */
+  updatePetAttribute?: Maybe<UpdatePetAttributePayload>;
   /** The updatePost mutation */
   updatePost?: Maybe<UpdatePostPayload>;
   /** The updatePostFormat mutation */
   updatePostFormat?: Maybe<UpdatePostFormatPayload>;
+  /** The updatePrimaryBreed mutation */
+  updatePrimaryBreed?: Maybe<UpdatePrimaryBreedPayload>;
   /** The updateResource mutation */
   updateResource?: Maybe<UpdateResourcePayload>;
+  /** The updateSecondaryBreed mutation */
+  updateSecondaryBreed?: Maybe<UpdateSecondaryBreedPayload>;
   /** The updateSettings mutation */
   updateSettings?: Maybe<UpdateSettingsPayload>;
   /** The updateTag mutation */
@@ -13537,6 +15595,13 @@ export type RootMutation = {
   updateTeamMember?: Maybe<UpdateTeamMemberPayload>;
   /** The updateUser mutation */
   updateUser?: Maybe<UpdateUserPayload>;
+  /** The updateWeightGroup mutation */
+  updateWeightGroup?: Maybe<UpdateWeightGroupPayload>;
+};
+
+/** The root mutation */
+export type RootMutationCreateAgeGroupArgs = {
+  input: CreateAgeGroupInput;
 };
 
 /** The root mutation */
@@ -13575,6 +15640,11 @@ export type RootMutationCreatePageArgs = {
 };
 
 /** The root mutation */
+export type RootMutationCreatePetAttributeArgs = {
+  input: CreatePetAttributeInput;
+};
+
+/** The root mutation */
 export type RootMutationCreatePostArgs = {
   input: CreatePostInput;
 };
@@ -13585,8 +15655,18 @@ export type RootMutationCreatePostFormatArgs = {
 };
 
 /** The root mutation */
+export type RootMutationCreatePrimaryBreedArgs = {
+  input: CreatePrimaryBreedInput;
+};
+
+/** The root mutation */
 export type RootMutationCreateResourceArgs = {
   input: CreateResourceInput;
+};
+
+/** The root mutation */
+export type RootMutationCreateSecondaryBreedArgs = {
+  input: CreateSecondaryBreedInput;
 };
 
 /** The root mutation */
@@ -13602,6 +15682,16 @@ export type RootMutationCreateTeamMemberArgs = {
 /** The root mutation */
 export type RootMutationCreateUserArgs = {
   input: CreateUserInput;
+};
+
+/** The root mutation */
+export type RootMutationCreateWeightGroupArgs = {
+  input: CreateWeightGroupInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteAgeGroupArgs = {
+  input: DeleteAgeGroupInput;
 };
 
 /** The root mutation */
@@ -13650,6 +15740,11 @@ export type RootMutationDeletePageArgs = {
 };
 
 /** The root mutation */
+export type RootMutationDeletePetAttributeArgs = {
+  input: DeletePetAttributeInput;
+};
+
+/** The root mutation */
 export type RootMutationDeletePostArgs = {
   input: DeletePostInput;
 };
@@ -13660,8 +15755,18 @@ export type RootMutationDeletePostFormatArgs = {
 };
 
 /** The root mutation */
+export type RootMutationDeletePrimaryBreedArgs = {
+  input: DeletePrimaryBreedInput;
+};
+
+/** The root mutation */
 export type RootMutationDeleteResourceArgs = {
   input: DeleteResourceInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteSecondaryBreedArgs = {
+  input: DeleteSecondaryBreedInput;
 };
 
 /** The root mutation */
@@ -13677,6 +15782,11 @@ export type RootMutationDeleteTeamMemberArgs = {
 /** The root mutation */
 export type RootMutationDeleteUserArgs = {
   input: DeleteUserInput;
+};
+
+/** The root mutation */
+export type RootMutationDeleteWeightGroupArgs = {
+  input: DeleteWeightGroupInput;
 };
 
 /** The root mutation */
@@ -13717,6 +15827,11 @@ export type RootMutationSubmitGfDraftEntryArgs = {
 /** The root mutation */
 export type RootMutationSubmitGfFormArgs = {
   input: SubmitGfFormInput;
+};
+
+/** The root mutation */
+export type RootMutationUpdateAgeGroupArgs = {
+  input: UpdateAgeGroupInput;
 };
 
 /** The root mutation */
@@ -13765,6 +15880,11 @@ export type RootMutationUpdatePageArgs = {
 };
 
 /** The root mutation */
+export type RootMutationUpdatePetAttributeArgs = {
+  input: UpdatePetAttributeInput;
+};
+
+/** The root mutation */
 export type RootMutationUpdatePostArgs = {
   input: UpdatePostInput;
 };
@@ -13775,8 +15895,18 @@ export type RootMutationUpdatePostFormatArgs = {
 };
 
 /** The root mutation */
+export type RootMutationUpdatePrimaryBreedArgs = {
+  input: UpdatePrimaryBreedInput;
+};
+
+/** The root mutation */
 export type RootMutationUpdateResourceArgs = {
   input: UpdateResourceInput;
+};
+
+/** The root mutation */
+export type RootMutationUpdateSecondaryBreedArgs = {
+  input: UpdateSecondaryBreedInput;
 };
 
 /** The root mutation */
@@ -13799,9 +15929,18 @@ export type RootMutationUpdateUserArgs = {
   input: UpdateUserInput;
 };
 
+/** The root mutation */
+export type RootMutationUpdateWeightGroupArgs = {
+  input: UpdateWeightGroupInput;
+};
+
 /** The root entry point into the Graph */
 export type RootQuery = {
   __typename?: "RootQuery";
+  /** A 0bject */
+  ageGroup?: Maybe<AgeGroup>;
+  /** Connection between the RootQuery type and the ageGroup type */
+  ageGroups?: Maybe<RootQueryToAgeGroupConnection>;
   /** Entry point to get all settings for the site */
   allSettings?: Maybe<Settings>;
   /** An object of the Animal Type.  */
@@ -13899,6 +16038,10 @@ export type RootQuery = {
   pageBy?: Maybe<Page>;
   /** Connection between the RootQuery type and the page type */
   pages?: Maybe<RootQueryToPageConnection>;
+  /** A 0bject */
+  petAttribute?: Maybe<PetAttribute>;
+  /** Connection between the RootQuery type and the petAttribute type */
+  petAttributes?: Maybe<RootQueryToPetAttributeConnection>;
   /** A WordPress plugin */
   plugin?: Maybe<Plugin>;
   /** Connection between the RootQuery type and the Plugin type */
@@ -13916,6 +16059,10 @@ export type RootQuery = {
   postFormats?: Maybe<RootQueryToPostFormatConnection>;
   /** Connection between the RootQuery type and the post type */
   posts?: Maybe<RootQueryToPostConnection>;
+  /** A 0bject */
+  primaryBreed?: Maybe<PrimaryBreed>;
+  /** Connection between the RootQuery type and the primaryBreed type */
+  primaryBreeds?: Maybe<RootQueryToPrimaryBreedConnection>;
   /** Fields of the &#039;ReadingSettings&#039; settings group */
   readingSettings?: Maybe<ReadingSettings>;
   /** Connection between the RootQuery type and the EnqueuedScript type */
@@ -13933,6 +16080,10 @@ export type RootQuery = {
   resources?: Maybe<RootQueryToResourceConnection>;
   /** Connection between the RootQuery type and the ContentNode type */
   revisions?: Maybe<RootQueryToRevisionsConnection>;
+  /** A 0bject */
+  secondaryBreed?: Maybe<SecondaryBreed>;
+  /** Connection between the RootQuery type and the secondaryBreed type */
+  secondaryBreeds?: Maybe<RootQueryToSecondaryBreedConnection>;
   /** Returns seo site data */
   seo?: Maybe<SeoConfig>;
   /** Site Settings options. */
@@ -13972,8 +16123,27 @@ export type RootQuery = {
   users?: Maybe<RootQueryToUserConnection>;
   /** Returns the current user */
   viewer?: Maybe<User>;
+  /** A 0bject */
+  weightGroup?: Maybe<WeightGroup>;
+  /** Connection between the RootQuery type and the weightGroup type */
+  weightGroups?: Maybe<RootQueryToWeightGroupConnection>;
   /** Fields of the &#039;WritingSettings&#039; settings group */
   writingSettings?: Maybe<WritingSettings>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryAgeGroupArgs = {
+  id: Scalars["ID"];
+  idType?: InputMaybe<AgeGroupIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryAgeGroupsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToAgeGroupConnectionWhereArgs>;
 };
 
 /** The root entry point into the Graph */
@@ -14247,6 +16417,21 @@ export type RootQueryPagesArgs = {
 };
 
 /** The root entry point into the Graph */
+export type RootQueryPetAttributeArgs = {
+  id: Scalars["ID"];
+  idType?: InputMaybe<PetAttributeIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryPetAttributesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToPetAttributeConnectionWhereArgs>;
+};
+
+/** The root entry point into the Graph */
 export type RootQueryPluginArgs = {
   id: Scalars["ID"];
 };
@@ -14300,6 +16485,21 @@ export type RootQueryPostsArgs = {
 };
 
 /** The root entry point into the Graph */
+export type RootQueryPrimaryBreedArgs = {
+  id: Scalars["ID"];
+  idType?: InputMaybe<PrimaryBreedIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryPrimaryBreedsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToPrimaryBreedConnectionWhereArgs>;
+};
+
+/** The root entry point into the Graph */
 export type RootQueryRegisteredScriptsArgs = {
   after?: InputMaybe<Scalars["String"]>;
   before?: InputMaybe<Scalars["String"]>;
@@ -14345,6 +16545,21 @@ export type RootQueryRevisionsArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   where?: InputMaybe<RootQueryToRevisionsConnectionWhereArgs>;
+};
+
+/** The root entry point into the Graph */
+export type RootQuerySecondaryBreedArgs = {
+  id: Scalars["ID"];
+  idType?: InputMaybe<SecondaryBreedIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQuerySecondaryBreedsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToSecondaryBreedConnectionWhereArgs>;
 };
 
 /** The root entry point into the Graph */
@@ -14455,6 +16670,89 @@ export type RootQueryUsersArgs = {
   first?: InputMaybe<Scalars["Int"]>;
   last?: InputMaybe<Scalars["Int"]>;
   where?: InputMaybe<RootQueryToUserConnectionWhereArgs>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryWeightGroupArgs = {
+  id: Scalars["ID"];
+  idType?: InputMaybe<WeightGroupIdType>;
+};
+
+/** The root entry point into the Graph */
+export type RootQueryWeightGroupsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<RootQueryToWeightGroupConnectionWhereArgs>;
+};
+
+/** Connection between the RootQuery type and the ageGroup type */
+export type RootQueryToAgeGroupConnection = AgeGroupConnection &
+  Connection & {
+    __typename?: "RootQueryToAgeGroupConnection";
+    /** Edges for the RootQueryToAgeGroupConnection connection */
+    edges: Array<RootQueryToAgeGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<AgeGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToAgeGroupConnectionEdge = AgeGroupConnectionEdge &
+  Edge & {
+    __typename?: "RootQueryToAgeGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: AgeGroup;
+  };
+
+/** Arguments for filtering the RootQueryToAgeGroupConnection connection */
+export type RootQueryToAgeGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** Connection between the RootQuery type and the Animal type */
@@ -15229,6 +17527,74 @@ export type RootQueryToPageConnectionWhereArgs = {
   title?: InputMaybe<Scalars["String"]>;
 };
 
+/** Connection between the RootQuery type and the petAttribute type */
+export type RootQueryToPetAttributeConnection = Connection &
+  PetAttributeConnection & {
+    __typename?: "RootQueryToPetAttributeConnection";
+    /** Edges for the RootQueryToPetAttributeConnection connection */
+    edges: Array<RootQueryToPetAttributeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PetAttribute>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToPetAttributeConnectionEdge = Edge &
+  PetAttributeConnectionEdge & {
+    __typename?: "RootQueryToPetAttributeConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: PetAttribute;
+  };
+
+/** Arguments for filtering the RootQueryToPetAttributeConnection connection */
+export type RootQueryToPetAttributeConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
 /** Connection between the RootQuery type and the Plugin type */
 export type RootQueryToPluginConnection = Connection &
   PluginConnection & {
@@ -15417,6 +17783,74 @@ export type RootQueryToPostFormatConnectionWhereArgs = {
   updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
 };
 
+/** Connection between the RootQuery type and the primaryBreed type */
+export type RootQueryToPrimaryBreedConnection = Connection &
+  PrimaryBreedConnection & {
+    __typename?: "RootQueryToPrimaryBreedConnection";
+    /** Edges for the RootQueryToPrimaryBreedConnection connection */
+    edges: Array<RootQueryToPrimaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<PrimaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToPrimaryBreedConnectionEdge = Edge &
+  PrimaryBreedConnectionEdge & {
+    __typename?: "RootQueryToPrimaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: PrimaryBreed;
+  };
+
+/** Arguments for filtering the RootQueryToPrimaryBreedConnection connection */
+export type RootQueryToPrimaryBreedConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
 /** Connection between the RootQuery type and the resource type */
 export type RootQueryToResourceConnection = Connection &
   ResourceConnection & {
@@ -15537,6 +17971,74 @@ export type RootQueryToRevisionsConnectionWhereArgs = {
   status?: InputMaybe<PostStatusEnum>;
   /** Title of the object */
   title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the RootQuery type and the secondaryBreed type */
+export type RootQueryToSecondaryBreedConnection = Connection &
+  SecondaryBreedConnection & {
+    __typename?: "RootQueryToSecondaryBreedConnection";
+    /** Edges for the RootQueryToSecondaryBreedConnection connection */
+    edges: Array<RootQueryToSecondaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<SecondaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToSecondaryBreedConnectionEdge = Edge &
+  SecondaryBreedConnectionEdge & {
+    __typename?: "RootQueryToSecondaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: SecondaryBreed;
+  };
+
+/** Arguments for filtering the RootQueryToSecondaryBreedConnection connection */
+export type RootQueryToSecondaryBreedConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** Connection between the RootQuery type and the tag type */
@@ -15869,6 +18371,74 @@ export type RootQueryToUserRoleConnectionEdge = Edge &
     node: UserRole;
   };
 
+/** Connection between the RootQuery type and the weightGroup type */
+export type RootQueryToWeightGroupConnection = Connection &
+  WeightGroupConnection & {
+    __typename?: "RootQueryToWeightGroupConnection";
+    /** Edges for the RootQueryToWeightGroupConnection connection */
+    edges: Array<RootQueryToWeightGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<WeightGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type RootQueryToWeightGroupConnectionEdge = Edge &
+  WeightGroupConnectionEdge & {
+    __typename?: "RootQueryToWeightGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: WeightGroup;
+  };
+
+/** Arguments for filtering the RootQueryToWeightGroupConnection connection */
+export type RootQueryToWeightGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
 /** The Yoast SEO breadcrumb config */
 export type SeoBreadcrumbs = {
   __typename?: "SEOBreadcrumbs";
@@ -16164,6 +18734,393 @@ export type SeoWebmaster = {
   msVerify?: Maybe<Scalars["String"]>;
   yandexVerify?: Maybe<Scalars["String"]>;
 };
+
+/** The secondaryBreed type */
+export type SecondaryBreed = DatabaseIdentifier &
+  HierarchicalNode &
+  HierarchicalTermNode &
+  MenuItemLinkable &
+  Node &
+  TermNode &
+  UniformResourceIdentifiable & {
+    __typename?: "SecondaryBreed";
+    /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+    ancestors?: Maybe<SecondaryBreedToAncestorsSecondaryBreedConnection>;
+    /** Connection between the SecondaryBreed type and the Animal type */
+    animals?: Maybe<SecondaryBreedToAnimalConnection>;
+    /** Connection between the secondaryBreed type and its children secondaryBreeds. */
+    children?: Maybe<SecondaryBreedToSecondaryBreedConnection>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** Connection between the SecondaryBreed type and the ContentNode type */
+    contentNodes?: Maybe<SecondaryBreedToContentNodeConnection>;
+    /** The number of objects connected to the object */
+    count?: Maybe<Scalars["Int"]>;
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** The description of the object */
+    description?: Maybe<Scalars["String"]>;
+    /** Connection between the TermNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+    /** Connection between the TermNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+    /** The unique resource identifier path */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The link to the term */
+    link?: Maybe<Scalars["String"]>;
+    /** The human friendly name of the object. */
+    name?: Maybe<Scalars["String"]>;
+    /** Connection between the secondaryBreed type and its parent secondaryBreed. */
+    parent?: Maybe<SecondaryBreedToParentSecondaryBreedConnectionEdge>;
+    /** Database id of the parent node */
+    parentDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the parent node. */
+    parentId?: Maybe<Scalars["ID"]>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of databaseId
+     */
+    secondaryBreedId?: Maybe<Scalars["Int"]>;
+    /** The Yoast SEO data of the Secondary Breeds taxonomy. */
+    seo?: Maybe<TaxonomySeo>;
+    /** An alphanumeric identifier for the object unique to its type. */
+    slug?: Maybe<Scalars["String"]>;
+    /** Connection between the SecondaryBreed type and the Taxonomy type */
+    taxonomy?: Maybe<SecondaryBreedToTaxonomyConnectionEdge>;
+    /** The name of the taxonomy that the object is associated with */
+    taxonomyName?: Maybe<Scalars["String"]>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The ID of the term group that this term object belongs to */
+    termGroupId?: Maybe<Scalars["Int"]>;
+    /** The taxonomy ID that the object is associated with */
+    termTaxonomyId?: Maybe<Scalars["Int"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+  };
+
+/** The secondaryBreed type */
+export type SecondaryBreedAncestorsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The secondaryBreed type */
+export type SecondaryBreedAnimalsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<SecondaryBreedToAnimalConnectionWhereArgs>;
+};
+
+/** The secondaryBreed type */
+export type SecondaryBreedChildrenArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<SecondaryBreedToSecondaryBreedConnectionWhereArgs>;
+};
+
+/** The secondaryBreed type */
+export type SecondaryBreedContentNodesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<SecondaryBreedToContentNodeConnectionWhereArgs>;
+};
+
+/** The secondaryBreed type */
+export type SecondaryBreedEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The secondaryBreed type */
+export type SecondaryBreedEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** Connection to secondaryBreed Nodes */
+export type SecondaryBreedConnection = {
+  /** A list of edges (relational context) between RootQuery and connected secondaryBreed Nodes */
+  edges: Array<SecondaryBreedConnectionEdge>;
+  /** A list of connected secondaryBreed Nodes */
+  nodes: Array<SecondaryBreed>;
+};
+
+/** Edge between a Node and a connected secondaryBreed */
+export type SecondaryBreedConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected secondaryBreed Node */
+  node: SecondaryBreed;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum SecondaryBreedIdType {
+  /** The Database ID for the node */
+  DatabaseId = "DATABASE_ID",
+  /** The hashed Global ID */
+  Id = "ID",
+  /** The name of the node */
+  Name = "NAME",
+  /** Url friendly name of the node */
+  Slug = "SLUG",
+  /** The URI for the node */
+  Uri = "URI",
+}
+
+/** Connection between the SecondaryBreed type and the secondaryBreed type */
+export type SecondaryBreedToAncestorsSecondaryBreedConnection = Connection &
+  SecondaryBreedConnection & {
+    __typename?: "SecondaryBreedToAncestorsSecondaryBreedConnection";
+    /** Edges for the SecondaryBreedToAncestorsSecondaryBreedConnection connection */
+    edges: Array<SecondaryBreedToAncestorsSecondaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<SecondaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type SecondaryBreedToAncestorsSecondaryBreedConnectionEdge = Edge &
+  SecondaryBreedConnectionEdge & {
+    __typename?: "SecondaryBreedToAncestorsSecondaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: SecondaryBreed;
+  };
+
+/** Connection between the SecondaryBreed type and the Animal type */
+export type SecondaryBreedToAnimalConnection = AnimalConnection &
+  Connection & {
+    __typename?: "SecondaryBreedToAnimalConnection";
+    /** Edges for the SecondaryBreedToAnimalConnection connection */
+    edges: Array<SecondaryBreedToAnimalConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Animal>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type SecondaryBreedToAnimalConnectionEdge = AnimalConnectionEdge &
+  Edge & {
+    __typename?: "SecondaryBreedToAnimalConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Animal;
+  };
+
+/** Arguments for filtering the SecondaryBreedToAnimalConnection connection */
+export type SecondaryBreedToAnimalConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the SecondaryBreed type and the ContentNode type */
+export type SecondaryBreedToContentNodeConnection = Connection &
+  ContentNodeConnection & {
+    __typename?: "SecondaryBreedToContentNodeConnection";
+    /** Edges for the SecondaryBreedToContentNodeConnection connection */
+    edges: Array<SecondaryBreedToContentNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<ContentNode>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type SecondaryBreedToContentNodeConnectionEdge =
+  ContentNodeConnectionEdge &
+    Edge & {
+      __typename?: "SecondaryBreedToContentNodeConnectionEdge";
+      /** A cursor for use in pagination */
+      cursor?: Maybe<Scalars["String"]>;
+      /** The item at the end of the edge */
+      node: ContentNode;
+    };
+
+/** Arguments for filtering the SecondaryBreedToContentNodeConnection connection */
+export type SecondaryBreedToContentNodeConnectionWhereArgs = {
+  /** The Types of content to filter */
+  contentTypes?: InputMaybe<
+    Array<InputMaybe<ContentTypesOfSecondaryBreedEnum>>
+  >;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the SecondaryBreed type and the secondaryBreed type */
+export type SecondaryBreedToParentSecondaryBreedConnectionEdge = Edge &
+  OneToOneConnection &
+  SecondaryBreedConnectionEdge & {
+    __typename?: "SecondaryBreedToParentSecondaryBreedConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: SecondaryBreed;
+  };
+
+/** Connection between the SecondaryBreed type and the secondaryBreed type */
+export type SecondaryBreedToSecondaryBreedConnection = Connection &
+  SecondaryBreedConnection & {
+    __typename?: "SecondaryBreedToSecondaryBreedConnection";
+    /** Edges for the SecondaryBreedToSecondaryBreedConnection connection */
+    edges: Array<SecondaryBreedToSecondaryBreedConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<SecondaryBreed>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type SecondaryBreedToSecondaryBreedConnectionEdge = Edge &
+  SecondaryBreedConnectionEdge & {
+    __typename?: "SecondaryBreedToSecondaryBreedConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: SecondaryBreed;
+  };
+
+/** Arguments for filtering the SecondaryBreedToSecondaryBreedConnection connection */
+export type SecondaryBreedToSecondaryBreedConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
+};
+
+/** Connection between the SecondaryBreed type and the Taxonomy type */
+export type SecondaryBreedToTaxonomyConnectionEdge = Edge &
+  OneToOneConnection &
+  TaxonomyConnectionEdge & {
+    __typename?: "SecondaryBreedToTaxonomyConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Taxonomy;
+  };
 
 /** A Gravity Forms   field. */
 export type SectionField = FormField & {
@@ -16866,12 +19823,22 @@ export type TaxonomyConnectionEdge = {
 
 /** Allowed taxonomies */
 export enum TaxonomyEnum {
+  /** Taxonomy enum age_group */
+  Agegroup = "AGEGROUP",
   /** Taxonomy enum category */
   Category = "CATEGORY",
+  /** Taxonomy enum attributes */
+  Petattribute = "PETATTRIBUTE",
   /** Taxonomy enum post_format */
   Postformat = "POSTFORMAT",
+  /** Taxonomy enum primary_breeds */
+  Primarybreed = "PRIMARYBREED",
+  /** Taxonomy enum secondary_breeds */
+  Secondarybreed = "SECONDARYBREED",
   /** Taxonomy enum post_tag */
   Tag = "TAG",
+  /** Taxonomy enum weight_group */
+  Weightgroup = "WEIGHTGROUP",
 }
 
 /** The Type of Identifier used to fetch a single Taxonomy node. To be used along with the "id" field. Default is "ID". */
@@ -17527,8 +20494,37 @@ export type UniformResourceIdentifiable = {
   uri?: Maybe<Scalars["String"]>;
 };
 
+/** Input for the updateAgeGroup mutation. */
+export type UpdateAgeGroupInput = {
+  /** The slug that the age_group will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the age_group object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the ageGroup object to update */
+  id: Scalars["ID"];
+  /** The name of the age_group object to mutate */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The ID of the age_group that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updateAgeGroup mutation. */
+export type UpdateAgeGroupPayload = {
+  __typename?: "UpdateAgeGroupPayload";
+  /** The created age_group */
+  ageGroup?: Maybe<AgeGroup>;
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+};
+
 /** Input for the updateAnimal mutation. */
 export type UpdateAnimalInput = {
+  /** Set connections between the Animal and ageGroups */
+  ageGroups?: InputMaybe<AnimalAgeGroupsInput>;
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars["String"]>;
   /** The content of the object */
@@ -17543,12 +20539,20 @@ export type UpdateAnimalInput = {
   menuOrder?: InputMaybe<Scalars["Int"]>;
   /** The password used to protect the content of the object */
   password?: InputMaybe<Scalars["String"]>;
+  /** Set connections between the Animal and petAttributes */
+  petAttributes?: InputMaybe<AnimalPetAttributesInput>;
+  /** Set connections between the Animal and primaryBreeds */
+  primaryBreeds?: InputMaybe<AnimalPrimaryBreedsInput>;
+  /** Set connections between the Animal and secondaryBreeds */
+  secondaryBreeds?: InputMaybe<AnimalSecondaryBreedsInput>;
   /** The slug of the object */
   slug?: InputMaybe<Scalars["String"]>;
   /** The status of the object */
   status?: InputMaybe<PostStatusEnum>;
   /** The title of the object */
   title?: InputMaybe<Scalars["String"]>;
+  /** Set connections between the Animal and weightGroups */
+  weightGroups?: InputMaybe<AnimalWeightGroupsInput>;
 };
 
 /** The payload for the updateAnimal mutation. */
@@ -17870,6 +20874,33 @@ export type UpdatePagePayload = {
   page?: Maybe<Page>;
 };
 
+/** Input for the updatePetAttribute mutation. */
+export type UpdatePetAttributeInput = {
+  /** The slug that the attributes will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the attributes object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the petAttribute object to update */
+  id: Scalars["ID"];
+  /** The name of the attributes object to mutate */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The ID of the attributes that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updatePetAttribute mutation. */
+export type UpdatePetAttributePayload = {
+  __typename?: "UpdatePetAttributePayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created attributes */
+  petAttribute?: Maybe<PetAttribute>;
+};
+
 /** Input for the updatePostFormat mutation. */
 export type UpdatePostFormatInput = {
   /** The slug that the post_format will be an alias of */
@@ -17944,6 +20975,33 @@ export type UpdatePostPayload = {
   post?: Maybe<Post>;
 };
 
+/** Input for the updatePrimaryBreed mutation. */
+export type UpdatePrimaryBreedInput = {
+  /** The slug that the primary_breeds will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the primary_breeds object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the primaryBreed object to update */
+  id: Scalars["ID"];
+  /** The name of the primary_breeds object to mutate */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The ID of the primary_breeds that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updatePrimaryBreed mutation. */
+export type UpdatePrimaryBreedPayload = {
+  __typename?: "UpdatePrimaryBreedPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created primary_breeds */
+  primaryBreed?: Maybe<PrimaryBreed>;
+};
+
 /** Input for the updateResource mutation. */
 export type UpdateResourceInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
@@ -17977,6 +21035,33 @@ export type UpdateResourcePayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The Post object mutation type. */
   resource?: Maybe<Resource>;
+};
+
+/** Input for the updateSecondaryBreed mutation. */
+export type UpdateSecondaryBreedInput = {
+  /** The slug that the secondary_breeds will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the secondary_breeds object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the secondaryBreed object to update */
+  id: Scalars["ID"];
+  /** The name of the secondary_breeds object to mutate */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The ID of the secondary_breeds that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updateSecondaryBreed mutation. */
+export type UpdateSecondaryBreedPayload = {
+  __typename?: "UpdateSecondaryBreedPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created secondary_breeds */
+  secondaryBreed?: Maybe<SecondaryBreed>;
 };
 
 /** Input for the updateSettings mutation. */
@@ -18148,6 +21233,33 @@ export type UpdateUserPayload = {
   clientMutationId?: Maybe<Scalars["String"]>;
   /** The User object mutation type. */
   user?: Maybe<User>;
+};
+
+/** Input for the updateWeightGroup mutation. */
+export type UpdateWeightGroupInput = {
+  /** The slug that the weight_group will be an alias of */
+  aliasOf?: InputMaybe<Scalars["String"]>;
+  /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: InputMaybe<Scalars["String"]>;
+  /** The description of the weight_group object */
+  description?: InputMaybe<Scalars["String"]>;
+  /** The ID of the weightGroup object to update */
+  id: Scalars["ID"];
+  /** The name of the weight_group object to mutate */
+  name?: InputMaybe<Scalars["String"]>;
+  /** The ID of the weight_group that should be set as the parent */
+  parentId?: InputMaybe<Scalars["ID"]>;
+  /** If this argument exists then the slug will be checked to see if it is not an existing valid term. If that check succeeds (it is not a valid term), then it is added and the term id is given. If it fails, then a check is made to whether the taxonomy is hierarchical and the parent argument is not empty. If the second check succeeds, the term will be inserted and the term id will be given. If the slug argument is empty, then it will be calculated from the term name. */
+  slug?: InputMaybe<Scalars["String"]>;
+};
+
+/** The payload for the updateWeightGroup mutation. */
+export type UpdateWeightGroupPayload = {
+  __typename?: "UpdateWeightGroupPayload";
+  /** If a &#039;clientMutationId&#039; input is provided to the mutation, it will be returned as output on the mutation. This ID can be used by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
+  clientMutationId?: Maybe<Scalars["String"]>;
+  /** The created weight_group */
+  weightGroup?: Maybe<WeightGroup>;
 };
 
 /** A User object */
@@ -18955,6 +22067,7 @@ export type WpPageInfo = {
   seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars["String"]>;
+  total?: Maybe<Scalars["Int"]>;
 };
 
 /** A Gravity Forms   field. */
@@ -19010,6 +22123,390 @@ export type WebsiteField = FormField & {
   value?: Maybe<Scalars["String"]>;
   /** Field visibility. */
   visibility?: Maybe<FormFieldVisibilityEnum>;
+};
+
+/** The weightGroup type */
+export type WeightGroup = DatabaseIdentifier &
+  HierarchicalNode &
+  HierarchicalTermNode &
+  MenuItemLinkable &
+  Node &
+  TermNode &
+  UniformResourceIdentifiable & {
+    __typename?: "WeightGroup";
+    /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+    ancestors?: Maybe<WeightGroupToAncestorsWeightGroupConnection>;
+    /** Connection between the WeightGroup type and the Animal type */
+    animals?: Maybe<WeightGroupToAnimalConnection>;
+    /** Connection between the weightGroup type and its children weightGroups. */
+    children?: Maybe<WeightGroupToWeightGroupConnection>;
+    /** @deprecated Deprecated in favor of using Next.js pages */
+    conditionalTags?: Maybe<ConditionalTags>;
+    /** Connection between the WeightGroup type and the ContentNode type */
+    contentNodes?: Maybe<WeightGroupToContentNodeConnection>;
+    /** The number of objects connected to the object */
+    count?: Maybe<Scalars["Int"]>;
+    /** The unique identifier stored in the database */
+    databaseId: Scalars["Int"];
+    /** The description of the object */
+    description?: Maybe<Scalars["String"]>;
+    /** Connection between the TermNode type and the EnqueuedScript type */
+    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+    /** Connection between the TermNode type and the EnqueuedStylesheet type */
+    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+    /** The unique resource identifier path */
+    id: Scalars["ID"];
+    /** Whether the node is a Content Node */
+    isContentNode: Scalars["Boolean"];
+    /** Whether the object is restricted from the current viewer */
+    isRestricted?: Maybe<Scalars["Boolean"]>;
+    /** Whether the node is a Term */
+    isTermNode: Scalars["Boolean"];
+    /** The link to the term */
+    link?: Maybe<Scalars["String"]>;
+    /** The human friendly name of the object. */
+    name?: Maybe<Scalars["String"]>;
+    /** Connection between the weightGroup type and its parent weightGroup. */
+    parent?: Maybe<WeightGroupToParentWeightGroupConnectionEdge>;
+    /** Database id of the parent node */
+    parentDatabaseId?: Maybe<Scalars["Int"]>;
+    /** The globally unique identifier of the parent node. */
+    parentId?: Maybe<Scalars["ID"]>;
+    /** The Yoast SEO data of the Weight Group taxonomy. */
+    seo?: Maybe<TaxonomySeo>;
+    /** An alphanumeric identifier for the object unique to its type. */
+    slug?: Maybe<Scalars["String"]>;
+    /** Connection between the WeightGroup type and the Taxonomy type */
+    taxonomy?: Maybe<WeightGroupToTaxonomyConnectionEdge>;
+    /** The name of the taxonomy that the object is associated with */
+    taxonomyName?: Maybe<Scalars["String"]>;
+    templates?: Maybe<Array<Maybe<Scalars["String"]>>>;
+    /** The ID of the term group that this term object belongs to */
+    termGroupId?: Maybe<Scalars["Int"]>;
+    /** The taxonomy ID that the object is associated with */
+    termTaxonomyId?: Maybe<Scalars["Int"]>;
+    /** The unique resource identifier path */
+    uri?: Maybe<Scalars["String"]>;
+    /**
+     * The id field matches the WP_Post-&gt;ID field.
+     * @deprecated Deprecated in favor of databaseId
+     */
+    weightGroupId?: Maybe<Scalars["Int"]>;
+  };
+
+/** The weightGroup type */
+export type WeightGroupAncestorsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The weightGroup type */
+export type WeightGroupAnimalsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<WeightGroupToAnimalConnectionWhereArgs>;
+};
+
+/** The weightGroup type */
+export type WeightGroupChildrenArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<WeightGroupToWeightGroupConnectionWhereArgs>;
+};
+
+/** The weightGroup type */
+export type WeightGroupContentNodesArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+  where?: InputMaybe<WeightGroupToContentNodeConnectionWhereArgs>;
+};
+
+/** The weightGroup type */
+export type WeightGroupEnqueuedScriptsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** The weightGroup type */
+export type WeightGroupEnqueuedStylesheetsArgs = {
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
+
+/** Connection to weightGroup Nodes */
+export type WeightGroupConnection = {
+  /** A list of edges (relational context) between RootQuery and connected weightGroup Nodes */
+  edges: Array<WeightGroupConnectionEdge>;
+  /** A list of connected weightGroup Nodes */
+  nodes: Array<WeightGroup>;
+};
+
+/** Edge between a Node and a connected weightGroup */
+export type WeightGroupConnectionEdge = {
+  /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+  cursor?: Maybe<Scalars["String"]>;
+  /** The connected weightGroup Node */
+  node: WeightGroup;
+};
+
+/** The Type of Identifier used to fetch a single resource. Default is ID. */
+export enum WeightGroupIdType {
+  /** The Database ID for the node */
+  DatabaseId = "DATABASE_ID",
+  /** The hashed Global ID */
+  Id = "ID",
+  /** The name of the node */
+  Name = "NAME",
+  /** Url friendly name of the node */
+  Slug = "SLUG",
+  /** The URI for the node */
+  Uri = "URI",
+}
+
+/** Connection between the WeightGroup type and the weightGroup type */
+export type WeightGroupToAncestorsWeightGroupConnection = Connection &
+  WeightGroupConnection & {
+    __typename?: "WeightGroupToAncestorsWeightGroupConnection";
+    /** Edges for the WeightGroupToAncestorsWeightGroupConnection connection */
+    edges: Array<WeightGroupToAncestorsWeightGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<WeightGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type WeightGroupToAncestorsWeightGroupConnectionEdge = Edge &
+  WeightGroupConnectionEdge & {
+    __typename?: "WeightGroupToAncestorsWeightGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: WeightGroup;
+  };
+
+/** Connection between the WeightGroup type and the Animal type */
+export type WeightGroupToAnimalConnection = AnimalConnection &
+  Connection & {
+    __typename?: "WeightGroupToAnimalConnection";
+    /** Edges for the WeightGroupToAnimalConnection connection */
+    edges: Array<WeightGroupToAnimalConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<Animal>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type WeightGroupToAnimalConnectionEdge = AnimalConnectionEdge &
+  Edge & {
+    __typename?: "WeightGroupToAnimalConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: Animal;
+  };
+
+/** Arguments for filtering the WeightGroupToAnimalConnection connection */
+export type WeightGroupToAnimalConnectionWhereArgs = {
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the WeightGroup type and the ContentNode type */
+export type WeightGroupToContentNodeConnection = Connection &
+  ContentNodeConnection & {
+    __typename?: "WeightGroupToContentNodeConnection";
+    /** Edges for the WeightGroupToContentNodeConnection connection */
+    edges: Array<WeightGroupToContentNodeConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<ContentNode>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type WeightGroupToContentNodeConnectionEdge = ContentNodeConnectionEdge &
+  Edge & {
+    __typename?: "WeightGroupToContentNodeConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: ContentNode;
+  };
+
+/** Arguments for filtering the WeightGroupToContentNodeConnection connection */
+export type WeightGroupToContentNodeConnectionWhereArgs = {
+  /** The Types of content to filter */
+  contentTypes?: InputMaybe<Array<InputMaybe<ContentTypesOfWeightGroupEnum>>>;
+  /** Filter the connection based on dates */
+  dateQuery?: InputMaybe<DateQueryInput>;
+  /** True for objects with passwords; False for objects without passwords; null for all objects with or without passwords */
+  hasPassword?: InputMaybe<Scalars["Boolean"]>;
+  /** Specific database ID of the object */
+  id?: InputMaybe<Scalars["Int"]>;
+  /** Array of IDs for the objects to retrieve */
+  in?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Get objects with a specific mimeType property */
+  mimeType?: InputMaybe<MimeTypeEnum>;
+  /** Slug / post_name of the object */
+  name?: InputMaybe<Scalars["String"]>;
+  /** Specify objects to retrieve. Use slugs */
+  nameIn?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Specify IDs NOT to retrieve. If this is used in the same query as "in", it will be ignored */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** What paramater to use to order the objects by. */
+  orderby?: InputMaybe<Array<InputMaybe<PostObjectsConnectionOrderbyInput>>>;
+  /** Use ID to return only children. Use 0 to return only top-level items */
+  parent?: InputMaybe<Scalars["ID"]>;
+  /** Specify objects whose parent is in an array */
+  parentIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Specify posts whose parent is not in an array */
+  parentNotIn?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Show posts with a specific password. */
+  password?: InputMaybe<Scalars["String"]>;
+  /** Show Posts based on a keyword search */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Retrieve posts where post status is in an array. */
+  stati?: InputMaybe<Array<InputMaybe<PostStatusEnum>>>;
+  /** Show posts with a specific status. */
+  status?: InputMaybe<PostStatusEnum>;
+  /** Title of the object */
+  title?: InputMaybe<Scalars["String"]>;
+};
+
+/** Connection between the WeightGroup type and the weightGroup type */
+export type WeightGroupToParentWeightGroupConnectionEdge = Edge &
+  OneToOneConnection &
+  WeightGroupConnectionEdge & {
+    __typename?: "WeightGroupToParentWeightGroupConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: WeightGroup;
+  };
+
+/** Connection between the WeightGroup type and the Taxonomy type */
+export type WeightGroupToTaxonomyConnectionEdge = Edge &
+  OneToOneConnection &
+  TaxonomyConnectionEdge & {
+    __typename?: "WeightGroupToTaxonomyConnectionEdge";
+    /** Opaque reference to the nodes position in the connection. Value can be used with pagination args. */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The node of the connection, without the edges */
+    node: Taxonomy;
+  };
+
+/** Connection between the WeightGroup type and the weightGroup type */
+export type WeightGroupToWeightGroupConnection = Connection &
+  WeightGroupConnection & {
+    __typename?: "WeightGroupToWeightGroupConnection";
+    /** Edges for the WeightGroupToWeightGroupConnection connection */
+    edges: Array<WeightGroupToWeightGroupConnectionEdge>;
+    /** The nodes of the connection, without the edges */
+    nodes: Array<WeightGroup>;
+    /** Information about pagination in a connection. */
+    pageInfo?: Maybe<WpPageInfo>;
+  };
+
+/** An edge in a connection */
+export type WeightGroupToWeightGroupConnectionEdge = Edge &
+  WeightGroupConnectionEdge & {
+    __typename?: "WeightGroupToWeightGroupConnectionEdge";
+    /** A cursor for use in pagination */
+    cursor?: Maybe<Scalars["String"]>;
+    /** The item at the end of the edge */
+    node: WeightGroup;
+  };
+
+/** Arguments for filtering the WeightGroupToWeightGroupConnection connection */
+export type WeightGroupToWeightGroupConnectionWhereArgs = {
+  /** Unique cache key to be produced when this query is stored in an object cache. Default is 'core'. */
+  cacheDomain?: InputMaybe<Scalars["String"]>;
+  /** Term ID to retrieve child terms of. If multiple taxonomies are passed, $child_of is ignored. Default 0. */
+  childOf?: InputMaybe<Scalars["Int"]>;
+  /** True to limit results to terms that have no children. This parameter has no effect on non-hierarchical taxonomies. Default false. */
+  childless?: InputMaybe<Scalars["Boolean"]>;
+  /** Retrieve terms where the description is LIKE the input value. Default empty. */
+  descriptionLike?: InputMaybe<Scalars["String"]>;
+  /** Array of term ids to exclude. If $include is non-empty, $exclude is ignored. Default empty array. */
+  exclude?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term ids to exclude along with all of their descendant terms. If $include is non-empty, $exclude_tree is ignored. Default empty array. */
+  excludeTree?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to hide terms not assigned to any posts. Accepts true or false. Default false */
+  hideEmpty?: InputMaybe<Scalars["Boolean"]>;
+  /** Whether to include terms that have non-empty descendants (even if $hide_empty is set to true). Default true. */
+  hierarchical?: InputMaybe<Scalars["Boolean"]>;
+  /** Array of term ids to include. Default empty array. */
+  include?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of names to return term(s) for. Default empty. */
+  name?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Retrieve terms where the name is LIKE the input value. Default empty. */
+  nameLike?: InputMaybe<Scalars["String"]>;
+  /** Array of object IDs. Results will be limited to terms associated with these objects. */
+  objectIds?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Direction the connection should be ordered in */
+  order?: InputMaybe<OrderEnum>;
+  /** Field(s) to order terms by. Defaults to 'name'. */
+  orderby?: InputMaybe<TermObjectsConnectionOrderbyEnum>;
+  /** Whether to pad the quantity of a term's children in the quantity of each term's "count" object variable. Default false. */
+  padCounts?: InputMaybe<Scalars["Boolean"]>;
+  /** Parent term ID to retrieve direct-child terms of. Default empty. */
+  parent?: InputMaybe<Scalars["Int"]>;
+  /** Search criteria to match terms. Will be SQL-formatted with wildcards before and after. Default empty. */
+  search?: InputMaybe<Scalars["String"]>;
+  /** Array of slugs to return term(s) for. Default empty. */
+  slug?: InputMaybe<Array<InputMaybe<Scalars["String"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Array of term taxonomy IDs, to match when querying terms. */
+  termTaxonomyId?: InputMaybe<Array<InputMaybe<Scalars["ID"]>>>;
+  /** Whether to prime meta caches for matched terms. Default true. */
+  updateTermMetaCache?: InputMaybe<Scalars["Boolean"]>;
 };
 
 /** The writing setting type */

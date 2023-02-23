@@ -1,0 +1,65 @@
+.impact .ticker-view {
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  overflow: hidden;
+  font-size: 56px;
+  position: relative;
+  max-width: fit-content;
+  font-weight: bold;
+  align-items: center;
+}
+
+.impact .number-placeholder {
+  visibility: hidden;
+}
+
+.impact .ticker-column-container {
+  position: relative;
+  padding: 10px 15px;
+  margin: 10px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.impact .ticker-column {
+  position: absolute;
+  height: 1000%;
+  bottom: 0;
+}
+
+.impact .ticker-digit {
+  height: 10%;
+  display: grid;
+  place-items: center;
+}
+
+.impact .ticker-column.increase {
+  animation: pulseGreen 500ms cubic-bezier(0.4, 0, 0.6, 1) 1;
+}
+
+.impact .ticker-column.decrease {
+  animation: pulseRed 500ms cubic-bezier(0.4, 0, 0.6, 1) 1;
+}
+
+@keyframes pulseGreen {
+  0%,
+  100% {
+    color: white;
+  }
+
+  50% {
+    color: #00b894;
+  }
+}
+
+@keyframes pulseRed {
+  0%,
+  100% {
+    color: white;
+  }
+
+  50% {
+    color: #d63031;
+  }
+}
