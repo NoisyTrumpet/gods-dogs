@@ -1,7 +1,8 @@
-import { gql } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 import * as MENUS from "constants/menus";
 import { Layout, Blocks } from "features"; // Blocks eventually
 import { NavigationMenu } from "components";
+import { useState } from "react";
 import {
   BLOG_INFO_FRAGMENT,
   SITE_SETTINGS_FRAGMENT,
@@ -12,32 +13,27 @@ import {
 } from "fragments";
 
 export default function Component(props) {
+  // Parent Data Tree
   const { data, loading, error } = props;
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
+  // Deconstruct Data
   const {
     page,
     headerMenuItems,
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
-    animals: { edges: animals },
+    animals: { edges: animals, pageInfo: animalsPageInfo },
   } = data;
-
+  const { total } = animalsPageInfo;
+  // Social
   const { social } = defaultSEO;
-
+  // Page Data
   const {
     seo,
     title,
     flexibleContent: { blocks },
   } = page;
+  // Site Settings
   const {
     address,
     customAddressLabel,
@@ -50,6 +46,51 @@ export default function Component(props) {
     turnOnAnnouncements,
     announcements,
   } = siteSettings.siteSettings;
+  // Fluid Animal Data State
+  const [animalData, setAnimalData] = useState(data.animals);
+  // Load more animals
+  const [
+    loadMoreAnimals,
+    { loading: loadingMoreAnimals, data: moreAnimals, error: loadMoreError },
+  ] = useLazyQuery(
+    gql`
+      query Animals($first: Int = 9, $after: String) {
+        animals(first: $first, after: $after) {
+          ...AnimalsFragment
+        }
+      }
+      ${ANIMALS_FRAGMENT}
+    `,
+    {
+      onCompleted: (data) => {
+        setAnimalData({
+          ...data.animals,
+          edges: [...animalData.edges, ...data.animals.edges],
+        });
+      },
+    }
+  );
+  // Load More Handler
+  const handleLoadMore = () => {
+    if (loadingMoreAnimals) return;
+    if (!animalData.pageInfo.hasNextPage) return;
+    loadMoreAnimals({
+      variables: {
+        first: 9,
+        after: animalData.pageInfo.endCursor,
+      },
+    });
+  };
+  // Has More
+  const hasMore = animalData.pageInfo.hasNextPage;
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <Layout
@@ -70,7 +111,14 @@ export default function Component(props) {
       turnOnAnnouncements={turnOnAnnouncements}
       announcements={announcements}
     >
-      <Blocks blocks={blocks} animals={animals} />
+      <Blocks
+        blocks={blocks}
+        animals={animalData.edges}
+        loadMore={handleLoadMore}
+        hasMore={hasMore}
+        loading={loadingMoreAnimals}
+        total={total}
+      />
     </Layout>
   );
 }
@@ -81,6 +129,7 @@ Component.query = gql`
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
     $asPreview: Boolean = false
+    $first: Int = 9
   ) {
     generalSettings {
       ...BlogInfoFragment
@@ -102,7 +151,7 @@ Component.query = gql`
         ...FlexibleContentFragment
       }
     }
-    animals(first: 50) {
+    animals(first: $first) {
       ...AnimalsFragment
     }
     headerMenuItems: menuItems(

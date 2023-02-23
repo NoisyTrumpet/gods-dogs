@@ -1,8 +1,10 @@
 import * as SELECTORS from "constants/selectors";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 
 const GOOD_DOG = localFont({
   src: "../../pages/GoodDogNew.woff2",
+  display: "swap",
+  variable: "--font-heading",
 });
 
 const LIGURINO = localFont({
@@ -23,6 +25,8 @@ const LIGURINO = localFont({
       style: "italic",
     },
   ],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export interface MainProps {
@@ -35,7 +39,7 @@ export default function Main({ children, className, ...props }: MainProps) {
     <main
       id={SELECTORS.MAIN_CONTENT_ID}
       tabIndex={-1}
-      className={`${className} ${GOOD_DOG.className} ${LIGURINO.className} overflow-x-hidden`}
+      className={`${className} ${GOOD_DOG.variable} ${LIGURINO.variable} overflow-x-hidden`}
       {...props}
     >
       {children}

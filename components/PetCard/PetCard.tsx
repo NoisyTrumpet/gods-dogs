@@ -1,7 +1,8 @@
+import { Animal, RootQueryToAnimalConnectionEdge } from "graphql";
 import { Button } from "../Button";
 
 export interface PetCardProps {
-  pet: any;
+  pet?: Animal;
   variant: string;
   className?: string;
 }

@@ -3,6 +3,11 @@ import { MEDIA_ITEM_FRAGMENT } from "./MediaItemFragment";
 
 export const ANIMALS_FRAGMENT = gql`
   fragment AnimalsFragment on RootQueryToAnimalConnection {
+    pageInfo {
+      endCursor
+      hasNextPage
+      total
+    }
     edges {
       node {
         id
