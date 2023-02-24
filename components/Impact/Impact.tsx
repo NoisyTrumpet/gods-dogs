@@ -8,15 +8,10 @@ import {
 import { useEffect, useRef } from "react";
 import { Button } from "components/Button";
 import { FeaturedImage } from "components/FeaturedImage";
+import { Page_Flexiblecontent_Blocks_Impact } from "graphql";
 
-interface ImpactProps {
+export interface ImpactProps extends Page_Flexiblecontent_Blocks_Impact {
   className?: string;
-  variant?: string;
-  backgroundColor?: string;
-  hasHeadingIcon?: boolean;
-  title?: string;
-  headingIcon?: any;
-  impactItems?: any;
 }
 
 const Impact = ({
