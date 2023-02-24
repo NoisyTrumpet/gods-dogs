@@ -267,6 +267,27 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
       }
+      ... on Page_Flexiblecontent_Blocks_TeamMembers {
+        fieldGroupName
+        title
+        members {
+          ... on TeamMember {
+            databaseId
+            name
+            teamMemberOptions {
+              title
+              headshot {
+                ...MediaItemFragment
+              }
+              email {
+                target
+                title
+                url
+              }
+            }
+          }
+        }
+      }
     }
   }
   ${MEDIA_ITEM_FRAGMENT}

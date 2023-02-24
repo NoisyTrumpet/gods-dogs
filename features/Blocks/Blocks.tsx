@@ -42,6 +42,13 @@ const PetCarousel = dynamic(
 const Impact = dynamic(() => import("components/Impact/Impact"), {
   ssr: true,
 });
+// Team Block:
+const TeamMembers = dynamic(
+  () => import("components/TeamMembers/TeamMembers"),
+  {
+    ssr: true,
+  }
+);
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -83,7 +90,7 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_TeamMembers
     | Page_Flexiblecontent_Blocks_EventBlock
     | Page_Flexiblecontent_Blocks_SplitText
-    |Page_Flexiblecontent_Blocks_AvailableDogs;
+    | Page_Flexiblecontent_Blocks_AvailableDogs;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
@@ -146,6 +153,12 @@ const Block = ({ block }: BlockProps) => {
     // PetCarousel
     case "Impact": {
       return <Impact {...(block as Page_Flexiblecontent_Blocks_Impact)} />;
+    }
+    // TeamMembers
+    case "TeamMembers": {
+      return (
+        <TeamMembers {...(block as Page_Flexiblecontent_Blocks_TeamMembers)} />
+      );
     }
     default: {
       return (
