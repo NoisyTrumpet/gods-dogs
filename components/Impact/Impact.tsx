@@ -51,17 +51,7 @@ const Impact = ({
               : `column flex items-center justify-center`
           }`}
         >
-          {impactItems.map(
-            (
-              card: {
-                impactIcon: any;
-                subtext: string;
-                impactNumber: number;
-                isAbbreviated: boolean;
-                isDollarAmount: boolean;
-              },
-              index: number
-            ) => {
+          {impactItems.map(({ card }: any, index: number) => {
               const {
                 impactIcon,
                 impactNumber,
