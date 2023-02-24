@@ -51,83 +51,80 @@ const Impact = ({
               : `column flex items-center justify-center`
           }`}
         >
-          {impactItems.map(({ card }: any, index: number) => {
-              const {
-                impactIcon,
-                impactNumber,
-                isDollarAmount,
-                isAbbreviated,
-                subtext,
-              } = card ?? {};
+          {impactItems.map((card: any, index: number) => {
+            const {
+              impactIcon,
+              impactNumber,
+              isDollarAmount,
+              isAbbreviated,
+              subtext,
+            } = card ?? {};
 
-              function Counter() {
-                const count = useMotionValue(0);
-                const rounded = useTransform(count, (latest) =>
-                  Math.round(latest)
-                );
-                const ref = useRef(null);
-                const isInView = useInView(ref);
-
-                const str = impactNumber.toString();
-                const numArray = str.split("");
-                const isBig = numArray.length > 3;
-                const num = str.slice(0, -3);
-
-                useEffect(() => {
-                  if (isAbbreviated) {
-                    if (isInView) {
-                      animate(count, parseInt(num));
-                    } else {
-                      animate(count, 0);
-                    }
-                  } else {
-                    if (isInView) {
-                      animate(count, impactNumber);
-                    } else {
-                      animate(count, 0);
-                    }
-                  }
-                }, [isInView]);
-
-                return <motion.div ref={ref}>{rounded}</motion.div>;
-              }
-
-              return (
-                <div
-                  key={index}
-                  className={`relative h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out`}
-                >
-                  <div
-                    className={`${
-                      className ? className : ``
-                    } relative mx-auto flex h-full w-fit flex-col items-center justify-start text-center`}
-                  >
-                    {impactIcon ? (
-                      <FeaturedImage
-                        image={impactIcon}
-                        className={`w-full max-w-[3rem]`}
-                        imgClassName="w-full"
-                      />
-                    ) : null}
-                    {impactNumber ? (
-                      <p
-                        className={`mb-2 mt-6 flex flex-row font-body text-8xl ${
-                          variant === "cards"
-                            ? "font-heading text-secondary"
-                            : ""
-                        }`}
-                      >
-                        {isDollarAmount ? `$` : null}
-                        <Counter />
-                        {isAbbreviated ? `k` : null}
-                      </p>
-                    ) : null}
-                    {subtext ? <p className="font-body">{subtext}</p> : null}
-                  </div>
-                </div>
+            function Counter() {
+              const count = useMotionValue(0);
+              const rounded = useTransform(count, (latest) =>
+                Math.round(latest)
               );
+              const ref = useRef(null);
+              const isInView = useInView(ref);
+
+              const str = impactNumber.toString();
+              const numArray = str.split("");
+              const isBig = numArray.length > 3;
+              const num = str.slice(0, -3);
+
+              useEffect(() => {
+                if (isAbbreviated) {
+                  if (isInView) {
+                    animate(count, parseInt(num));
+                  } else {
+                    animate(count, 0);
+                  }
+                } else {
+                  if (isInView) {
+                    animate(count, impactNumber);
+                  } else {
+                    animate(count, 0);
+                  }
+                }
+              }, [isInView]);
+
+              return <motion.div ref={ref}>{rounded}</motion.div>;
             }
-          )}
+
+            return (
+              <div
+                key={index}
+                className={`relative h-full w-full flex-col justify-start py-6 px-10 transition duration-300 ease-in-out`}
+              >
+                <div
+                  className={`${
+                    className ? className : ``
+                  } relative mx-auto flex h-full w-fit flex-col items-center justify-start text-center`}
+                >
+                  {impactIcon ? (
+                    <FeaturedImage
+                      image={impactIcon}
+                      className={`w-full max-w-[3rem]`}
+                      imgClassName="w-full"
+                    />
+                  ) : null}
+                  {impactNumber ? (
+                    <p
+                      className={`mb-2 mt-6 flex flex-row font-body text-8xl ${
+                        variant === "cards" ? "font-heading text-secondary" : ""
+                      }`}
+                    >
+                      {isDollarAmount ? `$` : null}
+                      <Counter />
+                      {isAbbreviated ? `k` : null}
+                    </p>
+                  ) : null}
+                  {subtext ? <p className="font-body">{subtext}</p> : null}
+                </div>
+              </div>
+            );
+          })}
         </div>
       ) : null}
     </div>
