@@ -12,3 +12,4 @@ export { Hero } from "./Hero";
 export { TextImage } from "./TextImage";
 export { TextBlock } from "./TextBlock";
 export { Accordion } from "./Accordion";
+export { Impact } from "./Impact";
