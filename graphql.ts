@@ -1184,6 +1184,8 @@ export type Animal = ContentNode &
     secondaryBreeds?: Maybe<AnimalToSecondaryBreedConnection>;
     /** The Yoast SEO data of the ContentNode */
     seo?: Maybe<PostTypeSeo>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Sidebar Options&quot; was set to Show in GraphQL. */
+    sidebarOptions?: Maybe<Animal_Sidebaroptions>;
     /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
     slug?: Maybe<Scalars["String"]>;
     /** The current status of the object */
@@ -1875,6 +1877,24 @@ export type Animal_Animaldetails_AnimalPhotoGallery = AcfFieldGroup & {
   fieldGroupName?: Maybe<Scalars["String"]>;
   /** The photo of the animal in Shelterluv. */
   photo?: Maybe<Scalars["String"]>;
+};
+
+/** Field Group */
+export type Animal_Sidebaroptions = AcfFieldGroup & {
+  __typename?: "Animal_Sidebaroptions";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  sidebarOptions?: Maybe<Animal_Sidebaroptions_SidebarOptions>;
+};
+
+/** Field Group */
+export type Animal_Sidebaroptions_SidebarOptions = AcfFieldGroup & {
+  __typename?: "Animal_Sidebaroptions_SidebarOptions";
+  dogsWidget?: Maybe<Scalars["Boolean"]>;
+  donateWidget?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  useSidebar?: Maybe<Scalars["Boolean"]>;
 };
 
 /** The atlasContentModelerSettings setting type */
@@ -5067,6 +5087,8 @@ export type Event = ContentNode &
     revisions?: Maybe<EventToRevisionConnection>;
     /** The Yoast SEO data of the ContentNode */
     seo?: Maybe<PostTypeSeo>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Sidebar Options&quot; was set to Show in GraphQL. */
+    sidebarOptions?: Maybe<Event_Sidebaroptions>;
     /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
     slug?: Maybe<Scalars["String"]>;
     /** The current status of the object */
@@ -5684,6 +5706,24 @@ export type Event_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater
     fieldGroupName?: Maybe<Scalars["String"]>;
     type?: Maybe<Scalars["String"]>;
   };
+
+/** Field Group */
+export type Event_Sidebaroptions = AcfFieldGroup & {
+  __typename?: "Event_Sidebaroptions";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  sidebarOptions?: Maybe<Event_Sidebaroptions_SidebarOptions>;
+};
+
+/** Field Group */
+export type Event_Sidebaroptions_SidebarOptions = AcfFieldGroup & {
+  __typename?: "Event_Sidebaroptions_SidebarOptions";
+  dogsWidget?: Maybe<Scalars["Boolean"]>;
+  donateWidget?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  useSidebar?: Maybe<Scalars["Boolean"]>;
+};
 
 /** Field error. */
 export type FieldError = {
@@ -10528,6 +10568,8 @@ export type Post = ContentNode &
     revisions?: Maybe<PostToRevisionConnection>;
     /** The Yoast SEO data of the ContentNode */
     seo?: Maybe<PostTypeSeo>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Sidebar Options&quot; was set to Show in GraphQL. */
+    sidebarOptions?: Maybe<Post_Sidebaroptions>;
     /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
     slug?: Maybe<Scalars["String"]>;
     /** The current status of the object */
@@ -14154,6 +14196,24 @@ export type Post_Flexiblecontent_Blocks_TextImage_TextImageRepeater_CtaRepeater 
     type?: Maybe<Scalars["String"]>;
   };
 
+/** Field Group */
+export type Post_Sidebaroptions = AcfFieldGroup & {
+  __typename?: "Post_Sidebaroptions";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  sidebarOptions?: Maybe<Post_Sidebaroptions_SidebarOptions>;
+};
+
+/** Field Group */
+export type Post_Sidebaroptions_SidebarOptions = AcfFieldGroup & {
+  __typename?: "Post_Sidebaroptions_SidebarOptions";
+  dogsWidget?: Maybe<Scalars["Boolean"]>;
+  donateWidget?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  useSidebar?: Maybe<Scalars["Boolean"]>;
+};
+
 /** Nodes that can be seen in a preview (unpublished) state. */
 export type Previewable = {
   /** Whether the object is a node in the preview state */
@@ -14846,6 +14906,8 @@ export type Resource = ContentNode &
     revisions?: Maybe<ResourceToRevisionConnection>;
     /** The Yoast SEO data of the ContentNode */
     seo?: Maybe<PostTypeSeo>;
+    /** Added to the GraphQL Schema because the ACF Field Group &quot;Sidebar Options&quot; was set to Show in GraphQL. */
+    sidebarOptions?: Maybe<Resource_Sidebaroptions>;
     /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
     slug?: Maybe<Scalars["String"]>;
     /** The current status of the object */
@@ -15439,6 +15501,24 @@ export type Resource_Resourceoptions = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars["String"]>;
   icon?: Maybe<MediaItem>;
+};
+
+/** Field Group */
+export type Resource_Sidebaroptions = AcfFieldGroup & {
+  __typename?: "Resource_Sidebaroptions";
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  sidebarOptions?: Maybe<Resource_Sidebaroptions_SidebarOptions>;
+};
+
+/** Field Group */
+export type Resource_Sidebaroptions_SidebarOptions = AcfFieldGroup & {
+  __typename?: "Resource_Sidebaroptions_SidebarOptions";
+  dogsWidget?: Maybe<Scalars["Boolean"]>;
+  donateWidget?: Maybe<Scalars["Boolean"]>;
+  /** The name of the ACF Field Group */
+  fieldGroupName?: Maybe<Scalars["String"]>;
+  useSidebar?: Maybe<Scalars["Boolean"]>;
 };
 
 /** Input for the restoreComment mutation. */

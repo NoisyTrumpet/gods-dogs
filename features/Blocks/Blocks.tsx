@@ -83,7 +83,7 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_TeamMembers
     | Page_Flexiblecontent_Blocks_EventBlock
     | Page_Flexiblecontent_Blocks_SplitText
-    |Page_Flexiblecontent_Blocks_AvailableDogs;
+    | Page_Flexiblecontent_Blocks_AvailableDogs;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
