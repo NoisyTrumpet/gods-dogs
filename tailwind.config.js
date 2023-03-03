@@ -33,6 +33,9 @@ module.exports = {
         "3/5": "60%",
         xxs: "24rem",
       },
+      gridTemplateColumns: {
+        "3and4": "25% 75%",
+      },
       minWidth: {
         "1/4": "25%",
         "1/2": "50%",

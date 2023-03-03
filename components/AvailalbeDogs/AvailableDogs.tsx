@@ -3,10 +3,11 @@ import PetCard from "../PetCard/PetCard";
 import {
   Animal,
   AnimalConnectionEdge,
+  AnimalToPrimaryBreedConnection,
   PrimaryBreed,
   RootQueryToAnimalConnectionEdge,
 } from "graphql";
-import { Key, useState } from "react";
+import { Key, useEffect, useState } from "react";
 import Filter, { FilterType, TabOption } from "./Fragments/Filter";
 
 import handlePrimaryBreeds from "./Utils/handlePrimaryBreeds";
@@ -15,8 +16,10 @@ import handleSex from "./Utils/handleSex";
 import handleAge from "./Utils/handleAge";
 import handleWeight from "./Utils/handleWeight";
 import handlePetAttributes from "./Utils/handlePetAttributes";
+import { useRouter } from "next/router";
+import { isFiltered } from "./Utils/isFiltered";
 interface AvailableDogsProps {
-  animals: AnimalConnectionEdge[] | RootQueryToAnimalConnectionEdge;
+  animals: AnimalConnectionEdge[] | RootQueryToAnimalConnectionEdge[];
   loadMore?: () => void;
   loading?: boolean;
   hasMore?: boolean;
@@ -30,40 +33,45 @@ const AvailableDogs = ({
   hasMore,
   total,
 }: AvailableDogsProps) => {
-  const animalArray = animals as AnimalConnectionEdge[];
-  const hasAnimals = animalArray.length > 0;
+  const hasAnimals = animals.length > 0;
+  const primaryBreedFilters = handlePrimaryBreeds(animals);
+  const secondaryBreedFilters = handleSecondaryBreeds(animals);
+  const sexFilters = handleSex(animals);
+  const ageFilters = handleAge(animals);
+  const weightFilters = handleWeight(animals);
+  const attributesFilters = handlePetAttributes(animals);
 
-  const primaryBreedFilters = handlePrimaryBreeds(animalArray);
-  const secondaryBreedFilters = handleSecondaryBreeds(animalArray);
-  const sexFilters = handleSex(animalArray);
-  const ageFilters = handleAge(animalArray);
-  const weightFilters = handleWeight(animalArray);
-  const attributesFilters = handlePetAttributes(animalArray);
 
   const filters = [
     {
       name: "Primary Breed",
       filters: primaryBreedFilters,
+      filterName: "primaryBreed",
     },
     {
       name: "Secondary Breed",
       filters: secondaryBreedFilters,
+      filterName: "secondaryBreed",
     },
     {
       name: "Sex",
       filters: sexFilters,
+      filterName: "sex"
     },
     {
       name: "Age",
       filters: ageFilters,
+      filterName: "age"
     },
     {
       name: "Size Groups",
       filters: weightFilters,
+      filterName: "weight"
     },
     {
       name: "Attributes",
       filters: attributesFilters,
+      filterName: "attributes"
     },
   ];
 
@@ -89,13 +97,13 @@ const AvailableDogs = ({
           <option value="breed">Breed</option>
         </select>
       </div>
-      <div className={"flex flex-row"}>
-        <div className={`w-1/4`}>
+      <div className={"grid grid-cols-3and4"}>
+        <div className={`h-full`}>
           <Filter total={total} filters={filters} />
         </div>
-        <div className={`grid w-3/4 grid-cols-3 gap-6`}>
+        <div className={`grid grid-cols-3 gap-6`}>
           {hasAnimals
-            ? animalArray.map((animal: AnimalConnectionEdge, index: Key) => {
+            ? animals.map((animal: AnimalConnectionEdge, index: Key) => {
                 const node = animal?.node as Animal;
 
                 return (

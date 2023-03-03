@@ -27,6 +27,7 @@ function handleSecondaryBreeds(animalArray: AnimalConnectionEdge[]) {
       name: name || "",
       value: slug,
       count: count,
+      filterName: "secondaryBreed",
     });
   });
 

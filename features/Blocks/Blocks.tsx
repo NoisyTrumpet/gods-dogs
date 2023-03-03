@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 // Hero: (Non dynamic import) Above the fold content
-import { Hero, AvailableDogs } from "components";
+import { Hero } from "components";
 // Dynamic Imports: Below the fold content
 const Form = dynamic(() => import("components/Form/Form"), {
   ssr: true,
@@ -34,6 +34,13 @@ const SplitText = dynamic(() => import("components/SplitText/SplitText"), {
 // Pet Carousel Block:
 const PetCarousel = dynamic(
   () => import("components/PetCarousel/PetCarousel"),
+  {
+    ssr: true,
+  }
+);
+// Available Dogs Block:
+const AvailableDogs = dynamic(
+  () => import("components/AvailalbeDogs/AvailableDogs"),
   {
     ssr: true,
   }
@@ -86,7 +93,7 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_EventBlock
     | Page_Flexiblecontent_Blocks_SplitText
     | Page_Flexiblecontent_Blocks_AvailableDogs;
-  animals: AnimalConnectionEdge;
+  animals?: RootQueryToAnimalConnectionEdge[];
   loadMore?: () => void;
   loading?: boolean;
   hasMore?: boolean;
@@ -160,7 +167,7 @@ const Block = ({
     case "AvailableDogs": {
       return (
         <AvailableDogs
-          animals={animals as RootQueryToAnimalConnectionEdge}
+          animals={animals as RootQueryToAnimalConnectionEdge[]}
           loadMore={loadMore}
           loading={loading}
           hasMore={hasMore}

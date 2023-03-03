@@ -1,33 +1,73 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import FilterAccordion from "./FilterAccordion";
 
 export type FilterType = {
   name: string;
   value: string;
   count: number;
+  filterName: string;
 };
 
 export type TabOption = {
   name: string;
   filters: FilterType[];
-  isOpen?: boolean;
+  filterName: string;
 };
 
 export interface FilterProps {
   total: number;
   filters: TabOption[];
-  setFilters?: (filters: FilterType[]) => void;
 }
 
-const Filter = ({ filters, setFilters, total }: FilterProps) => {
-  // Url Query Params
+const Filter = ({ filters, total }: FilterProps) => {
   const router = useRouter();
 
+  const handleFilterChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    filter: { name: any; value: any; count?: number; filterName: string }
+  ) => {
+    const queryParams = new URLSearchParams(router.query as any);
+    const selectedFilters = queryParams.get(filter.filterName)?.split(",") || [];
+
+    if (e.target.checked) {
+      selectedFilters.push(filter.value);
+    } else {
+      const index = selectedFilters.indexOf(filter.value);
+      if (index > -1) {
+        selectedFilters.splice(index, 1);
+      }
+    }
+
+    if (selectedFilters.length === 0) {
+      queryParams.delete(filter.filterName);
+    } else {
+      queryParams.set(filter.filterName, selectedFilters.join(","));
+    }
+
+    const queryString = queryParams.toString();
+    router.push({ pathname: router.pathname, search: queryString });
+  };
+
+
+
+  const isChecked = (filter: {
+    filterName: string;
+    name: string;
+    value: string;
+    count?: number;
+  }) => {
+    const queryParams = new URLSearchParams(router.query as any);
+    const selectedFilters = queryParams.get(filter.filterName)?.split(",") || [];
+
+    return selectedFilters.includes(filter.value);
+  };
+
+
   return (
-    <div className={`w-full pr-6`}>
+    <div className={`max-h-full pr-6 sticky top-40 left-0`}>
       <h3 className={`font-body text-xl text-dark`}>{total} Total Dogs</h3>
-      <form className={`relative mt-6 flex flex-col`}>
+      <form className={`mt-6 flex flex-col`}>
         <ul
           className={`flex w-full flex-col gap-4 border-t border-gray-300 font-body`}
         >
@@ -52,6 +92,8 @@ const Filter = ({ filters, setFilters, total }: FilterProps) => {
                           name={f.name}
                           value={f.value}
                           className={`h-4 w-4`}
+                          checked={isChecked(f)}
+                          onChange={(e) => handleFilterChange(e, f)}
                         />
                         {f.name}
                         <span>{f.count > 0 ? `(${f.count})` : null}</span>

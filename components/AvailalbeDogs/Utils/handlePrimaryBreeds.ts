@@ -27,6 +27,7 @@ function handlePrimaryBreeds(animalArray: AnimalConnectionEdge[]) {
       name: name || "",
       value: slug,
       count: count,
+      filterName: "primaryBreed",
     });
   });
 
