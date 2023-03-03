@@ -107,6 +107,13 @@ Component.query = gql`
       seo {
         ...SEOFragment
       }
+      sidebarOptions {
+        sidebarOptions {
+          dogsWidget
+          useSidebar
+          donateWidget
+        }
+      }
     }
     headerMenuItems: menuItems(
       where: { location: $headerLocation }

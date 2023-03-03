@@ -195,11 +195,15 @@ const FeaturedCards = ({
                         {cardHasLink && cardLink ? (
                           <>
                             {buttonType === "basic" ? (
-                              <span
+                              <a
+                                href={cardLink.url ?? "#"}
+                                target={
+                                  cardLink.target ? cardLink.target : "_self"
+                                }
                                 className={`uppercase italic underline hover:cursor-pointer`}
                               >
                                 {cardLink.title}
-                              </span>
+                              </a>
                             ) : (
                               <Button
                                 href={cardLink.url ?? "#"}

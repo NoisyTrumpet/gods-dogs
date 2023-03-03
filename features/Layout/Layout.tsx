@@ -10,7 +10,7 @@ import {
 } from "graphql";
 import { Main, SEO } from "features";
 
-import { Header, Footer } from "components";
+import { Header, Footer, Sidebar } from "components";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -30,6 +30,9 @@ export interface LayoutProps {
   social: SeoSocial;
   turnOnAnnouncements: boolean;
   announcements: any[];
+  useSidebar: boolean;
+  donateWidget: boolean;
+  dogsWidget: boolean;
 }
 
 const Layout = ({
@@ -50,6 +53,9 @@ const Layout = ({
   social,
   turnOnAnnouncements,
   announcements,
+  useSidebar,
+  donateWidget,
+  dogsWidget,
 }: LayoutProps) => {
   return (
     <>
@@ -62,7 +68,17 @@ const Layout = ({
         turnOnAnnouncements={turnOnAnnouncements}
         announcements={announcements}
       />
-      <Main className={`main`}>{children}</Main>
+      {useSidebar ? (
+        <Main className={`main flex flex-col md:flex-row`}>
+          <div className={`w-full md:w-3/4`}>{children}</div>
+          <div className={`w-full md:w-1/4`}>
+            <Sidebar dogsWidget={dogsWidget} donateWidget={donateWidget} />
+          </div>
+        </Main>
+      ) : (
+        <Main className={`main`}>{children}</Main>
+      )}
+      {/* <Main className={`main`}>{children}</Main> */}
       <Footer
         menuItems={footerMenuItems.nodes}
         cta={cta}

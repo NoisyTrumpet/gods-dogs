@@ -31,7 +31,9 @@ export default function Component(props) {
 
   const { social } = defaultSEO;
 
-  const { seo, title } = resource;
+  const { seo, title, sidebarOptions } = resource;
+  const { useSidebar, dogsWidget, donateWidget } =
+    sidebarOptions.sidebarOptions;
   const {
     address,
     customAddressLabel,
@@ -63,6 +65,9 @@ export default function Component(props) {
       social={social}
       turnOnAnnouncements={turnOnAnnouncements}
       announcements={announcements}
+      useSidebar={useSidebar}
+      dogsWidget={dogsWidget}
+      donateWidget={donateWidget}
     >
       <Hero title={title} variant={"basic"} />
     </Layout>
