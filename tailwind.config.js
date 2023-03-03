@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -19,8 +21,8 @@ module.exports = {
         dark: "#292929", // off-black
       },
       fontFamily: {
-        heading: ["__GOOD_DOG_3cfdbc"],
-        body: ["__LIGURINO_71f35e"],
+        heading: ['var(--font-heading)'],
+        body: ['var(--font-body)'],
       },
       maxWidth: {
         "1/4": "25%",

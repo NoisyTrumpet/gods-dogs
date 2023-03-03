@@ -46,7 +46,7 @@ const DonationForm: React.FC<DonationFormProps> = ({
     <div className="mx-auto flex w-full max-w-xl flex-col">
       {/* Tabs */}
       <div className="flex w-full flex-col justify-center gap-6 overflow-hidden">
-        <div className={`overflow-hidden rounded-full`}>
+        <div className={`overflow-hidden rounded-full font-body font-bold`}>
           <button
             className={`${
               activeTab === "one-time"
