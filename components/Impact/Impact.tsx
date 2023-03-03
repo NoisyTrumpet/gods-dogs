@@ -72,6 +72,7 @@ const Impact = ({
               const numArray = str.split("");
               const isBig = numArray.length > 3;
               const num = str.slice(0, -3);
+              let boxsedNums = [];
 
               useEffect(() => {
                 if (isAbbreviated) {
@@ -81,7 +82,16 @@ const Impact = ({
                     animate(count, 0);
                   }
                 } else {
-                  if (isInView) {
+                  //     if (isInView) {
+                  //       animate(count, impactNumber);
+                  //     } else {
+                  //       animate(count, 0);
+                  //     }
+                  //   }
+                  // }, [isInView]);
+                  if (isInView && variant === "column") {
+                    animate(count, parseInt(numArray));
+                  } else if (isInView) {
                     animate(count, impactNumber);
                   } else {
                     animate(count, 0);
@@ -89,7 +99,21 @@ const Impact = ({
                 }
               }, [isInView]);
 
-              return <motion.div ref={ref}>{rounded}</motion.div>;
+              return (
+                <motion.div ref={ref}>
+                  {variant === "column" ? (
+                    <div>
+                      {numArray.map((numA: any, index: number) => (
+                        <span className="bg-primary-light p-4 mx-2" key={index}>{numA}</span>
+                      ))}
+                    </div>
+                  ) : (
+                    rounded
+                  )}
+                </motion.div>
+              );
+
+              // return <motion.div ref={ref}>{rounded}</motion.div>;
             }
 
             return (
