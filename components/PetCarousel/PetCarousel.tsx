@@ -60,7 +60,6 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
 
   useEffect(() => {
     handleResize();
-    console.log(windowWidth.width);
   }, [windowWidth.width]);
 
   useEffect(() => {
