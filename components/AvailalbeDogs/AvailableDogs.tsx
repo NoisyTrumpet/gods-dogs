@@ -3,12 +3,11 @@ import PetCard from "../PetCard/PetCard";
 import {
   Animal,
   AnimalConnectionEdge,
-  AnimalToPrimaryBreedConnection,
-  PrimaryBreed,
   RootQueryToAnimalConnectionEdge,
 } from "graphql";
 import { Key, useEffect, useState } from "react";
-import Filter, { FilterType, TabOption } from "./Fragments/Filter";
+import Filter from "./Fragments/Filter";
+import { ANIMALS_FRAGMENT } from "fragments";
 
 import handlePrimaryBreeds from "./Utils/handlePrimaryBreeds";
 import handleSecondaryBreeds from "./Utils/handleSecondaryBreeds";
@@ -16,8 +15,8 @@ import handleSex from "./Utils/handleSex";
 import handleAge from "./Utils/handleAge";
 import handleWeight from "./Utils/handleWeight";
 import handlePetAttributes from "./Utils/handlePetAttributes";
-import { useRouter } from "next/router";
-import { isFiltered } from "./Utils/isFiltered";
+import Search from "./Fragments/Search";
+import { useLazyQuery, gql } from "@apollo/client";
 interface AvailableDogsProps {
   animals: AnimalConnectionEdge[] | RootQueryToAnimalConnectionEdge[];
   loadMore?: () => void;
@@ -41,7 +40,6 @@ const AvailableDogs = ({
   const weightFilters = handleWeight(animals);
   const attributesFilters = handlePetAttributes(animals);
 
-
   const filters = [
     {
       name: "Primary Breed",
@@ -56,27 +54,68 @@ const AvailableDogs = ({
     {
       name: "Sex",
       filters: sexFilters,
-      filterName: "sex"
+      filterName: "sex",
     },
     {
       name: "Age",
       filters: ageFilters,
-      filterName: "age"
+      filterName: "age",
     },
     {
       name: "Size Groups",
       filters: weightFilters,
-      filterName: "weight"
+      filterName: "weight",
     },
     {
       name: "Attributes",
       filters: attributesFilters,
-      filterName: "attributes"
+      filterName: "attributes",
     },
   ];
 
+  // Search Animals
+  const [isSearched, setIsSearched] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  const [
+    searchAnimals,
+    { data: searchData, loading: searchLoading, error: searchError },
+  ] = useLazyQuery(
+    gql`
+      query SearchAnimals($search: String!) {
+        animals(first: 20, where: { search: $search }) {
+          ...AnimalsFragment
+        }
+      }
+      ${ANIMALS_FRAGMENT}
+    `,
+    {
+      onCompleted: (data) => {
+        if (searchValue !== "") {
+          setIsSearched(true);
+        } else {
+          setIsSearched(false);
+        }
+      },
+    }
+  );
+
+  const hasSearchValue = searchValue !== "";
+  const hasResults = searchData?.animals?.edges?.length > 0;
+
+  // Handle Search
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const search = e.target.value;
+    setSearchValue(search);
+    searchAnimals({
+      variables: {
+        search,
+      },
+    });
+  };
+
   return (
-    <div className={`container relative mx-auto`}>
+    <div className={`container relative mx-auto pb-8`}>
       <div
         className={`search-header my-10 flex w-full flex-row border-b-[1px] border-b-slate-500 pb-7`}
       >
@@ -85,10 +124,9 @@ const AvailableDogs = ({
         >
           Available Dogs
         </h2>
-        <input
-          type="text"
+        <Search
           className={`mx-10 flex-1 rounded-full bg-[#F4F4F4] px-6`}
-          placeholder="Search"
+          handleSearch={handleSearch}
         />
         <select className={`w-fit`}>
           <option value="">Sort By</option>
@@ -101,8 +139,40 @@ const AvailableDogs = ({
         <div className={`h-full`}>
           <Filter total={total} filters={filters} />
         </div>
-        <div className={`grid grid-cols-3 gap-6`}>
-          {hasAnimals
+        {/* Search Loading */}
+        <div
+          className={`grid gap-6 ${
+            searchLoading || !hasResults ? `grid-cols-1` : `grid-cols-3`
+          }`}
+        >
+          {/* Search Loading... */}
+          {searchLoading && !hasResults ? (
+            <div className={`flex flex-col h-full w-full items-center justify-center`}>
+              <p className={`loader font-heading text-lg`}>
+                {`Searching for ${searchValue}...`}
+              </p>
+              <div className="flex items-center justify-center">
+                <div
+                  className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                  role="status"
+                >
+                  <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                    Loading...
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : null}
+          {/* No Search Results */}
+          {!searchLoading && !hasResults && isSearched ? (
+            <div className={`flex h-full w-full items-center justify-center`}>
+              <p className={`font-heading text-lg`}>
+                {`Ooops! No results found for ${searchValue}, please try again.`}
+              </p>
+            </div>
+          ) : null}
+          {/* Has Animals */}
+          {hasAnimals && !isSearched && !hasSearchValue
             ? animals.map((animal: AnimalConnectionEdge, index: Key) => {
                 const node = animal?.node as Animal;
 
@@ -115,10 +185,26 @@ const AvailableDogs = ({
                 );
               })
             : null}
+          {/* Has Search Results */}
+          {isSearched
+            ? searchData?.animals?.edges?.map(
+                (animal: AnimalConnectionEdge, index: Key) => {
+                  const node = animal?.node as Animal;
+
+                  return (
+                    <PetCard
+                      key={`${node?.id}-${index}`}
+                      variant="basic"
+                      pet={node}
+                    />
+                  );
+                }
+              )
+            : null}
         </div>
       </div>
       {/* Load More */}
-      {hasMore && (
+      {hasMore && !isSearched ? (
         <div className={`my-10 flex justify-center`}>
           <Button
             className={`mx-auto w-fit`}
@@ -129,7 +215,7 @@ const AvailableDogs = ({
             Load More
           </Button>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

@@ -19,30 +19,34 @@ const TeamCard = ({ member, className }: TeamCardProps) => {
       <div className={`w-full overflow-hidden rounded-lg`}>
         {headshot ? (
           <FeaturedImage
-          image={headshot}
-          className={`w-full`}
-          imgClassName="w-full"
-        />
+            image={headshot}
+            className={`w-full`}
+            imgClassName="w-full"
+          />
         ) : null}
       </div>
       <div className={`w-full`}>
         {name ? (
           <h2
-          className={`my-4 border-b-2 border-gray-300 pb-4 text-center font-heading text-4xl leading-none text-dark`}
-        >
-          {name}
-        </h2>
-        ) : null}
-        {title ? (<h6 className={`pb-4 text-center text-med-dark`}>{title}</h6>) : null}
-        <div className={`flex flex-col gap-4`}>
-          {email ? (<Button
-            className={`w-full`}
-            variant={`secondary`}
-            href={email?.url ?? "#"}
-            target={email?.target ?? "_self"}
+            className={`my-4 border-b-2 border-gray-300 pb-4 text-center font-heading text-4xl leading-none text-dark`}
           >
-            {email?.title}
-          </Button>) : null}
+            {name}
+          </h2>
+        ) : null}
+        {title ? (
+          <h6 className={`pb-4 text-center text-med-dark`}>{title}</h6>
+        ) : null}
+        <div className={`flex flex-col gap-4`}>
+          {email ? (
+            <Button
+              className={`w-full`}
+              variant={`secondary`}
+              href={email?.url ?? "#"}
+              target={email?.target ?? "_self"}
+            >
+              {email?.title}
+            </Button>
+          ) : null}
         </div>
       </div>
     </div>

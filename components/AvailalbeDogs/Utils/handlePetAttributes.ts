@@ -32,7 +32,7 @@ function handlePetAttributes(animalArray: AnimalConnectionEdge[]) {
       name: name || "",
       value: slug,
       count: count,
-      filterName: "attributes"
+      filterName: "attributes",
     });
   });
 

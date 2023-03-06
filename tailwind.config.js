@@ -19,8 +19,8 @@ module.exports = {
         dark: "#292929", // off-black
       },
       fontFamily: {
-        heading: ['var(--font-heading)'],
-        body: ['var(--font-body)'],
+        heading: ["var(--font-heading)"],
+        body: ["var(--font-body)"],
       },
       maxWidth: {
         "1/4": "25%",

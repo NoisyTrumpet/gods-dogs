@@ -2,6 +2,7 @@ import { Animal, RootQueryToAnimalConnectionEdge } from "graphql";
 import { Button } from "../Button";
 import Male from "public/icons/icon-male.svg";
 import { BsGenderFemale } from "react-icons/bs";
+import { FeaturedImage } from "components/FeaturedImage";
 
 export interface PetCardProps {
   pet?: Animal;
@@ -30,7 +31,7 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
 
   const card = isFeatured
     ? `flex flex-col justify-center lg:flex-row`
-    : `bg-gray-50 shadow-lg shadow-stone-300 rounded-lg flex flex-col justify-center p-5`;
+    : `bg-gray-50 shadow-lg shadow-stone-300 rounded-lg flex flex-col justify-center p-5 h-fit`;
 
   const cardImage = isFeatured
     ? `order-last flex h-[300px] flex-col md:h-[400px] lg:order-first lg:h-[465px] lg:w-1/2`
@@ -44,18 +45,21 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
     ? `font-heading text-5xl leading-none text-dark`
     : `font-heading text-4xl leading-none text-dark my-4 flex justify-between border-b-2 border-gray-300 pb-4`;
 
+  const petImage = isFeatured
+    ? `w-auto h-full object-cover`
+    : `w-full h-auto object-cover`;
+
   return (
     <div className={card}>
       <div className={cardImage}>
-        <img
-          src={pet?.featuredImage?.node.sourceUrl!}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "top",
-          }}
-        />
+        {pet?.featuredImage?.node ? (
+          <FeaturedImage
+            image={pet?.featuredImage?.node}
+            className={`grid h-full place-items-center overflow-hidden`}
+            imgClassName={petImage}
+            priority
+          />
+        ) : null}
       </div>
       <div className={cardContent}>
         <h2 className={petName}>
@@ -64,13 +68,15 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
             {pet?.animalDetails?.animalName}
           </span>
           {isBasic && (
-            <span className={`h-[40px] w-[24px] grid place-items-center text-center`}>
+            <span
+              className={`grid h-[40px] w-[24px] place-items-center text-center`}
+            >
               {isMale ? (
                 <Male className={`h-full w-full`} />
               ) : (
                 <>
                   <BsGenderFemale className={`h-full w-full text-[#707070]`} />
-                  <p className={`text-xs text-[#707070] font-body`}>Female</p>
+                  <p className={`font-body text-xs text-[#707070]`}>Female</p>
                 </>
               )}
             </span>

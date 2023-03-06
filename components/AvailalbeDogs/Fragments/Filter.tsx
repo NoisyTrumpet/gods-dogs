@@ -28,7 +28,8 @@ const Filter = ({ filters, total }: FilterProps) => {
     filter: { name: any; value: any; count?: number; filterName: string }
   ) => {
     const queryParams = new URLSearchParams(router.query as any);
-    const selectedFilters = queryParams.get(filter.filterName)?.split(",") || [];
+    const selectedFilters =
+      queryParams.get(filter.filterName)?.split(",") || [];
 
     if (e.target.checked) {
       selectedFilters.push(filter.value);
@@ -49,8 +50,6 @@ const Filter = ({ filters, total }: FilterProps) => {
     router.push({ pathname: router.pathname, search: queryString });
   };
 
-
-
   const isChecked = (filter: {
     filterName: string;
     name: string;
@@ -58,14 +57,14 @@ const Filter = ({ filters, total }: FilterProps) => {
     count?: number;
   }) => {
     const queryParams = new URLSearchParams(router.query as any);
-    const selectedFilters = queryParams.get(filter.filterName)?.split(",") || [];
+    const selectedFilters =
+      queryParams.get(filter.filterName)?.split(",") || [];
 
     return selectedFilters.includes(filter.value);
   };
 
-
   return (
-    <div className={`max-h-full pr-6 sticky top-40 left-0`}>
+    <div className={`sticky top-40 left-0 max-h-full pr-6`}>
       <h3 className={`font-body text-xl text-dark`}>{total} Total Dogs</h3>
       <form className={`mt-6 flex flex-col`}>
         <ul

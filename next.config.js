@@ -6,6 +6,10 @@ module.exports = withFaust({
   swcMinify: true,
   productionBrowserSourceMaps: true,
   trailingSlash: true,
+  env: {
+    NEXT_ALGOLIA_ADMIN_API_KEY: process.env.NEXT_ALGOLIA_ADMIN_API_KEY,
+    NEXT_ALGOLIA_APPLICATION_ID: process.env.NEXT_ALGOLIA_APPLICATION_ID,
+  },
   experimental: {
     swcFileReading: true,
     // Font Loaders

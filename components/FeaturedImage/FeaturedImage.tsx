@@ -31,7 +31,8 @@ const FeaturedImage = ({
   style,
   ...props
 }: Props) => {
-  const { sourceUrl, mediaDetails, altText, caption, description } = image || {};
+  const { sourceUrl, mediaDetails, altText, caption, description } =
+    image || {};
   let src;
   let sizes;
   if (image?.sourceUrl instanceof Function) {

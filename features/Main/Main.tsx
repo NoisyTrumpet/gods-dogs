@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 
 const GOOD_DOG = localFont({
   src: "../../pages/GoodDogNew.woff2",
-  variable: "--font-heading"
+  variable: "--font-heading",
 });
 
 const LIGURINO = localFont({
@@ -37,7 +37,7 @@ export default function Main({ children, className, ...props }: MainProps) {
     <main
       id={SELECTORS.MAIN_CONTENT_ID}
       tabIndex={-1}
-      className={`${className} ${GOOD_DOG.variable} ${LIGURINO.variable} overflow-x-hidden`}
+      className={`${className} ${GOOD_DOG.variable} ${LIGURINO.variable}`}
       {...props}
     >
       {children}

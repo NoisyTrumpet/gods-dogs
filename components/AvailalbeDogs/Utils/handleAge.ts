@@ -33,7 +33,7 @@ function handleAge(animalArray: AnimalConnectionEdge[]) {
       name: name || "",
       value: slug,
       count: count,
-      filterName: "age"
+      filterName: "age",
     });
   });
 
