@@ -136,6 +136,9 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         }
         variant
       }
+      ... on Page_Flexiblecontent_Blocks_AvailableDogs {
+        fieldGroupName
+      }
       ... on Page_Flexiblecontent_Blocks_PostsBlock {
         fieldGroupName
         hasPawIcon

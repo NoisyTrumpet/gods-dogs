@@ -1,7 +1,10 @@
+import { Animal, RootQueryToAnimalConnectionEdge } from "graphql";
 import { Button } from "../Button";
+import Male from "public/icons/icon-male.svg";
+import { BsGenderFemale } from "react-icons/bs";
 
 export interface PetCardProps {
-  pet: any;
+  pet?: Animal;
   variant: string;
   className?: string;
 }
@@ -9,6 +12,12 @@ export interface PetCardProps {
 const PetCard = ({ pet, variant, className }: PetCardProps) => {
   const isFeatured = variant === "featured";
   const isBasic = variant === "basic";
+
+  const { animalDetails } = pet || {};
+
+  const { animalSex: sex } = animalDetails || {};
+
+  const isMale = sex === "Male";
 
   const trimmedContent = (content: any) => {
     if (content) {
@@ -55,13 +64,15 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
             {pet?.animalDetails?.animalName}
           </span>
           {isBasic && (
-            <span className={`h-[40px] w-[24px]`}>
-              <img
-                src="/icons/icon-male.svg"
-                width="24"
-                height="40"
-                alt="Male Symbol"
-              />
+            <span className={`h-[40px] w-[24px] grid place-items-center text-center`}>
+              {isMale ? (
+                <Male className={`h-full w-full`} />
+              ) : (
+                <>
+                  <BsGenderFemale className={`h-full w-full text-[#707070]`} />
+                  <p className={`text-xs text-[#707070] font-body`}>Female</p>
+                </>
+              )}
             </span>
           )}
         </h2>

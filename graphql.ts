@@ -5330,6 +5330,7 @@ export type Event_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
 export type Event_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   __typename?: 'Event_Flexiblecontent_Blocks_Hero';
   ctas?: Maybe<Array<Maybe<Event_Flexiblecontent_Blocks_Hero_Ctas>>>;
+  featuredImage?: Maybe<MediaItem>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
@@ -5500,6 +5501,7 @@ export type Event_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   members?: Maybe<Array<Maybe<Event_Flexiblecontent_Blocks_TeamMembers_Members>>>;
+  pawsSide?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -9378,6 +9380,7 @@ export type Page_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
 export type Page_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   __typename?: 'Page_Flexiblecontent_Blocks_Hero';
   ctas?: Maybe<Array<Maybe<Page_Flexiblecontent_Blocks_Hero_Ctas>>>;
+  featuredImage?: Maybe<MediaItem>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
@@ -9548,6 +9551,7 @@ export type Page_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   members?: Maybe<Array<Maybe<Page_Flexiblecontent_Blocks_TeamMembers_Members>>>;
+  pawsSide?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -13590,6 +13594,7 @@ export type Post_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
 export type Post_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   __typename?: 'Post_Flexiblecontent_Blocks_Hero';
   ctas?: Maybe<Array<Maybe<Post_Flexiblecontent_Blocks_Hero_Ctas>>>;
+  featuredImage?: Maybe<MediaItem>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
@@ -13760,6 +13765,7 @@ export type Post_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   members?: Maybe<Array<Maybe<Post_Flexiblecontent_Blocks_TeamMembers_Members>>>;
+  pawsSide?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
 };
 
@@ -14802,6 +14808,7 @@ export type Resource_Flexiblecontent_Blocks_Form = AcfFieldGroup & {
 export type Resource_Flexiblecontent_Blocks_Hero = AcfFieldGroup & {
   __typename?: 'Resource_Flexiblecontent_Blocks_Hero';
   ctas?: Maybe<Array<Maybe<Resource_Flexiblecontent_Blocks_Hero_Ctas>>>;
+  featuredImage?: Maybe<MediaItem>;
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   hasCtas?: Maybe<Scalars['Boolean']>;
@@ -14972,6 +14979,7 @@ export type Resource_Flexiblecontent_Blocks_TeamMembers = AcfFieldGroup & {
   /** The name of the ACF Field Group */
   fieldGroupName?: Maybe<Scalars['String']>;
   members?: Maybe<Array<Maybe<Resource_Flexiblecontent_Blocks_TeamMembers_Members>>>;
+  pawsSide?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
 };
 

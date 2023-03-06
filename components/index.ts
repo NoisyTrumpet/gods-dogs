@@ -15,3 +15,4 @@ export { TextBlock } from "./TextBlock";
 export { Accordion } from "./Accordion";
 export { Impact } from "./Impact";
 export { TeamMembers } from "./TeamMembers";
+export { AvailableDogs } from "./AvailalbeDogs";

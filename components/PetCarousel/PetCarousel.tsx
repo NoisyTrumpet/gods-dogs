@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { PetCard } from "../PetCard";
-import { Page_Flexiblecontent_Blocks_PetCarousel } from "graphql";
+import { Animal, Page_Flexiblecontent_Blocks_PetCarousel } from "graphql";
 import { useEffect, useState } from "react";
 import useWindowWidth from "utilities/useWindowWidth";
 export interface PetCarouselProps
@@ -119,7 +119,7 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
                     >
                       <PetCard
                         variant={variant ? variant : "basic"}
-                        pet={pet}
+                        pet={pet as Animal}
                       />
                     </motion.div>
                   );

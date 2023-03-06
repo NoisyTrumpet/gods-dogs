@@ -1,5 +1,3 @@
-const { fontFamily } = require('tailwindcss/defaultTheme')
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -34,6 +32,9 @@ module.exports = {
         "2/5": "40%",
         "3/5": "60%",
         xxs: "24rem",
+      },
+      gridTemplateColumns: {
+        "3and4": "25% 75%",
       },
       minWidth: {
         "1/4": "25%",
