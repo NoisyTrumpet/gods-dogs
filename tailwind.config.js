@@ -100,5 +100,5 @@ module.exports = {
     },
   },
   plugins: [],
-  safelist: ["bg-primary", "bg-secondary-light", "bg-dark"],
+  safelist: ["bg-primary", "bg-secondary-light", "bg-dark", "grid-cols-3", "grid-cols-1"],
 };
