@@ -76,7 +76,7 @@ const Filter = ({ filters, total }: FilterProps) => {
                 key={`filter-${i}`}
                 title={filter?.name}
                 i={i}
-                open={i === 0}
+                open={i === 0 || filter.filters.some((f) => isChecked(f))}
               >
                 {filter?.filters.map((f, i) => {
                   return (

@@ -17,6 +17,7 @@ import handleWeight from "./Utils/handleWeight";
 import handlePetAttributes from "./Utils/handlePetAttributes";
 import Search from "./Fragments/Search";
 import { useLazyQuery, gql } from "@apollo/client";
+import { useRouter } from "next/router";
 interface AvailableDogsProps {
   animals: AnimalConnectionEdge[] | RootQueryToAnimalConnectionEdge[];
   loadMore?: () => void;
@@ -114,6 +115,78 @@ const AvailableDogs = ({
     });
   };
 
+  // Sort
+  const [sortBy, setSortBy] = useState("");
+  const [sortDirection, setSortDirection] = useState("asc");
+  const sortedAnimals = [...animals].sort((a, b) => {
+    // Node
+    const nodeA = a?.node as Animal;
+    const nodeB = b?.node as Animal;
+    // Name
+    const nodeATitle = nodeA?.title as string;
+    const nodeBTitle = nodeB?.title as string;
+    // Age (Convert from UNIX)
+    const nodeAUnix = nodeA?.animalDetails?.animalBirthday as string;
+    const nodeBUnix = nodeB?.animalDetails?.animalBirthday as string;
+    const nodeAUnixDate = new Date(parseInt(nodeAUnix) * 1000);
+    const nodeBUnixDate = new Date(parseInt(nodeBUnix) * 1000);
+
+    switch (sortBy) {
+      case "name":
+        return sortDirection === "asc"
+          ? nodeATitle.localeCompare(nodeBTitle)
+          : nodeBTitle.localeCompare(nodeATitle);
+      case "age":
+        return sortDirection === "asc"
+          ? nodeAUnixDate.getTime() - nodeBUnixDate.getTime()
+          : nodeBUnixDate.getTime() - nodeAUnixDate.getTime();
+      default:
+        return 0;
+    }
+  });
+
+  // Filters
+  const [selectedFilters, setSelectedFilters] = useState<
+    Record<string, string[]>
+  >({});
+
+  const router = useRouter();
+  const { query } = router;
+  const { primaryBreed, secondaryBreed, sex, weight, attributes } = query;
+
+  useEffect(() => {
+    if (primaryBreed) {
+      setSelectedFilters({
+        ...selectedFilters,
+        primaryBreed: [primaryBreed as string],
+      });
+    }
+    if (secondaryBreed) {
+      setSelectedFilters({
+        ...selectedFilters,
+        secondaryBreed: [secondaryBreed as string],
+      });
+    }
+    if (sex) {
+      setSelectedFilters({
+        ...selectedFilters,
+        sex: [sex as string],
+      });
+    }
+    if (weight) {
+      setSelectedFilters({
+        ...selectedFilters,
+        weight: [weight as string],
+      });
+    }
+    if (attributes) {
+      setSelectedFilters({
+        ...selectedFilters,
+        attributes: [attributes as string],
+      });
+    }
+  }, []);
+
   return (
     <div className={`container relative mx-auto pb-8`}>
       <div
@@ -128,11 +201,28 @@ const AvailableDogs = ({
           className={`mx-10 flex-1 rounded-full bg-[#F4F4F4] px-6`}
           handleSearch={handleSearch}
         />
-        <select className={`w-fit`}>
+        <select
+          className={`w-fit`}
+          onChange={(e) => {
+            setSortBy(e.target.value);
+          }}
+        >
           <option value="">Sort By</option>
-          <option value="name">Name</option>
-          <option value="age">Age</option>
-          <option value="breed">Breed</option>
+          <option value="name">{`Name ${
+            sortDirection === "asc" ? "↓" : "↑"
+          }`}</option>
+          <option value="age">{`Age ${
+            sortDirection === "asc" ? "↓" : "↑"
+          }`}</option>
+        </select>
+        <select
+          className={`w-fit`}
+          onChange={(e) => {
+            setSortDirection(e.target.value);
+          }}
+        >
+          <option value="asc">ASC</option>
+          <option value="desc">DESC</option>
         </select>
       </div>
       <div className={"grid grid-cols-3and4"}>
@@ -142,12 +232,16 @@ const AvailableDogs = ({
         {/* Search Loading */}
         <div
           className={`grid gap-6 ${
-            searchLoading || !hasResults ? `grid-cols-1` : `grid-cols-3`
+            searchLoading || (isSearched && !hasResults)
+              ? `grid-cols-1`
+              : `grid-cols-3`
           }`}
         >
           {/* Search Loading... */}
           {searchLoading && !hasResults ? (
-            <div className={`flex flex-col h-full w-full items-center justify-center`}>
+            <div
+              className={`flex h-full w-full flex-col items-center justify-center`}
+            >
               <p className={`loader font-heading text-lg`}>
                 {`Searching for ${searchValue}...`}
               </p>
@@ -173,8 +267,61 @@ const AvailableDogs = ({
           ) : null}
           {/* Has Animals */}
           {hasAnimals && !isSearched && !hasSearchValue
-            ? animals.map((animal: AnimalConnectionEdge, index: Key) => {
+            ? sortedAnimals.map((animal: AnimalConnectionEdge, index: Key) => {
                 const node = animal?.node as Animal;
+                const {
+                  primaryBreed,
+                  secondaryBreed,
+                  sex,
+                  age,
+                  weight,
+                  attributes,
+                } = selectedFilters;
+
+                if (
+                  primaryBreed &&
+                  !primaryBreed[0].includes(
+                    node?.primaryBreeds?.nodes[0].slug as string
+                  )
+                ) {
+                  return null;
+                }
+                if (
+                  secondaryBreed &&
+                  !secondaryBreed[0].includes(
+                    node?.secondaryBreeds?.nodes[0].slug as string
+                  )
+                ) {
+                  return null;
+                }
+                if (
+                  sex &&
+                  !sex[0].includes(node?.animalDetails?.animalSex as string)
+                ) {
+                  return null;
+                }
+                if (
+                  weight &&
+                  !weight[0].includes(node?.ageGroups?.nodes[0].slug as string)
+                ) {
+                  return null;
+                }
+
+                if (
+                  age &&
+                  !age[0].includes(node?.ageGroups?.nodes[0].slug as string)
+                ) {
+                  return null;
+                }
+
+                if (
+                  attributes &&
+                  !attributes[0].includes(
+                    node?.petAttributes?.nodes[0].slug as string
+                  )
+                ) {
+                  return null;
+                }
 
                 return (
                   <PetCard
