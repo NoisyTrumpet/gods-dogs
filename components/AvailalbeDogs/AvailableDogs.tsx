@@ -5,7 +5,7 @@ import {
   AnimalConnectionEdge,
   RootQueryToAnimalConnectionEdge,
 } from "graphql";
-import { Key, useEffect, useState } from "react";
+import { Key, useEffect, useMemo, useState } from "react";
 import Filter from "./Fragments/Filter";
 import { ANIMALS_FRAGMENT } from "fragments";
 
@@ -15,6 +15,7 @@ import handleSex from "./Utils/handleSex";
 import handleAge from "./Utils/handleAge";
 import handleWeight from "./Utils/handleWeight";
 import handlePetAttributes from "./Utils/handlePetAttributes";
+import capitalize from "utilities/capitalize"
 import Search from "./Fragments/Search";
 import { useLazyQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -33,13 +34,21 @@ const AvailableDogs = ({
   hasMore,
   total,
 }: AvailableDogsProps) => {
+  // Search State
+  const [isSearched, setIsSearched] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  // Sort State
+  const [sortBy, setSortBy] = useState("");
+  const [sortDirection, setSortDirection] = useState("asc");
+  // General States
   const hasAnimals = animals.length > 0;
-  const primaryBreedFilters = handlePrimaryBreeds(animals);
-  const secondaryBreedFilters = handleSecondaryBreeds(animals);
-  const sexFilters = handleSex(animals);
-  const ageFilters = handleAge(animals);
-  const weightFilters = handleWeight(animals);
-  const attributesFilters = handlePetAttributes(animals);
+  const primaryBreedFilters = useMemo(() => handlePrimaryBreeds(animals), [animals]);
+  const secondaryBreedFilters = useMemo(() => handleSecondaryBreeds(animals), [animals]);
+  const sexFilters = useMemo(() => handleSex(animals), [animals]);
+  const ageFilters = useMemo(() => handleAge(animals), [animals]);
+  const weightFilters = useMemo(() => handleWeight(animals), [animals]);
+  const attributesFilters = useMemo(() => handlePetAttributes(animals), [animals]);
+
 
   const filters = [
     {
@@ -74,9 +83,7 @@ const AvailableDogs = ({
     },
   ];
 
-  // Search Animals
-  const [isSearched, setIsSearched] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+  // Search Mutation
 
   const [
     searchAnimals,
@@ -114,10 +121,7 @@ const AvailableDogs = ({
       },
     });
   };
-
   // Sort
-  const [sortBy, setSortBy] = useState("");
-  const [sortDirection, setSortDirection] = useState("asc");
   const sortedAnimals = [...animals].sort((a, b) => {
     // Node
     const nodeA = a?.node as Animal;
@@ -149,6 +153,8 @@ const AvailableDogs = ({
   const [selectedFilters, setSelectedFilters] = useState<
     Record<string, string[]>
   >({});
+
+
 
   const router = useRouter();
   const { query } = router;
@@ -185,7 +191,9 @@ const AvailableDogs = ({
         attributes: [attributes as string],
       });
     }
-  }, []);
+  }, [query]);
+
+
 
   return (
     <div className={`container relative mx-auto pb-8`}>
@@ -269,6 +277,7 @@ const AvailableDogs = ({
           {hasAnimals && !isSearched && !hasSearchValue
             ? sortedAnimals.map((animal: AnimalConnectionEdge, index: Key) => {
                 const node = animal?.node as Animal;
+
                 const {
                   primaryBreed,
                   secondaryBreed,
@@ -281,7 +290,7 @@ const AvailableDogs = ({
                 if (
                   primaryBreed &&
                   !primaryBreed[0].includes(
-                    node?.primaryBreeds?.nodes[0].slug as string
+                    node?.primaryBreeds?.nodes[0]?.slug as string
                   )
                 ) {
                   return null;
@@ -289,14 +298,14 @@ const AvailableDogs = ({
                 if (
                   secondaryBreed &&
                   !secondaryBreed[0].includes(
-                    node?.secondaryBreeds?.nodes[0].slug as string
+                    node?.secondaryBreeds?.nodes[0]?.slug as string
                   )
                 ) {
                   return null;
                 }
                 if (
                   sex &&
-                  !sex[0].includes(node?.animalDetails?.animalSex as string)
+                  !sex[0].includes(node?.animalDetails?.animalSex?.toLowerCase() as string)
                 ) {
                   return null;
                 }
@@ -327,7 +336,7 @@ const AvailableDogs = ({
                   <PetCard
                     key={`${node?.id}-${index}`}
                     variant="basic"
-                    pet={node}
+                    pet={{...node}}
                   />
                 );
               })
