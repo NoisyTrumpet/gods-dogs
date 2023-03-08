@@ -15,7 +15,6 @@ import handleSex from "./Utils/handleSex";
 import handleAge from "./Utils/handleAge";
 import handleWeight from "./Utils/handleWeight";
 import handlePetAttributes from "./Utils/handlePetAttributes";
-import capitalize from "utilities/capitalize";
 import Search from "./Fragments/Search";
 import { useLazyQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -204,9 +203,9 @@ const AvailableDogs = ({
       <div
         className={`search-header my-10 flex w-full flex-col border-b-[1px] border-b-slate-500 pb-7 lg:flex-row`}
       >
-        <div className={`flex text-center flex-col lg:flex-row w-full`}>
+        <div className={`flex w-full flex-col text-center lg:flex-row`}>
           <h2
-            className={`lg:w-fit py-3 font-heading text-5xl leading-none text-dark`}
+            className={`py-3 font-heading text-5xl leading-none text-dark lg:w-fit`}
           >
             Available Dogs
           </h2>
@@ -245,31 +244,31 @@ const AvailableDogs = ({
       <div className={"grid grid-cols-1 lg:grid-cols-3and4"}>
         <div className={`lg:h-full`}>
           <Filter total={total} filters={filters} />
-          <div className={`flex pt-4 px-2 lg:hidden`}>
-          <select
-            className={`w-fit`}
-            onChange={(e) => {
-              setSortBy(e.target.value);
-            }}
-          >
-            <option value="">Sort By</option>
-            <option value="name">{`Name ${
-              sortDirection === "asc" ? "↓" : "↑"
-            }`}</option>
-            <option value="age">{`Age ${
-              sortDirection === "asc" ? "↓" : "↑"
-            }`}</option>
-          </select>
-          <select
-            className={`w-fit`}
-            onChange={(e) => {
-              setSortDirection(e.target.value);
-            }}
-          >
-            <option value="asc">ASC</option>
-            <option value="desc">DESC</option>
-          </select>
-        </div>
+          <div className={`flex px-2 pt-4 lg:hidden`}>
+            <select
+              className={`w-fit`}
+              onChange={(e) => {
+                setSortBy(e.target.value);
+              }}
+            >
+              <option value="">Sort By</option>
+              <option value="name">{`Name ${
+                sortDirection === "asc" ? "↓" : "↑"
+              }`}</option>
+              <option value="age">{`Age ${
+                sortDirection === "asc" ? "↓" : "↑"
+              }`}</option>
+            </select>
+            <select
+              className={`w-fit`}
+              onChange={(e) => {
+                setSortDirection(e.target.value);
+              }}
+            >
+              <option value="asc">ASC</option>
+              <option value="desc">DESC</option>
+            </select>
+          </div>
         </div>
         {/* Search Loading */}
         <div

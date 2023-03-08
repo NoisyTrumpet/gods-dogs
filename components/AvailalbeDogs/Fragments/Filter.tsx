@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useMemo, Fragment } from "react";
 import FilterAccordion from "./FilterAccordion";
 import { BsFilterCircle } from "react-icons/bs";
-import {IoCloseSharp} from "react-icons/io5";
+import { IoCloseSharp } from "react-icons/io5";
 import { AnimatePresence, m, LazyMotion, useCycle } from "framer-motion";
 const loadFeatures = () =>
   import("utilities/framerFeatures.js").then((res) => res.default);
@@ -138,14 +138,14 @@ const Filter = ({ filters, total }: FilterProps) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.2 }}
-              className="fixed top-0 left-0 bottom-0 z-[100] h-full w-full bg-white overflow-auto px-4 py-6"
+              className="fixed top-0 left-0 bottom-0 z-[100] h-full w-full overflow-auto bg-white px-4 py-6"
             >
               <button
                 className={`absolute top-0 right-0 p-4`}
                 onClick={() => cycleOpen()}
                 aria-label="Close"
               >
-                <IoCloseSharp className="text-primary text-4xl" />
+                <IoCloseSharp className="text-4xl text-primary" />
               </button>
               <form className="mt-6 flex flex-col lg:flex">
                 <h3 className="font-body text-xl text-dark">Filters:</h3>
