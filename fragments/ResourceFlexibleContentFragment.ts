@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
 import { MEDIA_ITEM_FRAGMENT } from "./MediaItemFragment";
 
-export const FLEXIBLE_CONTENT_FRAGMENT = gql`
-  fragment FlexibleContentFragment on Page_Flexiblecontent {
+export const RESOURCE_FLEXIBLE_CONTENT_FRAGMENT = gql`
+  fragment ResourceFlexibleContentFragment on Resource_Flexiblecontent {
     blocks {
-      ... on Page_Flexiblecontent_Blocks_Hero {
+      ... on Resource_Flexiblecontent_Blocks_Hero {
         fieldGroupName
         hasCtas
         variant
@@ -38,7 +38,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           ...MediaItemFragment
         }
       }
-      ... on Page_Flexiblecontent_Blocks_TextImage {
+      ... on Resource_Flexiblecontent_Blocks_TextImage {
         fieldGroupName
         textImageRepeater {
           content
@@ -63,7 +63,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
       }
-      ... on Page_Flexiblecontent_Blocks_TextBlock {
+      ... on Resource_Flexiblecontent_Blocks_TextBlock {
         fieldGroupName
         paragraphs {
           backgroundColor
@@ -85,7 +85,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
       }
-      ... on Page_Flexiblecontent_Blocks_List {
+      ... on Resource_Flexiblecontent_Blocks_List {
         backgroundColor
         fieldGroupName
         variant
@@ -101,14 +101,14 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
       }
-      ... on Page_Flexiblecontent_Blocks_Quotes {
+      ... on Resource_Flexiblecontent_Blocks_Quotes {
         fieldGroupName
         pawIconPosition
         quote
         subtext
         title
       }
-      ... on Page_Flexiblecontent_Blocks_PetCarousel {
+      ... on Resource_Flexiblecontent_Blocks_PetCarousel {
         fieldGroupName
         title
 
@@ -139,10 +139,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         }
         variant
       }
-      ... on Page_Flexiblecontent_Blocks_AvailableDogs {
-        fieldGroupName
-      }
-      ... on Page_Flexiblecontent_Blocks_PostsBlock {
+      ... on Resource_Flexiblecontent_Blocks_PostsBlock {
         fieldGroupName
         hasPawIcon
         variant
@@ -175,13 +172,13 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
       }
-      ... on Page_Flexiblecontent_Blocks_Form {
+      ... on Resource_Flexiblecontent_Blocks_Form {
         content
         fieldGroupName
         form
         title
       }
-      ... on Page_Flexiblecontent_Blocks_SplitText {
+      ... on Resource_Flexiblecontent_Blocks_SplitText {
         variant
         hasPawIcon
         pawIconPosition
@@ -197,7 +194,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
       }
-      ... on Page_Flexiblecontent_Blocks_Impact {
+      ... on Resource_Flexiblecontent_Blocks_Impact {
         fieldGroupName
         variant
         backgroundColor
@@ -216,7 +213,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           isAbbreviated
         }
       }
-      ... on Page_Flexiblecontent_Blocks_FeaturedCards {
+      ... on Resource_Flexiblecontent_Blocks_FeaturedCards {
         backgroundColor
         dividerLines
         title
@@ -251,7 +248,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           ...MediaItemFragment
         }
       }
-      ... on Page_Flexiblecontent_Blocks_Accordion {
+      ... on Resource_Flexiblecontent_Blocks_Accordion {
         backgroundColor
         fieldGroupName
         title
@@ -273,7 +270,7 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
           }
         }
       }
-      ... on Page_Flexiblecontent_Blocks_TeamMembers {
+      ... on Resource_Flexiblecontent_Blocks_TeamMembers {
         fieldGroupName
         title
         members {

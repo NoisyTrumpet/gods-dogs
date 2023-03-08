@@ -7,6 +7,7 @@ import {
   SITE_SETTINGS_FRAGMENT,
   SEO_CONFIG_FRAGMENT,
   SINGLE_RESOURCE_FRAGMENT,
+  ANIMALS_FRAGMENT,
 } from "fragments";
 import { NavigationMenu, Hero } from "components";
 
@@ -27,13 +28,16 @@ export default function Component(props) {
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
+    animals: { edges: animals},
   } = data;
 
   const { social } = defaultSEO;
 
-  const { seo, title, sidebarOptions } = resource;
+  const { seo, title, sidebarOptions, flexibleContent: { blocks } } = resource;
+
   const { useSidebar, dogsWidget, donateWidget } =
     sidebarOptions.sidebarOptions;
+
   const {
     address,
     customAddressLabel,
@@ -69,17 +73,22 @@ export default function Component(props) {
       dogsWidget={dogsWidget}
       donateWidget={donateWidget}
     >
-      <Hero title={title} variant={"basic"} />
+      <Blocks
+        blocks={blocks}
+        animals={animals}
+      />
+      {/* <Hero title={title} variant={"basic"} /> */}
     </Layout>
   );
 }
 
 Component.query = gql`
-  query PageData(
+  query PostPage(
     $databaseId: ID!
     $headerLocation: MenuLocationEnum!
     $footerLocation: MenuLocationEnum!
     $asPreview: Boolean
+    $first: Int = 3
   ) {
     generalSettings {
       ...BlogInfoFragment
@@ -92,6 +101,9 @@ Component.query = gql`
     }
     resource(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
       ...SingleResourceFragment
+    }
+    animals(first: $first) {
+      ...AnimalsFragment
     }
     headerMenuItems: menuItems(
       where: { location: $headerLocation }
@@ -115,6 +127,7 @@ Component.query = gql`
   ${NavigationMenu.fragments.entry}
   ${SEO_CONFIG_FRAGMENT}
   ${SINGLE_RESOURCE_FRAGMENT}
+  ${ANIMALS_FRAGMENT}
 `;
 
 Component.variables = ({ databaseId }, ctx) => {
