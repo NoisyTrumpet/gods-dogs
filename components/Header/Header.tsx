@@ -61,9 +61,9 @@ const Header = ({
   const [isScrolledPast, setIsScrolledPast] = useState(false);
 
   useEffect(() => {
-    return scrollY.onChange((latest) => {
+    return scrollY.on("change", (y) => {
       // If latest is greater than height of header, set isScrolledPast to true
-      if (latest > 0) {
+      if (y > 0) {
         setIsScrolledPast(true);
       } else {
         setIsScrolledPast(false);

@@ -100,7 +100,9 @@ const Hero = ({
 
   return (
     <div
-      className={`${className ? className : ``} border-b-[29px] border-primary`}
+      className={`${
+        className ? className : ``
+      } overflow-x-hidden border-b-[29px] border-primary`}
     >
       <div
         className={`${isPrimary ? `min-h-[400px] md:min-h-[450px]` : `h-fit`} ${

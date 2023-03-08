@@ -69,10 +69,12 @@ export default function Component(props) {
         });
         // Set load more data to local storage so that when the page refreshes it can use that
         // data to hydrate the page
-        localStorage.setItem("local-animals", JSON.stringify([...animalData.edges, ...data.animals.edges]));
+        localStorage.setItem(
+          "local-animals",
+          JSON.stringify([...animalData.edges, ...data.animals.edges])
+        );
       },
     }
-
   );
   // Load More Handler
   const handleLoadMore = () => {
@@ -84,11 +86,9 @@ export default function Component(props) {
         after: animalData.pageInfo.endCursor,
       },
     });
-
   };
   // Has More
   const hasMore = animalData.pageInfo.hasNextPage;
-
 
   if (loading) {
     return <div>Loading...</div>;
@@ -106,7 +106,8 @@ export default function Component(props) {
   }
 
   // hasLocalAnimals
-  const hasLocalAnimals = typeof window !== "undefined" && localStorage.getItem("local-animals");
+  const hasLocalAnimals =
+    typeof window !== "undefined" && localStorage.getItem("local-animals");
 
   return (
     <Layout
@@ -129,7 +130,11 @@ export default function Component(props) {
     >
       <Blocks
         blocks={blocks}
-        animals={hasLocalAnimals ? JSON.parse(localStorage.getItem("local-animals")) : animalData.edges}
+        animals={
+          hasLocalAnimals
+            ? JSON.parse(localStorage.getItem("local-animals"))
+            : animalData.edges
+        }
         loadMore={handleLoadMore}
         hasMore={hasMore}
         loading={loadingMoreAnimals}

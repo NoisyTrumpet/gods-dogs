@@ -15,7 +15,7 @@ import handleSex from "./Utils/handleSex";
 import handleAge from "./Utils/handleAge";
 import handleWeight from "./Utils/handleWeight";
 import handlePetAttributes from "./Utils/handlePetAttributes";
-import capitalize from "utilities/capitalize"
+import capitalize from "utilities/capitalize";
 import Search from "./Fragments/Search";
 import { useLazyQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -42,13 +42,21 @@ const AvailableDogs = ({
   const [sortDirection, setSortDirection] = useState("asc");
   // General States
   const hasAnimals = animals.length > 0;
-  const primaryBreedFilters = useMemo(() => handlePrimaryBreeds(animals), [animals]);
-  const secondaryBreedFilters = useMemo(() => handleSecondaryBreeds(animals), [animals]);
+  const primaryBreedFilters = useMemo(
+    () => handlePrimaryBreeds(animals),
+    [animals]
+  );
+  const secondaryBreedFilters = useMemo(
+    () => handleSecondaryBreeds(animals),
+    [animals]
+  );
   const sexFilters = useMemo(() => handleSex(animals), [animals]);
   const ageFilters = useMemo(() => handleAge(animals), [animals]);
   const weightFilters = useMemo(() => handleWeight(animals), [animals]);
-  const attributesFilters = useMemo(() => handlePetAttributes(animals), [animals]);
-
+  const attributesFilters = useMemo(
+    () => handlePetAttributes(animals),
+    [animals]
+  );
 
   const filters = [
     {
@@ -154,8 +162,6 @@ const AvailableDogs = ({
     Record<string, string[]>
   >({});
 
-
-
   const router = useRouter();
   const { query } = router;
   const { primaryBreed, secondaryBreed, sex, weight, attributes } = query;
@@ -193,56 +199,84 @@ const AvailableDogs = ({
     }
   }, [query]);
 
-
-
   return (
-    <div className={`container relative mx-auto pb-8`}>
+    <div className={`container mx-auto pb-8`}>
       <div
-        className={`search-header my-10 flex w-full flex-row border-b-[1px] border-b-slate-500 pb-7`}
+        className={`search-header my-10 flex w-full flex-col border-b-[1px] border-b-slate-500 pb-7 lg:flex-row`}
       >
-        <h2
-          className={`w-fit py-3 font-heading text-5xl leading-none text-dark`}
-        >
-          Available Dogs
-        </h2>
-        <Search
-          className={`mx-10 flex-1 rounded-full bg-[#F4F4F4] px-6`}
-          handleSearch={handleSearch}
-        />
-        <select
-          className={`w-fit`}
-          onChange={(e) => {
-            setSortBy(e.target.value);
-          }}
-        >
-          <option value="">Sort By</option>
-          <option value="name">{`Name ${
-            sortDirection === "asc" ? "↓" : "↑"
-          }`}</option>
-          <option value="age">{`Age ${
-            sortDirection === "asc" ? "↓" : "↑"
-          }`}</option>
-        </select>
-        <select
-          className={`w-fit`}
-          onChange={(e) => {
-            setSortDirection(e.target.value);
-          }}
-        >
-          <option value="asc">ASC</option>
-          <option value="desc">DESC</option>
-        </select>
+        <div className={`flex text-center flex-col lg:flex-row w-full`}>
+          <h2
+            className={`lg:w-fit py-3 font-heading text-5xl leading-none text-dark`}
+          >
+            Available Dogs
+          </h2>
+          <Search
+            className={`mx-10 flex-1 rounded-full bg-[#F4F4F4] py-2 px-6`}
+            handleSearch={handleSearch}
+          />
+        </div>
+
+        <div className={`hidden lg:flex`}>
+          <select
+            className={`w-fit`}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+            }}
+          >
+            <option value="">Sort By</option>
+            <option value="name">{`Name ${
+              sortDirection === "asc" ? "↓" : "↑"
+            }`}</option>
+            <option value="age">{`Age ${
+              sortDirection === "asc" ? "↓" : "↑"
+            }`}</option>
+          </select>
+          <select
+            className={`w-fit`}
+            onChange={(e) => {
+              setSortDirection(e.target.value);
+            }}
+          >
+            <option value="asc">ASC</option>
+            <option value="desc">DESC</option>
+          </select>
+        </div>
       </div>
-      <div className={"grid grid-cols-3and4"}>
-        <div className={`h-full`}>
+      <div className={"grid grid-cols-1 lg:grid-cols-3and4"}>
+        <div className={`lg:h-full`}>
           <Filter total={total} filters={filters} />
+          <div className={`flex pt-4 px-2 lg:hidden`}>
+          <select
+            className={`w-fit`}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+            }}
+          >
+            <option value="">Sort By</option>
+            <option value="name">{`Name ${
+              sortDirection === "asc" ? "↓" : "↑"
+            }`}</option>
+            <option value="age">{`Age ${
+              sortDirection === "asc" ? "↓" : "↑"
+            }`}</option>
+          </select>
+          <select
+            className={`w-fit`}
+            onChange={(e) => {
+              setSortDirection(e.target.value);
+            }}
+          >
+            <option value="asc">ASC</option>
+            <option value="desc">DESC</option>
+          </select>
+        </div>
         </div>
         {/* Search Loading */}
         <div
           className={`grid gap-6 ${
             searchLoading || (isSearched && !hasResults)
               ? `grid-cols-1`
-              : `grid-cols-3`
+              : `grid-cols-1 lg:grid-cols-2 xl:grid-cols-3`
           }`}
         >
           {/* Search Loading... */}
@@ -305,20 +339,24 @@ const AvailableDogs = ({
                 }
                 if (
                   sex &&
-                  !sex[0].includes(node?.animalDetails?.animalSex?.toLowerCase() as string)
+                  !sex[0].includes(
+                    node?.animalDetails?.animalSex?.toLowerCase() as string
+                  )
                 ) {
                   return null;
                 }
                 if (
                   weight &&
-                  !weight[0].includes(node?.ageGroups?.nodes[0].slug as string)
+                  !weight[0].includes(
+                    node?.weightGroups?.nodes[0].slug as string
+                  )
                 ) {
                   return null;
                 }
 
                 if (
                   age &&
-                  !age[0].includes(node?.ageGroups?.nodes[0].slug as string)
+                  !age[0].includes(node?.ageGroups?.nodes[0]?.slug as string)
                 ) {
                   return null;
                 }
@@ -326,7 +364,7 @@ const AvailableDogs = ({
                 if (
                   attributes &&
                   !attributes[0].includes(
-                    node?.petAttributes?.nodes[0].slug as string
+                    node?.petAttributes?.nodes[0]?.slug as string
                   )
                 ) {
                   return null;
@@ -336,7 +374,7 @@ const AvailableDogs = ({
                   <PetCard
                     key={`${node?.id}-${index}`}
                     variant="basic"
-                    pet={{...node}}
+                    pet={{ ...node }}
                   />
                 );
               })
@@ -361,14 +399,26 @@ const AvailableDogs = ({
       </div>
       {/* Load More */}
       {hasMore && !isSearched ? (
-        <div className={`my-10 flex justify-center`}>
+        <div className={`my-10 flex flex-col justify-center gap-4`}>
+          {loading ? (
+            <div className="flex items-center justify-center">
+              <div
+                className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                role="status"
+              >
+                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                  Loading...
+                </span>
+              </div>
+            </div>
+          ) : null}
           <Button
             className={`mx-auto w-fit`}
             onClick={loadMore}
             variant={`primary`}
             disabled={loading}
           >
-            Load More
+            {loading ? "Loading..." : "Load More"}
           </Button>
         </div>
       ) : null}
