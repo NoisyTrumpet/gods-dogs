@@ -45,6 +45,10 @@ const EventCard: React.FC<EventCardProps> = ({
   const month = new Date(date ?? ``).toLocaleString("default", {
     month: "short",
   });
+  // Day
+  const day = new Date(date ?? ``).toLocaleString("default", {
+    day: "numeric",
+  });
   // Classes for the wrapper
   const wrapperClasses = clsx(className, {
     [featuredWrapperClasses]: isFeatured,
@@ -93,9 +97,13 @@ const EventCard: React.FC<EventCardProps> = ({
           </div>
         ) : (
           <div className={imageClasses}>
-            <div className={`h-64 w-full bg-primary-light`}>
-              <p className={`text-center font-body text-4xl uppercase`}>
-                {month}
+            <div
+              className={`grid h-full w-full place-items-center rounded-lg border-[1px] border-gray-500/50`}
+            >
+              <p className={`text-center font-body uppercase`}>
+                <span className={`text-2xl`}>{month}</span>
+                <br />
+                <span className={`text-5xl`}>{day}</span>
               </p>
             </div>
           </div>

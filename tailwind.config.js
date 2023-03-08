@@ -19,8 +19,8 @@ module.exports = {
         dark: "#292929", // off-black
       },
       fontFamily: {
-        heading: ['var(--font-heading)'],
-        body: ['var(--font-body)'],
+        heading: ["var(--font-heading)"],
+        body: ["var(--font-body)"],
       },
       maxWidth: {
         "1/4": "25%",
@@ -100,5 +100,11 @@ module.exports = {
     },
   },
   plugins: [],
-  safelist: ["bg-primary", "bg-secondary-light", "bg-dark"],
+  safelist: [
+    "bg-primary",
+    "bg-secondary-light",
+    "bg-dark",
+    "grid-cols-3",
+    "grid-cols-1",
+  ],
 };

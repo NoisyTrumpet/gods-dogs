@@ -104,7 +104,9 @@ const Impact = ({
                   {variant === "column" ? (
                     <div>
                       {numArray.map((numA: any, index: number) => (
-                        <span className="bg-primary-light p-4 mx-2" key={index}>{numA}</span>
+                        <span className="mx-2 bg-primary-light p-4" key={index}>
+                          {numA}
+                        </span>
                       ))}
                     </div>
                   ) : (

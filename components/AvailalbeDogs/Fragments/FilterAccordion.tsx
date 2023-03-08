@@ -7,9 +7,10 @@ export interface FilterAccordionProps {
   className?: string;
   title?: string | null;
   content?: string;
-  i?: number;
+  i: number;
   open?: boolean;
   children?: React.ReactNode;
+  onToggle?: (i: number) => void;
 }
 
 const FilterAccordion = ({
@@ -19,8 +20,16 @@ const FilterAccordion = ({
   i,
   open,
   children,
+  onToggle,
 }: FilterAccordionProps) => {
-  const [expanded, setExpanded] = useState(false || open);
+  const [expanded, setExpanded] = useState(open);
+
+  const handleToggle = () => {
+    setExpanded(!expanded);
+    if (onToggle) {
+      onToggle(i);
+    }
+  };
 
   return (
     <LazyMotion features={loadFeatures}>
@@ -38,7 +47,7 @@ const FilterAccordion = ({
                 ${expanded ? `Collapse` : `Expand`}
             `}
               className={`px-4 py-2 font-body text-2xl`}
-              onClick={() => setExpanded(!expanded)}
+              onClick={handleToggle}
             >
               {expanded ? `-` : `+`}
             </button>

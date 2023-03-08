@@ -27,7 +27,7 @@ function handleWeight(animalArray: AnimalConnectionEdge[]) {
       name: name || "",
       value: slug,
       count: count,
-      filterName: "weight"
+      filterName: "weight",
     });
   });
 

@@ -18,7 +18,7 @@ function handleSex(animalArray: AnimalConnectionEdge[]) {
       name: sex,
       value: sex.toLowerCase(),
       count: count,
-      filterName: "sex"
+      filterName: "sex",
     });
   });
 

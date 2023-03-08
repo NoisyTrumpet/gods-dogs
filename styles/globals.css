@@ -5,3 +5,11 @@
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+
+/* Input type checkbox */
+input:checked + div {
+  @apply cursor-pointer border-white bg-primary hover:bg-primary;
+}
+input:checked + div svg {
+  @apply block;
+}
