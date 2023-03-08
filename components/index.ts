@@ -7,8 +7,12 @@ export { Socials } from "./Socials";
 export { PostCard } from "./PostCard";
 export { Tabs } from "./Tabs";
 export { EventCard } from "./EventCard";
+export { Sidebar } from "./Sidebar";
 // Content Components
 export { Hero } from "./Hero";
 export { TextImage } from "./TextImage";
 export { TextBlock } from "./TextBlock";
 export { Accordion } from "./Accordion";
+export { Impact } from "./Impact";
+export { TeamMembers } from "./TeamMembers";
+export { AvailableDogs } from "./AvailalbeDogs";

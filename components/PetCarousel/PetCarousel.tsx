@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { PetCard } from "../PetCard";
-import { Page_Flexiblecontent_Blocks_PetCarousel } from "graphql";
+import { Animal, Page_Flexiblecontent_Blocks_PetCarousel } from "graphql";
 import { useEffect, useState } from "react";
-import useWindowWidth  from "utilities/useWindowWidth";
+import useWindowWidth from "utilities/useWindowWidth";
 export interface PetCarouselProps
   extends Page_Flexiblecontent_Blocks_PetCarousel {
   className?: string;
@@ -15,7 +15,7 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
   const hasPets = pets && pets.length > 0;
   const windowWidth = useWindowWidth();
   const isFeatured = variant === "featured";
-    
+
   function handleResize() {
     if (!isFeatured) {
       if (windowWidth.width !== undefined && windowWidth.width <= 768) {
@@ -60,7 +60,6 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
 
   useEffect(() => {
     handleResize();
-    console.log(windowWidth.width);
   }, [windowWidth.width]);
 
   useEffect(() => {
@@ -97,7 +96,9 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
             <div className={carouselWrapper}>
               <AnimatePresence initial={false} mode="popLayout">
                 {pets?.map((pet, index) => {
-                  let active = index >= currentCarouselPage && index < currentCarouselPage + slidesPerView;
+                  let active =
+                    index >= currentCarouselPage &&
+                    index < currentCarouselPage + slidesPerView;
                   return (
                     <motion.div
                       key={pet?.id}
@@ -118,7 +119,7 @@ const PetCarousel = ({ className, variant, title, pets }: PetCarouselProps) => {
                     >
                       <PetCard
                         variant={variant ? variant : "basic"}
-                        pet={pet}
+                        pet={pet as Animal}
                       />
                     </motion.div>
                   );

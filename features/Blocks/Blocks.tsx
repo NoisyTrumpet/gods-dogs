@@ -38,6 +38,25 @@ const PetCarousel = dynamic(
     ssr: true,
   }
 );
+// Impact Block:
+const Impact = dynamic(() => import("components/Impact/Impact"), {
+  ssr: true,
+});
+// Team Block:
+const TeamMembers = dynamic(
+  () => import("components/TeamMembers/TeamMembers"),
+  {
+    ssr: true,
+  }
+);
+
+// Available Dogs Block:
+const AvailableDogs = dynamic(
+  () => import("components/AvailalbeDogs/AvailableDogs"),
+  {
+    ssr: true,
+  }
+);
 
 import {
   Page_Flexiblecontent_Blocks,
@@ -55,11 +74,19 @@ import {
   Page_Flexiblecontent_Blocks_TeamMembers,
   Page_Flexiblecontent_Blocks_EventBlock,
   Page_Flexiblecontent_Blocks_SplitText,
+  Page_Flexiblecontent_Blocks_AvailableDogs,
   AcfLink,
+  AnimalConnectionEdge,
+  RootQueryToAnimalConnectionEdge,
 } from "graphql";
 
 interface BlocksProps {
   blocks: Page_Flexiblecontent_Blocks[];
+  animals?: RootQueryToAnimalConnectionEdge[];
+  loadMore?: () => void;
+  loading?: boolean;
+  hasMore?: boolean;
+  total?: number;
 }
 
 interface BlockProps {
@@ -77,7 +104,13 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_Accordion
     | Page_Flexiblecontent_Blocks_TeamMembers
     | Page_Flexiblecontent_Blocks_EventBlock
-    | Page_Flexiblecontent_Blocks_SplitText;
+    | Page_Flexiblecontent_Blocks_SplitText
+    | Page_Flexiblecontent_Blocks_AvailableDogs;
+  animals?: RootQueryToAnimalConnectionEdge[];
+  loadMore?: () => void;
+  loading?: boolean;
+  hasMore?: boolean;
+  total?: number;
 }
 const prefix =
   "Page_Flexiblecontent_Blocks_" ||
@@ -85,7 +118,14 @@ const prefix =
   "Post_Flexiblecontent_Blocks_" ||
   "Resource_Flexiblecontent_Blocks_";
 
-const Block = ({ block }: BlockProps) => {
+const Block = ({
+  block,
+  animals,
+  loadMore,
+  loading,
+  hasMore,
+  total,
+}: BlockProps) => {
   const { __typename } = block ?? {};
 
   let name = __typename && __typename.replace(prefix, "");
@@ -137,6 +177,27 @@ const Block = ({ block }: BlockProps) => {
         <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
       );
     }
+    // PetCarousel
+    case "Impact": {
+      return <Impact {...(block as Page_Flexiblecontent_Blocks_Impact)} />;
+    }
+    // TeamMembers
+    case "TeamMembers": {
+      return (
+        <TeamMembers {...(block as Page_Flexiblecontent_Blocks_TeamMembers)} />
+      );
+    }
+    case "AvailableDogs": {
+      return (
+        <AvailableDogs
+          animals={animals as RootQueryToAnimalConnectionEdge[]}
+          loadMore={loadMore}
+          loading={loading}
+          hasMore={hasMore}
+          total={total as number}
+        />
+      );
+    }
     default: {
       return (
         <div className="block text-center font-heading text-3xl text-primary">{`${name} (component in development)`}</div>
@@ -145,12 +206,27 @@ const Block = ({ block }: BlockProps) => {
   }
 };
 
-const Blocks = ({ blocks = [] }: BlocksProps): JSX.Element => {
+const Blocks = ({
+  blocks,
+  animals = [],
+  loadMore,
+  loading,
+  hasMore,
+  total,
+}: BlocksProps): JSX.Element => {
   return (
     <>
       {blocks &&
         blocks.map((block, index) => (
-          <Block block={block} key={`block-${index}`} />
+          <Block
+            block={block}
+            key={`block-${index}`}
+            animals={animals as any}
+            loadMore={loadMore}
+            loading={loading}
+            hasMore={hasMore}
+            total={total}
+          />
         ))}
     </>
   );

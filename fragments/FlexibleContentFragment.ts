@@ -136,6 +136,9 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
         }
         variant
       }
+      ... on Page_Flexiblecontent_Blocks_AvailableDogs {
+        fieldGroupName
+      }
       ... on Page_Flexiblecontent_Blocks_PostsBlock {
         fieldGroupName
         hasPawIcon
@@ -193,18 +196,21 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
       }
       ... on Page_Flexiblecontent_Blocks_Impact {
         fieldGroupName
+        variant
+        backgroundColor
         hasHeadingIcon
         title
-        variant
+        headingIcon {
+          ...MediaItemFragment
+        }
         impactItems {
           impactIcon {
             ...MediaItemFragment
           }
           impactNumber
+          isDollarAmount
           subtext
-        }
-        headingIcon {
-          ...MediaItemFragment
+          isAbbreviated
         }
       }
       ... on Page_Flexiblecontent_Blocks_FeaturedCards {
@@ -260,6 +266,27 @@ export const FLEXIBLE_CONTENT_FRAGMENT = gql`
               target
               title
               url
+            }
+          }
+        }
+      }
+      ... on Page_Flexiblecontent_Blocks_TeamMembers {
+        fieldGroupName
+        title
+        members {
+          ... on TeamMember {
+            databaseId
+            name
+            teamMemberOptions {
+              title
+              headshot {
+                ...MediaItemFragment
+              }
+              email {
+                target
+                title
+                url
+              }
             }
           }
         }

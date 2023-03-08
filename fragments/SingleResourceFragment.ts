@@ -15,6 +15,13 @@ export const SINGLE_RESOURCE_FRAGMENT = gql`
       }
     }
     content
+    sidebarOptions {
+      sidebarOptions {
+        dogsWidget
+        useSidebar
+        donateWidget
+      }
+    }
   }
   ${MEDIA_ITEM_FRAGMENT}
   ${SEO_FRAGMENT}
