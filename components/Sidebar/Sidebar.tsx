@@ -13,7 +13,7 @@ import {
 export interface SidebarProps {
   dogsWidget: boolean;
   donateWidget: boolean;
-  animals: AnimalConnectionEdge[] | RootQueryToAnimalConnectionEdge[];
+  animals: RootQueryToAnimalConnectionEdge[];
 }
 
 const Sidebar = ({ animals, donateWidget, dogsWidget }: SidebarProps) => {

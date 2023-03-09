@@ -72,10 +72,10 @@ export default function Component(props) {
       useSidebar={useSidebar}
       dogsWidget={dogsWidget}
       donateWidget={donateWidget}
+      animals={animals}
     >
       <Blocks
         blocks={blocks}
-        animals={animals}
       />
       {/* <Hero title={title} variant={"basic"} /> */}
     </Layout>
