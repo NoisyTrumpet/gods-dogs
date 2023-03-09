@@ -14,6 +14,7 @@ export interface PetCardProps {
 const PetCard = ({ pet, variant, className }: PetCardProps) => {
   const isFeatured = variant === "featured";
   const isBasic = variant === "basic";
+  const isSidebar = variant === "sidebar";
 
   const { animalDetails, primaryBreeds, uri } = pet || {};
   const { nodes: primaryBreed } = primaryBreeds || {};
@@ -62,7 +63,7 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
     : `w-full h-auto object-cover`;
 
   return (
-    <div className={card}>
+    <div className={`${card} ${isSidebar ? `mx-auto max-w-xs` : ``}`}>
       <div className={cardImage}>
         {pet?.featuredImage?.node ? (
           <FeaturedImage
@@ -79,20 +80,23 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
             {isFeatured ? "Hi, I'm " : ""}
             {pet?.animalDetails?.animalName}
           </span>
-          {isBasic && (
-            <span
-              className={`grid h-[40px] w-[24px] place-items-center text-center`}
-            >
-              {isMale ? (
-                <Male className={`h-full w-full`} />
-              ) : (
-                <>
-                  <BsGenderFemale className={`h-full w-full text-[#707070]`} />
-                  <p className={`font-body text-xs text-[#707070]`}>Female</p>
-                </>
-              )}
-            </span>
-          )}
+          {isBasic ||
+            (isSidebar && (
+              <span
+                className={`grid h-[40px] w-[24px] place-items-center text-center`}
+              >
+                {isMale ? (
+                  <Male className={`h-full w-full`} />
+                ) : (
+                  <>
+                    <BsGenderFemale
+                      className={`h-full w-full text-[#707070]`}
+                    />
+                    <p className={`font-body text-xs text-[#707070]`}>Female</p>
+                  </>
+                )}
+              </span>
+            ))}
         </h2>
         {isFeatured && (
           <div
@@ -101,20 +105,22 @@ const PetCard = ({ pet, variant, className }: PetCardProps) => {
             }}
           />
         )}
-        <div className={`flex flex-col gap-2 pb-4 font-body text-gray-500`}>
-          <p>
-            Breed: {breed} / {secondary}
-          </p>
-          <p>Weight: {weight} lbs.</p>
-          <p>Age: {age}</p>
-        </div>
+        {!isSidebar && (
+          <div className={`flex flex-col gap-2 pb-4 font-body text-gray-500`}>
+            <p>
+              Breed: {breed} / {secondary}
+            </p>
+            <p>Weight: {weight} lbs.</p>
+            <p>Age: {age}</p>
+          </div>
+        )}
         <div className={`flex flex-col gap-4`}>
           <Button
             className={isFeatured ? "w-fit" : "w-full"}
             variant={isFeatured ? "secondary-outline" : "secondary"}
             href={uri as string}
           >
-            {isBasic ? "Learn More" : "Adopt Me"}
+            {isBasic || isSidebar ? "Learn More" : "Adopt Me"}
           </Button>
         </div>
       </div>

@@ -102,14 +102,16 @@ const Hero = ({
 
   return (
     <div
-      className={`${
-        className ? className : ``
-      } border-b-[29px] border-primary`}
+      className={`${className ? className : ``} ${
+        !isblogs ? `border-b-[29px] border-primary` : ``
+      }`}
     >
       <div
         className={`${isPrimary ? `min-h-[400px] md:min-h-[450px]` : `h-fit`} ${
           isBasic ? "pb-0" : "pb-28 md:pb-40 lg:pb-0"
-        } relative z-0 mx-auto flex max-w-screen-2xl flex-col items-center text-center md:flex-row`}
+        } relative z-0 mx-auto flex max-w-screen-2xl flex-col ${
+          !isblogs ? `items-center text-center md:flex-row` : ``
+        }`}
       >
         {leftGraphic && !isblogs ? (
           <div
@@ -122,8 +124,8 @@ const Hero = ({
           </div>
         ) : null}
         <div
-          className={`${
-            isBasic ? "mx-auto py-12" : "mx-auto py-20"
+          className={`${isBasic ? "mx-auto py-12" : "mx-auto py-20"} ${
+            isblogs ? `mx-0 py-10` : ``
           } container z-10 w-full px-4 md:w-1/2`}
         >
           {title ? (
@@ -151,13 +153,6 @@ const Hero = ({
               ))}
             </div>
           ) : null}
-          {featuredImage && isblogs ? (
-            <FeaturedImage
-              image={featuredImage}
-              className={`w-full`}
-              imgClassName="w-full"
-            />
-          ) : null}
         </div>
         {rightGraphic && !isblogs ? (
           <div className={`${svgClassRight} absolute bottom-0 flex w-full`}>
@@ -166,6 +161,13 @@ const Hero = ({
               graphic={`${isBasic ? "" : rightGraphicValue}`}
             />
           </div>
+        ) : null}
+        {featuredImage && isblogs ? (
+          <FeaturedImage
+            image={featuredImage}
+            className={`w-full`}
+            imgClassName="w-full pl-4"
+          />
         ) : null}
       </div>
     </div>

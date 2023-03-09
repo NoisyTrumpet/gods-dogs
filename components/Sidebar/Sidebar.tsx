@@ -17,32 +17,41 @@ export interface SidebarProps {
 }
 
 const Sidebar = ({ animals, donateWidget, dogsWidget }: SidebarProps) => {
-
   return (
-    <div className={`p-4 flex flex-col gap-4`}>
+    <div className={`flex flex-col gap-4 p-4`}>
       {dogsWidget ? (
-        <div className={`px-4 py-8 bg-primary-light`}>
-          <p className={`text-3xl font-heading text-center pb-3 mb-6 border-b-[3px]`}>Adopt A Dog</p>
-          {animals?.map(
-        (animal: AnimalConnectionEdge, index: Key) => {
-          const node = animal?.node as Animal;
-          return (
-            <PetCard
-              key={`${node?.id}-${index}`}
-              variant="basic"
-              pet={node}
-            />
-          );
-        }
-      )}
+        <div className={`bg-primary-light px-4 py-8`}>
+          <p
+            className={`mb-4 border-b-[3px] pb-3 text-center font-heading text-3xl`}
+          >
+            Adopt A Dog
+          </p>
+          <div
+            className={`flex flex-col gap-4 min-[724px]:flex-row min-[1064px]:flex-col`}
+          >
+            {animals?.map((animal: AnimalConnectionEdge, index: Key) => {
+              const node = animal?.node as Animal;
+              return (
+                <PetCard
+                  key={`${node?.id}-${index}`}
+                  variant="sidebar"
+                  pet={node}
+                />
+              );
+            })}
+          </div>
         </div>
       ) : null}
       {donateWidget ? (
-        <div className={`px-4 py-8 bg-primary-light`}>
-          <p className={`text-3xl font-heading text-center pb-3 mb-6 border-b-[3px]`}>Donate</p>
-          <DonationForm variant="sidebar" /> 
+        <div className={`bg-primary-light px-4 py-8`}>
+          <p
+            className={`mb-6 border-b-[3px] pb-3 text-center font-heading text-3xl`}
+          >
+            Donate
+          </p>
+          <DonationForm variant="sidebar" />
         </div>
-      ): null}
+      ) : null}
     </div>
   );
 };

@@ -32,7 +32,7 @@ const SplitText = ({
 
   return (
     <div className={`my-10`}>
-      <div className={`container mx-auto xl:max-w-7xl`}>
+      <div className={`container mx-auto xl:max-w-[90rem]`}>
         {title ? (
           <h2 className="my-8 text-center font-heading text-5xl leading-none text-dark">
             {title}

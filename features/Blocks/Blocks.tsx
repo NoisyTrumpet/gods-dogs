@@ -146,7 +146,6 @@ const prefixArr = [
   "Resource_Flexiblecontent_Blocks_",
 ];
 
-
 const Block = ({
   block,
   animals,
@@ -162,7 +161,6 @@ const Block = ({
     name = name.substring(matchingPrefix.length);
   }
 
-
   switch (name) {
     // Hero
     case "Hero": {
@@ -174,41 +172,27 @@ const Block = ({
     }
     // Text Image
     case "TextImage": {
-      return (
-        <TextImage {...block} />
-      );
+      return <TextImage {...block} />;
     }
     // Text Block
     case "TextBlock": {
-      return (
-        <TextBlock {...block} />
-      );
+      return <TextBlock {...block} />;
     }
     // FeaturedCards
     case "FeaturedCards": {
-      return (
-        <FeaturedCards
-          {...block}
-        />
-      );
+      return <FeaturedCards {...block} />;
     }
     // Accordion
     case "Accordion": {
-      return (
-        <Accordion {...block} />
-      );
+      return <Accordion {...block} />;
     }
     // SplitText
     case "SplitText": {
-      return (
-        <SplitText {...block} />
-      );
+      return <SplitText {...block} />;
     }
     // PetCarousel
     case "PetCarousel": {
-      return (
-        <PetCarousel {...block} />
-      );
+      return <PetCarousel {...block} />;
     }
     // PetCarousel
     case "Impact": {
@@ -216,9 +200,7 @@ const Block = ({
     }
     // TeamMembers
     case "TeamMembers": {
-      return (
-        <TeamMembers {...block} />
-      );
+      return <TeamMembers {...block} />;
     }
     case "AvailableDogs": {
       return (
