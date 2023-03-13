@@ -72,10 +72,18 @@ const Layout = ({
         announcements={announcements}
       />
       {useSidebar ? (
-        <Main className={`main flex flex-col md:flex-row`}>
-          <div className={`w-full md:w-3/4`}>{children}</div>
-          <div className={`w-full md:w-1/4`}>
-            <Sidebar animals={animals} dogsWidget={dogsWidget} donateWidget={donateWidget} />
+        <Main
+          className={`main flex flex-col min-[1064px]:flex-row ${
+            useSidebar ? `mx-auto xl:max-w-[90rem]` : ``
+          }`}
+        >
+          <div className={`w-full min-[1064px]:w-3/4`}>{children}</div>
+          <div className={`w-full min-[1064px]:w-1/4`}>
+            <Sidebar
+              animals={animals}
+              dogsWidget={dogsWidget}
+              donateWidget={donateWidget}
+            />
           </div>
         </Main>
       ) : (

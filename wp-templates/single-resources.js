@@ -28,12 +28,17 @@ export default function Component(props) {
     footerMenuItems,
     siteSettings,
     seo: defaultSEO,
-    animals: { edges: animals},
+    animals: { edges: animals },
   } = data;
 
   const { social } = defaultSEO;
 
-  const { seo, title, sidebarOptions, flexibleContent: { blocks } } = resource;
+  const {
+    seo,
+    title,
+    sidebarOptions,
+    flexibleContent: { blocks },
+  } = resource;
 
   const { useSidebar, dogsWidget, donateWidget } =
     sidebarOptions.sidebarOptions;
@@ -74,9 +79,7 @@ export default function Component(props) {
       donateWidget={donateWidget}
       animals={animals}
     >
-      <Blocks
-        blocks={blocks}
-      />
+      <Blocks blocks={blocks} />
       {/* <Hero title={title} variant={"basic"} /> */}
     </Layout>
   );
