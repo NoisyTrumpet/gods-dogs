@@ -7,6 +7,7 @@ import {
   PostTypeSeo,
   RootQueryToMenuItemConnection,
   SeoSocial,
+  RootQueryToAnimalConnectionEdge,
 } from "graphql";
 import { Main, SEO } from "features";
 
@@ -33,6 +34,7 @@ export interface LayoutProps {
   useSidebar: boolean;
   donateWidget: boolean;
   dogsWidget: boolean;
+  animals: RootQueryToAnimalConnectionEdge[];
 }
 
 const Layout = ({
@@ -56,6 +58,7 @@ const Layout = ({
   useSidebar,
   donateWidget,
   dogsWidget,
+  animals,
 }: LayoutProps) => {
   return (
     <>
@@ -72,7 +75,7 @@ const Layout = ({
         <Main className={`main flex flex-col md:flex-row`}>
           <div className={`w-full md:w-3/4`}>{children}</div>
           <div className={`w-full md:w-1/4`}>
-            <Sidebar dogsWidget={dogsWidget} donateWidget={donateWidget} />
+            <Sidebar animals={animals} dogsWidget={dogsWidget} donateWidget={donateWidget} />
           </div>
         </Main>
       ) : (

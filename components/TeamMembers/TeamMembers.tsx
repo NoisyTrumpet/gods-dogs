@@ -21,13 +21,14 @@ const TeamMembers = ({ className, members, title }: TeamMembersProps) => {
             className={`container relative mx-auto flex flex-col md:flex-row md:px-4 xl:max-w-7xl`}
           >
             <div
-              className={`relative flex w-full flex-wrap gap-6 pb-5 md:px-20 md:pb-0`}
+              className={`relative flex flex-row flex-wrap pb-5 md:px-20 md:pb-0`}
+              // grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6
             >
               {members?.map((member, index) => {
                 return (
                   <div
                     key={member?.databaseId}
-                    className={`w-full min-w-[205px] pb-20 sm:w-1/2 md:pb-0 lg:w-1/4`}
+                    className={`w-full p-3 sm:w-1/2 lg:w-1/3 xl:w-1/4`}
                   >
                     <TeamCard member={member} />
                   </div>

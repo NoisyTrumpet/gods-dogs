@@ -37,7 +37,7 @@ export default function Main({ children, className, ...props }: MainProps) {
     <main
       id={SELECTORS.MAIN_CONTENT_ID}
       tabIndex={-1}
-      className={`${className} ${GOOD_DOG.variable} ${LIGURINO.variable}`}
+      className={`${className} ${GOOD_DOG.variable} ${LIGURINO.variable} overflow-x-hidden`}
       {...props}
     >
       {children}

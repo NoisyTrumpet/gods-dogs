@@ -1,5 +1,6 @@
 import { Button } from "components/Button";
 import { Page_Flexiblecontent_Blocks_Hero } from "graphql";
+import { FeaturedImage } from "components/FeaturedImage";
 import SideGraphic from "./Fragments/SideGraphic";
 import DonateHero from "./Fragments/DonateHero";
 export interface HeroProps extends Page_Flexiblecontent_Blocks_Hero {
@@ -17,16 +18,19 @@ const Hero = ({
   variant,
   oneTime,
   monthly,
+  featuredImage,
 }: HeroProps) => {
   const isBasic = variant === "basic";
   const isPrimary = variant === "primary";
   const isSecondary = variant === "secondary";
+  const isDonate = variant === "donate";
+  const isblogs = variant === "blogs";
+
   const isDogGroups =
     leftGraphic === "goldenGroup" ||
     leftGraphic === "terrierGroup" ||
     rightGraphic === "goldenGroup" ||
     rightGraphic === "terrierGroup";
-  const isDonate = variant === "donate";
 
   if (isDonate && monthly && oneTime) {
     return (
@@ -94,22 +98,20 @@ const Hero = ({
     rightGraphicValue = rightGraphic;
   }
 
-  // else if (isBasic) {
-  //   rightGraphicValue = "";
-  // }
+  // blogs
 
   return (
     <div
       className={`${
         className ? className : ``
-      } overflow-x-hidden border-b-[29px] border-primary`}
+      } border-b-[29px] border-primary`}
     >
       <div
         className={`${isPrimary ? `min-h-[400px] md:min-h-[450px]` : `h-fit`} ${
           isBasic ? "pb-0" : "pb-28 md:pb-40 lg:pb-0"
         } relative z-0 mx-auto flex max-w-screen-2xl flex-col items-center text-center md:flex-row`}
       >
-        {leftGraphic ? (
+        {leftGraphic && !isblogs ? (
           <div
             className={`${svgClassLeft} absolute bottom-0 flex w-full justify-start`}
           >
@@ -149,8 +151,15 @@ const Hero = ({
               ))}
             </div>
           ) : null}
+          {featuredImage && isblogs ? (
+            <FeaturedImage
+              image={featuredImage}
+              className={`w-full`}
+              imgClassName="w-full"
+            />
+          ) : null}
         </div>
-        {rightGraphic ? (
+        {rightGraphic && !isblogs ? (
           <div className={`${svgClassRight} absolute bottom-0 flex w-full`}>
             <SideGraphic
               className={`${sideGraphicRight}`}

@@ -75,13 +75,27 @@ import {
   Page_Flexiblecontent_Blocks_EventBlock,
   Page_Flexiblecontent_Blocks_SplitText,
   Page_Flexiblecontent_Blocks_AvailableDogs,
+  Resource_Flexiblecontent_Blocks,
+  Resource_Flexiblecontent_Blocks_Hero,
+  Resource_Flexiblecontent_Blocks_TextImage,
+  Resource_Flexiblecontent_Blocks_TextBlock,
+  Resource_Flexiblecontent_Blocks_List,
+  Resource_Flexiblecontent_Blocks_Quotes,
+  Resource_Flexiblecontent_Blocks_PetCarousel,
+  Resource_Flexiblecontent_Blocks_PostsBlock,
+  Resource_Flexiblecontent_Blocks_Form,
+  Resource_Flexiblecontent_Blocks_SplitText,
+  Resource_Flexiblecontent_Blocks_Impact,
+  Resource_Flexiblecontent_Blocks_FeaturedCards,
+  Resource_Flexiblecontent_Blocks_Accordion,
+  Resource_Flexiblecontent_Blocks_TeamMembers,
   AcfLink,
   AnimalConnectionEdge,
   RootQueryToAnimalConnectionEdge,
 } from "graphql";
 
 interface BlocksProps {
-  blocks: Page_Flexiblecontent_Blocks[];
+  blocks: Page_Flexiblecontent_Blocks[] | Resource_Flexiblecontent_Blocks[];
   animals?: RootQueryToAnimalConnectionEdge[];
   loadMore?: () => void;
   loading?: boolean;
@@ -105,18 +119,33 @@ interface BlockProps {
     | Page_Flexiblecontent_Blocks_TeamMembers
     | Page_Flexiblecontent_Blocks_EventBlock
     | Page_Flexiblecontent_Blocks_SplitText
-    | Page_Flexiblecontent_Blocks_AvailableDogs;
+    | Page_Flexiblecontent_Blocks_AvailableDogs
+    | Resource_Flexiblecontent_Blocks_Hero
+    | Resource_Flexiblecontent_Blocks_TextImage
+    | Resource_Flexiblecontent_Blocks_TextBlock
+    | Resource_Flexiblecontent_Blocks_List
+    | Resource_Flexiblecontent_Blocks_Quotes
+    | Resource_Flexiblecontent_Blocks_PetCarousel
+    | Resource_Flexiblecontent_Blocks_PostsBlock
+    | Resource_Flexiblecontent_Blocks_Form
+    | Resource_Flexiblecontent_Blocks_SplitText
+    | Resource_Flexiblecontent_Blocks_Impact
+    | Resource_Flexiblecontent_Blocks_FeaturedCards
+    | Resource_Flexiblecontent_Blocks_Accordion
+    | Resource_Flexiblecontent_Blocks_TeamMembers;
   animals?: RootQueryToAnimalConnectionEdge[];
   loadMore?: () => void;
   loading?: boolean;
   hasMore?: boolean;
   total?: number;
 }
-const prefix =
-  "Page_Flexiblecontent_Blocks_" ||
-  "Event_Flexiblecontent_Blocks_" ||
-  "Post_Flexiblecontent_Blocks_" ||
-  "Resource_Flexiblecontent_Blocks_";
+const prefixArr = [
+  "Page_Flexiblecontent_Blocks_",
+  "Event_Flexiblecontent_Blocks_",
+  "Post_Flexiblecontent_Blocks_",
+  "Resource_Flexiblecontent_Blocks_",
+];
+
 
 const Block = ({
   block,
@@ -127,64 +156,68 @@ const Block = ({
   total,
 }: BlockProps) => {
   const { __typename } = block ?? {};
+  let name = __typename;
+  const matchingPrefix = prefixArr.find((p) => name.startsWith(p));
+  if (matchingPrefix) {
+    name = name.substring(matchingPrefix.length);
+  }
 
-  let name = __typename && __typename.replace(prefix, "");
 
   switch (name) {
     // Hero
     case "Hero": {
-      return <Hero {...(block as Page_Flexiblecontent_Blocks_Hero)} />;
+      return <Hero {...block} />;
     }
     // Form
     case "Form": {
-      return <Form {...(block as Page_Flexiblecontent_Blocks_Form)} />;
+      return <Form {...block} />;
     }
     // Text Image
     case "TextImage": {
       return (
-        <TextImage {...(block as Page_Flexiblecontent_Blocks_TextImage)} />
+        <TextImage {...block} />
       );
     }
     // Text Block
     case "TextBlock": {
       return (
-        <TextBlock {...(block as Page_Flexiblecontent_Blocks_TextBlock)} />
+        <TextBlock {...block} />
       );
     }
     // FeaturedCards
     case "FeaturedCards": {
       return (
         <FeaturedCards
-          {...(block as Page_Flexiblecontent_Blocks_FeaturedCards)}
+          {...block}
         />
       );
     }
     // Accordion
     case "Accordion": {
       return (
-        <Accordion {...(block as Page_Flexiblecontent_Blocks_Accordion)} />
+        <Accordion {...block} />
       );
     }
     // SplitText
     case "SplitText": {
       return (
-        <SplitText {...(block as Page_Flexiblecontent_Blocks_SplitText)} />
+        <SplitText {...block} />
       );
     }
     // PetCarousel
     case "PetCarousel": {
       return (
-        <PetCarousel {...(block as Page_Flexiblecontent_Blocks_PetCarousel)} />
+        <PetCarousel {...block} />
       );
     }
     // PetCarousel
     case "Impact": {
-      return <Impact {...(block as Page_Flexiblecontent_Blocks_Impact)} />;
+      return <Impact {...block} />;
     }
     // TeamMembers
     case "TeamMembers": {
       return (
-        <TeamMembers {...(block as Page_Flexiblecontent_Blocks_TeamMembers)} />
+        <TeamMembers {...block} />
       );
     }
     case "AvailableDogs": {
