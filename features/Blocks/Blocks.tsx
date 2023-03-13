@@ -155,72 +155,74 @@ const Block = ({
   hasMore,
   total,
 }: BlockProps) => {
-  const { __typename } = block ?? {};
-  let name = __typename;
-  const matchingPrefix = prefixArr.find((p) => name.startsWith(p));
-  if (matchingPrefix) {
-    name = name.substring(matchingPrefix.length);
+  const name = block && block.__typename;
+  let component = name;
+
+  const matchingPrefix = prefixArr.find((p) => component?.startsWith(p));
+  if (matchingPrefix && component) {
+    // @ts-ignore
+    component = component?.substring(matchingPrefix.length);
   }
 
 
-  switch (name) {
+  switch (component) {
     // Hero
-    case "Hero": {
-      return <Hero {...block} />;
+    case "Hero" as string: {
+      return <Hero {...block as any} />;
     }
     // Form
-    case "Form": {
-      return <Form {...block} />;
+    case "Form" as string: {
+      return <Form {...block as any} />;
     }
     // Text Image
-    case "TextImage": {
+    case "TextImage" as string: {
       return (
-        <TextImage {...block} />
+        <TextImage {...block as any} />
       );
     }
     // Text Block
-    case "TextBlock": {
+    case "TextBlock" as string: {
       return (
-        <TextBlock {...block} />
+        <TextBlock {...block as any} />
       );
     }
     // FeaturedCards
-    case "FeaturedCards": {
+    case "FeaturedCards" as string: {
       return (
         <FeaturedCards
-          {...block}
+          {...block as any}
         />
       );
     }
     // Accordion
-    case "Accordion": {
+    case "Accordion" as string: {
       return (
-        <Accordion {...block} />
+        <Accordion {...block as any} />
       );
     }
     // SplitText
-    case "SplitText": {
+    case "SplitText" as string: {
       return (
-        <SplitText {...block} />
+        <SplitText {...block as any} />
       );
     }
     // PetCarousel
-    case "PetCarousel": {
+    case "PetCarousel" as string: {
       return (
-        <PetCarousel {...block} />
+        <PetCarousel {...block as any} />
       );
     }
     // PetCarousel
-    case "Impact": {
-      return <Impact {...block} />;
+    case "Impact" as string: {
+      return <Impact {...block as any} />;
     }
     // TeamMembers
-    case "TeamMembers": {
+    case "TeamMembers" as string: {
       return (
-        <TeamMembers {...block} />
+        <TeamMembers {...block as any} />
       );
     }
-    case "AvailableDogs": {
+    case "AvailableDogs" as string: {
       return (
         <AvailableDogs
           animals={animals as RootQueryToAnimalConnectionEdge[]}
@@ -252,7 +254,7 @@ const Blocks = ({
       {blocks &&
         blocks.map((block, index) => (
           <Block
-            block={block}
+            block={block as any}
             key={`block-${index}`}
             animals={animals as any}
             loadMore={loadMore}
